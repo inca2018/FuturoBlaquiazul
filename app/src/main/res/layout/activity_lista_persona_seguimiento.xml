@@ -36,7 +36,7 @@
 
 
             <android.support.v7.widget.RecyclerView
-                android:id="@+id/Recylcer_Seguimiento_Personas"
+                android:id="@+id/Recycler_Persona_seg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 

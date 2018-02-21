@@ -13,19 +13,45 @@ import java.util.List;
 public class Recursos_Diagnostico {
 
     public static final List<Captacion_Vista> LISTA_VISTAS= new ArrayList<>();
+    public static final List<Captacion_Vista> LISTA_VISTAS2= new ArrayList<>();
     public  static final List<Captacion_funcional> LISTA_FISICO =new ArrayList<>();
     public static final List<Captacion_funcional> LISTA_CAPACIDAD =new ArrayList<>();
     public static final List<Captacion_funcional> LISTA_SOCIAL =new ArrayList<>();
     public static final List<Captacion_funcional> LISTA_TECNICO =new ArrayList<>();
     public static final List<Captacion_funcional> LISTA_PSICO =new ArrayList<>();
 
+
+    public static final List<Captacion_funcional> LISTA_SOCIAL2 =new ArrayList<>();
+    public static final List<Captacion_funcional> LISTA_PSICO2 =new ArrayList<>();
+
     static{
 
-        LISTA_VISTAS.add(new Captacion_Vista(R.layout.area_fisico,R.id.contenedor_fisico,R.id.panel_fisico,R.id.area_fisico,0,R.id.total_fisico));
+        LISTA_VISTAS.add(new Captacion_Vista(
+                R.layout.area_fisico,
+                R.id.contenedor_fisico,
+                R.id.panel_fisico,
+                R.id.area_fisico,
+                0,
+                R.id.total_fisico));
         LISTA_VISTAS.add(new Captacion_Vista(R.layout.area_capacidad,R.id.contenedor_capacidad,R.id.panel_capacidad,R.id.area_capacidad,0,R.id.total_capacidad));
         LISTA_VISTAS.add(new Captacion_Vista(R.layout.area_social,R.id.contenedor_social,R.id.panel_social,R.id.area_social,0,R.id.total_social));
         LISTA_VISTAS.add(new Captacion_Vista(R.layout.area_tecnico,R.id.contenedor_tecnico,R.id.panel_tecnico,R.id.area_tecnico,0,R.id.total_tecnico));
         LISTA_VISTAS.add(new Captacion_Vista(R.layout.area_psico,R.id.contenedor_psico,R.id.panel_psico,R.id.area_psico,0,R.id.total_psico));
+
+        LISTA_VISTAS2.add(new Captacion_Vista(
+                R.layout.area_social2,
+                R.id.contenedor_social2,
+                R.id.panel_social2,
+                R.id.area_social2,
+                0,
+                R.id.total_social2));
+        LISTA_VISTAS2.add(new Captacion_Vista(
+                R.layout.area_psico2,
+                R.id.contenedor_psico2,
+                R.id.panel_psico2,
+                R.id.area_psico2,
+                0,
+                R.id.total_psico2));
 
 
         LISTA_FISICO.add(new Captacion_funcional("Estatura según Posición",R.id.opcion_fisico1,
@@ -198,6 +224,60 @@ public class Recursos_Diagnostico {
 
 
 
+
+
+        LISTA_SOCIAL2.add(new Captacion_funcional("Actitud ante el Adversario",R.id.opcion_social12,
+                R.id.group_social12,
+                R.id.s112,
+                R.id.s122,
+                R.id.s132,
+                R.id.s142,0));
+
+        LISTA_SOCIAL2.add(new Captacion_funcional("Actitud con Compañeros",R.id.opcion_social22,
+                R.id.group_social22,
+                R.id.s212,
+                R.id.s222,
+                R.id.s232,
+                R.id.s242,0));
+
+        LISTA_SOCIAL2.add(new Captacion_funcional("Actitud con el Árbitro",R.id.opcion_social32,
+                R.id.group_social32,
+                R.id.s312,
+                R.id.s322,
+                R.id.s332,
+                R.id.s342,0));
+        LISTA_SOCIAL2.add(new Captacion_funcional("Actitud con el Público",R.id.opcion_social42,
+                R.id.group_social42,
+                R.id.s412,
+                R.id.s422,
+                R.id.s432,
+                R.id.s442,0));
+
+
+        LISTA_PSICO2.add(new Captacion_funcional("Liderazgo en el campo",R.id.opcion_psico12,
+                R.id.group_psico12,
+                R.id.p112,
+                R.id.p122,
+                R.id.p132,
+                R.id.p142,0));
+        LISTA_PSICO2.add(new Captacion_funcional("Soporte emocional al compañero",R.id.opcion_psico22,
+                R.id.group_psico22,
+                R.id.p212,
+                R.id.p222,
+                R.id.p232,
+                R.id.p242,0));
+        LISTA_PSICO2.add(new Captacion_funcional("Respeto a la Autoridad y las Reglas",R.id.opcion_psico32,
+                R.id.group_psico32,
+                R.id.p312,
+                R.id.p322,
+                R.id.p332,
+                R.id.p342,0));
+        LISTA_PSICO2.add(new Captacion_funcional("Capacidad de sacrificio",R.id.opcion_psico42,
+                R.id.group_psico42,
+                R.id.p412,
+                R.id.p422,
+                R.id.p432,
+                R.id.p442,0));
     }
 
 }

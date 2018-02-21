@@ -21,6 +21,7 @@ import com.android.volley.toolbox.Volley;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.CaptacionActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaMasivosActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaPersonaSeguimientoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Ubigeo.UbigeoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Unidad_Territorial;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Validar_Ubigeo;
@@ -92,7 +93,7 @@ public class CaptacionFragment extends Fragment {
             public void onClick(View view) {
 
                 if(GestionUbigeo.CAPTACION_UBIGEO.isEstado()==true){
-                    Intent intent= new Intent(mContext,CaptacionActivity.class);
+                    Intent intent= new Intent(mContext,ListaPersonaSeguimientoActivity.class);
                     startActivity(intent);
                 }else{
                     Toast.makeText(mContext, "Seleccione Ubicación de Trabajo", Toast.LENGTH_SHORT).show();

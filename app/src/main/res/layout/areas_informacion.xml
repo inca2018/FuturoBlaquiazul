@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+   >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="16dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+        <ImageView
+            android:id="@+id/cerrar_ventana2"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:src="@mipmap/icon_delete"
+            android:tint="@color/blue"
+            android:layout_alignParentRight="true"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/titulo1"
+            android:text="Información de la Evaluación"
+            android:textAlignment="center"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/titulo2"
+            android:text="Nombre de Competencia:"/>
+
+        <EditText
+            android:id="@+id/nombre_competencia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/input_texto"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/titulo2"
+            android:text="Nombre de Rival:"/>
+
+        <EditText
+            android:id="@+id/nombre_rival"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/input_texto"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/titulo2"
+            android:text="Tiempo Jugado:"/>
+
+        <EditText
+            android:id="@+id/tiempo_jugado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/input_texto"
+            android:inputType="number"
+            android:maxLength="3"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/titulo2"
+                android:text="TITULAR"
+                android:layout_weight="1"/>
+            <CheckBox
+                android:id="@+id/check_titular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginRight="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/titulo2"
+                android:text="CAPITAN"
+                android:layout_weight="1"/>
+            <CheckBox
+                android:id="@+id/check_capitan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"/>
+
+
+        </LinearLayout>
+
+
+
+
+
+
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

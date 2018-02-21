@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/area_social2"
+    android:background="@android:color/holo_blue_light"
+    android:visibility="gone">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="8dp">
+
+        <TextView
+            android:id="@+id/opcion_social12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="OPCION 1 "
+            android:textColor="@android:color/white"
+            android:textSize="12dp" />
+
+        <RadioGroup
+            android:id="@+id/group_social12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checkedButton="@+id/c11"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/s112"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@android:color/white"
+                android:text="0"
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite" />
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/s122"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@android:color/white"
+                android:text="1"
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite" />
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/s132"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@android:color/white"
+                android:text="2"
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite" />
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/s142"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@android:color/white"
+                android:text="3"
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="8dp">
+
+        <TextView
+            android:id="@+id/opcion_social22"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="OPCION 2 "
+            android:textColor="@android:color/white"
+            android:textSize="12dp" />
+
+        <RadioGroup
+            android:id="@+id/group_social22"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checkedButton="@+id/s21"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/s212"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@android:color/white"
+                android:text="0"
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite" />
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/s222"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@android:color/white"
+                android:text="1"
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite" />
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/s232"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@android:color/white"
+                android:text="2"
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite" />
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/s242"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@android:color/white"
+                android:text="3"
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="8dp">
+
+        <TextView
+            android:id="@+id/opcion_social32"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="OPCION 3 "
+            android:textColor="@android:color/white"
+            android:textSize="12dp" />
+
+        <RadioGroup
+            android:id="@+id/group_social32"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checkedButton="@+id/s31"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/s312"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@android:color/white"
+                android:text="0"
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite" />
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/s322"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@android:color/white"
+                android:text="1"
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite" />
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/s332"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@android:color/white"
+                android:text="2"
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite" />
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/s342"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@android:color/white"
+                android:text="3"
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite" />
+        </RadioGroup>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="8dp">
+
+        <TextView
+            android:id="@+id/opcion_social42"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="OPCION 4 "
+            android:textColor="@android:color/white"
+            android:textSize="12dp" />
+
+        <RadioGroup
+            android:id="@+id/group_social42"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checkedButton="@+id/s41"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/s412"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@android:color/white"
+                android:text="0"
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite" />
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/s422"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@android:color/white"
+                android:text="1"
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite" />
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/s432"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@android:color/white"
+                android:text="2"
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite" />
+
+            <android.support.v7.widget.AppCompatRadioButton
+                android:id="@+id/s442"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@android:color/white"
+                android:text="3"
+                android:textColor="@android:color/white"
+                app:buttonTint="@color/colorWhite" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

@@ -56,19 +56,22 @@ public class AdapterCampo extends RecyclerView.Adapter<AdapterCampo.ViewHolder> 
         return new ViewHolder(itemView);
     }
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-        holder.btn.getLayoutParams().height=my_Data.get(position).getAltura();
-       // holder.btn.getLayoutParams().width=my_Data.get(position).getAncho();
-        holder.btn.setHeight(my_Data.get(position).getAltura());
-        //holder.btn.setWidth(my_Data.get(position).getAncho());
-        //holder.btn.setBackground(context.getResources().getDrawable(my_Data.get(position).getDrawable()));
+         holder.btn.getLayoutParams().height=my_Data.get(position).getAltura();
+
+         holder.btn.setHeight(my_Data.get(position).getAltura());
+
+
+         holder.btn.setText(my_Data.get(position).getDato());
+         holder.btn.setTextColor(context.getResources().getColor(R.color.blanco));
 
          holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
                 final View dialoglayout4 = inflater.inflate(R.layout.gestion_campo, null);
+
                 final TextView fab1= dialoglayout4.findViewById(R.id.op1);
                 final TextView fab2= dialoglayout4.findViewById(R.id.op2);
                 final TextView fab3= dialoglayout4.findViewById(R.id.op3);
@@ -82,6 +85,7 @@ public class AdapterCampo extends RecyclerView.Adapter<AdapterCampo.ViewHolder> 
                 fab1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         my_Data.get(position).setDato("P");
                         my_Data.get(position).setCant(-1);
                         Puntostotal=Puntostotal-1;
@@ -93,6 +97,7 @@ public class AdapterCampo extends RecyclerView.Adapter<AdapterCampo.ViewHolder> 
                 fab2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         my_Data.get(position).setDato("R");
                         my_Data.get(position).setCant(1);
                         Puntostotal=Puntostotal+1;
@@ -104,6 +109,7 @@ public class AdapterCampo extends RecyclerView.Adapter<AdapterCampo.ViewHolder> 
                 fab3.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         my_Data.get(position).setDato("PG");
                         my_Data.get(position).setCant(1);
                         Puntostotal=Puntostotal+1;
@@ -114,6 +120,7 @@ public class AdapterCampo extends RecyclerView.Adapter<AdapterCampo.ViewHolder> 
                 fab4.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         my_Data.get(position).setDato("DR");
                         my_Data.get(position).setCant(1);
                         Puntostotal=Puntostotal+1;
@@ -124,6 +131,7 @@ public class AdapterCampo extends RecyclerView.Adapter<AdapterCampo.ViewHolder> 
                 fab5.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         my_Data.get(position).setDato("G");
                         my_Data.get(position).setCant(3);
                         Puntostotal=Puntostotal+1;
@@ -139,6 +147,67 @@ public class AdapterCampo extends RecyclerView.Adapter<AdapterCampo.ViewHolder> 
     @Override
     public int getItemCount() {
         return my_Data.size();
+    }
+    public int getPuntostotal() {
+        return Puntostotal;
+    }
+    public int getP(){
+        int sum=0;
+        for(int i=0;i<getItemCount();i++){
+            if(my_Data.get(i).getDato().equalsIgnoreCase("P")){
+                sum=sum+1;
+            }else{
+                sum=0;
+            }
+        }
+        return sum;
+    }
+    public int getR(){
+        int sum=0;
+        for(int i=0;i<getItemCount();i++){
+            if(my_Data.get(i).getDato().equalsIgnoreCase("R")){
+                sum=sum+1;
+            }else{
+                sum=0;
+            }
+
+        }
+        return sum;
+    }
+    public int getPG(){
+        int sum=0;
+        for(int i=0;i<getItemCount();i++){
+            if(my_Data.get(i).getDato().equalsIgnoreCase("PG")){
+                sum=sum+1;
+            }else{
+                sum=0;
+            }
+
+        }
+        return sum;
+    }
+    public int getDR(){
+        int sum=0;
+        for(int i=0;i<getItemCount();i++){
+            if(my_Data.get(i).getDato().equalsIgnoreCase("DR")){
+                sum=sum+1;
+            }else{
+                sum=0;
+            }
+
+        }
+        return sum;
+    }
+    public int getGoles(){
+        int sum=0;
+        for(int i=0;i<getItemCount();i++){
+            if(my_Data.get(i).getDato().equalsIgnoreCase("G")){
+                sum=sum+1;
+            }else{
+                sum=0;
+            }
+        }
+        return sum;
     }
 
 }

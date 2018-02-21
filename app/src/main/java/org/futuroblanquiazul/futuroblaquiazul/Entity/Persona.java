@@ -33,6 +33,7 @@ public class Persona {
     modulo_captacion Informacion_captacion;
     int estado_capta;
     int disponible;
+    int totales_seguimientos;
 
     public static final Persona PERSONA_TEMP=new Persona();
 
@@ -45,6 +46,14 @@ public class Persona {
         return Informacion_captacion;
     }
 
+
+    public int getTotales_seguimientos() {
+        return totales_seguimientos;
+    }
+
+    public void setTotales_seguimientos(int totales_seguimientos) {
+        this.totales_seguimientos = totales_seguimientos;
+    }
 
     public int getDisponible() {
         return disponible;
