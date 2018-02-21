@@ -1,0 +1,89 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+
+
+    <style name="titulo1">
+        <item name="android:textColor">@color/titulos</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+    <style name="titulo2">
+        <item name="android:textColor">@color/titulos</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+    <style name="input_texto" >
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/titulos</item>
+        <item name="android:background">@drawable/input_texto</item>
+        <item name="android:layout_margin">4dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColorHint">@color/colorSecondaryText</item>
+        <item name="android:colorFocusedHighlight">@color/red</item>
+
+    </style>
+
+
+    <style name="main_titulo">
+        <item name="android:textSize">@dimen/sizeLetra</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+
+    </style>
+
+    <style name="main_titulo2">
+        <item name="android:textSize">@dimen/sizeLetra2</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceLarge</item>
+    </style>
+
+
+    <style name="spinner_loading">
+        <item name="android:layout_width">@dimen/alturaSlider</item>
+        <item name="android:layout_height">@dimen/alturaSlider</item>
+        <item name="android:indeterminate">false</item>
+        <item name="android:max">100</item>
+        <item name="android:progress">0</item>
+        <item name="android:secondaryProgress">0</item>
+    </style>
+
+    <style name="textoContador">
+        <item name="android:textSize">@dimen/alturaContador</item>
+        <item name="android:textColor">@color/blanco</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+        <item name="android:layout_marginLeft">@dimen/marginContador</item>
+        <item name="android:layout_marginRight">@dimen/marginContador</item>
+        <item name="android:layout_marginTop">@dimen/marginTopContador</item>
+    </style>
+
+
+
+</resources>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.jesusinca.alianza.Activities.Captacion.ValidarDiagnosticoIndividualActivity">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardElevation="5dp"
+            app:cardBackgroundColor="@color/blanco"
+            app:cardCornerRadius="10dp"
+            android:padding="8dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="8dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/titulo1"
+                    android:text="CONFIRMACIÓN DE DIAGNOSTICO"
+                    android:textColor="@color/colorPrimary"
+                    android:textAlignment="center"/>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="8dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/titulo1"
+                        android:text="Nombres y Apellidos de Postulante:"/>
+                    <TextView
+                        android:id="@+id/resultado_persona"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Jesus Inca Cardenas"
+                        style="@style/titulo2"
+                        android:textStyle="italic"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/titulo1"
+                        android:text="Ubicación de Diagnostico:"/>
+
+                    <TextView
+                        android:id="@+id/resultado_ubigeo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="LIMA/LIMA/LOS OLIVOS"
+                        style="@style/titulo2"
+                        android:textStyle="italic"
+                        android:textAlignment="center"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/titulo1"
+                        android:text="Total General:"/>
+
+                    <TextView
+                        android:id="@+id/resultado_total"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="55 Puntos"
+                        style="@style/titulo2"
+                        android:textStyle="italic"
+                        android:textAlignment="center"/>
+
+
+                </LinearLayout>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/confirmacion_resultados"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    app:cardElevation="5dp"
+                    app:cardBackgroundColor="@color/grey"
+                    app:cardCornerRadius="10dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_margin="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            style="@style/titulo2"
+                            android:text="ENVIAR RESULTADOS"
+
+                            android:textColor="@color/blanco"
+                            android:textStyle="bold"
+                            android:textAlignment="center"/>
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

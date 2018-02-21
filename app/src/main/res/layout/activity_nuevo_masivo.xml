@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.jesusinca.alianza.Activities.Captacion.MasivoNuevoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="8dp">
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="@color/blanco">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="8dp">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/titulo1"
+                    android:textAlignment="center"
+                    android:text="NUEVO MASIVO:"
+                    android:textColor="@color/colorPrimary"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/titulo2"
+                    android:text="Nombre de Masivo:"/>
+                <EditText
+                    android:id="@+id/nombre_nuevo_masivo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/input_texto"/>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/titulo2"
+                    android:text="Ubicación de Masivo:"/>
+
+                <TextView
+                    android:id="@+id/ubigeo_nuevo_masivo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/titulo2"
+                    android:text="LIMA/LIMA/LOS OLIVOS"
+                    android:textAlignment="center"
+                    android:textStyle="italic"/>
+
+                <android.support.v7.widget.CardView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    app:cardBackgroundColor="@android:color/holo_blue_dark"
+                    app:cardElevation="5dp"
+                    app:cardCornerRadius="10dp"
+                    >
+
+                    <Button
+                        android:id="@+id/crear_nuevo_masivo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="CREAR MASIVO"
+                        android:textColor="@color/blanco"
+                        android:textStyle="bold"
+
+                        android:background="@android:color/transparent"/>
+
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</LinearLayout>

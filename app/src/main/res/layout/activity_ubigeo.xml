@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.jesusinca.alianza.Activities.Ubigeo.UbigeoActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/blanco"
+            app:cardElevation="5dp"
+            app:cardCornerRadius="10dp"
+            android:layout_margin="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="8dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/titulo1"
+                    android:text="SELECCIONE UBIGEO:"/>
+
+                <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/titulo2"
+                android:text="DEPARTAMENTO:"/>
+
+                <Spinner
+                    android:id="@+id/spinner_departamento"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp">
+
+                </Spinner>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/titulo2"
+                    android:text="PROVINCIA:"/>
+
+                <Spinner
+                    android:id="@+id/spinner_provincia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp">
+
+                </Spinner>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/titulo2"
+                    android:text="DISTRITO:"/>
+
+                <Spinner
+                    android:id="@+id/spinner_distrito"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp">
+
+                </Spinner>
+
+
+
+                <android.support.v7.widget.CardView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp"
+                    app:cardBackgroundColor="@android:color/holo_blue_dark"
+                    app:cardElevation="5dp"
+                    android:layout_margin="8dp">
+
+
+                    <Button
+                        android:id="@+id/guardar_ubigeo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="GUARDAR UBIGEO"
+                        android:textColor="@color/blanco"
+                        android:background="@android:color/transparent"/>
+
+                </android.support.v7.widget.CardView>
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
