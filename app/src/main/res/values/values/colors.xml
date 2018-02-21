@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#030c1d</color>
+    <color name="colorPrimaryDark">#041a54</color>
+    <color name="colorAccent">#074055</color>
+
+    <color name="LightGreen">#8BC34A</color>
+    <color name="Orange">#FF9800</color>
+    <color name="grey">#9E9E9E</color>
+    <item name="blue" type="color">#2196f3</item>
+    <item name="purple" type="color">#9c27b0</item>
+    <item name="green" type="color">#1b5e20</item>
+    <item name="orange" type="color">#ff5722</item>
+
+    <item name="indigo" type="color">#3f51b5</item>
+    <item name="deep_purple" type="color">#673ab7</item>
+    <item name="light_green" type="color">#689f38</item>
+    <item name="teal" type="color">#009688</item>
+    <item name="pink" type="color">#e91e63</item>
+    <item name="morado_bajo" type="color">#ba68c8</item>
+    <item name="verde_bajo" type="color">#81c784</item>
+    <item name="negro" type="color">#212121</item>
+    <item name="deep_naranja500" type="color">#FF5722</item>
+    <item name="deep_naranja900" type="color">#BF360C</item>
+    <item name="deep_naranja400" type="color">#FF7043</item>
+
+
+    <item name="amarillo" type="color">#FFD600</item>
+    <item name="verde" type="color">#4CAF50</item>
+    <item name="red" type="color">#f44336</item>
+
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorSecondaryText">#727272</color>
+    <color name="colorIcons">#FFFFFF</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorDivider">#B6B6B6</color>
+
+
+
+
+    <color name="col1">#FFEBEE</color>
+    <color name="col2">#FFCDD2</color>
+    <color name="col3">#EF9A9A</color>
+    <color name="col4">#EF9A9A</color>
+    <color name="col5">#EF5350</color>
+    <color name="col6">#F44336</color>
+    <color name="col7">#E53935</color>
+    <color name="col8">#D32F2F</color>
+    <color name="col9">#C62828</color>
+    <color name="col10">#B71C1C</color>
+
+
+
+    <color name="n">#9FA8DA</color>
+    <color name="fb">#E8EAF6</color>
+    <color name="blanco">#FFFFFF</color>
+    <color name="SecondaryText">#96000000</color>
+    <color name="Item">#00b8d4</color>
+    <color name="card">#3D5AFE</color>
+
+
+     <color name="bordes_cajas">#C9C1C5</color>
+     <color name="titulos">#3e515b</color>
+
+</resources>

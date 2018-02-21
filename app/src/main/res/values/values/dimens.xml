@@ -1,0 +1,40 @@
+<resources>
+    <dimen name="sizeLetra">60dp</dimen>
+    <dimen name="sizeLetra2">50dp</dimen>
+
+    <dimen name="iconos_altura">30dp</dimen>
+    <dimen name="iconos_ancho">30dp</dimen>
+
+    <dimen name="alturaSlider">150dp</dimen>
+    <dimen name="alturaContador">15dp</dimen>
+    <dimen name="marginContador">75dp</dimen>
+    <dimen name="marginTopContador">65dp</dimen>
+
+
+    <integer name="bloqueA_login">5</integer>
+    <integer name="bloqueB_login">3</integer>
+    <integer name="bloqueC_login">7</integer>
+
+
+   <dimen name="margin_lados">16dp</dimen>
+
+
+
+    <dimen name="ancho_login">400dp</dimen>
+
+
+
+    <dimen name="altura">310dp</dimen>
+
+
+
+    <integer name="colum">24</integer>
+    <integer name="items">264</integer>
+
+
+    <dimen name="altura_card">28dp</dimen>
+    <dimen name="ancho_card">28dp</dimen>
+
+
+
+</resources>
