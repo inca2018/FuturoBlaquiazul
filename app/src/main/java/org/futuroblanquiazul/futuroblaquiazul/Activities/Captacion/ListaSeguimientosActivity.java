@@ -51,8 +51,11 @@ public class ListaSeguimientosActivity extends AppCompatActivity {
         context=this;
         linearLayout = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
 
-        if(Usuario.SESION_ACTUAL.getId_persona()!=0){
-           Seguimientos_de_Persona(Usuario.SESION_ACTUAL.getId_persona(),context);
+        if(Usuario.SESION_ACTUAL.getPersona_seguimiento().getId()!=0){
+            System.out.println("ID_PERSONA_USUARIO_SESION:"+Usuario.SESION_ACTUAL.getPersona_seguimiento().getId());
+          //  System.out.println("ID_PERSONA_SEGUIMIENTO:"+Seguimiento.SEGUIMIENTO.getPersona().getId());
+
+           Seguimientos_de_Persona(Usuario.SESION_ACTUAL.getPersona_seguimiento().getId(),context);
         }else{
             Toast.makeText(context, "No hay informacion del postulante", Toast.LENGTH_SHORT).show();
         }
@@ -80,6 +83,8 @@ public class ListaSeguimientosActivity extends AppCompatActivity {
     private void Seguimientos_de_Persona(final int id_persona2,final Context context) {
         String id_persona= String.valueOf(id_persona2);
 
+        System.out.println("ID_PERSONA :"+id_persona);
+
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Seguimiento:");
         progressDialog.setMessage("Listando...");
@@ -100,13 +105,15 @@ public class ListaSeguimientosActivity extends AppCompatActivity {
                             Seguimiento temp=new Seguimiento();
 
                             temp.setId(objeto.getInt("ID"));
-                            temp.setCodigo_Seguimiento("CODIGO_SEGUIMIENTO");
+                            temp.setCodigo_Seguimiento(objeto.getString("CODIGO_SEGUIMIENTO"));
                             Usuario u=new Usuario();
                             u.setNombres(objeto.getString("NOMBRES"));
                             temp.setUsuario(u);
                             temp.setFecha_Registro(objeto.getString("FECHA_REGISTRO"));
                             temp.setTotal_Puntaje(objeto.getInt("TOTAL_PUNTAJE"));
                             temp.setEstado(objeto.getInt("ESTADO"));
+                            temp.setNombre_Competencia(objeto.getString("NOM_COMPETENCIA"));
+                            temp.setNombre_Rival(objeto.getString("RIVAL"));
 
                             lista_seguimientos.add(temp);
                         }

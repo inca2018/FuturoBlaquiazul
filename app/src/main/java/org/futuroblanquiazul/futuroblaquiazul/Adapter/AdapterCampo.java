@@ -92,6 +92,8 @@ public class AdapterCampo extends RecyclerView.Adapter<AdapterCampo.ViewHolder> 
                         notifyDataSetChanged();
                         da.dismiss();
 
+                        System.out.println("Total:"+Puntostotal);
+
                     }
                 });
                 fab2.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +105,8 @@ public class AdapterCampo extends RecyclerView.Adapter<AdapterCampo.ViewHolder> 
                         Puntostotal=Puntostotal+1;
                         notifyDataSetChanged();
                         da.dismiss();
+
+                        System.out.println("Total:"+Puntostotal);
                     }
                 });
 
@@ -115,6 +119,7 @@ public class AdapterCampo extends RecyclerView.Adapter<AdapterCampo.ViewHolder> 
                         Puntostotal=Puntostotal+1;
                         notifyDataSetChanged();
                         da.dismiss();
+                        System.out.println("Total:"+Puntostotal);
                     }
                 });
                 fab4.setOnClickListener(new View.OnClickListener() {
@@ -126,6 +131,7 @@ public class AdapterCampo extends RecyclerView.Adapter<AdapterCampo.ViewHolder> 
                         Puntostotal=Puntostotal+1;
                         notifyDataSetChanged();
                         da.dismiss();
+                        System.out.println("Total:"+Puntostotal);
                     }
                 });
                 fab5.setOnClickListener(new View.OnClickListener() {
@@ -134,9 +140,9 @@ public class AdapterCampo extends RecyclerView.Adapter<AdapterCampo.ViewHolder> 
 
                         my_Data.get(position).setDato("G");
                         my_Data.get(position).setCant(3);
-                        Puntostotal=Puntostotal+1;
                         notifyDataSetChanged();
                         da.dismiss();
+                        System.out.println("Total:"+Puntostotal);
                     }
                 });
             }
@@ -157,7 +163,7 @@ public class AdapterCampo extends RecyclerView.Adapter<AdapterCampo.ViewHolder> 
             if(my_Data.get(i).getDato().equalsIgnoreCase("P")){
                 sum=sum+1;
             }else{
-                sum=0;
+
             }
         }
         return sum;
@@ -168,7 +174,7 @@ public class AdapterCampo extends RecyclerView.Adapter<AdapterCampo.ViewHolder> 
             if(my_Data.get(i).getDato().equalsIgnoreCase("R")){
                 sum=sum+1;
             }else{
-                sum=0;
+
             }
 
         }
@@ -180,7 +186,7 @@ public class AdapterCampo extends RecyclerView.Adapter<AdapterCampo.ViewHolder> 
             if(my_Data.get(i).getDato().equalsIgnoreCase("PG")){
                 sum=sum+1;
             }else{
-                sum=0;
+
             }
 
         }
@@ -192,7 +198,7 @@ public class AdapterCampo extends RecyclerView.Adapter<AdapterCampo.ViewHolder> 
             if(my_Data.get(i).getDato().equalsIgnoreCase("DR")){
                 sum=sum+1;
             }else{
-                sum=0;
+
             }
 
         }
@@ -204,7 +210,7 @@ public class AdapterCampo extends RecyclerView.Adapter<AdapterCampo.ViewHolder> 
             if(my_Data.get(i).getDato().equalsIgnoreCase("G")){
                 sum=sum+1;
             }else{
-                sum=0;
+
             }
         }
         return sum;

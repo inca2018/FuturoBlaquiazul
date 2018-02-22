@@ -56,7 +56,7 @@ public class AdapterSeguimientos extends RecyclerView.Adapter<AdapterSeguimiento
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView= LayoutInflater.from(parent.getContext()).inflate(R.layout.card_item_masivo_persona,parent,false);
+        View itemView= LayoutInflater.from(parent.getContext()).inflate(R.layout.card_item_seguimiento,parent,false);
         return new ViewHolder(itemView);
 
     }
@@ -73,7 +73,7 @@ public class AdapterSeguimientos extends RecyclerView.Adapter<AdapterSeguimiento
                   public void onClick(View v) {
 
                       final PopupMenu popupMenu=new PopupMenu(context,holder.acciones);
-                      popupMenu.getMenuInflater().inflate(R.menu.menu_item_masivo,popupMenu.getMenu());
+                      popupMenu.getMenuInflater().inflate(R.menu.menu_item_seguimiento,popupMenu.getMenu());
                       popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                           @Override
                           public boolean onMenuItemClick(MenuItem item) {
@@ -86,6 +86,8 @@ public class AdapterSeguimientos extends RecyclerView.Adapter<AdapterSeguimiento
                               return true;
                           }
                       });
+
+                      popupMenu.show();
 
                   }
               });

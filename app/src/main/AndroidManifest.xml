@@ -11,7 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-
         <activity android:name=".Activities.Inicio.MainActivity" />
         <activity
             android:name=".Activities.Captacion.CaptacionActivity"
@@ -28,7 +27,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".Activities.Inicio.PrincipalActivity"
@@ -63,10 +61,10 @@
         <activity
             android:name=".Activities.Captacion.SeguimientoActivity"
             android:configChanges="screenSize|orientation"
-            android:screenOrientation="landscape">
-
-
-        </activity>
+            android:screenOrientation="landscape" />
+        <activity android:name=".Activities.Captacion.ValidarSeguimientoActivity" />
+        <activity android:name=".Activities.Captacion.PruebaFisicoActivity" />
+        <activity android:name=".Activities.Captacion.PruebaFisico2Activity"></activity>
     </application>
 
 </manifest>

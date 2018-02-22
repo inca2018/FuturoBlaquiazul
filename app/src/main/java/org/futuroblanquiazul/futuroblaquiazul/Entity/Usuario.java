@@ -28,6 +28,7 @@ public class Usuario {
 
   int id_masivo;
   int id_persona;
+  Persona persona_seguimiento;
 
     int altura;
     int ancho;
@@ -38,6 +39,15 @@ public class Usuario {
 
     public Usuario(){
 
+    }
+
+
+    public Persona getPersona_seguimiento() {
+        return persona_seguimiento;
+    }
+
+    public void setPersona_seguimiento(Persona persona_seguimiento) {
+        this.persona_seguimiento = persona_seguimiento;
     }
 
     public int getAltura() {

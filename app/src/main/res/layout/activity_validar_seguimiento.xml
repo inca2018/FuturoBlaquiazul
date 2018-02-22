@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                app:cardBackgroundColor="@color/blanco"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_weight="2">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:layout_weight="4">
+
+                                <TextView
+                                    style="@style/titulo1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="2"
+                                    android:text="CONFIRMACIÓN DE SEGUIMIENTO"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/colorPrimary" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:layout_weight="1">
+
+
+                                <TextView
+                                    style="@style/titulo1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+
+                                    android:text="Nombres y Apellidos de Postulante:" />
+
+                                <TextView
+                                    android:id="@+id/resultado_persona_seguimiento"
+                                    style="@style/titulo2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:text="Jesus Inca Cardenas"
+                                    android:textAlignment="center"
+                                    android:textStyle="italic" />
+
+                                <TextView
+                                    style="@style/titulo1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:text="Ubicación de Diagnostico:" />
+
+                                <TextView
+                                    android:id="@+id/resultado_ubigeo_seguimiento"
+                                    style="@style/titulo2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:text="LIMA/LIMA/LOS OLIVOS"
+                                    android:textAlignment="center"
+                                    android:textStyle="italic" />
+
+                            </LinearLayout>
+
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_weight="2">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:layout_weight="4">
+                                <TextView
+                                    style="@style/titulo1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="Detalle de Seguimiento:" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="16dp"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal"
+                                    >
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_margin="2dp"
+                                        android:layout_weight="1"
+                                        android:gravity="center_vertical|start"
+                                        android:text="Resultados Social y Psicologico:"
+                                        android:textAlignment="viewStart"
+                                        android:textSize="14sp"
+                                        android:textStyle="italic" />
+
+                                    <TextView
+                                        android:id="@+id/resultado_total_Diagnostico"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="3"
+                                        android:gravity="center"
+                                        android:text="55 Puntos"
+                                        android:textAlignment="center"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold|italic" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal"
+                                    >
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_margin="2dp"
+                                        android:layout_weight="1"
+                                        android:gravity="center_vertical|start"
+                                        android:text="Resultado Campo:"
+                                        android:textAlignment="viewStart"
+                                        android:textSize="14sp"
+                                        android:textStyle="italic" />
+
+                                    <TextView
+                                        android:id="@+id/resultado_total_campo"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="3"
+                                        android:gravity="center"
+                                        android:text="55 Puntos"
+                                        android:textAlignment="center"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold|italic" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal"
+                                    >
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_margin="2dp"
+                                        android:layout_weight="1"
+                                        android:gravity="center_vertical|start"
+                                        android:text="Cantidad de Goles:"
+                                        android:textAlignment="viewStart"
+                                        android:textSize="14sp"
+                                        android:textStyle="italic" />
+
+                                    <TextView
+                                        android:id="@+id/resultado_cant_goles"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="3"
+                                        android:gravity="center"
+                                        android:text="55 Puntos"
+                                        android:textAlignment="center"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold|italic" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal"
+                                     >
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_margin="2dp"
+                                        android:layout_weight="1"
+                                        android:gravity="center_vertical|start"
+                                        android:text="Tiempo Jugado:"
+                                        android:textAlignment="viewStart"
+                                        android:textSize="14sp"
+                                        android:textStyle="italic" />
+
+                                    <TextView
+                                        android:id="@+id/resultado_tiempo_jugado"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="3"
+                                        android:gravity="center"
+                                        android:text="80 minutos"
+                                        android:textAlignment="center"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold|italic" />
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_weight="3">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="Total General:"
+                                android:textAlignment="center"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/resultado_total_seguimiento"
+                                style="@style/titulo2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="55 Puntos"
+                                android:textAlignment="center"
+                                android:textSize="20sp"
+                                android:textStyle="italic" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/confirmacion_resultados_seguimiento"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:layout_weight="10"
+                        app:cardBackgroundColor="@color/grey"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="5dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="4dp"
+                            android:gravity="center"
+                            android:text="ENVIAR RESULTADOS"
+                            android:textAlignment="center"
+                            android:textColor="@color/blanco"
+                            android:textStyle="bold" />
+
+                    </android.support.v7.widget.CardView>
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+
+</LinearLayout>

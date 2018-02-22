@@ -70,4 +70,7 @@ public class Campo {
     public void setDato(String dato) {
         this.dato = dato;
     }
+
+
+
 }

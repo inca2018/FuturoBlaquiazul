@@ -31,6 +31,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterCampo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Campo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Seguimiento;
@@ -68,9 +69,6 @@ public class SeguimientoActivity extends AppCompatActivity {
     List<Integer> Resultados_Diagnostico;
     int id_psico,id_social;
     ProgressDialog progressDialog;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +78,8 @@ public class SeguimientoActivity extends AppCompatActivity {
         opcion_informacion=findViewById(R.id.opciones_informacion);
         opcion_prueba=findViewById(R.id.opciones_diagnostico);
         Resultados_Diagnostico=new ArrayList<>();
+
+        Seguimiento.SEGUIMIENTO.Vaciar_Datos();
 
         linea=findViewById(R.id.altura_campo);
         context=this;
@@ -97,6 +97,10 @@ public class SeguimientoActivity extends AppCompatActivity {
 
         if(Campo.LISTACAMPO.size()==0){
             listar_card();
+        }else{
+            Campo.LISTACAMPO.clear();
+            listar_card();
+
         }
 
        Opcion_Prueba();
@@ -110,7 +114,11 @@ public class SeguimientoActivity extends AppCompatActivity {
                     if(Seguimiento.SEGUIMIENTO.getNombre_Rival()!=null){
                         if(Seguimiento.SEGUIMIENTO.getMinutos_Juego()!=0){
 
-                            Guardar_Seguimiento();
+
+                            Intent intent = new Intent(SeguimientoActivity.this,ValidarSeguimientoActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            SeguimientoActivity.this.startActivity(intent);
+                           // Guardar_Seguimiento();
                         }else{
                             MostrarError("Debe Ingresar Minutos Jugados en el evento");
                         }
@@ -137,68 +145,10 @@ public class SeguimientoActivity extends AppCompatActivity {
                 Seguimiento.SEGUIMIENTO.setCantidad_Dribbling(adapterCampo.getDR());
                 Seguimiento.SEGUIMIENTO.setCantidad_Recupera_Balon(adapterCampo.getR());
                 Seguimiento.SEGUIMIENTO.setGoles(adapterCampo.getGoles());
-                Seguimiento.SEGUIMIENTO.setTotal_Puntaje(adapterCampo.getPuntostotal());
 
             }
         });
 
-
-    }
-
-    private void Guardar_Seguimiento() {
-
-         if(Seguimiento.SEGUIMIENTO.getTitular()==0){
-                //nada
-         }else if(Seguimiento.SEGUIMIENTO.getTitular()==1){
-              int total=Seguimiento.SEGUIMIENTO.getTotal_Puntaje();
-              Seguimiento.SEGUIMIENTO.setTotal_Puntaje(total+2);
-         }
-
-        if(Seguimiento.SEGUIMIENTO.getCapitan()==0){
-
-        }else if(Seguimiento.SEGUIMIENTO.getCapitan()==1){
-            int total=Seguimiento.SEGUIMIENTO.getTotal_Puntaje();
-            Seguimiento.SEGUIMIENTO.setTotal_Puntaje(total+2);
-        }
-
-        if(Seguimiento.SEGUIMIENTO.getMinutos_Juego()!=0){
-            int total=Seguimiento.SEGUIMIENTO.getTotal_Puntaje();
-            int ma=(Seguimiento.SEGUIMIENTO.getMinutos_Juego()/2)+total;
-            Seguimiento.SEGUIMIENTO.setTotal_Puntaje(ma);
-        }else{
-
-        }
-
-        int suma=0;
-        for(int i=0;i< Recursos_Diagnostico.LISTA_SOCIAL2.size();i++){
-            suma=suma+Recursos_Diagnostico.LISTA_SOCIAL2.get(i).getResultado();
-        }
-        int suma2=0;
-        for(int i=0;i< Recursos_Diagnostico.LISTA_PSICO2.size();i++){
-            suma=suma+Recursos_Diagnostico.LISTA_PSICO2.get(i).getResultado();
-        }
-
-        int total_general=Seguimiento.SEGUIMIENTO.getTotal_Puntaje()+suma+suma2;
-        Seguimiento.SEGUIMIENTO.setTotal_Puntaje(total_general);
-        Unidad_Territorial depa=new Unidad_Territorial();
-        depa.setCodigo(GestionUbigeo.CAPTACION_UBIGEO.getDepartamento().getCodigo());
-        Unidad_Territorial prov=new Unidad_Territorial();
-        prov.setCodigo(GestionUbigeo.CAPTACION_UBIGEO.getProvincia().getCodigo());
-        Unidad_Territorial dist=new Unidad_Territorial();
-        dist.setCodigo(GestionUbigeo.CAPTACION_UBIGEO.getDistrito().getCodigo());
-
-        Seguimiento.SEGUIMIENTO.setDepartamento(depa);
-        Seguimiento.SEGUIMIENTO.setProvincia(prov);
-        Seguimiento.SEGUIMIENTO.setDistrito(dist);
-
-        for(int i=0;i<Recursos_Diagnostico.LISTA_SOCIAL2.size();i++){
-            Resultados_Diagnostico.add(Recursos_Diagnostico.LISTA_SOCIAL2.get(i).getResultado());
-        }
-        for(int i=0;i<Recursos_Diagnostico.LISTA_PSICO2.size();i++){
-            Resultados_Diagnostico.add(Recursos_Diagnostico.LISTA_PSICO2.get(i).getResultado());
-        }
-
-        Registrar_Diagnosticos(Resultados_Diagnostico,context);
 
     }
 
@@ -310,9 +260,11 @@ public class SeguimientoActivity extends AppCompatActivity {
         queue.add(xx);
 
     }
+
+
+
+
     private void Opcion_Prueba() {
-
-
         opcion_prueba.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -334,18 +286,13 @@ public class SeguimientoActivity extends AppCompatActivity {
 
                 Crear_Animaciones(dialoglayout);
                 Seteo_RadioGroups(dialoglayout);
-
-
             }
         });
     }
     private void Opcion_Informacion() {
-
         opcion_informacion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
                 final View dialoglayout2 = inflater.inflate(R.layout.areas_informacion, null);
                 final ImageView cerrar2=dialoglayout2.findViewById(R.id.cerrar_ventana2);
@@ -355,13 +302,32 @@ public class SeguimientoActivity extends AppCompatActivity {
                 final EditText tiempo_jugado=dialoglayout2.findViewById(R.id.tiempo_jugado);
                 final CheckBox checTitular=dialoglayout2.findViewById(R.id.check_titular);
                 final CheckBox checkCapitan=dialoglayout2.findViewById(R.id.check_capitan);
-                tiempo_jugado.setText("0");
+
 
 
                 final AlertDialog.Builder builder4 = new AlertDialog.Builder(context);
                 builder4.setView(dialoglayout2);
                 da2=builder4.show();
 
+                if(Seguimiento.SEGUIMIENTO.getNombre_Competencia()!=null){
+                    nom_competencia.setText(Seguimiento.SEGUIMIENTO.getNombre_Competencia());
+                }
+
+                if(Seguimiento.SEGUIMIENTO.getNombre_Rival()!=null){
+                    nom_rival.setText(Seguimiento.SEGUIMIENTO.getNombre_Rival());
+                }
+
+                if(Seguimiento.SEGUIMIENTO.getMinutos_Juego()!=0){
+                    tiempo_jugado.setText(String.valueOf(Seguimiento.SEGUIMIENTO.getMinutos_Juego()));
+                }
+
+                if(Seguimiento.SEGUIMIENTO.getTitular()==1){
+                    checTitular.setChecked(true);
+                }
+
+                if(Seguimiento.SEGUIMIENTO.getCapitan()==1){
+                    checkCapitan.setChecked(true);
+                }
 
 
                 cerrar2.setOnClickListener(new View.OnClickListener() {
@@ -568,17 +534,13 @@ public class SeguimientoActivity extends AppCompatActivity {
 
     }
     private void Seteo_RadioGroups(View v) {
-        debug("Entro a Setear Radio");
-        for(int i = 0; i< Recursos_Diagnostico.LISTA_SOCIAL2.size(); i++){
-            debug("Generar "+i+" Funcion Social");
-            Generar_Funcion(i, Recursos_Diagnostico.LISTA_SOCIAL2.get(i),v);
 
-        }
-        for(int i = 0; i< Recursos_Diagnostico.LISTA_PSICO2.size(); i++){
-            debug("Generar "+i+" Funcion psico");
-            Generar_Funcion(i, Recursos_Diagnostico.LISTA_PSICO2.get(i),v);
-
-        }
+            for(int i = 0; i< Recursos_Diagnostico.LISTA_SOCIAL2.size(); i++){
+                Generar_Funcion(i, Recursos_Diagnostico.LISTA_SOCIAL2.get(i),v);
+            }
+            for(int i = 0; i< Recursos_Diagnostico.LISTA_PSICO2.size(); i++){
+                Generar_Funcion(i, Recursos_Diagnostico.LISTA_PSICO2.get(i),v);
+            }
     }
     private void Generar_Funcion(int v, final Captacion_funcional captacion_funcional, View vie) {
         debug("Entro a Generar Funcion");
@@ -608,7 +570,18 @@ public class SeguimientoActivity extends AppCompatActivity {
             }
         });
 
+        if(captacion_funcional.getResultado()==0){
+            grupo.check(captacion_funcional.getRadio1());
+        }else if(captacion_funcional.getResultado()==1){
+            grupo.check(captacion_funcional.getRadio2());
+        }else if(captacion_funcional.getResultado()==2){
+            grupo.check(captacion_funcional.getRadio3());
+        }else if(captacion_funcional.getResultado()==3){
+            grupo.check(captacion_funcional.getRadio4());
+        }
+
     }
+
     private void Refrescar_Totales(View v) {
         debug("Entro a Refrescar totales");
         int total3=0;
@@ -639,4 +612,13 @@ public class SeguimientoActivity extends AppCompatActivity {
     private void MostrarError(String sms){
         Toast.makeText(context,sms, Toast.LENGTH_SHORT).show();
     }
+    public void onBackPressed() {
+
+        Intent intent = new Intent(SeguimientoActivity.this,ListaSeguimientosActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        SeguimientoActivity.this.startActivity(intent);
+
+
+    }
+
 }

@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:id="@+id/area_fisico"
     android:background="@android:color/holo_blue_light"
-    android:visibility="gone"
+   android:visibility="gone"
      >
    <android.support.v7.widget.LinearLayoutCompat
        android:layout_width="match_parent"

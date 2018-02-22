@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/FuturoBlaquiazul.iml" filepath="$PROJECT_DIR$/.idea/FuturoBlaquiazul.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FuturoBlaquiazul.iml" filepath="$PROJECT_DIR$/FuturoBlaquiazul.iml" />
+      <module fileurl="file://D:\FuturoBlaquiazul\.idea\FuturoBlaquiazul.iml" filepath="D:\FuturoBlaquiazul\.idea\FuturoBlaquiazul.iml" />
       <module fileurl="file://$PROJECT_DIR$/MPChartLib/MPChartLib.iml" filepath="$PROJECT_DIR$/MPChartLib/MPChartLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>

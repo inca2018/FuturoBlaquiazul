@@ -103,7 +103,7 @@ public class AdapterSeguimientoPersona extends RecyclerView.Adapter<AdapterSegui
 
                               }else if(item.getTitle().toString().equalsIgnoreCase("Mis Seguimientos")){
 
-                                  Usuario.SESION_ACTUAL.setId_persona(my_Data.get(position).getId());
+                                  Usuario.SESION_ACTUAL.setPersona_seguimiento(my_Data.get(position));
                                   Seguimiento.SEGUIMIENTO.setPersona(my_Data.get(position));
                                   Intent intent = new Intent(context,ListaSeguimientosActivity.class);
                                   intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

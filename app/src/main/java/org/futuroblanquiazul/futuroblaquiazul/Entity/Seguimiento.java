@@ -241,4 +241,34 @@ public class Seguimiento {
                 ", Goles=" + Goles +
                 '}';
     }
+
+
+    public void Vaciar_Datos(){
+        SEGUIMIENTO.setId(0);
+        SEGUIMIENTO.setCodigo_Seguimiento(null);
+        SEGUIMIENTO.setUsuario(null);
+        SEGUIMIENTO.setPersona(null);
+        SEGUIMIENTO.setId_campo_social(0);
+        SEGUIMIENTO.setId_campo_psico(0);
+        SEGUIMIENTO.setCapitan(0);
+        SEGUIMIENTO.setTitular(0);
+        SEGUIMIENTO.setDepartamento(null);
+        SEGUIMIENTO.setProvincia(null);
+        SEGUIMIENTO.setDistrito(null);
+        SEGUIMIENTO.setNombre_Competencia(null);
+        SEGUIMIENTO.setNombre_Rival(null);
+        SEGUIMIENTO.setMinutos_Juego(0);
+
+        SEGUIMIENTO.setCantidad_Recupera_Balon(0);
+        SEGUIMIENTO.setCantidad_Pierde_Balon(0);
+        SEGUIMIENTO.setCantidad_Dribbling(0);
+        SEGUIMIENTO.setCantidad_Pase_Gol(0);
+        SEGUIMIENTO.setTotal_Puntaje(0);
+        SEGUIMIENTO.setFecha_Registro(null);
+        SEGUIMIENTO.setEstado(0);
+        SEGUIMIENTO.setGoles(0);
+
+
+    }
+
 }
