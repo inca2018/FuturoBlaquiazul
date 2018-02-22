@@ -14,6 +14,7 @@ public class Recursos_Diagnostico {
 
     public static final List<Captacion_Vista> LISTA_VISTAS= new ArrayList<>();
     public static final List<Captacion_Vista> LISTA_VISTAS2= new ArrayList<>();
+    public static final List<Captacion_Vista> LISTA_VISTAS3= new ArrayList<>();
     public  static final List<Captacion_funcional> LISTA_FISICO =new ArrayList<>();
     public static final List<Captacion_funcional> LISTA_CAPACIDAD =new ArrayList<>();
     public static final List<Captacion_funcional> LISTA_SOCIAL =new ArrayList<>();
@@ -52,6 +53,15 @@ public class Recursos_Diagnostico {
                 R.id.area_psico2,
                 0,
                 R.id.total_psico2));
+
+        LISTA_VISTAS3.add(new Captacion_Vista(
+                     R.layout.entradas_fisico,
+                     R.id.contenedor_fisico_prueba,
+                     R.id.panel_fisico_prueba,
+                     R.id.area_opcion_fisico,
+                     0,
+                    R.id.total_fisico_prueba
+        ));
 
 
         LISTA_FISICO.add(new Captacion_funcional("Estatura según Posición",R.id.opcion_fisico1,
