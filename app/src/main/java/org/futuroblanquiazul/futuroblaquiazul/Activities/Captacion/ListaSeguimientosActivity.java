@@ -52,7 +52,7 @@ public class ListaSeguimientosActivity extends AppCompatActivity {
         linearLayout = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
 
         if(Usuario.SESION_ACTUAL.getId_persona()!=0){
-           // Seguimientos_de_Persona(Usuario.SESION_ACTUAL.getId_persona(),context);
+           Seguimientos_de_Persona(Usuario.SESION_ACTUAL.getId_persona(),context);
         }else{
             Toast.makeText(context, "No hay informacion del postulante", Toast.LENGTH_SHORT).show();
         }
@@ -94,10 +94,19 @@ public class ListaSeguimientosActivity extends AppCompatActivity {
                     boolean success = jsonResponse.getBoolean("success");
 
                     if (success) {
-                        JSONArray masivo=jsonResponse.getJSONArray("masivos_personas");
+                        JSONArray masivo=jsonResponse.getJSONArray("seguimientos");
                         for(int i=0;i<masivo.length();i++){
                             JSONObject objeto= masivo.getJSONObject(i);
                             Seguimiento temp=new Seguimiento();
+
+                            temp.setId(objeto.getInt("ID"));
+                            temp.setCodigo_Seguimiento("CODIGO_SEGUIMIENTO");
+                            Usuario u=new Usuario();
+                            u.setNombres(objeto.getString("NOMBRES"));
+                            temp.setUsuario(u);
+                            temp.setFecha_Registro(objeto.getString("FECHA_REGISTRO"));
+                            temp.setTotal_Puntaje(objeto.getInt("TOTAL_PUNTAJE"));
+                            temp.setEstado(objeto.getInt("ESTADO"));
 
                             lista_seguimientos.add(temp);
                         }

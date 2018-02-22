@@ -1,7 +1,9 @@
 package org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -25,15 +27,33 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterCampo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Campo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Seguimiento;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.Unidad_Territorial;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarResultadosDiagnostico;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarResultadosDiagnosticoSeguimiento;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarSeguimientos;
 import org.futuroblanquiazul.futuroblaquiazul.R;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Captacion_Vista;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Captacion_funcional;
+import org.futuroblanquiazul.futuroblaquiazul.Utils.Diagnostico_Otros;
+import org.futuroblanquiazul.futuroblaquiazul.Utils.GestionUbigeo;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Diagnostico;
+import org.futuroblanquiazul.futuroblaquiazul.Utils.ResultadosDiagnostico;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.futuroblanquiazul.futuroblaquiazul.ActivityEntity.modulo_captacion.BASE;
 
 public class SeguimientoActivity extends AppCompatActivity {
     private RecyclerView recyclerCampo;
@@ -45,6 +65,9 @@ public class SeguimientoActivity extends AppCompatActivity {
     AlertDialog da,da2;
     LinearLayout linea;
     View vieee;
+    List<Integer> Resultados_Diagnostico;
+    int id_psico,id_social;
+    ProgressDialog progressDialog;
 
 
 
@@ -56,6 +79,7 @@ public class SeguimientoActivity extends AppCompatActivity {
         opcion_guardar=findViewById(R.id.opciones_guardar);
         opcion_informacion=findViewById(R.id.opciones_informacion);
         opcion_prueba=findViewById(R.id.opciones_diagnostico);
+        Resultados_Diagnostico=new ArrayList<>();
 
         linea=findViewById(R.id.altura_campo);
         context=this;
@@ -82,8 +106,8 @@ public class SeguimientoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(Seguimiento.SEGUIMIENTO.getNombre_Competencia().length()!=0){
-                    if(Seguimiento.SEGUIMIENTO.getNombre_Rival().length()!=0){
+                if(Seguimiento.SEGUIMIENTO.getNombre_Competencia()!=null){
+                    if(Seguimiento.SEGUIMIENTO.getNombre_Rival()!=null){
                         if(Seguimiento.SEGUIMIENTO.getMinutos_Juego()!=0){
 
                             Guardar_Seguimiento();
@@ -124,7 +148,7 @@ public class SeguimientoActivity extends AppCompatActivity {
     private void Guardar_Seguimiento() {
 
          if(Seguimiento.SEGUIMIENTO.getTitular()==0){
-
+                //nada
          }else if(Seguimiento.SEGUIMIENTO.getTitular()==1){
               int total=Seguimiento.SEGUIMIENTO.getTotal_Puntaje();
               Seguimiento.SEGUIMIENTO.setTotal_Puntaje(total+2);
@@ -137,12 +161,155 @@ public class SeguimientoActivity extends AppCompatActivity {
             Seguimiento.SEGUIMIENTO.setTotal_Puntaje(total+2);
         }
 
-        // FALTAAAAAA
+        if(Seguimiento.SEGUIMIENTO.getMinutos_Juego()!=0){
+            int total=Seguimiento.SEGUIMIENTO.getTotal_Puntaje();
+            int ma=(Seguimiento.SEGUIMIENTO.getMinutos_Juego()/2)+total;
+            Seguimiento.SEGUIMIENTO.setTotal_Puntaje(ma);
+        }else{
 
+        }
 
+        int suma=0;
+        for(int i=0;i< Recursos_Diagnostico.LISTA_SOCIAL2.size();i++){
+            suma=suma+Recursos_Diagnostico.LISTA_SOCIAL2.get(i).getResultado();
+        }
+        int suma2=0;
+        for(int i=0;i< Recursos_Diagnostico.LISTA_PSICO2.size();i++){
+            suma=suma+Recursos_Diagnostico.LISTA_PSICO2.get(i).getResultado();
+        }
+
+        int total_general=Seguimiento.SEGUIMIENTO.getTotal_Puntaje()+suma+suma2;
+        Seguimiento.SEGUIMIENTO.setTotal_Puntaje(total_general);
+        Unidad_Territorial depa=new Unidad_Territorial();
+        depa.setCodigo(GestionUbigeo.CAPTACION_UBIGEO.getDepartamento().getCodigo());
+        Unidad_Territorial prov=new Unidad_Territorial();
+        prov.setCodigo(GestionUbigeo.CAPTACION_UBIGEO.getProvincia().getCodigo());
+        Unidad_Territorial dist=new Unidad_Territorial();
+        dist.setCodigo(GestionUbigeo.CAPTACION_UBIGEO.getDistrito().getCodigo());
+
+        Seguimiento.SEGUIMIENTO.setDepartamento(depa);
+        Seguimiento.SEGUIMIENTO.setProvincia(prov);
+        Seguimiento.SEGUIMIENTO.setDistrito(dist);
+
+        for(int i=0;i<Recursos_Diagnostico.LISTA_SOCIAL2.size();i++){
+            Resultados_Diagnostico.add(Recursos_Diagnostico.LISTA_SOCIAL2.get(i).getResultado());
+        }
+        for(int i=0;i<Recursos_Diagnostico.LISTA_PSICO2.size();i++){
+            Resultados_Diagnostico.add(Recursos_Diagnostico.LISTA_PSICO2.get(i).getResultado());
+        }
+
+        Registrar_Diagnosticos(Resultados_Diagnostico,context);
 
     }
 
+    private void Registrar_Diagnosticos(final List<Integer> lista,final Context context) {
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("Seguimiento");
+        progressDialog.setMessage("Registrando Información...");
+        progressDialog.show();
+
+        String s1=String.valueOf(lista.get(0));
+        String s2=String.valueOf(lista.get(1));
+        String s3=String.valueOf(lista.get(2));
+        String s4=String.valueOf(lista.get(3));
+        String p1=String.valueOf(lista.get(4));
+        String p2=String.valueOf(lista.get(5));
+        String p3=String.valueOf(lista.get(6));
+        String p4=String.valueOf(lista.get(7));
+        String id_persona=String.valueOf(Seguimiento.SEGUIMIENTO.getPersona().getId());
+
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+
+                    if (success) {
+                        id_social=jsonResponse.getInt("id_social");
+                        id_psico=jsonResponse.getInt("id_psico");
+                        Seguimiento.SEGUIMIENTO.setId_campo_psico(id_psico);
+                        Seguimiento.SEGUIMIENTO.setId_campo_social(id_social);
+
+                        Registrar_Modulo_Seguimiento(Seguimiento.SEGUIMIENTO,context);
+
+                    } else {
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Error de conexion pruebas", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error en json pruebas :"+e);
+                }
+            }
+        };
+
+        RegistrarResultadosDiagnosticoSeguimiento xx = new RegistrarResultadosDiagnosticoSeguimiento(s1,s2,s3,s4,p1,p2,p3,p4,id_persona,responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+
+    }
+    private void Registrar_Modulo_Seguimiento(final Seguimiento seguimiento,final Context context) {
+
+        String id_user=String.valueOf(Usuario.SESION_ACTUAL.getId());
+        String id_persona=String.valueOf(seguimiento.getPersona().getId());
+        String id_social=String.valueOf(seguimiento.getId_campo_social());
+        String id_psico=String.valueOf(seguimiento.getId_campo_psico());
+        String titular=String.valueOf(seguimiento.getTitular());
+        String capitan=String.valueOf(seguimiento.getCapitan());
+        String departamento=String.valueOf(seguimiento.getDepartamento().getCodigo());
+        String provincia=String.valueOf(seguimiento.getProvincia().getCodigo());
+        String distrito=String.valueOf(seguimiento.getDistrito().getCodigo());
+        String nom_competenia=String.valueOf(seguimiento.getNombre_Competencia());
+        String nom_rival=String.valueOf(seguimiento.getNombre_Rival());
+        String minutos=String.valueOf(seguimiento.getMinutos_Juego());
+        String cant_1=String.valueOf(seguimiento.getCantidad_Pierde_Balon());
+        String cant_2=String.valueOf(seguimiento.getCantidad_Recupera_Balon());
+        String cant_3=String.valueOf(seguimiento.getCantidad_Pase_Gol());
+        String cant_4=String.valueOf(seguimiento.getCantidad_Dribbling());
+        String total_puntaje=String.valueOf(seguimiento.getTotal_Puntaje());
+        String estado=String.valueOf(1);
+        String goles=String.valueOf(seguimiento.getGoles());
+
+        Response.Listener<String>
+
+                responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+
+                    if (success) {
+                        progressDialog.dismiss();
+
+                        Toast.makeText(context, "Registro de Seguimiento Exitoso", Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(SeguimientoActivity.this,ListaSeguimientosActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        SeguimientoActivity.this.startActivity(intent);
+                    } else {
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Error de conexion seguimientos", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error en json seguimientos :"+e);
+                }
+            }
+        };
+
+        RegistrarSeguimientos xx = new RegistrarSeguimientos(id_persona,id_user,id_social,
+                id_psico,titular,capitan,departamento,provincia,distrito,nom_competenia,
+                nom_rival,minutos,cant_1,cant_2,cant_3,cant_4,total_puntaje,estado,goles,responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+    }
     private void Opcion_Prueba() {
 
 
@@ -172,7 +339,6 @@ public class SeguimientoActivity extends AppCompatActivity {
             }
         });
     }
-
     private void Opcion_Informacion() {
 
         opcion_informacion.setOnClickListener(new View.OnClickListener() {
@@ -299,7 +465,6 @@ public class SeguimientoActivity extends AppCompatActivity {
             }
         });
     }
-
     private void Crear_Animaciones(View v) {
       debug("Entro a crear animacion");
         for(int i = 0; i< Recursos_Diagnostico.LISTA_VISTAS2.size(); i++){
@@ -464,7 +629,6 @@ public class SeguimientoActivity extends AppCompatActivity {
     public void debug(String sm){
         System.out.println(sm);
     }
-
     private void Mostrar_Resu(){
         debug("TITULAR:"+Seguimiento.SEGUIMIENTO.getNombre_Competencia());
         debug("RIVAL:"+Seguimiento.SEGUIMIENTO.getNombre_Rival());
@@ -472,7 +636,6 @@ public class SeguimientoActivity extends AppCompatActivity {
 
 
     }
-
     private void MostrarError(String sms){
         Toast.makeText(context,sms, Toast.LENGTH_SHORT).show();
     }

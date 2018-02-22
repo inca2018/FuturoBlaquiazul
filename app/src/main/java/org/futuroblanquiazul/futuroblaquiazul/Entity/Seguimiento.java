@@ -212,4 +212,33 @@ public class Seguimiento {
     public void setEstado(int estado) {
         Estado = estado;
     }
+
+
+    @Override
+    public String toString() {
+        return "Seguimiento{" +
+                "id=" + id +
+                ", Codigo_Seguimiento='" + Codigo_Seguimiento + '\'' +
+                ", usuario=" + usuario.getNombres()+" "+usuario.getApellidos() +
+                ", persona=" + persona.getId() +
+                ", id_campo_social=" + id_campo_social +
+                ", id_campo_psico=" + id_campo_psico +
+                ", titular=" + titular +
+                ", capitan=" + capitan +
+                ", Departamento=" + Departamento.getCodigo() +
+                ", Provincia=" + Provincia.getCodigo() +
+                ", Distrito=" + Distrito.getCodigo() +
+                ", Nombre_Competencia='" + Nombre_Competencia + '\'' +
+                ", Nombre_Rival='" + Nombre_Rival + '\'' +
+                ", Minutos_Juego=" + Minutos_Juego +
+                ", Cantidad_Pierde_Balon=" + Cantidad_Pierde_Balon +
+                ", Cantidad_Recupera_Balon=" + Cantidad_Recupera_Balon +
+                ", Cantidad_Pase_Gol=" + Cantidad_Pase_Gol +
+                ", Cantidad_Dribbling=" + Cantidad_Dribbling +
+                ", Total_Puntaje=" + Total_Puntaje +
+                ", Fecha_Registro='" + Fecha_Registro + '\'' +
+                ", Estado=" + Estado +
+                ", Goles=" + Goles +
+                '}';
+    }
 }

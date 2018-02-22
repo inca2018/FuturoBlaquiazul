@@ -94,7 +94,7 @@ public class AdapterSeguimientoPersona extends RecyclerView.Adapter<AdapterSegui
                   public void onClick(View v) {
 
                       final PopupMenu popupMenu=new PopupMenu(context,holder.acciones);
-                      popupMenu.getMenuInflater().inflate(R.menu.menu_item_masivo,popupMenu.getMenu());
+                      popupMenu.getMenuInflater().inflate(R.menu.menu_item_seguimiento,popupMenu.getMenu());
                       popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                           @Override
                           public boolean onMenuItemClick(MenuItem item) {
