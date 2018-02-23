@@ -9,7 +9,7 @@
 
 
     <ScrollView
-        android:id="@+id/scroll_prueba_fisica"
+        android:id="@+id/scroll_prueba_tecnica"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -50,7 +50,7 @@
                                 style="@style/titulo1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="PRUEBA FISICA"
+                                android:text="PRUEBA TECNICA"
                                 android:textAlignment="center"
                                 android:textColor="@color/blue"
                                 android:textSize="@dimen/titulo_fisico"/>
@@ -138,8 +138,35 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Resultado General"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:gravity="center"
+                                android:textSize="20sp"
+                                android:layout_margin="8dp"/>
+                            <TextView
+                                android:id="@+id/total_general_tecnico"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="100 Ptos."
+                                android:textSize="30sp"
+                                android:textColor="@color/colorPrimaryDark"
+                                android:gravity="center"
+                                android:layout_margin="8dp"/>
+
+
+                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -150,7 +177,10 @@
 
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
+                                android:layout_marginBottom="4dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_marginTop="4dp"
                                 app:cardBackgroundColor="@android:color/holo_blue_light"
                                 app:cardCornerRadius="10dp"
                                 app:cardElevation="4dp">
@@ -161,7 +191,7 @@
                                     android:orientation="vertical">
 
                                     <LinearLayout
-                                        android:id="@+id/panel_tecnica1"
+                                        android:id="@+id/panel_tecnica1_opcion1"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="8dp"
@@ -172,24 +202,14 @@
                                             android:layout_height="match_parent"
                                             android:layout_weight="1"
                                             android:gravity="center"
-                                            android:text="PASE Y CONTROL"
+                                            android:text="PRUEBA  DE PASE Y CONTROL"
                                             android:textColor="@android:color/white"
-                                            android:textSize="@dimen/letra_fisico"/>
+                                            android:textSize="@dimen/letra_fisico" />
 
-                                        <TextView
-                                            android:id="@+id/total_pase_control"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:layout_weight="1"
-                                            android:gravity="center"
-                                            android:text="0 Ptos."
-                                            android:textColor="@android:color/white"
-                                            android:textSize="@dimen/titulo_fisico"
-                                            android:textStyle="bold" />
                                     </LinearLayout>
 
                                     <LinearLayout
-                                        android:id="@+id/contenedor_tecnica1"
+                                        android:id="@+id/contenedor_tecnica1_opcion1"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:orientation="vertical">
@@ -198,11 +218,15 @@
                                 </LinearLayout>
 
                             </android.support.v7.widget.CardView>
+
                             <android.support.v7.widget.CardView
 
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
+                                android:layout_marginBottom="4dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_marginTop="4dp"
                                 app:cardBackgroundColor="@android:color/holo_blue_light"
                                 app:cardCornerRadius="10dp"
                                 app:cardElevation="4dp">
@@ -226,18 +250,9 @@
                                             android:gravity="center"
                                             android:text="PRUEBA DE REMATE"
                                             android:textColor="@android:color/white"
-                                            android:textSize="@dimen/letra_fisico"/>
+                                            android:textSize="@dimen/letra_fisico" />
 
-                                        <TextView
-                                            android:id="@+id/total_remate"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:layout_weight="1"
-                                            android:gravity="center"
-                                            android:text="0 Ptos."
-                                            android:textColor="@android:color/white"
-                                            android:textSize="@dimen/titulo_fisico"
-                                            android:textStyle="bold" />
+
                                     </LinearLayout>
 
                                     <LinearLayout
@@ -250,11 +265,15 @@
                                 </LinearLayout>
 
                             </android.support.v7.widget.CardView>
+
                             <android.support.v7.widget.CardView
 
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
+                                android:layout_marginBottom="4dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_marginTop="4dp"
                                 app:cardBackgroundColor="@android:color/holo_blue_light"
                                 app:cardCornerRadius="10dp"
                                 app:cardElevation="4dp">
@@ -278,18 +297,8 @@
                                             android:gravity="center"
                                             android:text="PRUEBA DE CONDUCCIÓN"
                                             android:textColor="@android:color/white"
-                                            android:textSize="@dimen/letra_fisico"/>
+                                            android:textSize="@dimen/letra_fisico" />
 
-                                        <TextView
-                                            android:id="@+id/total_conduccion"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:layout_weight="1"
-                                            android:gravity="center"
-                                            android:text="0 Ptos."
-                                            android:textColor="@android:color/white"
-                                            android:textSize="@dimen/titulo_fisico"
-                                            android:textStyle="bold" />
                                     </LinearLayout>
 
                                     <LinearLayout
@@ -302,11 +311,15 @@
                                 </LinearLayout>
 
                             </android.support.v7.widget.CardView>
+
                             <android.support.v7.widget.CardView
 
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="8dp"
+                                android:layout_marginBottom="4dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginRight="8dp"
+                                android:layout_marginTop="4dp"
                                 app:cardBackgroundColor="@android:color/holo_blue_light"
                                 app:cardCornerRadius="10dp"
                                 app:cardElevation="4dp">
@@ -330,18 +343,9 @@
                                             android:gravity="center"
                                             android:text="PRUEBA DE CABECEO"
                                             android:textColor="@android:color/white"
-                                            android:textSize="@dimen/letra_fisico"/>
+                                            android:textSize="@dimen/letra_fisico" />
 
-                                        <TextView
-                                            android:id="@+id/total_cabeceo"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:layout_weight="1"
-                                            android:gravity="center"
-                                            android:text="0 Ptos."
-                                            android:textColor="@android:color/white"
-                                            android:textSize="@dimen/titulo_fisico"
-                                            android:textStyle="bold" />
+
                                     </LinearLayout>
 
                                     <LinearLayout
@@ -380,127 +384,256 @@
                                             android:layout_height="wrap_content"
                                             android:orientation="horizontal">
 
-                                            <TextView
-                                                style="@style/titulo2"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:layout_weight="1"
-                                                android:text="Velocidad(Kms/Hr):"
-                                                android:textColor="@color/blanco"
-                                                android:textSize="@dimen/letra_fisico"
-                                                android:textStyle="bold|italic" />
-
-                                            <TextView
-                                                android:id="@+id/info_velocidad"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:layout_weight="1"
-                                                android:gravity="center_horizontal|center"
-                                                android:text="0,00 Kms/Hr."
-                                                android:textAlignment="center"
-                                                android:textColor="@color/blanco"
-                                                android:textSize="20sp"
-                                                android:textStyle="bold" />
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:orientation="horizontal">
-
-                                            <TextView
-                                                style="@style/titulo2"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:layout_weight="1"
-                                                android:text="Potencia(w):"
-                                                android:textColor="@color/blanco"
-                                                android:textSize="@dimen/letra_fisico"
-                                                android:textStyle="bold|italic" />
-
-                                            <TextView
-                                                android:id="@+id/info_potencia"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:layout_weight="1"
-                                                android:gravity="center_horizontal|center"
-                                                android:text="0,00 W"
-                                                android:textAlignment="center"
-                                                android:textColor="@color/blanco"
-                                                android:textSize="20sp"
-                                                android:textStyle="bold" />
-
-
-                                        </LinearLayout>
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:orientation="horizontal">
-
-                                            <TextView
-                                                style="@style/titulo2"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:layout_weight="1"
-                                                android:text="Resistencia(Vo2Máx):"
-                                                android:textColor="@color/blanco"
-                                                android:textSize="@dimen/letra_fisico"
-                                                android:textStyle="bold|italic" />
-
-
-                                            <TextView
-                                                android:id="@+id/info_resistencia"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:layout_weight="1"
-                                                android:gravity="center_horizontal|center"
-                                                android:text="0,00 Vo2Max"
-                                                android:textAlignment="center"
-                                                android:textColor="@color/blanco"
-                                                android:textSize="20sp"
-                                                android:textStyle="bold" />
-
-
-                                        </LinearLayout>
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="8dp"
-                                        android:orientation="vertical">
-
-
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:orientation="horizontal">
-
-
-                                            <TextView
-                                                style="@style/titulo2"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:layout_weight="1"
-                                                android:text="Velocidad Prom:"
-                                                android:textColor="@color/blanco"
-                                                android:textSize="@dimen/letra_fisico"
-                                                android:textStyle="bold|italic" />
-
-                                            <TextView
-                                                android:id="@+id/prom_velocidad"
-                                                style="@style/titulo2"
+                                            <LinearLayout
                                                 android:layout_width="match_parent"
                                                 android:layout_height="wrap_content"
                                                 android:layout_weight="1"
-                                                android:text="0,00 Ptos."
-                                                android:textAlignment="center"
+                                                android:orientation="vertical">
+
+                                                <TextView
+                                                    style="@style/titulo2"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+
+                                                    android:gravity="center"
+                                                    android:text="PASE:"
+                                                    android:textAlignment="center"
+                                                    android:textColor="@color/blanco"
+                                                    android:textSize="@dimen/letra_fisico"
+                                                    android:textStyle="bold|italic" />
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="1"
+                                                    android:orientation="horizontal">
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_weight="1"
+                                                        android:orientation="vertical">
+
+                                                        <TextView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="match_parent"
+                                                            android:layout_weight="1"
+                                                            android:gravity="center_horizontal|center"
+                                                            android:text="Pase Ras"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/blanco"
+                                                            android:textSize="@dimen/letra_fisico" />
+
+                                                        <TextView
+                                                            android:id="@+id/pase_ras"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="match_parent"
+                                                            android:layout_weight="1"
+                                                            android:gravity="center_horizontal|center"
+                                                            android:text="0"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/blanco"
+                                                            android:textSize="@dimen/titulo_fisico"
+                                                            android:textStyle="bold" />
+
+                                                    </LinearLayout>
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_weight="1"
+                                                        android:orientation="vertical">
+
+                                                        <TextView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="match_parent"
+                                                            android:layout_weight="1"
+                                                            android:gravity="center_horizontal|center"
+                                                            android:text="Pase Alto"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/blanco"
+                                                            android:textSize="@dimen/letra_fisico" />
+
+                                                        <TextView
+                                                            android:id="@+id/pase_alto"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="match_parent"
+                                                            android:layout_weight="1"
+                                                            android:gravity="center_horizontal|center"
+                                                            android:text="0"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/blanco"
+                                                            android:textSize="@dimen/titulo_fisico"
+                                                            android:textStyle="bold" />
+                                                    </LinearLayout>
+
+
+                                                </LinearLayout>
+
+                                            </LinearLayout>
+
+                                            <LinearLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:orientation="vertical"
+                                                android:layout_weight="1">
+
+                                                <TextView
+                                                    style="@style/titulo2"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="match_parent"
+
+                                                    android:gravity="center"
+                                                    android:text="CONTROL"
+                                                    android:textAlignment="center"
+                                                    android:textColor="@color/blanco"
+                                                    android:textSize="@dimen/letra_fisico"
+                                                    android:textStyle="bold|italic" />
+
+                                                <LinearLayout
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="1"
+                                                    android:orientation="horizontal">
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_weight="1"
+                                                        android:orientation="vertical">
+
+                                                        <TextView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="match_parent"
+                                                            android:layout_weight="1"
+                                                            android:gravity="center_horizontal|center"
+                                                            android:text="Control Ras"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/blanco"
+                                                            android:textSize="@dimen/letra_fisico" />
+
+                                                        <TextView
+                                                            android:id="@+id/C_ras"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="match_parent"
+                                                            android:layout_weight="1"
+                                                            android:gravity="center_horizontal|center"
+                                                            android:text="0"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/blanco"
+                                                            android:textSize="@dimen/titulo_fisico"
+                                                            android:textStyle="bold" />
+
+                                                    </LinearLayout>
+
+                                                    <LinearLayout
+                                                        android:layout_width="match_parent"
+                                                        android:layout_height="wrap_content"
+                                                        android:layout_weight="1"
+                                                        android:orientation="vertical">
+
+                                                        <TextView
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="match_parent"
+                                                            android:layout_weight="1"
+                                                            android:gravity="center_horizontal|center"
+                                                            android:text="Control Alto"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/blanco"
+                                                            android:textSize="@dimen/letra_fisico" />
+
+                                                        <TextView
+                                                            android:id="@+id/C_alto"
+                                                            android:layout_width="match_parent"
+                                                            android:layout_height="match_parent"
+                                                            android:layout_weight="1"
+                                                            android:gravity="center_horizontal|center"
+                                                            android:text="0"
+                                                            android:textAlignment="center"
+                                                            android:textColor="@color/blanco"
+                                                            android:textSize="@dimen/titulo_fisico"
+                                                            android:textStyle="bold" />
+                                                    </LinearLayout>
+
+
+                                                </LinearLayout>
+
+                                            </LinearLayout>
+
+
+
+
+                                        </LinearLayout>
+
+
+                                        <TextView
+                                            style="@style/titulo2"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_margin="8dp"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:text="RESULTADOS:"
+                                            android:textAlignment="center"
+                                            android:textColor="@color/blanco"
+                                            android:textSize="@dimen/letra_fisico"
+                                            android:textStyle="bold|italic" />
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal">
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:gravity="center"
+                                                android:text="PASE"
                                                 android:textColor="@color/blanco"
-                                                android:textSize="20sp"
-                                                android:textStyle="bold" />
+                                                android:textSize="12sp"
+                                                android:textStyle="bold|italic" />
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:gravity="center"
+                                                android:text="CONTROL"
+                                                android:textColor="@color/blanco"
+                                                android:textSize="12sp"
+                                                android:textStyle="bold|italic" />
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:gravity="center"
+                                                android:text="REMATE"
+                                                android:textColor="@color/blanco"
+                                                android:textSize="12sp"
+                                                android:textStyle="bold|italic" />
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:gravity="center"
+                                                android:text="CONDUCCIÓN"
+                                                android:textColor="@color/blanco"
+                                                android:textSize="10sp"
+                                                android:textStyle="bold|italic" />
+
+                                            <TextView
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:gravity="center"
+                                                android:text="CABECEO"
+                                                android:textColor="@color/blanco"
+                                                android:textSize="12sp"
+                                                android:textStyle="bold|italic" />
+
 
 
                                         </LinearLayout>
@@ -511,62 +644,66 @@
                                             android:orientation="horizontal">
 
                                             <TextView
-                                                style="@style/titulo2"
+                                                android:id="@+id/total_pase"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
                                                 android:layout_weight="1"
-                                                android:text="Potencia Prom:"
+                                                android:gravity="center"
+                                                android:text="0"
                                                 android:textColor="@color/blanco"
-                                                android:textSize="@dimen/letra_fisico"
+                                                android:textSize="@dimen/titulo_fisico"
                                                 android:textStyle="bold|italic" />
 
                                             <TextView
-                                                android:id="@+id/prom_potencia"
-                                                style="@style/titulo2"
+                                                android:id="@+id/total_control"
                                                 android:layout_width="match_parent"
                                                 android:layout_height="match_parent"
                                                 android:layout_weight="1"
-                                                android:text="0,00 Ptos."
-                                                android:textAlignment="center"
+                                                android:gravity="center"
+                                                android:text="0"
                                                 android:textColor="@color/blanco"
-                                                android:textSize="20sp"
-                                                android:textStyle="bold" />
+                                                android:textSize="@dimen/titulo_fisico"
+                                                android:textStyle="bold|italic" />
+
+                                            <TextView
+                                                android:id="@+id/total_remate"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:gravity="center"
+                                                android:text="0"
+                                                android:textColor="@color/blanco"
+                                                android:textSize="@dimen/titulo_fisico"
+                                                android:textStyle="bold|italic" />
+
+                                            <TextView
+                                                android:id="@+id/total_conduccion"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:gravity="center"
+                                                android:text="0"
+                                                android:textColor="@color/blanco"
+                                                android:textSize="@dimen/titulo_fisico"
+                                                android:textStyle="bold|italic" />
+
+                                            <TextView
+                                                android:id="@+id/total_cabeceo"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:gravity="center"
+                                                android:text="0"
+                                                android:textColor="@color/blanco"
+                                                android:textSize="@dimen/titulo_fisico"
+                                                android:textStyle="bold|italic" />
+
 
 
                                         </LinearLayout>
 
-                                        <LinearLayout
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:orientation="horizontal">
-
-
-                                            <TextView
-                                                style="@style/titulo2"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:layout_weight="1"
-                                                android:text="Resistencia Prom:"
-                                                android:textColor="@color/blanco"
-                                                android:textSize="@dimen/letra_fisico"
-                                                android:textStyle="bold|italic" />
-
-                                            <TextView
-                                                android:id="@+id/prom_resistencia"
-                                                style="@style/titulo2"
-                                                android:layout_width="match_parent"
-                                                android:layout_height="match_parent"
-                                                android:layout_weight="1"
-                                                android:text="0,00 Ptos."
-                                                android:textAlignment="center"
-
-                                                android:textColor="@color/blanco"
-                                                android:textSize="20sp"
-                                                android:textStyle="bold" />
-
-
-                                        </LinearLayout>
                                     </LinearLayout>
+
                                 </LinearLayout>
 
 

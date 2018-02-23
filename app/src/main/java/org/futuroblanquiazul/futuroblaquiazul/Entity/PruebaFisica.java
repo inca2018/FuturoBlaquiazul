@@ -33,6 +33,8 @@ public class PruebaFisica {
 
     double Total_general;
 
+    String Fecha_registro;
+
 
 
     public static final PruebaFisica PRUEBA_FISICA=new PruebaFisica();
@@ -40,7 +42,13 @@ public class PruebaFisica {
 
   }
 
+    public String getFecha_registro() {
+        return Fecha_registro;
+    }
 
+    public void setFecha_registro(String fecha_registro) {
+        Fecha_registro = fecha_registro;
+    }
 
     public int getId() {
         return id;

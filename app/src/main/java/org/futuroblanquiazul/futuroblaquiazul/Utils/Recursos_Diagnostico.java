@@ -18,21 +18,20 @@ public class Recursos_Diagnostico {
     public static final List<Captacion_Vista> LISTA_VISTAS4= new ArrayList<>();
 
 
+
     public  static final List<Captacion_funcional> LISTA_FISICO =new ArrayList<>();
     public static final List<Captacion_funcional> LISTA_CAPACIDAD =new ArrayList<>();
     public static final List<Captacion_funcional> LISTA_SOCIAL =new ArrayList<>();
     public static final List<Captacion_funcional> LISTA_TECNICO =new ArrayList<>();
     public static final List<Captacion_funcional> LISTA_PSICO =new ArrayList<>();
 
-
     public static final List<Captacion_funcional> LISTA_SOCIAL2 =new ArrayList<>();
     public static final List<Captacion_funcional> LISTA_PSICO2 =new ArrayList<>();
 
-
-
     public static final List<Captacion_funcional> LISTA_PRUEBA_TECNICA_PASE_CONTROL =new ArrayList<>();
     public static final List<Captacion_funcional> LISTA_PRUEBA_TECNICA_REMATE =new ArrayList<>();
-
+    public static final List<Captacion_funcional> LISTA_PRUEBA_TECNICA_CONDUCCION =new ArrayList<>();
+    public static final List<Captacion_funcional> LISTA_PRUEBA_TECNICA_CABECEO=new ArrayList<>();
 
 
 
@@ -78,21 +77,39 @@ public class Recursos_Diagnostico {
 
   // PRUEBA TECNICA  DATOS IMPLEMENTADOD  ARMADO DE LISTAS
         LISTA_VISTAS4.add(new Captacion_Vista(
-                R.layout.area_pase_control,
-                R.id.contenedor_tecnica1,
-                R.id.panel_tecnica1,
-                R.id.area_tactica,
+                R.layout.area_pase_control_opcion1,
+                R.id.contenedor_tecnica1_opcion1,
+                R.id.panel_tecnica1_opcion1,
+                R.id.area_tactica_opcion1,
                 0,
-                R.id.total_pase_control
+                0
         ));
 
         LISTA_VISTAS4.add(new Captacion_Vista(
                 R.layout.area_remate,
                 R.id.contenedor_tecnica2,
                 R.id.panel_tecnica2,
-                R.id.area_tactica,
+                R.id.area_tactica2,
                 0,
-                R.id.total_remate
+                0
+        ));
+
+      LISTA_VISTAS4.add(new Captacion_Vista(
+                R.layout.area_conduccion,
+                R.id.contenedor_tecnica3,
+                R.id.panel_tecnica3,
+                R.id.area_tactica3,
+                0,
+                0
+        ));
+
+           LISTA_VISTAS4.add(new Captacion_Vista(
+                R.layout.area_cabeceo,
+                R.id.contenedor_tecnica4,
+                R.id.panel_tecnica4,
+                R.id.area_tactica4,
+                0,
+                0
         ));
 
 
@@ -240,6 +257,92 @@ public class Recursos_Diagnostico {
                 0
         ));
 
+
+
+
+
+
+
+        LISTA_PRUEBA_TECNICA_CONDUCCION.add(new Captacion_funcional("",R.id.op123,
+                R.id.grupo_tecnico123,
+                R.id.cond112,
+                R.id.cond122,
+                R.id.cond132,
+                R.id.cond142,
+                0
+        ));
+        LISTA_PRUEBA_TECNICA_CONDUCCION.add(new Captacion_funcional("",R.id.op223,
+                R.id.grupo_tecnico223,
+                R.id.cond212,
+                R.id.cond222,
+                R.id.cond232,
+                R.id.cond242,
+                0
+        ));
+        LISTA_PRUEBA_TECNICA_CONDUCCION.add(new Captacion_funcional("",R.id.op323,
+                R.id.grupo_tecnico323,
+                R.id.cond312,
+                R.id.cond322,
+                R.id.cond332,
+                R.id.cond342,
+                0
+        ));
+
+        LISTA_PRUEBA_TECNICA_CONDUCCION.add(new Captacion_funcional("",R.id.op423,
+                R.id.grupo_tecnico423,
+                R.id.cond412,
+                R.id.cond422,
+                R.id.cond432,
+                R.id.cond442,
+                0
+        ));
+
+        LISTA_PRUEBA_TECNICA_CONDUCCION.add(new Captacion_funcional("",R.id.op523,
+                R.id.grupo_tecnico523,
+                R.id.cond512,
+                R.id.cond522,
+                R.id.cond532,
+                R.id.cond542,
+                0
+        ));
+
+
+
+
+
+        LISTA_PRUEBA_TECNICA_CABECEO.add(new Captacion_funcional("",R.id.op1234,
+                R.id.grupo_tecnico1234,
+                R.id.cab112,
+                R.id.cab122,
+                R.id.cab132,
+                R.id.cab142,
+                0
+        ));
+        LISTA_PRUEBA_TECNICA_CABECEO.add(new Captacion_funcional("",R.id.op2234,
+                R.id.grupo_tecnico2234,
+                R.id.cab212,
+                R.id.cab222,
+                R.id.cab232,
+                R.id.cab242,
+                0
+        ));
+        LISTA_PRUEBA_TECNICA_CABECEO.add(new Captacion_funcional("",R.id.op3234,
+                R.id.grupo_tecnico3234,
+                R.id.cab312,
+                R.id.cab322,
+                R.id.cab332,
+                R.id.cab342,
+                0
+        ));
+
+        LISTA_PRUEBA_TECNICA_CABECEO.add(new Captacion_funcional("",R.id.op4234,
+                R.id.grupo_tecnico4234,
+                R.id.cab412,
+                R.id.cab422,
+                R.id.cab432,
+                R.id.cab442,
+                0
+        ));
 
 
         // ----------------------------------------------------------------------------------
