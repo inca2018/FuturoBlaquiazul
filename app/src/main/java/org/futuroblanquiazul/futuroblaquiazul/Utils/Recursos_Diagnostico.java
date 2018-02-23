@@ -15,6 +15,9 @@ public class Recursos_Diagnostico {
     public static final List<Captacion_Vista> LISTA_VISTAS= new ArrayList<>();
     public static final List<Captacion_Vista> LISTA_VISTAS2= new ArrayList<>();
     public static final List<Captacion_Vista> LISTA_VISTAS3= new ArrayList<>();
+    public static final List<Captacion_Vista> LISTA_VISTAS4= new ArrayList<>();
+
+
     public  static final List<Captacion_funcional> LISTA_FISICO =new ArrayList<>();
     public static final List<Captacion_funcional> LISTA_CAPACIDAD =new ArrayList<>();
     public static final List<Captacion_funcional> LISTA_SOCIAL =new ArrayList<>();
@@ -24,6 +27,14 @@ public class Recursos_Diagnostico {
 
     public static final List<Captacion_funcional> LISTA_SOCIAL2 =new ArrayList<>();
     public static final List<Captacion_funcional> LISTA_PSICO2 =new ArrayList<>();
+
+
+
+    public static final List<Captacion_funcional> LISTA_PRUEBA_TECNICA_PASE_CONTROL =new ArrayList<>();
+    public static final List<Captacion_funcional> LISTA_PRUEBA_TECNICA_REMATE =new ArrayList<>();
+
+
+
 
     static{
 
@@ -63,6 +74,175 @@ public class Recursos_Diagnostico {
                     R.id.total_fisico_prueba
         ));
 
+
+
+  // PRUEBA TECNICA  DATOS IMPLEMENTADOD  ARMADO DE LISTAS
+        LISTA_VISTAS4.add(new Captacion_Vista(
+                R.layout.area_pase_control,
+                R.id.contenedor_tecnica1,
+                R.id.panel_tecnica1,
+                R.id.area_tactica,
+                0,
+                R.id.total_pase_control
+        ));
+
+        LISTA_VISTAS4.add(new Captacion_Vista(
+                R.layout.area_remate,
+                R.id.contenedor_tecnica2,
+                R.id.panel_tecnica2,
+                R.id.area_tactica,
+                0,
+                R.id.total_remate
+        ));
+
+
+        LISTA_PRUEBA_TECNICA_PASE_CONTROL.add(new Captacion_funcional("",R.id.op1,
+                              R.id.grupo_tecnico1,
+                              R.id.tac11,
+                              R.id.tac12,
+                              R.id.tac13,
+                              R.id.tac14,
+                             0
+                              ));
+        LISTA_PRUEBA_TECNICA_PASE_CONTROL.add(new Captacion_funcional("",R.id.op2,
+                R.id.grupo_tecnico2,
+                R.id.tac21,
+                R.id.tac22,
+                R.id.tac23,
+                R.id.tac24,
+                0
+        ));
+        LISTA_PRUEBA_TECNICA_PASE_CONTROL.add(new Captacion_funcional("",R.id.op3,
+                R.id.grupo_tecnico3,
+                R.id.tac31,
+                R.id.tac32,
+                R.id.tac33,
+                R.id.tac34,
+                0
+        ));
+
+        LISTA_PRUEBA_TECNICA_PASE_CONTROL.add(new Captacion_funcional("",R.id.op4,
+                R.id.grupo_tecnico4,
+                R.id.tac41,
+                R.id.tac42,
+                R.id.tac43,
+                R.id.tac44,
+                0
+        ));
+
+        LISTA_PRUEBA_TECNICA_PASE_CONTROL.add(new Captacion_funcional("",R.id.op5,
+                R.id.grupo_tecnico5,
+                R.id.tac51,
+                R.id.tac52,
+                R.id.tac53,
+                R.id.tac54,
+                0
+        ));
+
+        LISTA_PRUEBA_TECNICA_PASE_CONTROL.add(new Captacion_funcional("",R.id.op6,
+                R.id.grupo_tecnico6,
+                R.id.tac61,
+                R.id.tac62,
+                R.id.tac63,
+                R.id.tac64,
+                0
+        ));
+
+        LISTA_PRUEBA_TECNICA_PASE_CONTROL.add(new Captacion_funcional("",R.id.op7,
+                R.id.grupo_tecnico7,
+                R.id.tac71,
+                R.id.tac72,
+                R.id.tac73,
+                R.id.tac74,
+                0
+        ));
+
+        LISTA_PRUEBA_TECNICA_PASE_CONTROL.add(new Captacion_funcional("",R.id.op8,
+                R.id.grupo_tecnico8,
+                R.id.tac81,
+                R.id.tac82,
+                R.id.tac83,
+                R.id.tac84,
+                0
+        ));
+
+
+
+
+
+        LISTA_PRUEBA_TECNICA_REMATE.add(new Captacion_funcional("",R.id.op12,
+                R.id.grupo_tecnico12,
+                R.id.re112,
+                R.id.re122,
+                R.id.re132,
+                R.id.re142,
+                0
+        ));
+        LISTA_PRUEBA_TECNICA_REMATE.add(new Captacion_funcional("",R.id.op22,
+                R.id.grupo_tecnico22,
+                R.id.re212,
+                R.id.re222,
+                R.id.re232,
+                R.id.re242,
+                0
+        ));
+        LISTA_PRUEBA_TECNICA_REMATE.add(new Captacion_funcional("",R.id.op32,
+                R.id.grupo_tecnico32,
+                R.id.re312,
+                R.id.re322,
+                R.id.re332,
+                R.id.re342,
+                0
+        ));
+
+        LISTA_PRUEBA_TECNICA_REMATE.add(new Captacion_funcional("",R.id.op42,
+                R.id.grupo_tecnico42,
+                R.id.re412,
+                R.id.re422,
+                R.id.re432,
+                R.id.re442,
+                0
+        ));
+
+        LISTA_PRUEBA_TECNICA_REMATE.add(new Captacion_funcional("",R.id.op52,
+                R.id.grupo_tecnico52,
+                R.id.re512,
+                R.id.re522,
+                R.id.re532,
+                R.id.re542,
+                0
+        ));
+
+        LISTA_PRUEBA_TECNICA_REMATE.add(new Captacion_funcional("",R.id.op62,
+                R.id.grupo_tecnico62,
+                R.id.re612,
+                R.id.re622,
+                R.id.re632,
+                R.id.re642,
+                0
+        ));
+
+        LISTA_PRUEBA_TECNICA_REMATE.add(new Captacion_funcional("",R.id.op72,
+                R.id.grupo_tecnico72,
+                R.id.re712,
+                R.id.re722,
+                R.id.re732,
+                R.id.re742,
+                0
+        ));
+
+        LISTA_PRUEBA_TECNICA_REMATE.add(new Captacion_funcional("",R.id.op82,
+                R.id.grupo_tecnico82,
+                R.id.re812,
+                R.id.re822,
+                R.id.re832,
+                R.id.re842,
+                0
+        ));
+
+
+
+        // ----------------------------------------------------------------------------------
 
         LISTA_FISICO.add(new Captacion_funcional("Estatura según Posición",R.id.opcion_fisico1,
                              R.id.group_fisico1,
@@ -136,27 +316,27 @@ public class Recursos_Diagnostico {
 
         LISTA_SOCIAL.add(new Captacion_funcional("Actitud ante el Adversario",R.id.opcion_social1,
                 R.id.group_social1,
-                R.id.s11,
+                R.id.tac512,
                 R.id.s12,
                 R.id.s13,
                 R.id.s14,0));
 
         LISTA_SOCIAL.add(new Captacion_funcional("Actitud con Compañeros",R.id.opcion_social2,
                 R.id.group_social2,
-                R.id.s21,
+                R.id.tac612,
                 R.id.s22,
                 R.id.s23,
                 R.id.s24,0));
 
         LISTA_SOCIAL.add(new Captacion_funcional("Actitud con el Árbitro",R.id.opcion_social3,
                 R.id.group_social3,
-                R.id.s31,
+                R.id.tac712,
                 R.id.s32,
                 R.id.s33,
                 R.id.s34,0));
         LISTA_SOCIAL.add(new Captacion_funcional("Actitud con el Público",R.id.opcion_social4,
                 R.id.group_social4,
-                R.id.s41,
+                R.id.tac412,
                 R.id.s42,
                 R.id.s43,
                 R.id.s44,0));

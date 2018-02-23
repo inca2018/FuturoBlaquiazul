@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.PruebaTecnicaActivity">
+
+
+    <ScrollView
+        android:id="@+id/scroll_prueba_fisica"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                app:cardBackgroundColor="@color/blanco"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.5"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/titulo1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="PRUEBA FISICA"
+                                android:textAlignment="center"
+                                android:textColor="@color/blue"
+                                android:textSize="@dimen/titulo_fisico"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_marginLeft="8dp"
+                                android:layout_marginRight="8dp"
+                                android:background="@color/blue"></LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/titulo2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="2dp"
+                                    android:layout_weight="2"
+                                    android:gravity="center"
+                                    android:text="POSTULANTE:"
+                                    android:textAlignment="center"
+                                    android:textSize="@dimen/letra_fisico"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    style="@style/titulo2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="Jesus Inca Cardenas"
+                                    android:textAlignment="center"
+                                    android:textSize="@dimen/letra_fisico"
+                                    android:textStyle="italic" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    style="@style/titulo2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_margin="2dp"
+                                    android:layout_weight="2"
+                                    android:gravity="center"
+                                    android:text="UBICACIÓN:"
+                                    android:textAlignment="center"
+                                    android:textSize="@dimen/letra_fisico"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    style="@style/titulo2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="LIMA/LIMA/LOS OLIVOS"
+                                    android:textAlignment="center"
+                                    android:textSize="@dimen/letra_fisico"
+                                    android:textStyle="italic" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <android.support.v7.widget.CardView
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="8dp"
+                                app:cardBackgroundColor="@android:color/holo_blue_light"
+                                app:cardCornerRadius="10dp"
+                                app:cardElevation="4dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:id="@+id/panel_tecnica1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="8dp"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:text="PASE Y CONTROL"
+                                            android:textColor="@android:color/white"
+                                            android:textSize="@dimen/letra_fisico"/>
+
+                                        <TextView
+                                            android:id="@+id/total_pase_control"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:text="0 Ptos."
+                                            android:textColor="@android:color/white"
+                                            android:textSize="@dimen/titulo_fisico"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/contenedor_tecnica1"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+                            <android.support.v7.widget.CardView
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="8dp"
+                                app:cardBackgroundColor="@android:color/holo_blue_light"
+                                app:cardCornerRadius="10dp"
+                                app:cardElevation="4dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:id="@+id/panel_tecnica2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="8dp"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:text="PRUEBA DE REMATE"
+                                            android:textColor="@android:color/white"
+                                            android:textSize="@dimen/letra_fisico"/>
+
+                                        <TextView
+                                            android:id="@+id/total_remate"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:text="0 Ptos."
+                                            android:textColor="@android:color/white"
+                                            android:textSize="@dimen/titulo_fisico"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/contenedor_tecnica2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+                            <android.support.v7.widget.CardView
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="8dp"
+                                app:cardBackgroundColor="@android:color/holo_blue_light"
+                                app:cardCornerRadius="10dp"
+                                app:cardElevation="4dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:id="@+id/panel_tecnica3"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="8dp"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:text="PRUEBA DE CONDUCCIÓN"
+                                            android:textColor="@android:color/white"
+                                            android:textSize="@dimen/letra_fisico"/>
+
+                                        <TextView
+                                            android:id="@+id/total_conduccion"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:text="0 Ptos."
+                                            android:textColor="@android:color/white"
+                                            android:textSize="@dimen/titulo_fisico"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/contenedor_tecnica3"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+                            <android.support.v7.widget.CardView
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="8dp"
+                                app:cardBackgroundColor="@android:color/holo_blue_light"
+                                app:cardCornerRadius="10dp"
+                                app:cardElevation="4dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:id="@+id/panel_tecnica4"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="8dp"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:text="PRUEBA DE CABECEO"
+                                            android:textColor="@android:color/white"
+                                            android:textSize="@dimen/letra_fisico"/>
+
+                                        <TextView
+                                            android:id="@+id/total_cabeceo"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:text="0 Ptos."
+                                            android:textColor="@android:color/white"
+                                            android:textSize="@dimen/titulo_fisico"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/contenedor_tecnica4"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:orientation="vertical">
+
+                                    </LinearLayout>
+                                </LinearLayout>
+
+                            </android.support.v7.widget.CardView>
+
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="8dp"
+                                app:cardBackgroundColor="@color/color_panel"
+                                app:cardCornerRadius="10dp"
+                                app:cardElevation="5dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="8dp"
+                                        android:orientation="vertical">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal">
+
+                                            <TextView
+                                                style="@style/titulo2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:text="Velocidad(Kms/Hr):"
+                                                android:textColor="@color/blanco"
+                                                android:textSize="@dimen/letra_fisico"
+                                                android:textStyle="bold|italic" />
+
+                                            <TextView
+                                                android:id="@+id/info_velocidad"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:gravity="center_horizontal|center"
+                                                android:text="0,00 Kms/Hr."
+                                                android:textAlignment="center"
+                                                android:textColor="@color/blanco"
+                                                android:textSize="20sp"
+                                                android:textStyle="bold" />
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal">
+
+                                            <TextView
+                                                style="@style/titulo2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:text="Potencia(w):"
+                                                android:textColor="@color/blanco"
+                                                android:textSize="@dimen/letra_fisico"
+                                                android:textStyle="bold|italic" />
+
+                                            <TextView
+                                                android:id="@+id/info_potencia"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:gravity="center_horizontal|center"
+                                                android:text="0,00 W"
+                                                android:textAlignment="center"
+                                                android:textColor="@color/blanco"
+                                                android:textSize="20sp"
+                                                android:textStyle="bold" />
+
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal">
+
+                                            <TextView
+                                                style="@style/titulo2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:text="Resistencia(Vo2Máx):"
+                                                android:textColor="@color/blanco"
+                                                android:textSize="@dimen/letra_fisico"
+                                                android:textStyle="bold|italic" />
+
+
+                                            <TextView
+                                                android:id="@+id/info_resistencia"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:gravity="center_horizontal|center"
+                                                android:text="0,00 Vo2Max"
+                                                android:textAlignment="center"
+                                                android:textColor="@color/blanco"
+                                                android:textSize="20sp"
+                                                android:textStyle="bold" />
+
+
+                                        </LinearLayout>
+
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="8dp"
+                                        android:orientation="vertical">
+
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal">
+
+
+                                            <TextView
+                                                style="@style/titulo2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:text="Velocidad Prom:"
+                                                android:textColor="@color/blanco"
+                                                android:textSize="@dimen/letra_fisico"
+                                                android:textStyle="bold|italic" />
+
+                                            <TextView
+                                                android:id="@+id/prom_velocidad"
+                                                style="@style/titulo2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1"
+                                                android:text="0,00 Ptos."
+                                                android:textAlignment="center"
+                                                android:textColor="@color/blanco"
+                                                android:textSize="20sp"
+                                                android:textStyle="bold" />
+
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal">
+
+                                            <TextView
+                                                style="@style/titulo2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:text="Potencia Prom:"
+                                                android:textColor="@color/blanco"
+                                                android:textSize="@dimen/letra_fisico"
+                                                android:textStyle="bold|italic" />
+
+                                            <TextView
+                                                android:id="@+id/prom_potencia"
+                                                style="@style/titulo2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:text="0,00 Ptos."
+                                                android:textAlignment="center"
+                                                android:textColor="@color/blanco"
+                                                android:textSize="20sp"
+                                                android:textStyle="bold" />
+
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="horizontal">
+
+
+                                            <TextView
+                                                style="@style/titulo2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:text="Resistencia Prom:"
+                                                android:textColor="@color/blanco"
+                                                android:textSize="@dimen/letra_fisico"
+                                                android:textStyle="bold|italic" />
+
+                                            <TextView
+                                                android:id="@+id/prom_resistencia"
+                                                style="@style/titulo2"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:layout_weight="1"
+                                                android:text="0,00 Ptos."
+                                                android:textAlignment="center"
+
+                                                android:textColor="@color/blanco"
+                                                android:textSize="20sp"
+                                                android:textStyle="bold" />
+
+
+                                        </LinearLayout>
+                                    </LinearLayout>
+                                </LinearLayout>
+
+
+                            </android.support.v7.widget.CardView>
+
+                            <android.support.v7.widget.CardView
+                                android:id="@+id/guardar_prueba_fisica"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="8dp"
+                                app:cardBackgroundColor="@color/colorPrimaryDark"
+                                app:cardCornerRadius="10dp"
+                                app:cardElevation="5dp">
+
+                                <Button
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@android:color/transparent"
+                                    android:text="GUARDAR"
+                                    android:textColor="@color/blanco" />
+
+                            </android.support.v7.widget.CardView>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+</LinearLayout>
+

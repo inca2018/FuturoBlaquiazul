@@ -36,4 +36,7 @@
     <dimen name="altura_card">56dp</dimen>
     <dimen name="ancho_card">56dp</dimen>
 
+    <dimen name="letra_fisico">20sp</dimen>
+    <dimen name="titulo_fisico">25sp</dimen>
+
 </resources>

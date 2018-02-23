@@ -21,9 +21,7 @@
             android:configChanges="screenSize|orientation" />
         <activity
             android:name=".Activities.Inicio.LoginActivity"
-            android:configChanges="screenSize|orientation">
-
-        </activity>
+            android:configChanges="screenSize|orientation"></activity>
         <activity
             android:name=".Activities.Inicio.PrincipalActivity"
             android:configChanges="screenSize|orientation" />
@@ -59,7 +57,12 @@
             android:configChanges="screenSize|orientation"
             android:screenOrientation="landscape" />
         <activity android:name=".Activities.Captacion.ValidarSeguimientoActivity" />
-        <activity android:name=".Activities.Captacion.PruebaFisicoActivity">
+        <activity android:name=".Activities.Captacion.PruebaFisicoActivity"
+            android:configChanges="screenSize|orientation">
+
+        </activity>
+        <activity android:name=".Activities.Captacion.PruebaTecnicaActivity"
+            android:configChanges="screenSize|orientation">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

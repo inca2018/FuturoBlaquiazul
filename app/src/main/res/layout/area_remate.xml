@@ -1,0 +1,624 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/area_tactica2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_light"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="RONDA Nº 1"
+                android:textAlignment="center"
+                android:textColor="@color/blanco"
+                android:textSize="@dimen/letra_fisico"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/op12"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    android:text="CR"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/letra_fisico" />
+
+                <RadioGroup
+                    android:id="@+id/grupo_tecnico12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checkedButton="@+id/re112"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re112"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="0"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re122"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="1"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re132"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="2"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re142"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="3"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/op22"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    android:text="R"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/letra_fisico" />
+
+                <RadioGroup
+                    android:id="@+id/grupo_tecnico22"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checkedButton="@+id/re212"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re212"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="0"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re222"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="1"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re232"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="2"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re242"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="3"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="RONDA Nº 2"
+                android:textAlignment="center"
+                android:textColor="@color/blanco"
+                android:textSize="@dimen/letra_fisico"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/op32"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    android:text="CA"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/letra_fisico" />
+
+                <RadioGroup
+                    android:id="@+id/grupo_tecnico32"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checkedButton="@+id/re312"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re312"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="0"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re322"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="1"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re332"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="2"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re342"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="3"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/op42"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    android:text="R"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/letra_fisico" />
+
+                <RadioGroup
+                    android:id="@+id/grupo_tecnico42"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checkedButton="@+id/re412"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re412"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="0"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re422"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="1"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re432"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="2"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re442"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="3"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+                </RadioGroup>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="RONDA Nº 3"
+                android:textAlignment="center"
+                android:textColor="@color/blanco"
+                android:textSize="@dimen/letra_fisico"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/op52"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    android:text="CR"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/letra_fisico" />
+
+                <RadioGroup
+                    android:id="@+id/grupo_tecnico52"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checkedButton="@+id/re512"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re512"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="0"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re522"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="1"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re532"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="2"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re542"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="3"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/op62"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    android:text="R"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/letra_fisico" />
+
+                <RadioGroup
+                    android:id="@+id/grupo_tecnico62"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checkedButton="@+id/re612"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re612"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="0"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re622"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="1"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re632"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="2"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re642"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="3"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                </RadioGroup>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="RONDA Nº 4"
+                android:textAlignment="center"
+                android:textColor="@color/blanco"
+                android:textSize="@dimen/letra_fisico"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/op72"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    android:text="CA"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/letra_fisico" />
+
+                <RadioGroup
+                    android:id="@+id/grupo_tecnico72"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checkedButton="@+id/re712"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re712"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="0"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re722"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="1"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re732"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="2"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re742"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="3"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/op82"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:gravity="center"
+                    android:text="R"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/letra_fisico" />
+
+                <RadioGroup
+                    android:id="@+id/grupo_tecnico82"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checkedButton="@+id/re812"
+                    android:orientation="horizontal">
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re812"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="0"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re822"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="1"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re832"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="2"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+
+                    <android.support.v7.widget.AppCompatRadioButton
+                        android:id="@+id/re842"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@android:color/white"
+                        android:text="3"
+                        android:textColor="@android:color/white"
+                        app:buttonTint="@color/colorWhite" />
+                </RadioGroup>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

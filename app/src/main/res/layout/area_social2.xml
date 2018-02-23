@@ -101,7 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:checkedButton="@+id/s21"
+            android:checkedButton="@+id/tac612"
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatRadioButton
@@ -167,7 +167,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:checkedButton="@+id/s31"
+            android:checkedButton="@+id/tac712"
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatRadioButton
@@ -232,7 +232,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:checkedButton="@+id/s41"
+            android:checkedButton="@+id/tac412"
             android:orientation="horizontal">
 
             <android.support.v7.widget.AppCompatRadioButton
