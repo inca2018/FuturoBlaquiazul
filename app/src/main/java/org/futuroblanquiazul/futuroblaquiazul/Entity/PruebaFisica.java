@@ -218,5 +218,25 @@ public class PruebaFisica {
         Total_general = total_general;
     }
 
-
+    @Override
+    public String toString() {
+        return "PruebaFisica{" +
+                ", E_peso=" + E_peso +
+                ", E_talla=" + E_talla +
+                ", E_RJ=" + E_RJ +
+                ", E_CMJ=" + E_CMJ +
+                ", E_ABK=" + E_ABK +
+                ", E_FMS=" + E_FMS +
+                ", E_Velocidad=" + E_Velocidad +
+                ", E_YOYO=" + E_YOYO +
+                ", InformativoVelocidad=" + InformativoVelocidad +
+                ", InformativoPotencia=" + InformativoPotencia +
+                ", InformativoResistencia=" + InformativoResistencia +
+                ", PromVelocidad=" + PromVelocidad +
+                ", PromPotencia=" + PromPotencia +
+                ", PromResistencia=" + PromResistencia +
+                ", Total_general=" + Total_general +
+                ", Fecha_registro='" + Fecha_registro + '\'' +
+                '}';
+    }
 }

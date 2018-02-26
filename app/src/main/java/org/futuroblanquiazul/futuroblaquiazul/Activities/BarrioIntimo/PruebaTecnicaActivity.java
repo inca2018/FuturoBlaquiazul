@@ -1,4 +1,4 @@
-package org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion;
+package org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

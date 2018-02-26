@@ -1,5 +1,6 @@
-package org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion;
+package org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -25,15 +27,17 @@ import java.text.DecimalFormat;
 
 public class PruebaFisicoActivity extends AppCompatActivity {
     ScrollView scroll_prueba_fisica;
-    CardView guardar_prueba_fisica;
+    Button guardar_prueba_fisica;
     EditText e1,e2,e3,e4,e5,e6,e7,e8;
     TextView info_velocidad,info_potencia,info_resistencia,prom_velocidad,prom_potencia,prom_resistencia;
     TextView total_fisico_prueba;
     DecimalFormat df,df2;
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prueba_fisico);
+        context=this;
         Animar();
          df=new DecimalFormat("0.0");
          df2=new DecimalFormat("0.00");
@@ -63,13 +67,43 @@ public class PruebaFisicoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(Usuario.SESION_ACTUAL.getId_persona()!=0){
-                        // PROCEDE
+                if(Usuario.SESION_ACTUAL.getPersona_barrio().getId()!=0){
+
+                    Recuperar_entradas();
+                    Registrar_Prueba_fisica(context,Usuario.SESION_ACTUAL.getId(),Usuario.SESION_ACTUAL.getId_barrio_intimo(),Usuario.SESION_ACTUAL.getPersona_barrio().getId());
+
                 }else{
                     Toast.makeText(PruebaFisicoActivity.this, "Problemas para recuperar Datos de Postulante", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    private void Recuperar_entradas() {
+
+         double peso=Double.parseDouble(e1.getText().toString());
+         double talla=Double.parseDouble(e2.getText().toString());
+         double RJ=Double.parseDouble(e3.getText().toString());
+         double CMJ=Double.parseDouble(e4.getText().toString());
+         double ABK=Double.parseDouble(e5.getText().toString());
+         double FMS=Double.parseDouble(e6.getText().toString());
+         double VELOCIDAD=Double.parseDouble(e7.getText().toString());
+         double YOYO=Double.parseDouble(e8.getText().toString());
+
+         PruebaFisica.PRUEBA_FISICA.setE_peso(peso);
+         PruebaFisica.PRUEBA_FISICA.setE_talla(talla);
+         PruebaFisica.PRUEBA_FISICA.setE_RJ(RJ);
+         PruebaFisica.PRUEBA_FISICA.setE_CMJ(CMJ);
+         PruebaFisica.PRUEBA_FISICA.setE_ABK(ABK);
+         PruebaFisica.PRUEBA_FISICA.setE_FMS(FMS);
+         PruebaFisica.PRUEBA_FISICA.setE_Velocidad(VELOCIDAD);
+         PruebaFisica.PRUEBA_FISICA.setE_YOYO(YOYO);
+    }
+
+    private void Registrar_Prueba_fisica(Context context, int id, int id_barrio_intimo, int id1) {
+
+                   Debug(PruebaFisica.PRUEBA_FISICA.toString());
+
     }
 
     private void Calculos() {
@@ -183,6 +217,7 @@ public class PruebaFisicoActivity extends AppCompatActivity {
                  PruebaFisica.PRUEBA_FISICA.setInformativoResistencia(or);
 
                  String pr=df.format(PruebaFisica.PRUEBA_FISICA.getInformativoResistencia());
+                 PruebaFisica.PRUEBA_FISICA.setInformativoResistencia(Double.parseDouble(pr));
                  info_resistencia.setText(pr+" Vo2Max");
 
                  if(PruebaFisica.PRUEBA_FISICA.getInformativoResistencia()!=0){
@@ -442,5 +477,7 @@ public class PruebaFisicoActivity extends AppCompatActivity {
         }
     }
 
-
+    public void Debug(String sms){
+        System.out.println(sms);
+    }
 }

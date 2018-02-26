@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/opcion_1"
+        android:title="Evaluación Diagnostico">
+    </item>
+    <item
+        android:id="@+id/opcion_2"
+        android:title="Evaluación Fisica">
+    </item>
+    <item
+        android:id="@+id/opcion_3"
+        android:title="Evaluación Técnica">
+    </item>
+
+    <item
+        android:id="@+id/opcion_4"
+        android:title="Resultados Generales">
+    </item>
+
+</menu>

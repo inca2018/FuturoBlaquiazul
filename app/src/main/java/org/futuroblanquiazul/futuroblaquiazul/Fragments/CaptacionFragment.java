@@ -19,7 +19,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 
-import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.CaptacionActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.BarrioIntimoActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.PruebaDiagnosticoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaMasivosActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaPersonaSeguimientoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Ubigeo.UbigeoActivity;
@@ -36,7 +37,7 @@ import static org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario.SESION_ACTUA
 
 public class CaptacionFragment extends Fragment {
     public Context mContext;
-    Button accion1,accion2,accion3,accion5,accion6;
+    Button accion1,accion2,accion3,accion5;
     TextView texto_ubigeo_Capta,texto_ubigeo_Capta_masivo,texto_ubigeo_barrio;
     ImageView imagen_ubigeo_Capta,imagen_ubigeo_Capta_masivo,imagen_ubigeo_barrio;
 
@@ -70,7 +71,7 @@ public class CaptacionFragment extends Fragment {
         accion3=(Button)v.findViewById(R.id.accion_3);
 
         accion5=(Button)v.findViewById(R.id.accion_5);
-        accion6=(Button)v.findViewById(R.id.accion_6);
+
 
        Acciones();
 
@@ -81,7 +82,7 @@ public class CaptacionFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(GestionUbigeo.CAPTACION_UBIGEO.isEstado()==true){
-                    Intent intent= new Intent(mContext,CaptacionActivity.class);
+                    Intent intent= new Intent(mContext,PruebaDiagnosticoActivity.class);
                     startActivity(intent);
                 }else{
                     Toast.makeText(mContext, "Seleccione Ubicación de Trabajo", Toast.LENGTH_SHORT).show();
@@ -120,20 +121,7 @@ public class CaptacionFragment extends Fragment {
             public void onClick(View view) {
 
                 if(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.isEstado()==true){
-                    Intent intent= new Intent(mContext,ListaMasivosActivity.class);
-                    startActivity(intent);
-                }else{
-                    Toast.makeText(mContext, "Seleccione Ubicación de Trabajo", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        accion6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.isEstado()==true){
-                    Intent intent= new Intent(mContext,CaptacionActivity.class);
+                    Intent intent= new Intent(mContext, BarrioIntimoActivity.class);
                     startActivity(intent);
                 }else{
                     Toast.makeText(mContext, "Seleccione Ubicación de Trabajo", Toast.LENGTH_SHORT).show();

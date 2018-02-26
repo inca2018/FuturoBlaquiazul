@@ -29,9 +29,14 @@ public class Usuario {
   int id_masivo;
   int id_persona;
   Persona persona_seguimiento;
+  Persona persona_barrio;
 
     int altura;
     int ancho;
+
+    int id_barrio_intimo;
+
+    BarrioIntimo barrio_datos;
 
 
     public static final Usuario SESION_ACTUAL=new Usuario();
@@ -41,6 +46,30 @@ public class Usuario {
 
     }
 
+
+    public Persona getPersona_barrio() {
+        return persona_barrio;
+    }
+
+    public void setPersona_barrio(Persona persona_barrio) {
+        this.persona_barrio = persona_barrio;
+    }
+
+    public BarrioIntimo getBarrio_datos() {
+        return barrio_datos;
+    }
+
+    public void setBarrio_datos(BarrioIntimo barrio_datos) {
+        this.barrio_datos = barrio_datos;
+    }
+
+    public int getId_barrio_intimo() {
+        return id_barrio_intimo;
+    }
+
+    public void setId_barrio_intimo(int id_barrio_intimo) {
+        this.id_barrio_intimo = id_barrio_intimo;
+    }
 
     public Persona getPersona_seguimiento() {
         return persona_seguimiento;

@@ -273,7 +273,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 style="@style/titulo2"
-                                android:text="Creación de Evento"/>
+                                android:text="Gestión de Eventos"/>
 
                             <android.support.v7.widget.CardView
                                 android:layout_width="match_parent"
@@ -286,34 +286,12 @@
                                     android:id="@+id/accion_5"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Nuevo Evento"
+                                    android:text="Ir a Eventos"
                                     android:background="@android:color/transparent"
                                     android:textColor="@color/colorWhite"
                                     />
                             </android.support.v7.widget.CardView>
 
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                style="@style/titulo2"
-                                android:text="Lista de Eventos "/>
-
-                            <android.support.v7.widget.CardView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                app:cardElevation="5dp"
-                                app:cardCornerRadius="10dp"
-                                app:cardBackgroundColor="@color/verde_bajo"
-                                android:layout_margin="8dp">
-                                <Button
-                                    android:id="@+id/accion_6"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Ver Listas"
-                                    android:background="@android:color/transparent"
-                                    android:textColor="@color/colorWhite"
-                                    />
-                            </android.support.v7.widget.CardView>
 
 
                         </LinearLayout>

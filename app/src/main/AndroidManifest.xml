@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".Activities.Inicio.MainActivity" />
         <activity
-            android:name=".Activities.Captacion.CaptacionActivity"
+            android:name=".Activities.BarrioIntimo.PruebaDiagnosticoActivity"
             android:configChanges="screenSize|orientation" />
         <activity android:name=".Activities.Captacion.PruebaAnimacionActivity" />
         <activity
@@ -21,7 +21,13 @@
             android:configChanges="screenSize|orientation" />
         <activity
             android:name=".Activities.Inicio.LoginActivity"
-            android:configChanges="screenSize|orientation"></activity>
+            android:configChanges="screenSize|orientation">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Activities.Inicio.PrincipalActivity"
             android:configChanges="screenSize|orientation" />
@@ -57,19 +63,14 @@
             android:configChanges="screenSize|orientation"
             android:screenOrientation="landscape" />
         <activity android:name=".Activities.Captacion.ValidarSeguimientoActivity" />
-        <activity android:name=".Activities.Captacion.PruebaFisicoActivity"
-            android:configChanges="screenSize|orientation">
-
-        </activity>
-        <activity android:name=".Activities.Captacion.PruebaTecnicaActivity"
-            android:configChanges="screenSize|orientation">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity
+            android:name=".Activities.BarrioIntimo.PruebaFisicoActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".Activities.BarrioIntimo.PruebaTecnicaActivity"
+            android:configChanges="screenSize|orientation"></activity>
+        <activity android:name=".Activities.BarrioIntimo.BarrioIntimoActivity" />
+        <activity android:name=".Activities.BarrioIntimo.BarrioIntimoPersonaActivity"></activity>
     </application>
 
 </manifest>

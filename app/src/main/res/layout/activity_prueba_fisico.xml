@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.PruebaFisicoActivity">
+    tools:context="org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.PruebaFisicoActivity">
 
 
 <ScrollView
@@ -436,7 +436,7 @@
                         </android.support.v7.widget.CardView>
 
                         <android.support.v7.widget.CardView
-                            android:id="@+id/guardar_prueba_fisica"
+
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="8dp"
@@ -445,6 +445,7 @@
                             app:cardElevation="5dp">
 
                             <Button
+                                android:id="@+id/guardar_prueba_fisica"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@android:color/transparent"

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/blanco"
+    android:layout_margin="4dp"
+    app:cardElevation="5dp"
+    app:cardCornerRadius="10dp"
+    android:padding="2dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="4dp"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_weight="3"
+                    android:src="@drawable/user_default"/>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/card_barrio_titulo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="JESUS INCA CARDENAS"
+                            android:textSize="15dp"
+                            android:layout_margin="2dp"
+                            android:textColor="@color/titulos"
+                            android:textAlignment="center"
+                            android:gravity="center"/>
+
+
+                    </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="12">
+                <ImageView
+                    android:id="@+id/barrio_personas_acciones"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@mipmap/icon_menu_popup"
+                    android:tint="@color/titulos"/>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/imagen_accion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_abajo"
+                android:layout_gravity="end"
+                android:layout_margin="2dp"
+                android:tint="@color/titulos"/>
+
+            <LinearLayout
+                android:id="@+id/liner_adicional"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+               >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="4dp">
+
+                    <TextView
+                        style="@style/titulo2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal|start"
+                        android:text="Prueba de Diagnostico:" />
+
+                    <TextView
+                        android:id="@+id/total_diag2"
+                        android:layout_weight="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="0 Ptos"
+                        android:textAlignment="center"
+                        style="@style/titulo2"/>
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="4dp">
+
+                    <TextView
+                        style="@style/titulo2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal|start"
+                        android:text="Prueba de Fisico:" />
+
+                    <TextView
+                        android:id="@+id/total_fisico"
+                        android:layout_weight="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="0 Ptos"
+                        android:textAlignment="center"
+                        style="@style/titulo2"/>
+
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="4dp">
+
+                    <TextView
+                        style="@style/titulo2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal|start"
+                        android:text="Prueba de Tecnico:" />
+
+                    <TextView
+                        android:id="@+id/total_tecnico"
+                        android:layout_weight="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="0 Ptos"
+                        android:textAlignment="center"
+                        style="@style/titulo2"/>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_margin="4dp">
+
+                    <TextView
+                        style="@style/titulo2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal|start"
+                        android:text="Promedio:" />
+
+                    <TextView
+                        android:id="@+id/promedio"
+                        android:layout_weight="2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="0 Ptos"
+                        android:textAlignment="center"
+                        style="@style/titulo2"/>
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</android.support.v7.widget.CardView>

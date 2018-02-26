@@ -35,12 +35,67 @@ public class Persona {
     int disponible;
     int totales_seguimientos;
 
+
+    int barrio_diagnostico;
+    int barrio_fisica;
+    int barrio_tecnica;
+    int total_diagnostico;
+    int total_fisica;
+    int total_tecnica;
+
     public static final Persona PERSONA_TEMP=new Persona();
 
     public Persona(){
 
     }
 
+    public int getTotal_diagnostico() {
+        return total_diagnostico;
+    }
+
+    public void setTotal_diagnostico(int total_diagnostico) {
+        this.total_diagnostico = total_diagnostico;
+    }
+
+    public int getTotal_fisica() {
+        return total_fisica;
+    }
+
+    public void setTotal_fisica(int total_fisica) {
+        this.total_fisica = total_fisica;
+    }
+
+    public int getTotal_tecnica() {
+        return total_tecnica;
+    }
+
+    public void setTotal_tecnica(int total_tecnica) {
+        this.total_tecnica = total_tecnica;
+    }
+
+    public int getBarrio_diagnostico() {
+        return barrio_diagnostico;
+    }
+
+    public void setBarrio_diagnostico(int barrio_diagnostico) {
+        this.barrio_diagnostico = barrio_diagnostico;
+    }
+
+    public int getBarrio_fisica() {
+        return barrio_fisica;
+    }
+
+    public void setBarrio_fisica(int barrio_fisica) {
+        this.barrio_fisica = barrio_fisica;
+    }
+
+    public int getBarrio_tecnica() {
+        return barrio_tecnica;
+    }
+
+    public void setBarrio_tecnica(int barrio_tecnica) {
+        this.barrio_tecnica = barrio_tecnica;
+    }
 
     public modulo_captacion getInformacion_captacion() {
         return Informacion_captacion;

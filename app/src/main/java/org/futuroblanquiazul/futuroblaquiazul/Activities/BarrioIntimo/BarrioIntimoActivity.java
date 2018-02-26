@@ -1,12 +1,10 @@
-package org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion;
+package org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -15,12 +13,16 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
-import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaMasivosActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaPersonaMasivoActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterBarrio;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterMasivo;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.BarrioIntimo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Masivo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Unidad_Territorial;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarBarrios;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarMasivos;
 import org.futuroblanquiazul.futuroblaquiazul.R;
 import org.json.JSONArray;
@@ -30,62 +32,48 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaMasivosActivity extends AppCompatActivity {
-    private RecyclerView recycler_masivo;
+public class BarrioIntimoActivity extends AppCompatActivity {
+
+    private RecyclerView recycler_barrio;
     private LinearLayoutManager linearLayout;
-    private AdapterMasivo adapter;
-    private List<Masivo> lista_masivos;
+    private AdapterBarrio adapter;
+    private List<BarrioIntimo> lista_barrio_intimo;
     Context context;
     ProgressDialog progressDialog;
-
-    CardView nuevo_masivo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_masivo_creacion);
-        nuevo_masivo=findViewById(R.id.nuevo_masivo);
-               context=this;
-        recycler_masivo=findViewById(R.id.Recylcer_Masivos);
+        setContentView(R.layout.activity_barrio_intimo);
+        recycler_barrio=findViewById(R.id.recycler_barrio_intimo);
+        context=this;
 
 
-        lista_masivos=new ArrayList<>();
+        lista_barrio_intimo=new ArrayList<>();
         linearLayout = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
 
-        Listar_Masivos(context);
+        Listar_barrio_intimo(context);
 
-        adapter = new AdapterMasivo(this, lista_masivos, new RecyclerViewOnItemClickListener() {
+        adapter = new AdapterBarrio(this, lista_barrio_intimo, new RecyclerViewOnItemClickListener() {
             public void onClick(View v, int position) {
-                Toast.makeText(context, "CLick id:"+lista_masivos.get(position).getCodigo(), Toast.LENGTH_SHORT).show();
-                Usuario.SESION_ACTUAL.setId_masivo(lista_masivos.get(position).getCodigo());
+                Usuario.SESION_ACTUAL.setId_barrio_intimo(lista_barrio_intimo.get(position).getId());
+                Usuario.SESION_ACTUAL.setBarrio_datos(lista_barrio_intimo.get(position));
 
-                Intent intent=new Intent(ListaMasivosActivity.this,ListaPersonaMasivoActivity.class);
+                Intent intent=new Intent(BarrioIntimoActivity.this,BarrioIntimoPersonaActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                ListaMasivosActivity.this.startActivity(intent);
+                BarrioIntimoActivity.this.startActivity(intent);
             }
         });
 
-        recycler_masivo.setAdapter(adapter);
-        recycler_masivo.setLayoutManager(linearLayout);
+        recycler_barrio.setAdapter(adapter);
+        recycler_barrio.setLayoutManager(linearLayout);
 
-
-
-
-        nuevo_masivo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ListaMasivosActivity.this, MasivoNuevoActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                ListaMasivosActivity.this.startActivity(intent);
-
-            }
-        });
     }
 
-    private void Listar_Masivos(final Context context) {
+    private void Listar_barrio_intimo(final Context context) {
 
 
         progressDialog = new ProgressDialog(context);
-        progressDialog.setTitle("Captación Masiva:");
+        progressDialog.setTitle("Barrio Intimo:");
         progressDialog.setMessage("Listando...");
         progressDialog.show();
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
@@ -97,32 +85,44 @@ public class ListaMasivosActivity extends AppCompatActivity {
                     boolean success = jsonResponse.getBoolean("success");
 
                     if (success) {
-                        JSONArray departamentos=jsonResponse.getJSONArray("masivos");
+                        JSONArray departamentos=jsonResponse.getJSONArray("barrios");
                         for(int i=0;i<departamentos.length();i++){
                             JSONObject objeto= departamentos.getJSONObject(i);
-                            Masivo temp=new Masivo();
-                            temp.setCodigo(objeto.getInt("ID"));
-                            temp.setNombre_Masivo(objeto.getString("NOMBRE_MASIVO"));
+                            BarrioIntimo temp=new BarrioIntimo();
+                            temp.setId(objeto.getInt("ID"));
+
+                            temp.setNombreEvento(objeto.getString("NOMBRE_BARRIO"));
+
                             Unidad_Territorial Departamento=new Unidad_Territorial();
                             Unidad_Territorial Provincia=new Unidad_Territorial();
                             Unidad_Territorial Distrito=new Unidad_Territorial();
-                            Departamento.setCodigo(objeto.getInt("DEPARTAMENTO_ID"));
+
+                            Departamento.setCodigo(objeto.getInt("ID_DEPARTAMENTO"));
                             Departamento.setDescripcion(objeto.getString("DEPARTAMENTO_NOM"));
-                            Provincia.setCodigo(objeto.getInt("PROVINCIA_ID"));
+                            Provincia.setCodigo(objeto.getInt("ID_PROVINCIA"));
                             Provincia.setDescripcion(objeto.getString("PROVINCIA_NOM"));
-                            Distrito.setCodigo(objeto.getInt("DISTRITO_ID"));
+                            Distrito.setCodigo(objeto.getInt("ID_DISTRITO"));
                             Distrito.setDescripcion(objeto.getString("DISTRITO_NOM"));
                             temp.setDepartamento(Departamento);
                             temp.setProvincia(Provincia);
                             temp.setDistrito(Distrito);
 
-                            temp.setFecha_Creacion(objeto.getString("FECHA_CREACION"));
-                            temp.setId_Usuario(objeto.getInt("SCOUT_ID"));
-                            temp.setUsuario_Creador(objeto.getString("CREADO_NOM"));
-                            temp.setEstado(objeto.getInt("ESTADO"));
-                            temp.setTotal_postulantes(objeto.getInt("TOTAL"));
+                            temp.setDescripcion_ubigeo(Departamento.getDescripcion()+"/"+Provincia.getDescripcion()+""+Distrito.getDescripcion());
+                            temp.setFechaRealizacion(objeto.getString("FECHA_REALIZAR"));
 
-                            lista_masivos.add(temp);
+                            Usuario user=new Usuario();
+                            user.setId(objeto.getInt("ID_USER"));
+                            user.setUsuario(objeto.getString("CREADO_NOM"));
+                            temp.setUsuario(user);
+
+
+                            temp.setEstado(objeto.getInt("ESTADO"));
+                            temp.setDescripcion(objeto.getString("DESCRIPCION"));
+
+
+                            temp.setCantidad_Postulantes(objeto.getInt("TOTAL"));
+
+                            lista_barrio_intimo.add(temp);
 
 
                         }
@@ -130,7 +130,7 @@ public class ListaMasivosActivity extends AppCompatActivity {
                         adapter.notifyDataSetChanged();
                         progressDialog.dismiss();
 
-                        System.out.println("LISTADO COMPLETO DE MASIVOS");
+                        System.out.println("LISTADO COMPLETO DE BARRIO");
                     } else {
                         progressDialog.dismiss();
                         Toast.makeText(context, "Listado Vacio", Toast.LENGTH_SHORT).show();
@@ -143,22 +143,9 @@ public class ListaMasivosActivity extends AppCompatActivity {
             }
         };
 
-        RecuperarMasivos xx = new RecuperarMasivos(responseListener);
+        RecuperarBarrios xx = new RecuperarBarrios(responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
-
-
-    }
-
-
-    public void onBackPressed() {
-
-        Intent intent = new Intent(ListaMasivosActivity.this,PrincipalActivity.class);
-        intent.putExtra("o","o1");
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        ListaMasivosActivity.this.startActivity(intent);
-        finish();
-
 
     }
 }
