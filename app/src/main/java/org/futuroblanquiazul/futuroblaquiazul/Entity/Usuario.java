@@ -28,6 +28,7 @@ public class Usuario {
 
   int id_masivo;
   int id_persona;
+
   Persona persona_seguimiento;
   Persona persona_barrio;
 
@@ -37,15 +38,53 @@ public class Usuario {
     int id_barrio_intimo;
 
     BarrioIntimo barrio_datos;
+    Persona persona_metodologia;
+    Plantel plantel;
+
+
+    Grupo grupo_filtro;
+    Plantel plantel_filtro;
 
 
     public static final Usuario SESION_ACTUAL=new Usuario();
+
 
 
     public Usuario(){
 
     }
 
+    public Grupo getGrupo_filtro() {
+        return grupo_filtro;
+    }
+
+    public void setGrupo_filtro(Grupo grupo_filtro) {
+        this.grupo_filtro = grupo_filtro;
+    }
+
+    public Plantel getPlantel_filtro() {
+        return plantel_filtro;
+    }
+
+    public void setPlantel_filtro(Plantel plantel_filtro) {
+        this.plantel_filtro = plantel_filtro;
+    }
+
+    public Persona getPersona_metodologia() {
+        return persona_metodologia;
+    }
+
+    public void setPersona_metodologia(Persona persona_metodologia) {
+        this.persona_metodologia = persona_metodologia;
+    }
+
+    public Plantel getPlantel() {
+        return plantel;
+    }
+
+    public void setPlantel(Plantel plantel) {
+        this.plantel = plantel;
+    }
 
     public Persona getPersona_barrio() {
         return persona_barrio;

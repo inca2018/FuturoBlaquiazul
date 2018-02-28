@@ -15,6 +15,7 @@ import com.android.volley.toolbox.Volley;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.BarrioIntimoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.BarrioIntimoPersonaActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterBarrio;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterPlantel;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.BarrioIntimo;
@@ -57,13 +58,21 @@ public class ListaGeneralPlantelActivity extends AppCompatActivity {
         linearLayout2 = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         adapter = new AdapterPlantel(this, lista_escuela_base, new RecyclerViewOnItemClickListener() {
             public void onClick(View v, int position) {
-
+                Plantel p=new Plantel();
+                p.setId(lista_escuela_base.get(position).getId());
+                Usuario.SESION_ACTUAL.setPlantel(p);
+                Intent intent = new Intent(ListaGeneralPlantelActivity.this, ListaPersonasActivity.class);
+                ListaGeneralPlantelActivity.this.startActivity(intent);
             }
         });
 
         adapter2 = new AdapterPlantel(this, lista_escuela_competetiva, new RecyclerViewOnItemClickListener() {
             public void onClick(View v, int position) {
-
+                Plantel p=new Plantel();
+                p.setId(lista_escuela_base.get(position).getId());
+                Usuario.SESION_ACTUAL.setPlantel(p);
+                Intent intent = new Intent(ListaGeneralPlantelActivity.this, ListaPersonasActivity.class);
+                ListaGeneralPlantelActivity.this.startActivity(intent);
             }
         });
 

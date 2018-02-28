@@ -72,7 +72,8 @@
         <activity android:name=".Activities.BarrioIntimo.BarrioIntimoActivity" />
         <activity android:name=".Activities.BarrioIntimo.BarrioIntimoPersonaActivity" />
         <activity android:name=".Activities.Metodologia.ListaGeneralPlantelActivity" />
-        <activity android:name=".Activities.Metodologia.GestionEvaluacionActivity"></activity>
+        <activity android:name=".Activities.Metodologia.GestionEvaluacionActivity" />
+        <activity android:name=".Activities.Metodologia.ListaPersonasActivity"></activity>
     </application>
 
 </manifest>

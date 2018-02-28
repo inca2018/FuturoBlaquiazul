@@ -22,6 +22,7 @@ import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.PruebaDiag
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaPersonaMasivoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.MasivoResultadosActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.EliminarResultados;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarResultadosDiagnostico;
@@ -129,6 +130,7 @@ public class AdapterMasivoPersona extends RecyclerView.Adapter<AdapterMasivoPers
                                     Persona.PERSONA_TEMP.setId(my_Data.get(position).getId());
                                     Persona.PERSONA_TEMP.setNombre_Persona(my_Data.get(position).getNombre_Persona());
                                     Persona.PERSONA_TEMP.setApellidos_Persona(my_Data.get(position).getApellidos_Persona());
+
                                     Recuperar_Resultados(Persona.PERSONA_TEMP.getId(),context);
 
                                 }else if(estado==1){

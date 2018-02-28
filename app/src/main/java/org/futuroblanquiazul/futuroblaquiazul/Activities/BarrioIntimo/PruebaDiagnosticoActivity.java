@@ -28,6 +28,7 @@ import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaPersonaM
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.RegistroPostulantesActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ValidarDiagnosticoIndividualActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaPersonasActivity;
 import org.futuroblanquiazul.futuroblaquiazul.ActivityEntity.modulo_captacion;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.BarrioIntimo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
@@ -108,7 +109,7 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(Usuario.SESION_ACTUAL.getPersona_barrio().getId()!=0){
+                if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
                     Intent intent = new Intent(PruebaDiagnosticoActivity.this, ValidarDiagnosticoIndividualActivity.class);
                     PruebaDiagnosticoActivity.this.startActivity(intent);
                 }else{
@@ -131,7 +132,7 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(Usuario.SESION_ACTUAL.getPersona_barrio().getId()!=0){
+                if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
                     Intent intent = new Intent(PruebaDiagnosticoActivity.this, ValidarDiagnosticoIndividualActivity.class);
                     PruebaDiagnosticoActivity.this.startActivity(intent);
                 }else{
@@ -483,7 +484,7 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
     }
 
     public void onBackPressed() {
-      if(Usuario.SESION_ACTUAL.getPersona_barrio().getId()!=0){
+      if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
           Intent intent = new Intent(PruebaDiagnosticoActivity.this,BarrioIntimoPersonaActivity.class);
           intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
           PruebaDiagnosticoActivity.this.startActivity(intent);

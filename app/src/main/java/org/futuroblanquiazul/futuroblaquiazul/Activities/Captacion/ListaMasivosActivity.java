@@ -55,7 +55,7 @@ public class ListaMasivosActivity extends AppCompatActivity {
 
         adapter = new AdapterMasivo(this, lista_masivos, new RecyclerViewOnItemClickListener() {
             public void onClick(View v, int position) {
-                Toast.makeText(context, "CLick id:"+lista_masivos.get(position).getCodigo(), Toast.LENGTH_SHORT).show();
+
                 Usuario.SESION_ACTUAL.setId_masivo(lista_masivos.get(position).getCodigo());
 
                 Intent intent=new Intent(ListaMasivosActivity.this,ListaPersonaMasivoActivity.class);

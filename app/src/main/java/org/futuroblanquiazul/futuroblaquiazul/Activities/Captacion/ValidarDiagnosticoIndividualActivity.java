@@ -71,7 +71,7 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
         ResultadosDiagnostico=new ArrayList<>();
 
 
-        if(Usuario.SESION_ACTUAL.getPersona_barrio().getId()!=0){
+        if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
 
             if(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getUbigeo_descripcion().length()!=0){
                 ubigeo.setText(String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getUbigeo_descripcion()));
@@ -154,7 +154,7 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
             ResultadosDiagnostico.add(Recursos_Diagnostico.LISTA_PSICO.get(i).getResultado());
         }
 
-        if(Usuario.SESION_ACTUAL.getPersona_barrio().getId()!=0){
+        if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
 
             Registrar_Resultados(context,Usuario.SESION_ACTUAL.getPersona_barrio().getId(),ResultadosDiagnostico);
         }else{
@@ -276,8 +276,9 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
                         id_psico=jsonResponse.getInt("id_psico");
 
                         total_general=jsonResponse.getInt("total_general");
-                        if(Usuario.SESION_ACTUAL.getPersona_barrio().getId()!=0 && total_general!=0){
+                        if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
                             Actualizar_Total(total_general,Usuario.SESION_ACTUAL.getId_barrio_intimo(),Usuario.SESION_ACTUAL.getPersona_barrio().getId(),context);
+                            debug("Entro a Actualizar TOtal");
                         }
 
                         BASE.setCampo_fisico_id(id_fisico);
@@ -289,7 +290,7 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
                         debug(BASE.toString());
                         Registrar_Modulo_Diagnostico(BASE,context);
 
-                        debug("PASO REGISTRO DE DIAGNOSTICO");
+                        debug("PASO REGISTRO DE RESULTADOS");
 
                     } else {
                         progressDialog.dismiss();
@@ -308,7 +309,6 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
         queue.add(xx);
 
     }
-
     private void Actualizar_Total(int total_general,int id_barrios, int id_peerr,final Context context) {
         String id_barrio=String.valueOf(id_barrios);
         String id_pers=String.valueOf(id_peerr);
@@ -340,10 +340,8 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
 
 
     }
-
     private void Registrar_Modulo_Diagnostico(final modulo_captacion base, final Context context) {
-
-        if(Usuario.SESION_ACTUAL.getPersona_barrio().getId()!=0){
+        if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
 
             id_per=String.valueOf(Usuario.SESION_ACTUAL.getPersona_barrio().getId());
             id_Dep=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getDepartamento().getCodigo());
@@ -404,18 +402,26 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
                         progressDialog.dismiss();
 
 
-                        if(Usuario.SESION_ACTUAL.getPersona_barrio().getId()!=0){
+                        if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
                             Intent intent = new Intent(ValidarDiagnosticoIndividualActivity.this, BarrioIntimoPersonaActivity.class);
                             ValidarDiagnosticoIndividualActivity.this.startActivity(intent);
 
                             Actualizar_Estado_BARRIO(Usuario.SESION_ACTUAL.getPersona_barrio().getId());
                         }else{
-                            Intent intent = new Intent(ValidarDiagnosticoIndividualActivity.this, PrincipalActivity.class);
-                            intent.putExtra("o","o1");
-                            ValidarDiagnosticoIndividualActivity.this.startActivity(intent);
-                            Toast.makeText(context, "Registro Guardado con exito!", Toast.LENGTH_SHORT).show();
 
-                            debug("PASO REGISTRO DE MODULO");
+                            if(Persona.PERSONA_TEMP.getId()!=0){
+                                Intent intent = new Intent(ValidarDiagnosticoIndividualActivity.this, ListaPersonaMasivoActivity.class);
+                                ValidarDiagnosticoIndividualActivity.this.startActivity(intent);
+                                Toast.makeText(context, "Registro Guardado con exito!", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Intent intent = new Intent(ValidarDiagnosticoIndividualActivity.this, PrincipalActivity.class);
+                                intent.putExtra("o","o1");
+                                ValidarDiagnosticoIndividualActivity.this.startActivity(intent);
+                                Toast.makeText(context, "Registro Guardado con exito!", Toast.LENGTH_SHORT).show();
+
+                                debug("PASO REGISTRO DE MODULO");
+                            }
+
 
 
 
@@ -467,8 +473,6 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
 
 
     }
-
-
     private void Actualizar_Estado_BARRIO(int i) {
 
         debug("ENTRO A ACTUALIZAR ESTADO BARRIO");
