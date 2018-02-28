@@ -1,13 +1,18 @@
 package org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo;
 
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
@@ -15,11 +20,27 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
+import org.futuroblanquiazul.futuroblaquiazul.Entity.PruebaFisica;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.PruebaTecnica;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Actualizar_barrio2;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Actualizar_barrio3;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Actualizar_barrio_fisica;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Actualizar_barrio_tecnica;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarPruebaFisica;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarPruebaTecnica;
 import org.futuroblanquiazul.futuroblaquiazul.R;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Captacion_Vista;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Captacion_funcional;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Diagnostico;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.PushbackReader;
 
 import static org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Diagnostico.LISTA_PRUEBA_TECNICA_CABECEO;
 import static org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Diagnostico.LISTA_PRUEBA_TECNICA_CONDUCCION;
@@ -32,10 +53,15 @@ public class PruebaTecnicaActivity extends AppCompatActivity {
    TextView total_pase,total_control,total_remate,total_conduccion,total_cabeceo;
    EditText TT;
    TextView total_general_tecnico;
+   Context context;
+   ProgressDialog progressDialog;
+
+   Button guardar_prueba_fisica;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prueba_tecnica);
+        context=this;
 
         scroll_prueba_tecnica=findViewById(R.id.scroll_prueba_tecnica);
         pase_ras=findViewById(R.id.pase_ras);
@@ -48,15 +74,32 @@ public class PruebaTecnicaActivity extends AppCompatActivity {
         total_conduccion=findViewById(R.id.total_conduccion);
         total_cabeceo=findViewById(R.id.total_cabeceo);
 
+        guardar_prueba_fisica=findViewById(R.id.guardar_prueba_fisica);
+
         total_general_tecnico=findViewById(R.id.total_general_tecnico);
 
 
         Creacion_Animaciones();
         Seteo_RadioGroups();
 
-
-
         mostrar_resultados();
+
+
+        guardar_prueba_fisica.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(Integer.parseInt(pase_ras.getText().toString())!=0 && Integer.parseInt(pase_alto.getText().toString())!=0 && Integer.parseInt(c_ras.getText().toString())!=0 && Integer.parseInt(c_alto.getText().toString())!=0 && Integer.parseInt(total_pase.getText().toString())!=0 && Integer.parseInt(total_control.getText().toString())!=0 && Integer.parseInt(total_remate.getText().toString())!=0 && Integer.parseInt(total_conduccion.getText().toString())!=0 && Integer.parseInt(total_cabeceo.getText().toString())!=0){
+
+
+                    Actualizar_Total(PruebaTecnica.PRUEBA_TECNICA.getTotal_general(), Usuario.SESION_ACTUAL.getId_barrio_intimo(),Usuario.SESION_ACTUAL.getPersona_barrio().getId(),context);
+
+                }else{
+                    Toast.makeText(PruebaTecnicaActivity.this, "Complete información necesaria para la evaluación", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
     }
 
 
@@ -309,6 +352,8 @@ public class PruebaTecnicaActivity extends AppCompatActivity {
         int totalca=(LISTA_PRUEBA_TECNICA_CABECEO.get(0).getResultado()+LISTA_PRUEBA_TECNICA_CABECEO.get(1).getResultado()+LISTA_PRUEBA_TECNICA_CABECEO.get(2).getResultado()+LISTA_PRUEBA_TECNICA_CABECEO.get(3).getResultado())*10;
         total_cabeceo.setText(String.valueOf(totalca));
 
+        PruebaTecnica.PRUEBA_TECNICA.setCabeceo(totalca);
+
         Calcular_TT();
 
         CalcularTotal();
@@ -325,6 +370,8 @@ public class PruebaTecnicaActivity extends AppCompatActivity {
          int d=Integer.parseInt(TT.getText().toString());
          int ttt=20-d;
          int to=par+ttt;
+
+         PruebaTecnica.PRUEBA_TECNICA.setConduccion(to);
          total_conduccion.setText(String.valueOf(to));
 
     }
@@ -381,4 +428,141 @@ public class PruebaTecnicaActivity extends AppCompatActivity {
         total_general_tecnico.setText(d+" Ptos.");
 
     }
+    private void Actualizar_Total(double total_general,int id_barrios, int id_peerr,final Context context) {
+
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("Prueba Tecnica:");
+        progressDialog.setMessage("Guardando...");
+        progressDialog.show();
+
+        String id_barrio=String.valueOf(id_barrios);
+        String id_pers=String.valueOf(id_peerr);
+        String total_tecnico=String.valueOf(total_general);
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+                        debug("Actualizar Total_general_tecnico");
+
+
+                        Actualizar_prueba_tecnica(Usuario.SESION_ACTUAL.getPersona_barrio().getId(),context);
+
+                    }else {
+
+                        Toast.makeText(context, "Error de conexion al actualizar total", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error ACTIVAR :"+e);
+                }
+            }
+        };
+
+        Actualizar_barrio3 xx = new Actualizar_barrio3(id_barrio,id_pers,total_tecnico, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+
+    }
+    public void debug(String sm){
+        System.out.println(sm);
+    }
+    private void Actualizar_prueba_tecnica(int id,final Context context) {
+
+
+        String id_pers=String.valueOf(id);
+
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+                        debug("Actualizar prueba fisica");
+
+
+                        Registrar_Prueba_tecnica(context,Usuario.SESION_ACTUAL.getId(),Usuario.SESION_ACTUAL.getId_barrio_intimo(),Usuario.SESION_ACTUAL.getPersona_barrio().getId());
+
+                    }else {
+
+                        Toast.makeText(context, "Error de conexion al actualizar estado fisico", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error ACTIVAR fisico :"+e);
+                }
+            }
+        };
+
+        Actualizar_barrio_tecnica xx = new Actualizar_barrio_tecnica(id_pers, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+
+
+    }
+    private void Registrar_Prueba_tecnica(final Context context, int user, final int id_barrio_intimo, int id_per) {
+        Debug(PruebaFisica.PRUEBA_FISICA.toString());
+
+
+        String id_user=String.valueOf(user);
+        String id_barrio=String.valueOf(id_barrio_intimo);
+        String id_persona=String.valueOf(id_per);
+
+        String pase_Ras=String.valueOf(PruebaTecnica.PRUEBA_TECNICA.getP_Ras());
+        String pase_al=String.valueOf(PruebaTecnica.PRUEBA_TECNICA.getP_Alto());
+        String control_ras=String.valueOf(PruebaTecnica.PRUEBA_TECNICA.getControl_Ras());
+        String control_alto=String.valueOf(PruebaTecnica.PRUEBA_TECNICA.getContorl_Alto());
+        String pase=String.valueOf(PruebaTecnica.PRUEBA_TECNICA.getPase());
+        String control=String.valueOf(PruebaTecnica.PRUEBA_TECNICA.getControl());
+        String remate=String.valueOf(PruebaTecnica.PRUEBA_TECNICA.getRemate());
+        String conduccion=String.valueOf(PruebaTecnica.PRUEBA_TECNICA.getConduccion());
+        String cabeceo=String.valueOf(PruebaTecnica.PRUEBA_TECNICA.getCabeceo());
+        String total_general=String.valueOf(PruebaTecnica.PRUEBA_TECNICA.getTotal_general());
+
+        String estado="1";
+
+
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+
+                    if (success) {
+
+                        progressDialog.dismiss();
+                        Intent intent=new Intent(PruebaTecnicaActivity.this,BarrioIntimoPersonaActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        PruebaTecnicaActivity.this.startActivity(intent);
+                        Toast.makeText(context, "Registro de Prueba Tecnica Exitosa", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, "No se pudo registrar", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error en Recupera codigo de usuario :"+e);
+                }
+            }
+        };
+
+        RegistrarPruebaTecnica xx = new RegistrarPruebaTecnica(id_user,id_barrio,id_persona,pase_Ras,pase_al,control_ras,control_alto,pase,control,remate,conduccion,cabeceo,total_general,estado, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+    }
+
+
+
 }

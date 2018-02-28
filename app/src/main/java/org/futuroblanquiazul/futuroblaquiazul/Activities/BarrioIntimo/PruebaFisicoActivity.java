@@ -1,6 +1,8 @@
 package org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -17,11 +19,22 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
 import org.futuroblanquiazul.futuroblaquiazul.Entity.PruebaFisica;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Actualizar_barrio;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Actualizar_barrio2;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Actualizar_barrio_fisica;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarCodigoUsuario;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarPruebaFisica;
 import org.futuroblanquiazul.futuroblaquiazul.R;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Captacion_Vista;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Diagnostico;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 
@@ -33,6 +46,7 @@ public class PruebaFisicoActivity extends AppCompatActivity {
     TextView total_fisico_prueba;
     DecimalFormat df,df2;
     Context context;
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,10 +82,7 @@ public class PruebaFisicoActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(Usuario.SESION_ACTUAL.getPersona_barrio().getId()!=0){
-
                     Recuperar_entradas();
-                    Registrar_Prueba_fisica(context,Usuario.SESION_ACTUAL.getId(),Usuario.SESION_ACTUAL.getId_barrio_intimo(),Usuario.SESION_ACTUAL.getPersona_barrio().getId());
-
                 }else{
                     Toast.makeText(PruebaFisicoActivity.this, "Problemas para recuperar Datos de Postulante", Toast.LENGTH_SHORT).show();
                 }
@@ -81,28 +92,92 @@ public class PruebaFisicoActivity extends AppCompatActivity {
 
     private void Recuperar_entradas() {
 
-         double peso=Double.parseDouble(e1.getText().toString());
-         double talla=Double.parseDouble(e2.getText().toString());
-         double RJ=Double.parseDouble(e3.getText().toString());
-         double CMJ=Double.parseDouble(e4.getText().toString());
-         double ABK=Double.parseDouble(e5.getText().toString());
-         double FMS=Double.parseDouble(e6.getText().toString());
-         double VELOCIDAD=Double.parseDouble(e7.getText().toString());
-         double YOYO=Double.parseDouble(e8.getText().toString());
+         String peso= e1.getText().toString();
+         String talla=e2.getText().toString();
+         String RJ=e3.getText().toString();
+         String CMJ=e4.getText().toString();
+         String ABK=e5.getText().toString();
+         String FMS=e6.getText().toString();
+         String VELOCIDAD=e7.getText().toString();
+         String YOYO=e8.getText().toString();
 
-         PruebaFisica.PRUEBA_FISICA.setE_peso(peso);
-         PruebaFisica.PRUEBA_FISICA.setE_talla(talla);
-         PruebaFisica.PRUEBA_FISICA.setE_RJ(RJ);
-         PruebaFisica.PRUEBA_FISICA.setE_CMJ(CMJ);
-         PruebaFisica.PRUEBA_FISICA.setE_ABK(ABK);
-         PruebaFisica.PRUEBA_FISICA.setE_FMS(FMS);
-         PruebaFisica.PRUEBA_FISICA.setE_Velocidad(VELOCIDAD);
-         PruebaFisica.PRUEBA_FISICA.setE_YOYO(YOYO);
+         if(peso.length()!=0 && talla.length()!=0 &&RJ.length()!=0 && CMJ.length()!=0 && ABK.length()!=0 && FMS.length()!=0 && VELOCIDAD.length()!=0 && YOYO.length()!=0){
+             PruebaFisica.PRUEBA_FISICA.setE_peso(Double.parseDouble(peso));
+             PruebaFisica.PRUEBA_FISICA.setE_talla(Double.parseDouble(talla));
+             PruebaFisica.PRUEBA_FISICA.setE_RJ(Double.parseDouble(RJ));
+             PruebaFisica.PRUEBA_FISICA.setE_CMJ(Double.parseDouble(CMJ));
+             PruebaFisica.PRUEBA_FISICA.setE_ABK(Double.parseDouble(ABK));
+             PruebaFisica.PRUEBA_FISICA.setE_FMS(Double.parseDouble(FMS));
+             PruebaFisica.PRUEBA_FISICA.setE_Velocidad(Double.parseDouble(VELOCIDAD));
+             PruebaFisica.PRUEBA_FISICA.setE_YOYO(Double.parseDouble(YOYO));
+
+             Actualizar_Total(PruebaFisica.PRUEBA_FISICA.getTotal_general(),Usuario.SESION_ACTUAL.getId_barrio_intimo(),Usuario.SESION_ACTUAL.getPersona_barrio().getId(),context);
+
+
+
+
+         }else{
+             Toast.makeText(context, "Complete información de las entradas de la Evaluación", Toast.LENGTH_SHORT).show();
+         }
+
+
     }
 
-    private void Registrar_Prueba_fisica(Context context, int id, int id_barrio_intimo, int id1) {
-
+    private void Registrar_Prueba_fisica(final Context context, int user, final int id_barrio_intimo, int id_per) {
                    Debug(PruebaFisica.PRUEBA_FISICA.toString());
+
+
+                   String id_user=String.valueOf(user);
+                   String id_barrio=String.valueOf(id_barrio_intimo);
+                   String id_persona=String.valueOf(id_per);
+                   String peso=String.valueOf(PruebaFisica.PRUEBA_FISICA.getE_peso());
+                   String talla=String.valueOf(PruebaFisica.PRUEBA_FISICA.getE_talla());
+                   String rj=String.valueOf(PruebaFisica.PRUEBA_FISICA.getE_RJ());
+                   String cmj=String.valueOf(PruebaFisica.PRUEBA_FISICA.getE_CMJ());
+                   String abk=String.valueOf(PruebaFisica.PRUEBA_FISICA.getE_ABK());
+                   String fms=String.valueOf(PruebaFisica.PRUEBA_FISICA.getE_FMS());
+                   String velocidad=String.valueOf(PruebaFisica.PRUEBA_FISICA.getE_Velocidad());
+                   String yoyo=String.valueOf(PruebaFisica.PRUEBA_FISICA.getE_YOYO());
+                   String info_velo=String.valueOf(PruebaFisica.PRUEBA_FISICA.getInformativoVelocidad());
+                   String info_pot=String.valueOf(PruebaFisica.PRUEBA_FISICA.getInformativoPotencia());
+                   String info_resi=String.valueOf(PruebaFisica.PRUEBA_FISICA.getInformativoResistencia());
+                   String prom_velo=String.valueOf(PruebaFisica.PRUEBA_FISICA.getPromVelocidad());
+                   String prom_pote=String.valueOf(PruebaFisica.PRUEBA_FISICA.getPromPotencia());
+                   String prom_resi=String.valueOf(PruebaFisica.PRUEBA_FISICA.getPromResistencia());
+                   String total=String.valueOf(PruebaFisica.PRUEBA_FISICA.getTotal_general());
+
+                   String estado="1";
+
+
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+
+                    if (success) {
+
+                        progressDialog.dismiss();
+                        Intent intent=new Intent(PruebaFisicoActivity.this,BarrioIntimoPersonaActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        PruebaFisicoActivity.this.startActivity(intent);
+                        Toast.makeText(context, "Registro de Prueba Tecnica Exitosa", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, "No se pudo registrar", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error en Recupera codigo de usuario :"+e);
+                }
+            }
+        };
+
+        RegistrarPruebaFisica xx = new RegistrarPruebaFisica(id_user,id_barrio,id_persona,peso,talla,rj,cmj,abk,fms,velocidad,yoyo,info_velo,info_pot,info_resi,prom_velo,prom_pote,prom_resi,total,estado, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
 
     }
 
@@ -217,7 +292,8 @@ public class PruebaFisicoActivity extends AppCompatActivity {
                  PruebaFisica.PRUEBA_FISICA.setInformativoResistencia(or);
 
                  String pr=df.format(PruebaFisica.PRUEBA_FISICA.getInformativoResistencia());
-                 PruebaFisica.PRUEBA_FISICA.setInformativoResistencia(Double.parseDouble(pr));
+
+                 //PruebaFisica.PRUEBA_FISICA.setInformativoResistencia(Double.parseDouble(pr));
                  info_resistencia.setText(pr+" Vo2Max");
 
                  if(PruebaFisica.PRUEBA_FISICA.getInformativoResistencia()!=0){
@@ -479,5 +555,91 @@ public class PruebaFisicoActivity extends AppCompatActivity {
 
     public void Debug(String sms){
         System.out.println(sms);
+    }
+
+
+    private void Actualizar_Total(double total_general,int id_barrios, int id_peerr,final Context context) {
+
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("Prueba Fisica:");
+        progressDialog.setMessage("Guardando...");
+        progressDialog.show();
+
+        String id_barrio=String.valueOf(id_barrios);
+        String id_pers=String.valueOf(id_peerr);
+        String total_fisico=String.valueOf(total_general);
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+                        debug("Actualizar Total_general_fisico");
+
+
+                        Actualizar_prueba_fisica(Usuario.SESION_ACTUAL.getPersona_barrio().getId(),context);
+
+                    }else {
+
+                        Toast.makeText(context, "Error de conexion al actualizar total", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error ACTIVAR :"+e);
+                }
+            }
+        };
+
+        Actualizar_barrio2 xx = new Actualizar_barrio2(id_barrio,id_pers,total_fisico, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+
+    }
+
+    private void Actualizar_prueba_fisica(int id,final Context context) {
+
+
+        String id_pers=String.valueOf(id);
+
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+                        debug("Actualizar prueba fisica");
+
+
+                        Registrar_Prueba_fisica(context,Usuario.SESION_ACTUAL.getId(),Usuario.SESION_ACTUAL.getId_barrio_intimo(),Usuario.SESION_ACTUAL.getPersona_barrio().getId());
+
+                    }else {
+
+                        Toast.makeText(context, "Error de conexion al actualizar estado fisico", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error ACTIVAR fisico :"+e);
+                }
+            }
+        };
+
+        Actualizar_barrio_fisica xx = new Actualizar_barrio_fisica(id_pers, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+
+
+    }
+
+
+    public void debug(String sm){
+        System.out.println(sm);
     }
 }

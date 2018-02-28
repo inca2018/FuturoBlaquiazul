@@ -153,21 +153,27 @@ public class AdapterBarrioPersona extends RecyclerView.Adapter<AdapterBarrioPers
 
                             }else if(item.getTitle().toString().equalsIgnoreCase("Evaluación Fisica")){
 
-                                Usuario.SESION_ACTUAL.setPersona_barrio(my_Data.get(position));
-                                Intent intent=new Intent(context,PruebaFisicoActivity.class);
-                                context.startActivity(intent);
+                                if(my_Data.get(position).getBarrio_fisica()!=0){
+                                    Toast.makeText(context, "Postulante ya paso la prueba fisica", Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Usuario.SESION_ACTUAL.setPersona_barrio(my_Data.get(position));
+                                    Intent intent=new Intent(context,PruebaFisicoActivity.class);
+                                    context.startActivity(intent);
+                                }
+
 
                             }else if(item.getTitle().toString().equalsIgnoreCase("Evaluación Técnica")){
 
-                                Usuario.SESION_ACTUAL.setPersona_barrio(my_Data.get(position));
-                                Intent intent=new Intent(context,PruebaTecnicaActivity.class);
-                                context.startActivity(intent);
+                                if(my_Data.get(position).getBarrio_tecnica()!=0){
+                                    Toast.makeText(context, "Postulante ya paso la prueba Tecnica", Toast.LENGTH_SHORT).show();
+                                }else{
+                                    Usuario.SESION_ACTUAL.setPersona_barrio(my_Data.get(position));
+                                    Intent intent=new Intent(context,PruebaTecnicaActivity.class);
+                                    context.startActivity(intent);
 
-                            }else if(item.getTitle().toString().equalsIgnoreCase("Resultados Generales")){
-
-                                Usuario.SESION_ACTUAL.setPersona_barrio(my_Data.get(position));
-
+                                }
                             }
+
                             return true;
                         }
                     });

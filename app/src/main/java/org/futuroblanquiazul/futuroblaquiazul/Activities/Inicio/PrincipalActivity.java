@@ -20,6 +20,7 @@ import android.widget.TextView;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Fragments.CaptacionFragment;
 import org.futuroblanquiazul.futuroblaquiazul.Fragments.MainFragment;
+import org.futuroblanquiazul.futuroblaquiazul.Fragments.MetodologiaFragment;
 import org.futuroblanquiazul.futuroblaquiazul.R;
 
 public class PrincipalActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -120,9 +121,9 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
             displayView(1);
             toolbar.setTitle("Captación");
         }
-        else if (id == R.id.nav_3) {
+        else if (id == R.id.nav_6) {
             displayView(2);
-            toolbar.setTitle("Información de Captación");
+            toolbar.setTitle("Metodologia");
 
         }
 
@@ -195,10 +196,10 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
             case 1:
                 fragment = new CaptacionFragment();
                 break;
-            /*case 2:
-                fragment = new FragmentBarrio();
+            case 2:
+                fragment = new MetodologiaFragment();
                 break;
-            case 3:
+           /* case 3:
                 fragment = new FragmentEstadistico();
                 break;
             case 4:

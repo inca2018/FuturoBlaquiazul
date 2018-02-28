@@ -14,9 +14,6 @@
         android:title="Evaluación Técnica">
     </item>
 
-    <item
-        android:id="@+id/opcion_4"
-        android:title="Resultados Generales">
-    </item>
+
 
 </menu>

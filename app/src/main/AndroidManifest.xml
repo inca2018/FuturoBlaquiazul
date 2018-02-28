@@ -68,9 +68,11 @@
             android:configChanges="screenSize|orientation" />
         <activity
             android:name=".Activities.BarrioIntimo.PruebaTecnicaActivity"
-            android:configChanges="screenSize|orientation"></activity>
+            android:configChanges="screenSize|orientation" />
         <activity android:name=".Activities.BarrioIntimo.BarrioIntimoActivity" />
-        <activity android:name=".Activities.BarrioIntimo.BarrioIntimoPersonaActivity"></activity>
+        <activity android:name=".Activities.BarrioIntimo.BarrioIntimoPersonaActivity" />
+        <activity android:name=".Activities.Metodologia.ListaGeneralPlantelActivity" />
+        <activity android:name=".Activities.Metodologia.GestionEvaluacionActivity"></activity>
     </application>
 
 </manifest>

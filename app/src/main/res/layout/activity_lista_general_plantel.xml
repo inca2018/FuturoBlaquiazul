@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaGeneralPlantelActivity">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Plantel General"
+            style="@style/titulo1"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Escuela Base"
+            style="@style/titulo2"
+            android:textAlignment="textStart"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_plantel1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        </android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Escuela Competitiva"
+            style="@style/titulo2"
+            android:textAlignment="textStart"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_plantel2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        </android.support.v7.widget.RecyclerView>
+
+
+    </LinearLayout>
+</LinearLayout>
