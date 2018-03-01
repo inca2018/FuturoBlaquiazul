@@ -75,7 +75,8 @@
         <activity android:name=".Activities.Metodologia.GestionEvaluacionActivity" />
         <activity android:name=".Activities.Metodologia.ListaPersonasActivity" />
         <activity android:name=".Activities.Inicio.RecuperarActivity" />
-        <activity android:name=".Activities.Inicio.CambiarPassActivity"></activity>
+        <activity android:name=".Activities.Inicio.CambiarPassActivity" />
+        <activity android:name=".Activities.MetodologiaTiempo.ListaPruebasTiempoActivity"></activity>
     </application>
 
 </manifest>
