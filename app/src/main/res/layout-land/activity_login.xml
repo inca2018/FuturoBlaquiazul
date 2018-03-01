@@ -118,7 +118,7 @@
                                     android:layout_weight="8"
                                     android:padding="2dp"
                                     android:src="@mipmap/icon_user_login"
-                                    android:tint="@color/colorPrimary" />
+                                    android:tint="@color/blue" />
 
                                 <EditText
                                     android:id="@+id/login_usuario"
@@ -158,7 +158,7 @@
                                     android:padding="2dp"
                                     android:src="@mipmap/icon_pass"
 
-                                    android:tint="@color/colorPrimary" />
+                                    android:tint="@color/blue" />
 
                                 <EditText
                                     android:id="@+id/login_pass"
@@ -178,6 +178,7 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/recuperar_pass"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -42,6 +43,8 @@ public class LoginActivity extends AppCompatActivity {
     Usuario UsuarioTemp=null;
     String codigo="";
 
+    TextView  recuperar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,11 +53,22 @@ public class LoginActivity extends AppCompatActivity {
             usuario_login=findViewById(R.id.login_usuario);
             pass_login=findViewById(R.id.login_pass);
             ingresar=findViewById(R.id.ingresar_login);
+            recuperar=findViewById(R.id.recuperar_pass);
 
             ingresar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Ingresar_Sesion();
+                }
+            });
+
+
+            recuperar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent intent = new Intent(LoginActivity.this, RecuperarActivity.class);
+                    LoginActivity.this.startActivity(intent);
                 }
             });
     }
@@ -70,9 +84,10 @@ public class LoginActivity extends AppCompatActivity {
 
              if(pass.length()!=0){
          //Inicio de progress de carga
-                  progressDialog = new ProgressDialog(context);
+                 progressDialog = new ProgressDialog(context);
                  progressDialog.setTitle("Login");
                  progressDialog.setMessage("Verificando Usuario...");
+                 progressDialog.setCanceledOnTouchOutside(false);
                  progressDialog.show();
 
         //Recuperar mensaje de validacion , Vacio= Ingreso , LLeno = Mensaje de error (usuario no existe, password incorrecto)

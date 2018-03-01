@@ -21,6 +21,7 @@ import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Fragments.CaptacionFragment;
 import org.futuroblanquiazul.futuroblaquiazul.Fragments.MainFragment;
 import org.futuroblanquiazul.futuroblaquiazul.Fragments.MetodologiaFragment;
+import org.futuroblanquiazul.futuroblaquiazul.Fragments.SolicitudesFragment;
 import org.futuroblanquiazul.futuroblaquiazul.R;
 
 public class PrincipalActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -127,6 +128,12 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
 
         }
 
+        else if (id == R.id.nav_10) {
+            displayView(10);
+            toolbar.setTitle("Solicitudes de Usuarios");
+
+        }
+
 
        /* else if (id == R.id.mant_usuario) {
             displayView(5);
@@ -198,6 +205,10 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
                 break;
             case 2:
                 fragment = new MetodologiaFragment();
+                break;
+
+            case 10:
+                fragment = new SolicitudesFragment();
                 break;
            /* case 3:
                 fragment = new FragmentEstadistico();

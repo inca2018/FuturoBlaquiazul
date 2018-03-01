@@ -4,8 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <item android:id="@+id/nav_1" android:icon="@mipmap/icon_home3"
-            android:title="Inicio"
-            android:checkable="true" />
+    android:title="Inicio"
+    android:checkable="true" />
+
+
+    <item android:id="@+id/nav_10" android:icon="@mipmap/icon_user_login"
+        android:title="Solicitudes de Usuarios"
+        android:checkable="true" />
 
     <item android:title="MODULO CAPTACIÓN:"
         android:id="@+id/menu_modulo_captacion">
@@ -96,7 +101,7 @@
         </menu>
     </item> -->
 
-        <item android:id="@+id/nav_salir" android:icon="@mipmap/image_fisico"
+        <item android:id="@+id/nav_salir" android:icon="@mipmap/icon_exit"
             android:title="Cerrar Sesión"
             android:checkable="true" />
 
