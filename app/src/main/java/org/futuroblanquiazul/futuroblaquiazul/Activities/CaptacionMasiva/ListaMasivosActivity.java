@@ -1,8 +1,7 @@
-package org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion;
+package org.futuroblanquiazul.futuroblaquiazul.Activities.CaptacionMasiva;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +14,7 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaPersonaMasivoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterMasivo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Masivo;

@@ -3,15 +3,12 @@
 
     <item
         android:id="@+id/opcion_1"
-        android:title="Evaluar">
+        android:title="Información de Seguimiento">
     </item>
     <item
         android:id="@+id/opcion_2"
-        android:title="Resultados">
+        android:title="Eliminar Seguimiento">
     </item>
-    <item
-        android:id="@+id/opcion_3"
-        android:title="Eliminar Resultados">
-    </item>
+
 
 </menu>

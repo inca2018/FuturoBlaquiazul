@@ -2,6 +2,7 @@ package org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +24,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaPersonaMasivoActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.PruebaFisica;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Actualizar_barrio;
@@ -642,4 +645,33 @@ public class PruebaFisicoActivity extends AppCompatActivity {
     public void debug(String sm){
         System.out.println(sm);
     }
+
+
+    public void onBackPressed() {
+
+        final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+        builder.setTitle("Barrio Intimo")
+                .setMessage("¿Desea salir de la Evaluaciòn?")
+                .setPositiveButton("SI",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(PruebaFisicoActivity.this,BarrioIntimoPersonaActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                PruebaFisicoActivity.this.startActivity(intent);
+
+                            }
+                        })
+                .setNegativeButton("NO",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+
+        builder.show();
+
+    }
+
 }

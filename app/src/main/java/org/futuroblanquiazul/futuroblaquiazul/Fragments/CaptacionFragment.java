@@ -21,7 +21,7 @@ import com.android.volley.toolbox.Volley;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.BarrioIntimoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.PruebaDiagnosticoActivity;
-import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaMasivosActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.CaptacionMasiva.ListaMasivosActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaPersonaSeguimientoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Ubigeo.UbigeoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Unidad_Territorial;

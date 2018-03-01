@@ -1,4 +1,4 @@
-package org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion;
+package org.futuroblanquiazul.futuroblaquiazul.Activities.CaptacionMasiva;
 
 import android.app.ProgressDialog;
 import android.content.Context;

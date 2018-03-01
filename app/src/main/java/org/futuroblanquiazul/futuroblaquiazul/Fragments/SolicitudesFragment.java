@@ -3,7 +3,6 @@ package org.futuroblanquiazul.futuroblaquiazul.Fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.Nullable;
@@ -17,16 +16,9 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
-import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaMasivosActivity;
-import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaPersonaMasivoActivity;
-import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterMasivo;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterSolicitudes;
-import org.futuroblanquiazul.futuroblaquiazul.Entity.Masivo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Solicitudes;
-import org.futuroblanquiazul.futuroblaquiazul.Entity.Unidad_Territorial;
-import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;
-import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarMasivos;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarSolicitudes;
 import org.futuroblanquiazul.futuroblaquiazul.R;
 import org.json.JSONArray;

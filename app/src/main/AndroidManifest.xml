@@ -38,19 +38,19 @@
             android:name=".Activities.Captacion.ValidarDiagnosticoIndividualActivity"
             android:configChanges="screenSize|orientation" />
         <activity
-            android:name=".Activities.Captacion.ListaMasivosActivity"
+            android:name=".Activities.CaptacionMasiva.ListaMasivosActivity"
             android:configChanges="screenSize|orientation" />
         <activity
-            android:name=".Activities.Captacion.MasivoNuevoActivity"
+            android:name=".Activities.CaptacionMasiva.MasivoNuevoActivity"
             android:configChanges="screenSize|orientation" />
         <activity
             android:name=".Activities.Captacion.ListaPersonaMasivoActivity"
             android:configChanges="screenSize|orientation" />
         <activity
-            android:name=".Activities.Captacion.PersonaNuevoMasivoActivity"
+            android:name=".Activities.CaptacionMasiva.PersonaNuevoMasivoActivity"
             android:configChanges="screenSize|orientation" />
         <activity
-            android:name=".Activities.Captacion.MasivoResultadosActivity"
+            android:name=".Activities.CaptacionMasiva.MasivoResultadosActivity"
             android:configChanges="screenSize|orientation" />
         <activity
             android:name=".Activities.Captacion.ListaPersonaSeguimientoActivity"
@@ -74,7 +74,8 @@
         <activity android:name=".Activities.Metodologia.ListaGeneralPlantelActivity" />
         <activity android:name=".Activities.Metodologia.GestionEvaluacionActivity" />
         <activity android:name=".Activities.Metodologia.ListaPersonasActivity" />
-        <activity android:name=".Activities.Inicio.RecuperarActivity"></activity>
+        <activity android:name=".Activities.Inicio.RecuperarActivity" />
+        <activity android:name=".Activities.Inicio.CambiarPassActivity"></activity>
     </application>
 
 </manifest>

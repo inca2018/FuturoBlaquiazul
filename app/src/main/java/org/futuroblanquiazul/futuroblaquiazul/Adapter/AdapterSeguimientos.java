@@ -73,13 +73,16 @@ public class AdapterSeguimientos extends RecyclerView.Adapter<AdapterSeguimiento
                   public void onClick(View v) {
 
                       final PopupMenu popupMenu=new PopupMenu(context,holder.acciones);
-                      popupMenu.getMenuInflater().inflate(R.menu.menu_item_seguimiento,popupMenu.getMenu());
+                      popupMenu.getMenuInflater().inflate(R.menu.menu_item_seguimiento2,popupMenu.getMenu());
                       popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                           @Override
                           public boolean onMenuItemClick(MenuItem item) {
-                              if(item.getTitle().toString().equalsIgnoreCase("Migración a Etapa de Prueba")){
+                              if(item.getTitle().toString().equalsIgnoreCase("Información de Seguimiento")){
 
-                              }else if(item.getTitle().toString().equalsIgnoreCase("Mis Seguimientos")){
+
+
+                              }else if(item.getTitle().toString().equalsIgnoreCase("Eliminar Seguimiento")){
+
 
                               }
 

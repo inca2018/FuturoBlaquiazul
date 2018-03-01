@@ -30,7 +30,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:layout_weight="1">
+                        android:layout_weight="2">
 
                         <TextView
                             android:id="@+id/solicitudes_nombre"
@@ -38,31 +38,21 @@
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:text="JESUS INCA CARDENAS"
-                            android:textSize="15dp"
                             android:layout_margin="2dp"
                             android:textColor="@color/titulos"
                             android:textAlignment="center"
-                            android:gravity="center"/>
-                    <TextView
-                        android:id="@+id/solicitudes_dni"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text=""
-                        android:layout_weight="1"
-                        android:textAlignment="center"
-                        android:textSize="14dp"
-                        android:gravity="center"
-                        android:textStyle="bold"/>
+                            android:gravity="center"
+                            android:textSize="12sp"/>
                         <TextView
                             android:id="@+id/solicitudes_fecha"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:text=""
+                            android:text="ACTIVO"
                             android:layout_weight="1"
                             android:textAlignment="center"
-                            android:textSize="14dp"
                             android:gravity="center"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold"
+                            android:textSize="10sp"/>
 
 
                     </LinearLayout>

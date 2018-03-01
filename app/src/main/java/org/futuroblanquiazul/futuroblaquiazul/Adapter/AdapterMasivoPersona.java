@@ -20,9 +20,8 @@ import com.android.volley.toolbox.Volley;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.PruebaDiagnosticoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaPersonaMasivoActivity;
-import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.MasivoResultadosActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.CaptacionMasiva.MasivoResultadosActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
-import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.EliminarResultados;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarResultadosDiagnostico;
@@ -136,7 +135,7 @@ public class AdapterMasivoPersona extends RecyclerView.Adapter<AdapterMasivoPers
                                 }else if(estado==1){
                                     Toast.makeText(context, "Postulante no tiene Evaluaciòn Disponible", Toast.LENGTH_SHORT).show();
                                 }
-                            }else if(item.getTitle().toString().equalsIgnoreCase("Eliminar")){
+                            }else if(item.getTitle().toString().equalsIgnoreCase("Eliminar Resultados")){
                                 int estado=my_Data.get(position).getEstado_capta();
                                 if(estado==2){
 

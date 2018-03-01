@@ -16,6 +16,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
 
+import org.futuroblanquiazul.futuroblaquiazul.Activities.CaptacionMasiva.ListaMasivosActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.CaptacionMasiva.PersonaNuevoMasivoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterMasivoPersona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;

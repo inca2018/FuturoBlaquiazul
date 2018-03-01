@@ -17,24 +17,16 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
-import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.PruebaDiagnosticoActivity;
-import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.PruebaFisicoActivity;
-import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.PruebaTecnicaActivity;
-import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaPersonaMasivoActivity;
-import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.MasivoResultadosActivity;
-import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.CambiarPassActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Solicitudes;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;
-import org.futuroblanquiazul.futuroblaquiazul.Peticiones.EliminarResultados;
-import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarResultadosDiagnostico;
-import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Recuperar_Sugerido;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.AnularSolicitud;
 import org.futuroblanquiazul.futuroblaquiazul.R;
-import org.futuroblanquiazul.futuroblaquiazul.Utils.ResultadosDiagnostico;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -42,6 +34,7 @@ public class AdapterSolicitudes extends RecyclerView.Adapter<AdapterSolicitudes.
     public Context context;
     private List<Solicitudes> my_Data;
     private RecyclerViewOnItemClickListener recyclerViewOnItemClickListener;
+    ProgressDialog progressDialog;
 
     public AdapterSolicitudes(Context context, List<Solicitudes> my_Data, RecyclerViewOnItemClickListener
             recyclerViewOnItemClickListener) {
@@ -53,14 +46,13 @@ public class AdapterSolicitudes extends RecyclerView.Adapter<AdapterSolicitudes.
     public  class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
 
          TextView nombres;
-         TextView dni;
          TextView fecha;
          ImageView acciones;
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             nombres=itemView.findViewById(R.id.solicitudes_nombre);
-            dni=itemView.findViewById(R.id.solicitudes_dni);
+
             fecha=itemView.findViewById(R.id.solicitudes_fecha);
             acciones=itemView.findViewById(R.id.solicitudes_acciones);
 
@@ -83,14 +75,17 @@ public class AdapterSolicitudes extends RecyclerView.Adapter<AdapterSolicitudes.
 
 
         holder.nombres.setText(my_Data.get(position).getNombre_solicitud());
-        holder.dni.setText(String.valueOf("DNI:"+my_Data.get(position).getDni_solicitud()));
+
 
         if(my_Data.get(position).getEstado()==1){
             holder.fecha.setText("ACTIVO");
             holder.fecha.setTextColor(context.getResources().getColor(R.color.verde));
-        }else{
+        }else if(my_Data.get(position).getEstado()==2){
             holder.fecha.setText("ANULADO");
             holder.fecha.setTextColor(context.getResources().getColor(R.color.red));
+        }else if(my_Data.get(position).getEstado()==3){
+            holder.fecha.setText("PROCESADO");
+            holder.fecha.setTextColor(context.getResources().getColor(R.color.deep_naranja400));
         }
 
 
@@ -107,7 +102,52 @@ public class AdapterSolicitudes extends RecyclerView.Adapter<AdapterSolicitudes.
 
                         if(item.getTitle().toString().equalsIgnoreCase("Cambiar Contraseña")){
 
+                            if(my_Data.get(position).getEstado()==1){
+
+                                Usuario.SESION_ACTUAL.setSolicitud_temp(my_Data.get(position));
+
+                                Intent intent=new Intent(context,CambiarPassActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                context.startActivity(intent);
+                            }else if(my_Data.get(position).getEstado()==2){
+                                Toast.makeText(context, "Solicitud Anulada", Toast.LENGTH_SHORT).show();
+                            }else if(my_Data.get(position).getEstado()==3){
+                                Toast.makeText(context, "Solicitud Procesada", Toast.LENGTH_SHORT).show();
+                            }
+
                         }else if(item.getTitle().toString().equalsIgnoreCase("Anular Solicitud")){
+                            if(my_Data.get(position).getEstado()==1){
+
+                                final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+                                builder.setTitle("Anulación")
+                                        .setMessage("¿Desea Anular Solicitud?")
+                                        .setPositiveButton("SI",
+                                                new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+
+                                                        Anular_Solicitud(context,my_Data.get(position).getId());
+                                                        System.out.println("ID_ENVIADO:"+my_Data.get(position).getId());
+                                                    }
+                                                })
+                                        .setNegativeButton("NO",
+                                                new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        dialog.dismiss();
+                                                    }
+                                                });
+
+                                builder.show();
+
+
+
+
+                            }else if(my_Data.get(position).getEstado()==2){
+                                Toast.makeText(context, "Solicitud  Anulada", Toast.LENGTH_SHORT).show();
+                            }else if(my_Data.get(position).getEstado()==3){
+                                Toast.makeText(context, "Solicitud Procesada", Toast.LENGTH_SHORT).show();
+                            }
 
                         }
 
@@ -126,5 +166,50 @@ public class AdapterSolicitudes extends RecyclerView.Adapter<AdapterSolicitudes.
         return my_Data.size();
     }
 
+
+    public void Anular_Solicitud(final Context context,int codigo){
+
+        String cod=String.valueOf(codigo);
+
+
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("Anulación:");
+        progressDialog.setMessage("Anulando Solicitud...");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+        com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+
+                    if (success) {
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Solicitud Anulada Correctamente", Toast.LENGTH_SHORT).show();
+                        notifyDataSetChanged();
+
+                        Intent intent=new Intent(context,PrincipalActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        intent.putExtra("o","o2");
+                        context.startActivity(intent);
+                    } else {
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Error al anular solicitud", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error de Anulacion :"+e);
+                }
+            }
+        };
+
+        AnularSolicitud xx = new AnularSolicitud(cod,responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+    }
 
 }

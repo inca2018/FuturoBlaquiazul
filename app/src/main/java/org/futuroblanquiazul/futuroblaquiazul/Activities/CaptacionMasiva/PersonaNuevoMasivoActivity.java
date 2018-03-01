@@ -1,4 +1,4 @@
-package org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion;
+package org.futuroblanquiazul.futuroblaquiazul.Activities.CaptacionMasiva;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
@@ -19,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 
 
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaPersonaMasivoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.AgregarPersonaEnMasivo;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarPersonaRecuperarCodigo;

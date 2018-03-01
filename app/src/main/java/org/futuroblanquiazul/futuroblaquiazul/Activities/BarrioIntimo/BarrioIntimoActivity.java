@@ -13,17 +13,13 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
-import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaMasivosActivity;
-import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaPersonaMasivoActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterBarrio;
-import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterMasivo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.BarrioIntimo;
-import org.futuroblanquiazul.futuroblaquiazul.Entity.Masivo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Unidad_Territorial;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarBarrios;
-import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarMasivos;
 import org.futuroblanquiazul.futuroblaquiazul.R;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -148,4 +144,13 @@ public class BarrioIntimoActivity extends AppCompatActivity {
         queue.add(xx);
 
     }
+
+
+    public void onBackPressed() {
+        Intent intent=new Intent(BarrioIntimoActivity.this,PrincipalActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra("o","o1");
+        BarrioIntimoActivity.this.startActivity(intent);
+    }
+
 }

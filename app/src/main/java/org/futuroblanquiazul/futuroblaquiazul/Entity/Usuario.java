@@ -44,6 +44,7 @@ public class Usuario {
 
     Grupo grupo_filtro;
     Plantel plantel_filtro;
+    Solicitudes solicitud_temp;
 
 
     public static final Usuario SESION_ACTUAL=new Usuario();
@@ -52,6 +53,15 @@ public class Usuario {
 
     public Usuario(){
 
+    }
+
+
+    public Solicitudes getSolicitud_temp() {
+        return solicitud_temp;
+    }
+
+    public void setSolicitud_temp(Solicitudes solicitud_temp) {
+        this.solicitud_temp = solicitud_temp;
     }
 
     public Grupo getGrupo_filtro() {

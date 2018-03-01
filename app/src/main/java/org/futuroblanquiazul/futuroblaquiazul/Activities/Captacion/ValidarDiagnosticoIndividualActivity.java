@@ -403,23 +403,31 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
 
 
                         if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
+
+                            debug("ENTRO MODULO PERSONA BARRIO");
                             Intent intent = new Intent(ValidarDiagnosticoIndividualActivity.this, BarrioIntimoPersonaActivity.class);
                             ValidarDiagnosticoIndividualActivity.this.startActivity(intent);
 
                             Actualizar_Estado_BARRIO(Usuario.SESION_ACTUAL.getPersona_barrio().getId());
+
+
                         }else{
 
                             if(Persona.PERSONA_TEMP.getId()!=0){
+
+                                debug("ENTRO MODULO PERSONA MASIVO");
                                 Intent intent = new Intent(ValidarDiagnosticoIndividualActivity.this, ListaPersonaMasivoActivity.class);
                                 ValidarDiagnosticoIndividualActivity.this.startActivity(intent);
                                 Toast.makeText(context, "Registro Guardado con exito!", Toast.LENGTH_SHORT).show();
+
                             }else{
                                 Intent intent = new Intent(ValidarDiagnosticoIndividualActivity.this, PrincipalActivity.class);
                                 intent.putExtra("o","o1");
                                 ValidarDiagnosticoIndividualActivity.this.startActivity(intent);
                                 Toast.makeText(context, "Registro Guardado con exito!", Toast.LENGTH_SHORT).show();
 
-                                debug("PASO REGISTRO DE MODULO");
+                                debug("ENTRO MODULO PERSONA INDIVIDUAL");
+
                             }
 
 
@@ -427,6 +435,7 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
 
                         }
 
+                        Limpiar_Listas();
                     } else {
                         progressDialog.dismiss();
                         Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
@@ -444,6 +453,31 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
         queue.add(xx);
 
     }
+
+    private void Limpiar_Listas() {
+
+
+        for(int i=0;i<Recursos_Diagnostico.LISTA_FISICO.size();i++){
+            Recursos_Diagnostico.LISTA_FISICO.get(i).setResultado(0);
+        }
+        for(int i=0;i<Recursos_Diagnostico.LISTA_SOCIAL.size();i++){
+            Recursos_Diagnostico.LISTA_SOCIAL.get(i).setResultado(0);
+        }
+        for(int i=0;i<Recursos_Diagnostico.LISTA_TECNICO.size();i++){
+            Recursos_Diagnostico.LISTA_TECNICO.get(i).setResultado(0);
+        }
+        for(int i=0;i<Recursos_Diagnostico.LISTA_PSICO.size();i++){
+            Recursos_Diagnostico.LISTA_PSICO.get(i).setResultado(0);
+        }
+
+        for(int i=0;i<Recursos_Diagnostico.LISTA_CAPACIDAD.size();i++){
+            Recursos_Diagnostico.LISTA_CAPACIDAD.get(i).setResultado(0);
+        }
+
+
+
+    }
+
     private void Actualizar_Estado_Capta(int i) {
         String id_persona=String.valueOf(i);
         Response.Listener<String> responseListener = new Response.Listener<String>() {

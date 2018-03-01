@@ -2,6 +2,7 @@ package org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -565,4 +566,30 @@ public class PruebaTecnicaActivity extends AppCompatActivity {
 
 
 
+    public void onBackPressed() {
+
+        final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+        builder.setTitle("Barrio Intimo")
+                .setMessage("¿Desea salir de la Evaluaciòn?")
+                .setPositiveButton("SI",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(PruebaTecnicaActivity.this,BarrioIntimoPersonaActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                PruebaTecnicaActivity.this.startActivity(intent);
+
+                            }
+                        })
+                .setNegativeButton("NO",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+
+        builder.show();
+
+    }
 }

@@ -70,7 +70,8 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
         }else if(getIntent().getStringExtra("o").equalsIgnoreCase("o1")){
             displayView(1);
         }else if(getIntent().getStringExtra("o").equalsIgnoreCase("o2")){
-            displayView(2);
+            displayView(10);
+
         }else if(getIntent().getStringExtra("o").equalsIgnoreCase("o5")){
             displayView(5);
         }else if(getIntent().getStringExtra("o").equalsIgnoreCase("o8")){
