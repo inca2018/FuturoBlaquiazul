@@ -8,14 +8,12 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaPersonasPlantelActivity;
-import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.MetodologiaGrupoPruebasActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaGrupoPruebasActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Plantel;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;
@@ -96,7 +94,7 @@ public class AdapterPlantel extends RecyclerView.Adapter<AdapterPlantel.ViewHold
                            }else if(item.getTitle().toString().equalsIgnoreCase("Grupo de Evaluaciones")){
 
                                Usuario.SESION_ACTUAL.setPlantel(my_Data.get(position));
-                               Intent intent = new Intent(context, MetodologiaGrupoPruebasActivity.class);
+                               Intent intent = new Intent(context, ListaGrupoPruebasActivity.class);
                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                context.startActivity(intent);
 
@@ -115,8 +113,14 @@ public class AdapterPlantel extends RecyclerView.Adapter<AdapterPlantel.ViewHold
                                p_fecha=dialoglayout.findViewById(R.id.info_plantel_fecha);
                                p_estado=dialoglayout.findViewById(R.id.info_plantel_estado);
 
+                               final AlertDialog.Builder builder4 = new AlertDialog.Builder(context);
+                               builder4.setView(dialoglayout);
+                               da=builder4.show();
+
+
                                p_grupo.setText(my_Data.get(position).getRango().getDescripcion());
                                p_categoria.setText(my_Data.get(position).getNombre_categoria());
+
                                p_usuario.setText(my_Data.get(position).getUsuario().getUsuario());
                                p_fecha.setText(my_Data.get(position).getFecha_registro());
 
@@ -130,9 +134,7 @@ public class AdapterPlantel extends RecyclerView.Adapter<AdapterPlantel.ViewHold
                                }
 
 
-                               final AlertDialog.Builder builder4 = new AlertDialog.Builder(context);
-                               builder4.setView(dialoglayout);
-                               da=builder4.show();
+
 
                            }
 

@@ -40,12 +40,15 @@ public class Usuario {
     BarrioIntimo barrio_datos;
     Persona persona_metodologia;
     Persona persona_captacion_individual;
+    Persona persona_metodologia_pruebas;
     Plantel plantel;
 
 
     Grupo grupo_filtro;
     Plantel plantel_filtro;
     Solicitudes solicitud_temp;
+
+    GrupoPruebas grupoPruebasTEMP;
 
 
     int id_fisico;
@@ -67,6 +70,23 @@ public class Usuario {
         return id_fisico;
     }
 
+
+
+    public Persona getPersona_metodologia_pruebas() {
+        return persona_metodologia_pruebas;
+    }
+
+    public void setPersona_metodologia_pruebas(Persona persona_metodologia_pruebas) {
+        this.persona_metodologia_pruebas = persona_metodologia_pruebas;
+    }
+
+    public GrupoPruebas getGrupoPruebasTEMP() {
+        return grupoPruebasTEMP;
+    }
+
+    public void setGrupoPruebasTEMP(GrupoPruebas grupoPruebasTEMP) {
+        this.grupoPruebasTEMP = grupoPruebasTEMP;
+    }
 
     public Persona getPersona_captacion_individual() {
         return persona_captacion_individual;

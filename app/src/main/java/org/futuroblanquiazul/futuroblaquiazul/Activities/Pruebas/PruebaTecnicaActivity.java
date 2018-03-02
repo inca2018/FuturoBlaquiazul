@@ -1,4 +1,4 @@
-package org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo;
+package org.futuroblanquiazul.futuroblaquiazul.Activities.Pruebas;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -25,14 +24,13 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 
+import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.BarrioIntimoPersonaActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaPersonasGrupoPruebasActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.PruebaFisica;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.PruebaTecnica;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
-import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Actualizar_barrio2;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Actualizar_barrio3;
-import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Actualizar_barrio_fisica;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Actualizar_barrio_tecnica;
-import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarPruebaFisica;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarPruebaTecnica;
 import org.futuroblanquiazul.futuroblaquiazul.R;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Captacion_Vista;
@@ -40,8 +38,6 @@ import org.futuroblanquiazul.futuroblaquiazul.Utils.Captacion_funcional;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Diagnostico;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.PushbackReader;
 
 import static org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Diagnostico.LISTA_PRUEBA_TECNICA_CABECEO;
 import static org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Diagnostico.LISTA_PRUEBA_TECNICA_CONDUCCION;
@@ -93,7 +89,12 @@ public class PruebaTecnicaActivity extends AppCompatActivity {
                 if(Integer.parseInt(pase_ras.getText().toString())!=0 && Integer.parseInt(pase_alto.getText().toString())!=0 && Integer.parseInt(c_ras.getText().toString())!=0 && Integer.parseInt(c_alto.getText().toString())!=0 && Integer.parseInt(total_pase.getText().toString())!=0 && Integer.parseInt(total_control.getText().toString())!=0 && Integer.parseInt(total_remate.getText().toString())!=0 && Integer.parseInt(total_conduccion.getText().toString())!=0 && Integer.parseInt(total_cabeceo.getText().toString())!=0){
 
 
-                    Actualizar_Total(PruebaTecnica.PRUEBA_TECNICA.getTotal_general(), Usuario.SESION_ACTUAL.getId_barrio_intimo(),Usuario.SESION_ACTUAL.getPersona_barrio().getId(),context);
+                    if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+                        Registrar_Prueba_tecnica(context,Usuario.SESION_ACTUAL.getId(),0,Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId());
+                    }else{
+                        Actualizar_Total(PruebaTecnica.PRUEBA_TECNICA.getTotal_general(), Usuario.SESION_ACTUAL.getId_barrio_intimo(),Usuario.SESION_ACTUAL.getPersona_barrio().getId(),context);
+
+                    }
 
                 }else{
                     Toast.makeText(PruebaTecnicaActivity.this, "Complete información necesaria para la evaluación", Toast.LENGTH_SHORT).show();
@@ -514,6 +515,7 @@ public class PruebaTecnicaActivity extends AppCompatActivity {
         Debug(PruebaFisica.PRUEBA_FISICA.toString());
 
 
+
         String id_user=String.valueOf(user);
         String id_barrio=String.valueOf(id_barrio_intimo);
         String id_persona=String.valueOf(id_per);
@@ -531,6 +533,14 @@ public class PruebaTecnicaActivity extends AppCompatActivity {
 
         String estado="1";
 
+        if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+            progressDialog = new ProgressDialog(context);
+            progressDialog.setTitle("Prueba Tecnica:");
+            progressDialog.setMessage("Guardando...");
+            progressDialog.setCanceledOnTouchOutside(false);
+            progressDialog.show();
+        }
+
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
@@ -542,11 +552,21 @@ public class PruebaTecnicaActivity extends AppCompatActivity {
 
                     if (success) {
 
-                        progressDialog.dismiss();
-                        Intent intent=new Intent(PruebaTecnicaActivity.this,BarrioIntimoPersonaActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        PruebaTecnicaActivity.this.startActivity(intent);
-                        Toast.makeText(context, "Registro de Prueba Tecnica Exitosa", Toast.LENGTH_SHORT).show();
+                        if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+                            progressDialog.dismiss();
+                            Intent intent=new Intent(PruebaTecnicaActivity.this,ListaPersonasGrupoPruebasActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            PruebaTecnicaActivity.this.startActivity(intent);
+                            Toast.makeText(context, "Registro de Prueba Tecnica Exitosa", Toast.LENGTH_SHORT).show();
+                        }else{
+                            progressDialog.dismiss();
+                            Intent intent=new Intent(PruebaTecnicaActivity.this,BarrioIntimoPersonaActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            PruebaTecnicaActivity.this.startActivity(intent);
+                            Toast.makeText(context, "Registro de Prueba Tecnica Exitosa", Toast.LENGTH_SHORT).show();
+
+                        }
+
                     } else {
                         Toast.makeText(context, "No se pudo registrar", Toast.LENGTH_SHORT).show();
                     }

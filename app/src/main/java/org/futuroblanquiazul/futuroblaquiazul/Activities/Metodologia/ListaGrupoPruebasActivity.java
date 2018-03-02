@@ -33,7 +33,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MetodologiaGrupoPruebasActivity extends AppCompatActivity {
+public class ListaGrupoPruebasActivity extends AppCompatActivity {
     RecyclerView lista_tiempos;
     LinearLayoutManager linearLayoutManager;
     AdapterGrupoPrueba adapter;
@@ -93,6 +93,7 @@ public class MetodologiaGrupoPruebasActivity extends AppCompatActivity {
                             temp.setId(objeto.getInt("ID"));
                             Usuario u=new Usuario();
                             u.setId(objeto.getInt("ID_USER"));
+                            u.setUsuario(objeto.getString("USUARIO"));
                             temp.setUsuario(u);
                             temp.setDescripcion(objeto.getString("DESCRIPCION"));
                             temp.setObservaciones(objeto.getString("OBSERVACIONES"));
@@ -100,6 +101,7 @@ public class MetodologiaGrupoPruebasActivity extends AppCompatActivity {
                             temp.setFecha_realizacion(objeto.getString("FECHA_REALIZAR"));
                             Plantel p=new Plantel();
                             p.setId(objeto.getInt("ID_PLANTEL"));
+                            p.setNombre_categoria("NOMBRE_CATEGORIA");
                             temp.setPlantel(p);
                             temp.setEstado(objeto.getInt("ESTADO"));
 
@@ -137,7 +139,7 @@ public class MetodologiaGrupoPruebasActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
-        Intent intent = new Intent(context, ListaPersonasPlantelActivity.class);
+        Intent intent = new Intent(context, ListaPlantelActivity.class);
         intent.putExtra("o","o3");
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);

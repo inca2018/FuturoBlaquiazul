@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaGrupoPruebasActivity">
-
+    tools:context="org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaPersonasGrupoPruebasActivity">
 
 
 
@@ -18,19 +17,28 @@
         android:layout_margin="8dp">
 
 
-         <TextView
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:text="Relacion de Tiempos Registrados"
-             style="@style/titulo1"
-             android:textAlignment="center"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/titulo1"
+            android:textAlignment="center"
+            android:text="Lista de Jugadores:"/>
 
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/titulo2"
+            android:textAlignment="center"
+            android:textStyle="italic"
+            android:text="Seleccione las pruebas a realizar por cada jugador"/>
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/lista_tiempos"
+            android:id="@+id/lista_jugadores_grupo_pruebas"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="8dp">
+
 
 
         </android.support.v7.widget.RecyclerView>

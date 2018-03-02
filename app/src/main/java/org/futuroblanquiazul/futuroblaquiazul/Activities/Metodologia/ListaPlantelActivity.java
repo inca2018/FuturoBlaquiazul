@@ -113,6 +113,7 @@ public class ListaPlantelActivity extends AppCompatActivity {
                             Usuario u=new Usuario();
                             u.setId(objeto.getInt("ID_USER"));
                             u.setUsuario(objeto.getString("USUARIO"));
+                            temp.setUsuario(u);
                             temp.setEstado(objeto.getInt("ESTADO"));
                             lista_escuela_base.add(temp);
 
@@ -173,6 +174,7 @@ public class ListaPlantelActivity extends AppCompatActivity {
                             Usuario u=new Usuario();
                             u.setId(objeto.getInt("ID_USER"));
                             u.setUsuario(objeto.getString("USUARIO"));
+                            temp.setUsuario(u);
                             temp.setEstado(objeto.getInt("ESTADO"));
                             lista_escuela_competetiva.add(temp);
 

@@ -7,13 +7,13 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/logo"
-        android:label="@string/app_name"
+        android:label="Futuro Blanquiazul"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".Activities.Inicio.MainActivity" />
         <activity
-            android:name=".Activities.BarrioIntimo.PruebaDiagnosticoActivity"
+            android:name=".Activities.Pruebas.PruebaDiagnosticoActivity"
             android:configChanges="screenSize|orientation" />
         <activity android:name=".Activities.Captacion.PruebaAnimacionActivity" />
         <activity
@@ -64,10 +64,10 @@
             android:screenOrientation="landscape" />
         <activity android:name=".Activities.Captacion.ValidarSeguimientoActivity" />
         <activity
-            android:name=".Activities.BarrioIntimo.PruebaFisicoActivity"
+            android:name=".Activities.Pruebas.PruebaFisicoActivity"
             android:configChanges="screenSize|orientation" />
         <activity
-            android:name=".Activities.BarrioIntimo.PruebaTecnicaActivity"
+            android:name=".Activities.Pruebas.PruebaTecnicaActivity"
             android:configChanges="screenSize|orientation" />
         <activity android:name=".Activities.BarrioIntimo.BarrioIntimoActivity" />
         <activity android:name=".Activities.BarrioIntimo.BarrioIntimoPersonaActivity" />
@@ -76,7 +76,8 @@
         <activity android:name=".Activities.Metodologia.ListaPersonasPlantelActivity" />
         <activity android:name=".Activities.Inicio.RecuperarActivity" />
         <activity android:name=".Activities.Inicio.CambiarPassActivity" />
-        <activity android:name=".Activities.Metodologia.MetodologiaGrupoPruebasActivity"></activity>
+        <activity android:name=".Activities.Metodologia.ListaGrupoPruebasActivity" />
+        <activity android:name=".Activities.Metodologia.ListaPersonasGrupoPruebasActivity"></activity>
     </application>
 
 </manifest>

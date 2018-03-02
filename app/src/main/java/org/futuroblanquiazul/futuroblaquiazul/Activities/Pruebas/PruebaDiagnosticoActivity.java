@@ -1,4 +1,4 @@
-package org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo;
+package org.futuroblanquiazul.futuroblaquiazul.Activities.Pruebas;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -24,11 +24,13 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 
 
+import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.BarrioIntimoPersonaActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaPersonaMasivoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.RegistroPostulantesActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ValidarDiagnosticoIndividualActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
 
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaPersonasGrupoPruebasActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Posicion;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
@@ -80,21 +82,37 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
         Listar_Posiciones(context);
         System.out.println("ID_PERSONA RECIBIDO: "+ Persona.PERSONA_TEMP.getId());
 
+        if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+            ubicacion_texto.setText("Plantel");
+        }else{
+            if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
 
-            if(Persona.PERSONA_TEMP.getId()!=0){
-                Activar_Persona(Persona.PERSONA_TEMP.getId());
-                if(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getUbigeo_descripcion().length()!=0){
-                ubicacion_texto.setText("Ubicación de Diagnostico: "+GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getUbigeo_descripcion());
+                if(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getUbigeo_descripcion().length()!=0){
+                    ubicacion_texto.setText("Ubicación de Diagnostico: "+GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getUbigeo_descripcion());
                 }else{
-                ubicacion_texto.setText("Ubicación no disponible");
+                    ubicacion_texto.setText("Ubicación no disponible");
                 }
+
             }else{
-                if(GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion().length()!=0){
-                ubicacion_texto.setText("Ubicación de Diagnostico: "+GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion());
+                if(Persona.PERSONA_TEMP.getId()!=0){
+                    Activar_Persona(Persona.PERSONA_TEMP.getId());
+                    if(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getUbigeo_descripcion().length()!=0){
+                        ubicacion_texto.setText("Ubicación de Diagnostico: "+GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getUbigeo_descripcion());
+                    }else{
+                        ubicacion_texto.setText("Ubicación no disponible");
+                    }
                 }else{
-                ubicacion_texto.setText("Ubicación no disponible");
+                    if(GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion().length()!=0){
+                        ubicacion_texto.setText("Ubicación de Diagnostico: "+GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion());
+                    }else{
+                        ubicacion_texto.setText("Ubicación no disponible");
+                    }
                 }
             }
+        }
+
+
+
 
 
 
@@ -107,20 +125,23 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
+                if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
                     Intent intent = new Intent(PruebaDiagnosticoActivity.this, ValidarDiagnosticoIndividualActivity.class);
                     PruebaDiagnosticoActivity.this.startActivity(intent);
                 }else{
-                    if(Persona.PERSONA_TEMP.getId()!=0){
+                    if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
                         Intent intent = new Intent(PruebaDiagnosticoActivity.this, ValidarDiagnosticoIndividualActivity.class);
                         PruebaDiagnosticoActivity.this.startActivity(intent);
                     }else{
-                        Intent intent = new Intent(PruebaDiagnosticoActivity.this, RegistroPostulantesActivity.class);
-                        PruebaDiagnosticoActivity.this.startActivity(intent);
+                        if(Persona.PERSONA_TEMP.getId()!=0){
+                            Intent intent = new Intent(PruebaDiagnosticoActivity.this, ValidarDiagnosticoIndividualActivity.class);
+                            PruebaDiagnosticoActivity.this.startActivity(intent);
+                        }else{
+                            Intent intent = new Intent(PruebaDiagnosticoActivity.this, RegistroPostulantesActivity.class);
+                            PruebaDiagnosticoActivity.this.startActivity(intent);
+                        }
                     }
                 }
-
-
 
 
             }
@@ -130,6 +151,11 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
+                if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+                    Intent intent = new Intent(PruebaDiagnosticoActivity.this, ValidarDiagnosticoIndividualActivity.class);
+                    PruebaDiagnosticoActivity.this.startActivity(intent);
+                }else{
                 if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
                     Intent intent = new Intent(PruebaDiagnosticoActivity.this, ValidarDiagnosticoIndividualActivity.class);
                     PruebaDiagnosticoActivity.this.startActivity(intent);
@@ -141,8 +167,8 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
                         Intent intent = new Intent(PruebaDiagnosticoActivity.this, RegistroPostulantesActivity.class);
                         PruebaDiagnosticoActivity.this.startActivity(intent);
                     }
+                 }
                 }
-
 
             }
         });
@@ -482,46 +508,54 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
     }
 
     public void onBackPressed() {
-      if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
-          Intent intent = new Intent(PruebaDiagnosticoActivity.this,BarrioIntimoPersonaActivity.class);
-          intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-          PruebaDiagnosticoActivity.this.startActivity(intent);
-      }else{
-          if(Persona.PERSONA_TEMP.getId()!=0){
 
-              final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
-              builder.setTitle("Captacion")
-                      .setMessage("¿Desea salir de la Evaluaciòn?")
-                      .setPositiveButton("SI",
-                              new DialogInterface.OnClickListener() {
-                                  @Override
-                                  public void onClick(DialogInterface dialog, int which) {
-                                      Desactivar_Persona(Persona.PERSONA_TEMP.getId());
-                                      Intent intent = new Intent(PruebaDiagnosticoActivity.this,ListaPersonaMasivoActivity.class);
-                                      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                      PruebaDiagnosticoActivity.this.startActivity(intent);
-                                      finish();
-                                  }
-                              })
-                      .setNegativeButton("NO",
-                              new DialogInterface.OnClickListener() {
-                                  @Override
-                                  public void onClick(DialogInterface dialog, int which) {
-                                      dialog.dismiss();
-                                  }
-                              });
+     if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+         Intent intent = new Intent(PruebaDiagnosticoActivity.this,ListaPersonasGrupoPruebasActivity.class);
+         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+         PruebaDiagnosticoActivity.this.startActivity(intent);
+     }else{
+         if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
+             Intent intent = new Intent(PruebaDiagnosticoActivity.this,BarrioIntimoPersonaActivity.class);
+             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+             PruebaDiagnosticoActivity.this.startActivity(intent);
+         }else{
+             if(Persona.PERSONA_TEMP.getId()!=0){
 
-              builder.show();
-          }else{
+                 final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+                 builder.setTitle("Captacion")
+                         .setMessage("¿Desea salir de la Evaluaciòn?")
+                         .setPositiveButton("SI",
+                                 new DialogInterface.OnClickListener() {
+                                     @Override
+                                     public void onClick(DialogInterface dialog, int which) {
+                                         Desactivar_Persona(Persona.PERSONA_TEMP.getId());
+                                         Intent intent = new Intent(PruebaDiagnosticoActivity.this,ListaPersonaMasivoActivity.class);
+                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                         PruebaDiagnosticoActivity.this.startActivity(intent);
+                                         finish();
+                                     }
+                                 })
+                         .setNegativeButton("NO",
+                                 new DialogInterface.OnClickListener() {
+                                     @Override
+                                     public void onClick(DialogInterface dialog, int which) {
+                                         dialog.dismiss();
+                                     }
+                                 });
 
-              Intent intent = new Intent(PruebaDiagnosticoActivity.this,PrincipalActivity.class);
-              intent.putExtra("o","o1");
-              intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-              PruebaDiagnosticoActivity.this.startActivity(intent);
-              finish();
+                 builder.show();
+             }else{
 
-          }
-      }
+                 Intent intent = new Intent(PruebaDiagnosticoActivity.this,PrincipalActivity.class);
+                 intent.putExtra("o","o1");
+                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                 PruebaDiagnosticoActivity.this.startActivity(intent);
+                 finish();
+
+             }
+         }
+     }
+
 
 
 
