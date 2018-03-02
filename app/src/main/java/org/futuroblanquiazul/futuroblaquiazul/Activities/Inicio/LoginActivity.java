@@ -21,7 +21,7 @@ import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarCodigoUsuario;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarUsuario;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ValidarSesion;
 import org.futuroblanquiazul.futuroblaquiazul.R;
-import org.futuroblanquiazul.futuroblaquiazul.Server.ServerLogin;
+
 import org.futuroblanquiazul.futuroblaquiazul.Utils.DialogosSalidas;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,8 +32,8 @@ public class LoginActivity extends AppCompatActivity {
     DialogosSalidas d;
     EditText usuario_login, pass_login;
     ProgressDialog progressDialog;
-    //Variable de servicio
-    ServerLogin Servicio_login;
+
+
     Button ingresar;
 
     Context context;

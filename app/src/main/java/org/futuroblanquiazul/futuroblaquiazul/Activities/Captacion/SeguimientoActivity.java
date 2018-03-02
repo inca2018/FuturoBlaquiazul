@@ -54,7 +54,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.futuroblanquiazul.futuroblaquiazul.ActivityEntity.modulo_captacion.BASE;
+
 
 public class SeguimientoActivity extends AppCompatActivity {
     private RecyclerView recyclerCampo;

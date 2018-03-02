@@ -28,9 +28,7 @@ import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaPersonaM
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.RegistroPostulantesActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ValidarDiagnosticoIndividualActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
-import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaPersonasActivity;
-import org.futuroblanquiazul.futuroblaquiazul.ActivityEntity.modulo_captacion;
-import org.futuroblanquiazul.futuroblaquiazul.Entity.BarrioIntimo;
+
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Posicion;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
@@ -221,7 +219,7 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
                     if(ListaPosiciones.get(x).getNombre_Posicione().equalsIgnoreCase(String.valueOf(item))){
                          Diagnostico_Otros.OTROS.setSugerido1(ListaPosiciones.get(x));
 
-                         modulo_captacion.BASE.setSugerido_1(ListaPosiciones.get(x));
+
                     }
                 }
             }
@@ -240,7 +238,7 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
                     if(ListaPosiciones.get(x).getNombre_Posicione().equalsIgnoreCase(String.valueOf(item))){
                         Diagnostico_Otros.OTROS.setSugerido2(ListaPosiciones.get(x));
 
-                        modulo_captacion.BASE.setSugerido_2(ListaPosiciones.get(x));
+
                     }
                 }
             }
@@ -259,7 +257,7 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
                     if(ListaPosiciones.get(x).getNombre_Posicione().equalsIgnoreCase(String.valueOf(item))){
                         Diagnostico_Otros.OTROS.setSugerido3(ListaPosiciones.get(x));
 
-                        modulo_captacion.BASE.setSugerido_3(ListaPosiciones.get(x));
+
                     }
                 }
             }
@@ -277,13 +275,13 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i==R.id.lateral_derecho){
                     Diagnostico_Otros.OTROS.setLateralidad("LATERALIDAD DERECHA");
-                    modulo_captacion.BASE.setLateralidad("LATERALIDAD DERECHA");
+
                 }else if(i==R.id.lateral_izquierdo){
                     Diagnostico_Otros.OTROS.setLateralidad("LATERALIDAD IZQUIERDA");
-                    modulo_captacion.BASE.setLateralidad("LATERALIDAD IZQUIERDA");
+
                 }else if(i==R.id.lateral_ambos){
                     Diagnostico_Otros.OTROS.setLateralidad("LATERALIDAD AMBAS PIERNAS");
-                    modulo_captacion.BASE.setLateralidad("LATERALIDAD AMBAS PIERNAS");
+
                 }
             }
         });

@@ -1,7 +1,7 @@
 package org.futuroblanquiazul.futuroblaquiazul.Entity;
 
 
-import org.futuroblanquiazul.futuroblaquiazul.ActivityEntity.modulo_captacion;
+
 
 /**
  * Created by Jesus Inca on 24/01/2018.
@@ -30,7 +30,7 @@ public class Persona {
     String Fecha_registro_Masivo;
     String Fecha_Ultima_modificacion;
     int Num_Camiseta;
-    modulo_captacion Informacion_captacion;
+
     int estado_capta;
     int disponible;
     int totales_seguimientos;
@@ -42,6 +42,12 @@ public class Persona {
     int total_diagnostico;
     int total_fisica;
     int total_tecnica;
+
+    int id_fisico;
+    int id_social;
+    int id_capacidad;
+    int id_tecnico;
+    int id_psico;
 
     public static final Persona PERSONA_TEMP=new Persona();
 
@@ -55,6 +61,47 @@ public class Persona {
 
     public void setTotal_diagnostico(int total_diagnostico) {
         this.total_diagnostico = total_diagnostico;
+    }
+
+
+    public int getId_fisico() {
+        return id_fisico;
+    }
+
+    public void setId_fisico(int id_fisico) {
+        this.id_fisico = id_fisico;
+    }
+
+    public int getId_social() {
+        return id_social;
+    }
+
+    public void setId_social(int id_social) {
+        this.id_social = id_social;
+    }
+
+    public int getId_capacidad() {
+        return id_capacidad;
+    }
+
+    public void setId_capacidad(int id_capacidad) {
+        this.id_capacidad = id_capacidad;
+    }
+
+    public int getId_tecnico() {
+        return id_tecnico;
+    }
+
+    public void setId_tecnico(int id_tecnico) {
+        this.id_tecnico = id_tecnico;
+    }
+
+    public int getId_psico() {
+        return id_psico;
+    }
+
+    public void setId_psico(int id_psico) {
+        this.id_psico = id_psico;
     }
 
     public int getTotal_fisica() {
@@ -97,9 +144,6 @@ public class Persona {
         this.barrio_tecnica = barrio_tecnica;
     }
 
-    public modulo_captacion getInformacion_captacion() {
-        return Informacion_captacion;
-    }
 
 
     public int getTotales_seguimientos() {
@@ -118,9 +162,6 @@ public class Persona {
         this.disponible = disponible;
     }
 
-    public void setInformacion_captacion(modulo_captacion informacion_captacion) {
-        Informacion_captacion = informacion_captacion;
-    }
 
     public int getEstado_capta() {
         return estado_capta;

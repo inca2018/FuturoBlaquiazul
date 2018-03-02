@@ -203,10 +203,20 @@ public class GestionEvaluacionActivity extends AppCompatActivity {
                             JSONObject objeto= departamentos.getJSONObject(i);
                             Plantel temp=new Plantel();
                             temp.setId(objeto.getInt("ID"));
-                            temp.setRango(objeto.getInt("ID_RANGO"));
+                            Grupo t=new Grupo();
+                            t.setId(objeto.getInt("ID_RANGO"));
+                            if(t.getId()==1){
+                                t.setDescripcion("ESCUELA BASE");
+                            }else if(t.getId()==2){
+                                t.setDescripcion("ESCUELA COMPETETITIVA");
+                            }
+                            temp.setRango(t);
                             temp.setNombre_categoria(objeto.getString("NOMBRE_CATEGORIA"));
                             temp.setFecha_registro(objeto.getString("FECHA_REGISTRO"));
-                            temp.setId_user(objeto.getInt("ID_USER"));
+
+                            Usuario u=new Usuario();
+                            u.setId(objeto.getInt("ID_USER"));
+                            u.setUsuario(objeto.getString("USUARIO"));
                             temp.setEstado(objeto.getInt("ESTADO"));
 
                             lista_plantel.add(temp);

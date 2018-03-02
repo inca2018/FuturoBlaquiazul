@@ -70,18 +70,10 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
         }else if(getIntent().getStringExtra("o").equalsIgnoreCase("o1")){
             displayView(1);
         }else if(getIntent().getStringExtra("o").equalsIgnoreCase("o2")){
-            displayView(10);
-
-        }else if(getIntent().getStringExtra("o").equalsIgnoreCase("o5")){
-            displayView(5);
-        }else if(getIntent().getStringExtra("o").equalsIgnoreCase("o8")){
-            displayView(8);
-        }else if(getIntent().getStringExtra("o").equalsIgnoreCase("o9")){
-            displayView(11);
-        }else if(getIntent().getStringExtra("o").equalsIgnoreCase("o3")){
             displayView(3);
-        }else if(getIntent().getStringExtra("o").equalsIgnoreCase("o20")){
-            displayView(20);
+
+        }else if(getIntent().getStringExtra("o").equalsIgnoreCase("o3")){
+            displayView(2);
         }
 
     }
@@ -130,7 +122,7 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
         }
 
         else if (id == R.id.nav_10) {
-            displayView(10);
+            displayView(3);
             toolbar.setTitle("Solicitudes de Usuarios");
 
         }
@@ -208,48 +200,11 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
                 fragment = new MetodologiaFragment();
                 break;
 
-            case 10:
+            case 3:
                 fragment = new SolicitudesFragment();
                 break;
-           /* case 3:
-                fragment = new FragmentEstadistico();
-                break;
-            case 4:
-                Intent intent=new Intent(this, ListaCategoriasPlantel.class);
-                startActivity(intent);
-                break;
-            case 5:
-                fragment = new FragmentUsuarios();
-                break;
-            case 6:
-                fragment = new FragmentPerfiles();
-                break;
-            case 7:
-                fragment = new FragmentCategorias();
-                break;
-            case 8:
-                fragment = new FragmentJugadores();
-                break;
-            case 9:
-                fragment = new FragmentEventosEstadistico();
-                break;
-            case 10:
-                fragment = new FragmentMisEquipos();
-                break;
-            case 11:
-                fragment = new FragmentSeguimiento();
-                break;
 
-            case 20:
-                fragment = new FragmentBarrio();
-                break;
-            case 21:
-                fragment = new FragmentGestionBarrio();
-                break;
-            case 23:
-                fragment = new FragmentReporteCaptacion();
-                break;
-             */
+
             default:
                 break;
         }

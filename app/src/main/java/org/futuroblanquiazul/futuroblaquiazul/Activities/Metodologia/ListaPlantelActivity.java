@@ -13,17 +13,12 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
-import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.BarrioIntimoActivity;
-import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.BarrioIntimoPersonaActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
-import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterBarrio;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterPlantel;
-import org.futuroblanquiazul.futuroblaquiazul.Entity.BarrioIntimo;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.Grupo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Plantel;
-import org.futuroblanquiazul.futuroblaquiazul.Entity.Unidad_Territorial;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;
-import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarBarrios;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarPlantel;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarPlantel2;
 import org.futuroblanquiazul.futuroblaquiazul.R;
@@ -34,7 +29,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaGeneralPlantelActivity extends AppCompatActivity {
+public class ListaPlantelActivity extends AppCompatActivity {
 
 
     RecyclerView  recyclerView1,recyclerView2;
@@ -58,11 +53,7 @@ public class ListaGeneralPlantelActivity extends AppCompatActivity {
         linearLayout2 = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         adapter = new AdapterPlantel(this, lista_escuela_base, new RecyclerViewOnItemClickListener() {
             public void onClick(View v, int position) {
-                Plantel p=new Plantel();
-                p.setId(lista_escuela_base.get(position).getId());
-                Usuario.SESION_ACTUAL.setPlantel(p);
-                Intent intent = new Intent(ListaGeneralPlantelActivity.this, ListaPersonasActivity.class);
-                ListaGeneralPlantelActivity.this.startActivity(intent);
+
             }
         });
 
@@ -71,8 +62,8 @@ public class ListaGeneralPlantelActivity extends AppCompatActivity {
                 Plantel p=new Plantel();
                 p.setId(lista_escuela_base.get(position).getId());
                 Usuario.SESION_ACTUAL.setPlantel(p);
-                Intent intent = new Intent(ListaGeneralPlantelActivity.this, ListaPersonasActivity.class);
-                ListaGeneralPlantelActivity.this.startActivity(intent);
+                Intent intent = new Intent(ListaPlantelActivity.this, ListaPersonasPlantelActivity.class);
+                ListaPlantelActivity.this.startActivity(intent);
             }
         });
 
@@ -109,12 +100,20 @@ public class ListaGeneralPlantelActivity extends AppCompatActivity {
                             JSONObject objeto= departamentos.getJSONObject(i);
                             Plantel temp=new Plantel();
                             temp.setId(objeto.getInt("ID"));
-                            temp.setRango(objeto.getInt("ID_RANGO"));
+                            Grupo t=new Grupo();
+                            t.setId(objeto.getInt("ID_RANGO"));
+                            if(t.getId()==1){
+                                t.setDescripcion("ESCUELA BASE");
+                            }else if(t.getId()==2){
+                                t.setDescripcion("ESCUELA COMPETETITIVA");
+                            }
+                            temp.setRango(t);
                             temp.setNombre_categoria(objeto.getString("NOMBRE_CATEGORIA"));
                             temp.setFecha_registro(objeto.getString("FECHA_REGISTRO"));
-                            temp.setId_user(objeto.getInt("ID_USER"));
+                            Usuario u=new Usuario();
+                            u.setId(objeto.getInt("ID_USER"));
+                            u.setUsuario(objeto.getString("USUARIO"));
                             temp.setEstado(objeto.getInt("ESTADO"));
-
                             lista_escuela_base.add(temp);
 
                         }
@@ -160,12 +159,21 @@ public class ListaGeneralPlantelActivity extends AppCompatActivity {
                             JSONObject objeto= departamentos.getJSONObject(i);
                             Plantel temp=new Plantel();
                             temp.setId(objeto.getInt("ID"));
-                            temp.setRango(objeto.getInt("ID_RANGO"));
+                            Grupo t=new Grupo();
+                            t.setId(objeto.getInt("ID_RANGO"));
+                            if(t.getId()==1){
+                                t.setDescripcion("ESCUELA BASE");
+                            }else if(t.getId()==2){
+                                t.setDescripcion("ESCUELA COMPETETITIVA");
+                            }
+                            temp.setRango(t);
                             temp.setNombre_categoria(objeto.getString("NOMBRE_CATEGORIA"));
                             temp.setFecha_registro(objeto.getString("FECHA_REGISTRO"));
-                            temp.setId_user(objeto.getInt("ID_USER"));
-                            temp.setEstado(objeto.getInt("ESTADO"));
 
+                            Usuario u=new Usuario();
+                            u.setId(objeto.getInt("ID_USER"));
+                            u.setUsuario(objeto.getString("USUARIO"));
+                            temp.setEstado(objeto.getInt("ESTADO"));
                             lista_escuela_competetiva.add(temp);
 
                         }
@@ -193,9 +201,17 @@ public class ListaGeneralPlantelActivity extends AppCompatActivity {
         queue.add(xx);
 
 
+    }
 
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
 
+        Intent intent = new Intent(context, PrincipalActivity.class);
+        intent.putExtra("o","o3");
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        context.startActivity(intent);
 
     }
 }

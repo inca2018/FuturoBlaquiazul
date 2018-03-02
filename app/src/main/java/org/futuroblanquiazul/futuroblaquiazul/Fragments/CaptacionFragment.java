@@ -31,7 +31,7 @@ import org.futuroblanquiazul.futuroblaquiazul.Utils.GestionUbigeo;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import static org.futuroblanquiazul.futuroblaquiazul.ActivityEntity.modulo_captacion.BASE;
+
 import static org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario.SESION_ACTUAL;
 
 
@@ -188,7 +188,7 @@ public class CaptacionFragment extends Fragment {
                GestionUbigeo.CAPTACION_UBIGEO.setCodigo_modulo(codigo_captacion);
                int codigo_usuario=SESION_ACTUAL.getId();
 
-               BASE.setId_usuario(SESION_ACTUAL.getId());
+
 
                System.out.println("CODIGO_USER:"+codigo_usuario+" CODIGO_MODULO:"+codigo_captacion+" ENVIADOS");
                Validar_Ubicacion(codigo_usuario,GestionUbigeo.CAPTACION_UBIGEO.getCodigo_modulo(),mContext);
@@ -199,7 +199,7 @@ public class CaptacionFragment extends Fragment {
         GestionUbigeo.CAPTACION_UBIGEO_MASIVO.setCodigo_modulo(codigo_captacion);
         int codigo_usuario=SESION_ACTUAL.getId();
 
-        BASE.setId_usuario(SESION_ACTUAL.getId());
+
         System.out.println("CODIGO_USER:"+codigo_usuario+" CODIGO_MODULO:"+codigo_captacion+" ENVIADOS");
         Validar_Ubicacion(codigo_usuario,GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getCodigo_modulo(),mContext);
 
@@ -210,7 +210,6 @@ public class CaptacionFragment extends Fragment {
         GestionUbigeo.CAPTACION_UBIGEO_BARRIO.setCodigo_modulo(codigo_captacion);
         int codigo_usuario=SESION_ACTUAL.getId();
 
-        BASE.setId_usuario(SESION_ACTUAL.getId());
         System.out.println("CODIGO_USER:"+codigo_usuario+" CODIGO_MODULO:"+codigo_captacion+" ENVIADOS");
         Validar_Ubicacion(codigo_usuario,GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getCodigo_modulo(),mContext);
 

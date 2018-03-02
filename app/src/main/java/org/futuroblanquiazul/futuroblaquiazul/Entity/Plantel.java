@@ -7,10 +7,10 @@ package org.futuroblanquiazul.futuroblaquiazul.Entity;
 public class Plantel {
 
     int id;
-    int rango;
+    Grupo rango;
     String nombre_categoria;
     String fecha_registro;
-    int id_user;
+    Usuario usuario;
     int estado;
 
 
@@ -28,12 +28,20 @@ public class Plantel {
         this.id = id;
     }
 
-    public int getRango() {
+    public Grupo getRango() {
         return rango;
     }
 
-    public void setRango(int rango) {
+    public void setRango(Grupo rango) {
         this.rango = rango;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public String getNombre_categoria() {
@@ -52,13 +60,6 @@ public class Plantel {
         this.fecha_registro = fecha_registro;
     }
 
-    public int getId_user() {
-        return id_user;
-    }
-
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
-    }
 
     public int getEstado() {
         return estado;

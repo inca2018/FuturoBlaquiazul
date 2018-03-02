@@ -20,6 +20,7 @@ import com.android.volley.toolbox.Volley;
 
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaPersonaMasivoActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.AgregarPersonaEnMasivo;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarPersonaRecuperarCodigo;
@@ -32,7 +33,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import static org.futuroblanquiazul.futuroblaquiazul.ActivityEntity.modulo_captacion.BASE;
+
 
 
 public class PersonaNuevoMasivoActivity extends AppCompatActivity {
@@ -121,7 +122,7 @@ public class PersonaNuevoMasivoActivity extends AppCompatActivity {
                         id_persona=jsonResponse.getInt("id_persona");
                         Usuario.SESION_ACTUAL.setId_persona(id_persona);
                         debug("ID_PERSONA_RECUPERADO:"+id_persona);
-                        BASE.setId_persona(id_persona);
+                        Persona.PERSONA_TEMP.setId(id_persona);
 
                         if(id_persona==0){
                             progressDialog.dismiss();

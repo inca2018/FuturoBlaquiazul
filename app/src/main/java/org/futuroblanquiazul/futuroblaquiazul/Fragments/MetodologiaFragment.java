@@ -10,9 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.PruebaDiagnosticoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.GestionEvaluacionActivity;
-import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaGeneralPlantelActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaPlantelActivity;
 import org.futuroblanquiazul.futuroblaquiazul.R;
 
 /**
@@ -47,7 +46,7 @@ public class MetodologiaFragment extends Fragment {
             accion1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent= new Intent(mContext,ListaGeneralPlantelActivity.class);
+                    Intent intent= new Intent(mContext,ListaPlantelActivity.class);
                     startActivity(intent);
                 }
             });

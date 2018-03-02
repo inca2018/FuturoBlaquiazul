@@ -39,12 +39,20 @@ public class Usuario {
 
     BarrioIntimo barrio_datos;
     Persona persona_metodologia;
+    Persona persona_captacion_individual;
     Plantel plantel;
 
 
     Grupo grupo_filtro;
     Plantel plantel_filtro;
     Solicitudes solicitud_temp;
+
+
+    int id_fisico;
+    int id_social;
+    int id_capacidad;
+    int id_tecnico;
+    int id_psico;
 
 
     public static final Usuario SESION_ACTUAL=new Usuario();
@@ -55,6 +63,54 @@ public class Usuario {
 
     }
 
+    public int getId_fisico() {
+        return id_fisico;
+    }
+
+
+    public Persona getPersona_captacion_individual() {
+        return persona_captacion_individual;
+    }
+
+    public void setPersona_captacion_individual(Persona persona_captacion_individual) {
+        this.persona_captacion_individual = persona_captacion_individual;
+    }
+
+    public void setId_fisico(int id_fisico) {
+        this.id_fisico = id_fisico;
+    }
+
+    public int getId_social() {
+        return id_social;
+    }
+
+    public void setId_social(int id_social) {
+        this.id_social = id_social;
+    }
+
+    public int getId_capacidad() {
+        return id_capacidad;
+    }
+
+    public void setId_capacidad(int id_capacidad) {
+        this.id_capacidad = id_capacidad;
+    }
+
+    public int getId_tecnico() {
+        return id_tecnico;
+    }
+
+    public void setId_tecnico(int id_tecnico) {
+        this.id_tecnico = id_tecnico;
+    }
+
+    public int getId_psico() {
+        return id_psico;
+    }
+
+    public void setId_psico(int id_psico) {
+        this.id_psico = id_psico;
+    }
 
     public Solicitudes getSolicitud_temp() {
         return solicitud_temp;

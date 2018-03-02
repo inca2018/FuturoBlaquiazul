@@ -483,28 +483,7 @@ public class PruebaFisicoActivity extends AppCompatActivity {
 
         }
 
-        /*
-        else if(PruebaFisica.PRUEBA_FISICA.getE_peso()==0 && PruebaFisica.PRUEBA_FISICA.getE_CMJ()!=0){
-            double pre1=51.9*PruebaFisica.PRUEBA_FISICA.getE_CMJ();
-            double pre2=48.9*0;
-            double total=(pre1+pre2)-2007;
-            PruebaFisica.PRUEBA_FISICA.setInformativoPotencia(total);
 
-            double pot=PruebaFisica.PRUEBA_FISICA.getInformativoPotencia();
-            Integer i =(int) pot;
-            info_potencia.setText(String.valueOf(i));
-
-
-
-            if(PruebaFisica.PRUEBA_FISICA.getInformativoPotencia()!=0){
-                double to=PruebaFisica.PRUEBA_FISICA.getInformativoPotencia()/52.5;
-                PruebaFisica.PRUEBA_FISICA.setPromPotencia(to);
-
-                double t=PruebaFisica.PRUEBA_FISICA.getPromPotencia();
-                Integer u=(int) t;
-                prom_potencia.setText(String.valueOf(u));
-            }
-        }*/
 
     }
     private void Animar() {

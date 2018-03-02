@@ -17,7 +17,7 @@ import com.android.volley.toolbox.Volley;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.BarrioIntimoPersonaActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
-import org.futuroblanquiazul.futuroblaquiazul.ActivityEntity.modulo_captacion;
+
 import org.futuroblanquiazul.futuroblaquiazul.Entity.BarrioIntimo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
@@ -39,7 +39,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.futuroblanquiazul.futuroblaquiazul.ActivityEntity.modulo_captacion.BASE;
+
 
 
 public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
@@ -82,6 +82,7 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
             nombre.setText(Usuario.SESION_ACTUAL.getPersona_barrio().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_barrio().getApellidos_Persona());
 
 
+            debug("ENTRO PERSONA DE BARRIO INTIMO");
         }else{
 
             if(Persona.PERSONA_TEMP.getId()!=0){
@@ -93,6 +94,7 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
 
                 nombre.setText(Persona.PERSONA_TEMP.getNombre_Persona()+" "+Persona.PERSONA_TEMP.getApellidos_Persona());
 
+                debug("ENTRO PERSONA DE MASIVO");
             }else{
                 if(GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion().length()!=0){
                     ubigeo.setText(String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion()));
@@ -105,6 +107,7 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
                     nombre.setText(nombress.toUpperCase());
                 }
 
+                debug("ENTRO PERSONA INDIVIDUAL");
             }
 
         }
@@ -157,11 +160,14 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
         if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
 
             Registrar_Resultados(context,Usuario.SESION_ACTUAL.getPersona_barrio().getId(),ResultadosDiagnostico);
+            debug("ARMO RESULTADOS PERSONA DE BARRIO");
         }else{
             if(Persona.PERSONA_TEMP.getId()!=0){
                 Registrar_Resultados(context,Persona.PERSONA_TEMP.getId(),ResultadosDiagnostico);
+                debug("ARMO RESULTADOS PERSONA DE MASIVO");
             }else{
                 Registrar_Persona(RegistroPersona,context);
+                debug("ARMO RESULTADOS PERSONA DE INDIVIDUAL");
             }
         }
 
@@ -201,7 +207,9 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
 
                     if (success) {
                         id_persona=jsonResponse.getInt("id_persona");
-                        BASE.setId_persona(id_persona);
+                        Persona t=new Persona();
+                        t.setId(id_persona);
+                        Usuario.SESION_ACTUAL.setPersona_captacion_individual(t);
 
                         if(id_persona==0){
                             progressDialog.dismiss();
@@ -281,14 +289,15 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
                             debug("Entro a Actualizar TOtal");
                         }
 
-                        BASE.setCampo_fisico_id(id_fisico);
-                        BASE.setCampo_capacidad_id(id_capacidad);
-                        BASE.setCampo_social_id(id_social);
-                        BASE.setCampo_tecnico_id(id_tecnico);
-                        BASE.setCampo_psico_id(id_psico);
 
-                        debug(BASE.toString());
-                        Registrar_Modulo_Diagnostico(BASE,context);
+
+                        Usuario.SESION_ACTUAL.getPersona_captacion_individual().setId_fisico(id_fisico);
+                        Usuario.SESION_ACTUAL.getPersona_captacion_individual().setId_capacidad(id_capacidad);
+                        Usuario.SESION_ACTUAL.getPersona_captacion_individual().setId_social(id_social);
+                        Usuario.SESION_ACTUAL.getPersona_captacion_individual().setId_tecnico(id_tecnico);
+                        Usuario.SESION_ACTUAL.getPersona_captacion_individual().setId_psico(id_psico);
+
+                        Registrar_Modulo_Diagnostico(Usuario.SESION_ACTUAL,context);
 
                         debug("PASO REGISTRO DE RESULTADOS");
 
@@ -340,7 +349,7 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
 
 
     }
-    private void Registrar_Modulo_Diagnostico(final modulo_captacion base, final Context context) {
+    private void Registrar_Modulo_Diagnostico(final Usuario base, final Context context) {
         if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
 
             id_per=String.valueOf(Usuario.SESION_ACTUAL.getPersona_barrio().getId());
@@ -368,7 +377,7 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
                 Desactivar_Persona(Integer.parseInt(id_per));
                 Actualizar_Estado_Capta(Integer.parseInt(id_per));
             }else{
-                id_per=String.valueOf(base.getId_persona());
+                id_per=String.valueOf(base.getPersona_captacion_individual().getId());
                 id_Dep=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getDepartamento().getCodigo());
                 id_Prov=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getProvincia().getCodigo());
                 id_Dis=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getDistrito().getCodigo());
@@ -378,16 +387,16 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
 
 
 
-        String id_user=String.valueOf(base.getId_usuario());
-        String id_fisico=String.valueOf(base.getCampo_fisico_id());
-        String id_capacidad=String.valueOf(base.getCampo_capacidad_id());
-        String id_social=String.valueOf(base.getCampo_social_id());
-        String id_tecnico=String.valueOf(base.getCampo_tecnico_id());
-        String id_psico=String.valueOf(base.getCampo_psico_id());
-        String id_sugerido1=String.valueOf(base.getSugerido_1().getId());
-        String id_sugerido2=String.valueOf(base.getSugerido_2().getId());
-        String id_sugerido3=String.valueOf(base.getSugerido_3().getId());
-        String lateralidad=base.getLateralidad();
+        String id_user=String.valueOf(base.getId());
+        String id_fisico=String.valueOf(base.getPersona_captacion_individual().getId_fisico());
+        String id_capacidad=String.valueOf(base.getPersona_captacion_individual().getId_capacidad());
+        String id_social=String.valueOf(base.getPersona_captacion_individual().getId_social());
+        String id_tecnico=String.valueOf(base.getPersona_captacion_individual().getId_tecnico());
+        String id_psico=String.valueOf(base.getPersona_captacion_individual().getId_psico());
+        String id_sugerido1=String.valueOf(Diagnostico_Otros.OTROS.getSugerido1().getId());
+        String id_sugerido2=String.valueOf(Diagnostico_Otros.OTROS.getSugerido2().getId());
+        String id_sugerido3=String.valueOf(Diagnostico_Otros.OTROS.getSugerido3().getId());
+        String lateralidad=Diagnostico_Otros.OTROS.getLateralidad();
 
         debug("ENTRO REGISTRO DE MODULO");
         Response.Listener<String> responseListener = new Response.Listener<String>() {

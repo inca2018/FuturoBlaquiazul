@@ -71,12 +71,12 @@
             android:configChanges="screenSize|orientation" />
         <activity android:name=".Activities.BarrioIntimo.BarrioIntimoActivity" />
         <activity android:name=".Activities.BarrioIntimo.BarrioIntimoPersonaActivity" />
-        <activity android:name=".Activities.Metodologia.ListaGeneralPlantelActivity" />
+        <activity android:name=".Activities.Metodologia.ListaPlantelActivity" />
         <activity android:name=".Activities.Metodologia.GestionEvaluacionActivity" />
-        <activity android:name=".Activities.Metodologia.ListaPersonasActivity" />
+        <activity android:name=".Activities.Metodologia.ListaPersonasPlantelActivity" />
         <activity android:name=".Activities.Inicio.RecuperarActivity" />
         <activity android:name=".Activities.Inicio.CambiarPassActivity" />
-        <activity android:name=".Activities.MetodologiaTiempo.ListaPruebasTiempoActivity"></activity>
+        <activity android:name=".Activities.Metodologia.MetodologiaGrupoPruebasActivity"></activity>
     </application>
 
 </manifest>
