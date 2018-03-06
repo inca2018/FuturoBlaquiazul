@@ -654,8 +654,8 @@ public class PruebaFisicoActivity extends AppCompatActivity {
 
         if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
             final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
-            builder.setTitle("Barrio Intimo")
-                    .setMessage("¿Desea salir de la Evaluaciòn?")
+            builder.setTitle("Metodologia")
+                    .setMessage("¿Desea salir de la Evaluaciòn Fisica?")
                     .setPositiveButton("SI",
                             new DialogInterface.OnClickListener() {
                                 @Override

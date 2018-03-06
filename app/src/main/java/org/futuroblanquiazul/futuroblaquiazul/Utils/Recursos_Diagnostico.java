@@ -19,6 +19,10 @@ public class Recursos_Diagnostico {
 
 
 
+    public static final List<Captacion_Vista> LISTA_VISTAS5= new ArrayList<>();
+
+
+
     public  static final List<Captacion_funcional> LISTA_FISICO =new ArrayList<>();
     public static final List<Captacion_funcional> LISTA_CAPACIDAD =new ArrayList<>();
     public static final List<Captacion_funcional> LISTA_SOCIAL =new ArrayList<>();
@@ -32,6 +36,14 @@ public class Recursos_Diagnostico {
     public static final List<Captacion_funcional> LISTA_PRUEBA_TECNICA_REMATE =new ArrayList<>();
     public static final List<Captacion_funcional> LISTA_PRUEBA_TECNICA_CONDUCCION =new ArrayList<>();
     public static final List<Captacion_funcional> LISTA_PRUEBA_TECNICA_CABECEO=new ArrayList<>();
+
+
+
+    public  static final List<Captacion_funcional> LISTA_INCA1=new ArrayList<>();
+    public  static final List<Captacion_funcional> LISTA_INCA2=new ArrayList<>();
+    public  static final List<Captacion_funcional> LISTA_INCA3=new ArrayList<>();
+    public  static final List<Captacion_funcional> LISTA_INCA4=new ArrayList<>();
+    public  static final List<Captacion_funcional> LISTA_INCA5=new ArrayList<>();
 
 
 
@@ -111,6 +123,54 @@ public class Recursos_Diagnostico {
                 0,
                 0
         ));
+
+
+
+        LISTA_VISTAS5.add(new Captacion_Vista(
+                R.layout.area_info_psico1,
+                R.id.contenedor_inca1,
+                R.id.panel_inca1,
+                R.id.area_inca1,
+                0,
+                0
+        ));
+
+        LISTA_VISTAS5.add(new Captacion_Vista(
+                R.layout.area_info_psico2,
+                R.id.contenedor_inca2,
+                R.id.panel_inca2,
+                R.id.area_inca2,
+                0,
+                0
+        ));
+
+        LISTA_VISTAS5.add(new Captacion_Vista(
+                R.layout.area_info_psico3,
+                R.id.contenedor_inca3,
+                R.id.panel_inca3,
+                R.id.area_inca3,
+                0,
+                0
+        ));
+
+        LISTA_VISTAS5.add(new Captacion_Vista(
+                R.layout.area_info_psico4,
+                R.id.contenedor_inca4,
+                R.id.panel_inca4,
+                R.id.area_inca4,
+                0,
+                0
+        ));
+
+        LISTA_VISTAS5.add(new Captacion_Vista(
+                R.layout.area_info_psico5,
+                R.id.contenedor_inca5,
+                R.id.panel_inca5,
+                R.id.area_inca5,
+                0,
+                0
+        ));
+
 
 
         LISTA_PRUEBA_TECNICA_PASE_CONTROL.add(new Captacion_funcional("",R.id.op1,
@@ -571,6 +631,76 @@ public class Recursos_Diagnostico {
                 R.id.p422,
                 R.id.p432,
                 R.id.p442,0));
+
+
+
+        LISTA_INCA1.add(new Captacion_funcional("Capacidad de sacrificio",R.id.opcion_inca1,
+                R.id.group_inca1,
+                R.id.inca11,
+                R.id.inca12,
+                R.id.inca13,
+                R.id.inca14,0));
+
+        LISTA_INCA1.add(new Captacion_funcional("Capacidad de sacrificio",R.id.opcion_inca2,
+                R.id.group_inca2,
+                R.id.inca21,
+                R.id.inca22,
+                R.id.inca23,
+                R.id.inca24,0));
+
+        LISTA_INCA1.add(new Captacion_funcional("Capacidad de sacrificio",R.id.opcion_inca3,
+                R.id.group_inca3,
+                R.id.inca31,
+                R.id.inca32,
+                R.id.inca33,
+                R.id.inca34,0));
+
+        LISTA_INCA1.add(new Captacion_funcional("Capacidad de sacrificio",R.id.opcion_inca4,
+                R.id.group_inca4,
+                R.id.inca41,
+                R.id.inca42,
+                R.id.inca43,
+                R.id.inca44,0));
+
+        LISTA_INCA2.add(new Captacion_funcional("Capacidad de sacrificio",R.id.opcion_inca12,
+                R.id.group_inca12,
+                R.id.inca112,
+                R.id.inca122,
+                R.id.inca132,
+                R.id.inca142,0));
+
+
+        LISTA_INCA2.add(new Captacion_funcional("Capacidad de sacrificio",R.id.opcion_inca22,
+                R.id.group_inca22,
+                R.id.inca212,
+                R.id.inca222,
+                R.id.inca232,
+                R.id.inca242,0));
+
+
+        LISTA_INCA3.add(new Captacion_funcional("Capacidad de sacrificio",R.id.opcion_inca13,
+                R.id.group_inca13,
+                R.id.inca113,
+                R.id.inca123,
+                R.id.inca133,
+                R.id.inca143,0));
+
+        LISTA_INCA3.add(new Captacion_funcional("Capacidad de sacrificio",R.id.opcion_inca23,
+                R.id.group_inca23,
+                R.id.inca213,
+                R.id.inca223,
+                R.id.inca233,
+                R.id.inca243,0));
+
+        LISTA_INCA3.add(new Captacion_funcional("Capacidad de sacrificio",R.id.opcion_inca33,
+                R.id.group_inca33,
+                R.id.inca213,
+                R.id.inca223,
+                R.id.inca233,
+                R.id.inca243,0));
+
+
+
     }
 
 }

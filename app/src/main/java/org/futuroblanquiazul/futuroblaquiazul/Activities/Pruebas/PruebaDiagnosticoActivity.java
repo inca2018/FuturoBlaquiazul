@@ -510,9 +510,29 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
     public void onBackPressed() {
 
      if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
-         Intent intent = new Intent(PruebaDiagnosticoActivity.this,ListaPersonasGrupoPruebasActivity.class);
-         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-         PruebaDiagnosticoActivity.this.startActivity(intent);
+
+         final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+         builder.setTitle("Metodologia")
+                 .setMessage("¿Desea salir de la Evaluaciòn de Diagnostico?")
+                 .setPositiveButton("SI",
+                         new DialogInterface.OnClickListener() {
+                             @Override
+                             public void onClick(DialogInterface dialog, int which) {
+                                 Intent intent = new Intent(PruebaDiagnosticoActivity.this,ListaPersonasGrupoPruebasActivity.class);
+                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                 PruebaDiagnosticoActivity.this.startActivity(intent);
+                             }
+                         })
+                 .setNegativeButton("NO",
+                         new DialogInterface.OnClickListener() {
+                             @Override
+                             public void onClick(DialogInterface dialog, int which) {
+                                 dialog.dismiss();
+                             }
+                         });
+
+         builder.show();
+
      }else{
          if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
              Intent intent = new Intent(PruebaDiagnosticoActivity.this,BarrioIntimoPersonaActivity.class);

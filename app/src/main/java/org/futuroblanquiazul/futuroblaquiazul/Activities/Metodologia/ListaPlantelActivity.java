@@ -85,6 +85,7 @@ public class ListaPlantelActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Plantel:");
         progressDialog.setMessage("Listando...");
+        progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override

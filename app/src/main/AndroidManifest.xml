@@ -22,11 +22,7 @@
         <activity
             android:name=".Activities.Inicio.LoginActivity"
             android:configChanges="screenSize|orientation">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Activities.Inicio.PrincipalActivity"
@@ -69,24 +65,41 @@
         <activity
             android:name=".Activities.Pruebas.PruebaTecnicaActivity"
             android:configChanges="screenSize|orientation" />
-        <activity android:name=".Activities.BarrioIntimo.BarrioIntimoActivity"
-            android:configChanges="screenSize|orientation"/>
-        <activity android:name=".Activities.BarrioIntimo.BarrioIntimoPersonaActivity"
-            android:configChanges="screenSize|orientation"/>
-        <activity android:name=".Activities.Metodologia.ListaPlantelActivity"
-            android:configChanges="screenSize|orientation"/>
-        <activity android:name=".Activities.Metodologia.GestionEvaluacionActivity"
-            android:configChanges="screenSize|orientation"/>
-        <activity android:name=".Activities.Metodologia.ListaPersonasPlantelActivity"
-            android:configChanges="screenSize|orientation"/>
-        <activity android:name=".Activities.Inicio.RecuperarActivity"
-            android:configChanges="screenSize|orientation"/>
-        <activity android:name=".Activities.Inicio.CambiarPassActivity"
-            android:configChanges="screenSize|orientation"/>
-        <activity android:name=".Activities.Metodologia.ListaGrupoPruebasActivity"
-            android:configChanges="screenSize|orientation"/>
-        <activity android:name=".Activities.Metodologia.ListaPersonasGrupoPruebasActivity"
-            android:configChanges="screenSize|orientation"/>
+        <activity
+            android:name=".Activities.BarrioIntimo.BarrioIntimoActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".Activities.BarrioIntimo.BarrioIntimoPersonaActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".Activities.Metodologia.ListaPlantelActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".Activities.Metodologia.GestionEvaluacionActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".Activities.Metodologia.ListaPersonasPlantelActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".Activities.Inicio.RecuperarActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".Activities.Inicio.CambiarPassActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".Activities.Metodologia.ListaGrupoPruebasActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".Activities.Metodologia.ListaPersonasGrupoPruebasActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity android:name=".Activities.Pruebas.PruebaPsicologicaActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>
