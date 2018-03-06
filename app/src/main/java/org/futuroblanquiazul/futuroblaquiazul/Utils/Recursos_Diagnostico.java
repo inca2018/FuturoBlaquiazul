@@ -634,35 +634,35 @@ public class Recursos_Diagnostico {
 
 
 
-        LISTA_INCA1.add(new Captacion_funcional("Capacidad de sacrificio",R.id.opcion_inca1,
+        LISTA_INCA1.add(new Captacion_funcional("Conocimiento Táctico",R.id.opcion_inca1,
                 R.id.group_inca1,
                 R.id.inca11,
                 R.id.inca12,
                 R.id.inca13,
                 R.id.inca14,0));
 
-        LISTA_INCA1.add(new Captacion_funcional("Capacidad de sacrificio",R.id.opcion_inca2,
+        LISTA_INCA1.add(new Captacion_funcional("Concentración",R.id.opcion_inca2,
                 R.id.group_inca2,
                 R.id.inca21,
                 R.id.inca22,
                 R.id.inca23,
                 R.id.inca24,0));
 
-        LISTA_INCA1.add(new Captacion_funcional("Capacidad de sacrificio",R.id.opcion_inca3,
+        LISTA_INCA1.add(new Captacion_funcional("Toma de Decisiones",R.id.opcion_inca3,
                 R.id.group_inca3,
                 R.id.inca31,
                 R.id.inca32,
                 R.id.inca33,
                 R.id.inca34,0));
 
-        LISTA_INCA1.add(new Captacion_funcional("Capacidad de sacrificio",R.id.opcion_inca4,
+        LISTA_INCA1.add(new Captacion_funcional("Visión",R.id.opcion_inca4,
                 R.id.group_inca4,
                 R.id.inca41,
                 R.id.inca42,
                 R.id.inca43,
                 R.id.inca44,0));
 
-        LISTA_INCA2.add(new Captacion_funcional("Capacidad de sacrificio",R.id.opcion_inca12,
+        LISTA_INCA2.add(new Captacion_funcional("Disciplina",R.id.opcion_inca12,
                 R.id.group_inca12,
                 R.id.inca112,
                 R.id.inca122,
@@ -670,7 +670,7 @@ public class Recursos_Diagnostico {
                 R.id.inca142,0));
 
 
-        LISTA_INCA2.add(new Captacion_funcional("Capacidad de sacrificio",R.id.opcion_inca22,
+        LISTA_INCA2.add(new Captacion_funcional("Motivación",R.id.opcion_inca22,
                 R.id.group_inca22,
                 R.id.inca212,
                 R.id.inca222,
@@ -678,28 +678,68 @@ public class Recursos_Diagnostico {
                 R.id.inca242,0));
 
 
-        LISTA_INCA3.add(new Captacion_funcional("Capacidad de sacrificio",R.id.opcion_inca13,
+        LISTA_INCA3.add(new Captacion_funcional("Gestión de Estrés",R.id.opcion_inca13,
                 R.id.group_inca13,
                 R.id.inca113,
                 R.id.inca123,
                 R.id.inca133,
                 R.id.inca143,0));
 
-        LISTA_INCA3.add(new Captacion_funcional("Capacidad de sacrificio",R.id.opcion_inca23,
+        LISTA_INCA3.add(new Captacion_funcional("Afrontamiento",R.id.opcion_inca23,
                 R.id.group_inca23,
                 R.id.inca213,
                 R.id.inca223,
                 R.id.inca233,
                 R.id.inca243,0));
 
-        LISTA_INCA3.add(new Captacion_funcional("Capacidad de sacrificio",R.id.opcion_inca33,
+        LISTA_INCA3.add(new Captacion_funcional("Control de Juego",R.id.opcion_inca33,
                 R.id.group_inca33,
-                R.id.inca213,
-                R.id.inca223,
-                R.id.inca233,
-                R.id.inca243,0));
+                R.id.inca313,
+                R.id.inca323,
+                R.id.inca333,
+                R.id.inca343,0));
 
+        LISTA_INCA3.add(new Captacion_funcional("Regulación del Esfuerzo Fisico",R.id.opcion_inca43,
+                        R.id.group_inca43,
+                        R.id.inca413,
+                        R.id.inca423,
+                        R.id.inca433,
+                        R.id.inca443,0));
 
+        LISTA_INCA3.add(new Captacion_funcional("Agresividad Defensiva",R.id.opcion_inca53,
+                R.id.group_inca53,
+                R.id.inca511,
+                R.id.inca512,
+                R.id.inca513,
+                R.id.inca514,0));
+
+        LISTA_INCA3.add(new Captacion_funcional("Control de Activación de Faltas innecesarias",R.id.opcion_inca61,
+                R.id.group_inca61,
+                R.id.inca611,
+                R.id.inca612,
+                R.id.inca613,
+                R.id.inca614,0));
+
+        LISTA_INCA4.add(new Captacion_funcional("Liderazgo",R.id.opcion_inca124,
+                R.id.group_inca124,
+                R.id.inca1124,
+                R.id.inca1224,
+                R.id.inca1324,
+                R.id.inca1424,0));
+
+        LISTA_INCA4.add(new Captacion_funcional("Comunicación",R.id.opcion_inca224,
+                R.id.group_inca224,
+                R.id.inca2124,
+                R.id.inca2224,
+                R.id.inca2324,
+                R.id.inca2424,0));
+
+        LISTA_INCA5.add(new Captacion_funcional("Autoconfianza",R.id.opcion_inca1245,
+                R.id.group_inca1245,
+                R.id.inca11245,
+                R.id.inca12245,
+                R.id.inca13245,
+                R.id.inca14245,0));
 
     }
 

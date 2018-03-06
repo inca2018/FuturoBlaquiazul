@@ -9,11 +9,16 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.ScrollView;
+import android.widget.TextView;
 
 import org.futuroblanquiazul.futuroblaquiazul.R;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Captacion_Vista;
+import org.futuroblanquiazul.futuroblaquiazul.Utils.Captacion_funcional;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Diagnostico;
+
+import static org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Diagnostico.LISTA_PRUEBA_TECNICA_PASE_CONTROL;
 
 public class PruebaPsicologicaActivity extends AppCompatActivity {
 
@@ -26,6 +31,8 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
 
 
         Creacion_Animaciones();
+
+        Seteo_RadioGroups();
     }
 
 
@@ -78,5 +85,66 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
                 Recursos_Diagnostico.LISTA_VISTAS5.get(i).getView().setVisibility(View.GONE);
             }
         }
+    }
+
+
+    private void Seteo_RadioGroups() {
+
+        for(int i = 0; i< Recursos_Diagnostico.LISTA_INCA1.size(); i++){
+
+            Generar_Funcion(i, Recursos_Diagnostico.LISTA_INCA1.get(i));
+        }
+        for(int i = 0; i< Recursos_Diagnostico.LISTA_INCA2.size(); i++){
+
+            Generar_Funcion(i, Recursos_Diagnostico.LISTA_INCA2.get(i));
+
+        }
+        for(int i = 0; i< Recursos_Diagnostico.LISTA_INCA3.size(); i++){
+
+            Generar_Funcion(i, Recursos_Diagnostico.LISTA_INCA3.get(i));
+        }
+        for(int i = 0; i< Recursos_Diagnostico.LISTA_INCA4.size(); i++){
+
+            Generar_Funcion(i, Recursos_Diagnostico.LISTA_INCA4.get(i));
+        }
+
+        for(int i = 0; i< Recursos_Diagnostico.LISTA_INCA5.size(); i++){
+
+            Generar_Funcion(i, Recursos_Diagnostico.LISTA_INCA5.get(i));
+        }
+
+
+    }
+
+
+    private void Generar_Funcion(int v, final Captacion_funcional captacion_funcional) {
+         int n=v+1;
+         TextView textView=findViewById(captacion_funcional.getTextView());
+         textView.setText(n+".- "+captacion_funcional.getOpcion());
+
+        RadioGroup grupo=findViewById(captacion_funcional.getGroupRadio());
+        grupo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i== captacion_funcional.getRadio1()){
+                    captacion_funcional.setResultado(0);
+                    //Refrescar_Totales();
+                    //mostrar_resultados();
+                }else if(i == captacion_funcional.getRadio2()){
+                    captacion_funcional.setResultado(1);
+                    //Refrescar_Totales();
+                    //mostrar_resultados();
+                }
+                else if(i == captacion_funcional.getRadio3()){
+                    captacion_funcional.setResultado(2);
+                    // Refrescar_Totales();
+                    //mostrar_resultados();
+                }else if(i == captacion_funcional.getRadio4()){
+                    captacion_funcional.setResultado(3);
+                    //  Refrescar_Totales();
+                    //mostrar_resultados();
+                }
+            }
+        });
     }
 }
