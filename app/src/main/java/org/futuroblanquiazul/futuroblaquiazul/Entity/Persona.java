@@ -48,6 +48,7 @@ public class Persona {
     int id_capacidad;
     int id_tecnico;
     int id_psico;
+    String ubigeo;
 
     public static final Persona PERSONA_TEMP=new Persona();
 
@@ -63,6 +64,14 @@ public class Persona {
         this.total_diagnostico = total_diagnostico;
     }
 
+
+    public String getUbigeo() {
+        return ubigeo;
+    }
+
+    public void setUbigeo(String ubigeo) {
+        this.ubigeo = ubigeo;
+    }
 
     public int getId_fisico() {
         return id_fisico;

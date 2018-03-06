@@ -4,6 +4,8 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -15,6 +17,7 @@ import org.futuroblanquiazul.futuroblaquiazul.R;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Registro_Postulante;
 
 import java.util.Calendar;
+import java.util.regex.Pattern;
 
 public class RegistroPostulantesActivity extends AppCompatActivity {
     public ImageButton btn1;
@@ -39,6 +42,7 @@ public class RegistroPostulantesActivity extends AppCompatActivity {
                for(int i = 0; i< Recursos_Registro_Postulante.LISTA_REGISTRO.size(); i++){
                     EditText temp=findViewById(Recursos_Registro_Postulante.LISTA_REGISTRO.get(i).getRecurso());
                     Recursos_Registro_Postulante.LISTA_REGISTRO.get(i).setCampoEditText(temp);
+
                }
     }
     private void updateDate(){
@@ -75,13 +79,23 @@ public class RegistroPostulantesActivity extends AppCompatActivity {
         Boolean estado;
         estado=Verificar_Vacios();
 
-        if(estado==true){
-            Intent intent = new Intent(RegistroPostulantesActivity.this, ValidarDiagnosticoIndividualActivity.class);
-            RegistroPostulantesActivity.this.startActivity(intent);
-        }else{
-            String mensaje=Armar_Mensaje();
-            Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();
+        if(Recursos_Registro_Postulante.LISTA_REGISTRO.get(10).getId()==11){
+            String te=Recursos_Registro_Postulante.LISTA_REGISTRO.get(10).getCampoEditText().getText().toString().trim();
+            if(!validarEmail(te)){
+                Recursos_Registro_Postulante.LISTA_REGISTRO.get(10).getCampoEditText().setError("Correo no válido");
+            }else{
+
+                if(estado==true){
+                    Intent intent = new Intent(RegistroPostulantesActivity.this, ValidarDiagnosticoIndividualActivity.class);
+                    RegistroPostulantesActivity.this.startActivity(intent);
+                }else{
+                    String mensaje=Armar_Mensaje();
+                    Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show();
+                }
+            }
         }
+
+
 
     }
     private String Armar_Mensaje() {
@@ -107,6 +121,7 @@ public class RegistroPostulantesActivity extends AppCompatActivity {
             }else if(texto_temp.length()==0){
                 Recursos_Registro_Postulante.LISTA_REGISTRO.get(i).setEstado(false);
             }
+
         }
 
         for(int i=0;i<Recursos_Registro_Postulante.LISTA_REGISTRO.size();i++){
@@ -133,4 +148,10 @@ public class RegistroPostulantesActivity extends AppCompatActivity {
            Recursos_Registro_Postulante.LISTA_REGISTRO.get(i).setEstado(false);
         }
     }
+
+    private boolean validarEmail(String email) {
+        Pattern pattern = Patterns.EMAIL_ADDRESS;
+        return pattern.matcher(email).matches();
+    }
+
 }

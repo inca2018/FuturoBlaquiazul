@@ -69,15 +69,24 @@
         <activity
             android:name=".Activities.Pruebas.PruebaTecnicaActivity"
             android:configChanges="screenSize|orientation" />
-        <activity android:name=".Activities.BarrioIntimo.BarrioIntimoActivity" />
-        <activity android:name=".Activities.BarrioIntimo.BarrioIntimoPersonaActivity" />
-        <activity android:name=".Activities.Metodologia.ListaPlantelActivity" />
-        <activity android:name=".Activities.Metodologia.GestionEvaluacionActivity" />
-        <activity android:name=".Activities.Metodologia.ListaPersonasPlantelActivity" />
-        <activity android:name=".Activities.Inicio.RecuperarActivity" />
-        <activity android:name=".Activities.Inicio.CambiarPassActivity" />
-        <activity android:name=".Activities.Metodologia.ListaGrupoPruebasActivity" />
-        <activity android:name=".Activities.Metodologia.ListaPersonasGrupoPruebasActivity"></activity>
+        <activity android:name=".Activities.BarrioIntimo.BarrioIntimoActivity"
+            android:configChanges="screenSize|orientation"/>
+        <activity android:name=".Activities.BarrioIntimo.BarrioIntimoPersonaActivity"
+            android:configChanges="screenSize|orientation"/>
+        <activity android:name=".Activities.Metodologia.ListaPlantelActivity"
+            android:configChanges="screenSize|orientation"/>
+        <activity android:name=".Activities.Metodologia.GestionEvaluacionActivity"
+            android:configChanges="screenSize|orientation"/>
+        <activity android:name=".Activities.Metodologia.ListaPersonasPlantelActivity"
+            android:configChanges="screenSize|orientation"/>
+        <activity android:name=".Activities.Inicio.RecuperarActivity"
+            android:configChanges="screenSize|orientation"/>
+        <activity android:name=".Activities.Inicio.CambiarPassActivity"
+            android:configChanges="screenSize|orientation"/>
+        <activity android:name=".Activities.Metodologia.ListaGrupoPruebasActivity"
+            android:configChanges="screenSize|orientation"/>
+        <activity android:name=".Activities.Metodologia.ListaPersonasGrupoPruebasActivity"
+            android:configChanges="screenSize|orientation"/>
     </application>
 
 </manifest>

@@ -32,6 +32,8 @@ public class Usuario {
   Persona persona_seguimiento;
   Persona persona_barrio;
 
+  Seguimiento temporal;
+
     int altura;
     int ancho;
 
@@ -71,6 +73,13 @@ public class Usuario {
     }
 
 
+    public Seguimiento getTemporal() {
+        return temporal;
+    }
+
+    public void setTemporal(Seguimiento temporal) {
+        this.temporal = temporal;
+    }
 
     public Persona getPersona_metodologia_pruebas() {
         return persona_metodologia_pruebas;

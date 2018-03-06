@@ -114,10 +114,14 @@ public class SeguimientoActivity extends AppCompatActivity {
                     if(Seguimiento.SEGUIMIENTO.getNombre_Rival()!=null){
                         if(Seguimiento.SEGUIMIENTO.getMinutos_Juego()!=0){
 
+                            if (Seguimiento.SEGUIMIENTO.getMinutos_Juego() <= 120) {
+                                Intent intent = new Intent(SeguimientoActivity.this,ValidarSeguimientoActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                SeguimientoActivity.this.startActivity(intent);
+                            }else{
+                                Toast.makeText(context, "El tiempo de juego debe ser menor a 120 minutos", Toast.LENGTH_SHORT).show();
+                            }
 
-                            Intent intent = new Intent(SeguimientoActivity.this,ValidarSeguimientoActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            SeguimientoActivity.this.startActivity(intent);
                            // Guardar_Seguimiento();
                         }else{
                             MostrarError("Debe Ingresar Minutos Jugados en el evento");
@@ -602,13 +606,7 @@ public class SeguimientoActivity extends AppCompatActivity {
     public void debug(String sm){
         System.out.println(sm);
     }
-    private void Mostrar_Resu(){
-        debug("TITULAR:"+Seguimiento.SEGUIMIENTO.getNombre_Competencia());
-        debug("RIVAL:"+Seguimiento.SEGUIMIENTO.getNombre_Rival());
-        debug("MINUTOS JUEGO:"+Seguimiento.SEGUIMIENTO.getMinutos_Juego());
 
-
-    }
     private void MostrarError(String sms){
         Toast.makeText(context,sms, Toast.LENGTH_SHORT).show();
     }

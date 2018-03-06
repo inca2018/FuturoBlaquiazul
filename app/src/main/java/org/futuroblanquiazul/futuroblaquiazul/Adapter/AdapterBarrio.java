@@ -63,9 +63,9 @@ public class AdapterBarrio extends RecyclerView.Adapter<AdapterBarrio.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-            holder.titulo_barrio.setText(my_Data.get(position).getNombreEvento());
-            holder.creador_barrio.setText(my_Data.get(position).getUsuario().getUsuario());
-            holder.ubigeo_barrio.setText(my_Data.get(position).getDescripcion_ubigeo());
+            holder.titulo_barrio.setText("EVENTO: "+ my_Data.get(position).getNombreEvento());
+            holder.creador_barrio.setText("SCOUT : "+my_Data.get(position).getUsuario().getUsuario());
+            holder.ubigeo_barrio.setText("UBIGEO: "+my_Data.get(position).getDescripcion_ubigeo());
             holder.total_barrio.setText(String.valueOf(my_Data.get(position).getCantidad_Postulantes()));
 
 

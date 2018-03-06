@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.os.CpuUsageInfo;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
@@ -24,7 +25,9 @@ import org.futuroblanquiazul.futuroblaquiazul.Activities.Pruebas.PruebaDiagnosti
 import org.futuroblanquiazul.futuroblaquiazul.Activities.CaptacionMasiva.ListaMasivosActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaPersonaSeguimientoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Ubigeo.UbigeoActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Unidad_Territorial;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Validar_Ubigeo;
 import org.futuroblanquiazul.futuroblaquiazul.R;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.GestionUbigeo;
@@ -82,6 +85,11 @@ public class CaptacionFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if(GestionUbigeo.CAPTACION_UBIGEO.isEstado()==true){
+
+                    Usuario.SESION_ACTUAL.setPersona_metodologia(null);
+                    Usuario.SESION_ACTUAL.setPersona_barrio(null);
+                    Persona.PERSONA_TEMP.setId(0);
+
                     Intent intent= new Intent(mContext,PruebaDiagnosticoActivity.class);
                     startActivity(intent);
                 }else{

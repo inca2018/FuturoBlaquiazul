@@ -43,6 +43,7 @@ public class AdapterSeguimientoPersona extends RecyclerView.Adapter<AdapterSegui
         public TextView Nombre_persona;
         public ImageView acciones;
         public TextView texto_seguimientos_totales;
+        public TextView texto_seguimiento_ubigeo;
 
 
         public ViewHolder(View itemView) {
@@ -51,6 +52,7 @@ public class AdapterSeguimientoPersona extends RecyclerView.Adapter<AdapterSegui
             Nombre_persona=itemView.findViewById(R.id.card_seguimiento_titulo);
             acciones=itemView.findViewById(R.id.card_seguimiento_personas_acciones);
             texto_seguimientos_totales=itemView.findViewById(R.id.card_seguimiento_seguimientos);
+            texto_seguimiento_ubigeo=itemView.findViewById(R.id.card_seguimiento_ubigeo);
         }
         @Override
         public void onClick(View v) {
@@ -64,15 +66,14 @@ public class AdapterSeguimientoPersona extends RecyclerView.Adapter<AdapterSegui
         return new ViewHolder(itemView);
 
 
-
     }
 
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
               holder.Nombre_persona.setText(my_Data.get(position).getNombre_Persona()+" "+my_Data.get(position).getApellidos_Persona());
-              holder.texto_seguimientos_totales.setText("Seguimientos Realizados: "+my_Data.get(position).getTotales_seguimientos());
-
+              holder.texto_seguimientos_totales.setText("Cantidad de Seguimientos: "+my_Data.get(position).getTotales_seguimientos());
+              holder.texto_seguimiento_ubigeo.setText("Ubicación de Seguimiento: "+my_Data.get(position).getUbigeo());
               holder.acciones.setOnClickListener(new View.OnClickListener() {
                   @Override
                   public void onClick(View v) {
@@ -82,10 +83,8 @@ public class AdapterSeguimientoPersona extends RecyclerView.Adapter<AdapterSegui
                       popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                           @Override
                           public boolean onMenuItemClick(MenuItem item) {
-                              if(item.getTitle().toString().equalsIgnoreCase("Migración a Etapa de Prueba")){
 
-
-                              }else if(item.getTitle().toString().equalsIgnoreCase("Mis Seguimientos")){
+                              if(item.getTitle().toString().equalsIgnoreCase("Mis Seguimientos")){
 
                                   Usuario.SESION_ACTUAL.setPersona_seguimiento(my_Data.get(position));
                                   Seguimiento.SEGUIMIENTO.setPersona(my_Data.get(position));

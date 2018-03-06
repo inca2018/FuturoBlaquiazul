@@ -13,11 +13,12 @@
         android:layout_margin="8dp">
 
         <TextView
+            style="@style/titulo1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Lista de Eventos :"
-            style="@style/titulo1"
-            android:textAlignment="center"/>
+            android:textAlignment="center"
+            android:textAllCaps="true" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_barrio_intimo"

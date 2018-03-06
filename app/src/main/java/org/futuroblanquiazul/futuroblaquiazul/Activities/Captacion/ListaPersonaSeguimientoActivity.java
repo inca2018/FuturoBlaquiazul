@@ -45,7 +45,7 @@ public class ListaPersonaSeguimientoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_persona_seguimiento);
         lista_seguimiento_persona=new ArrayList<>();
-        recyclerView=(RecyclerView)findViewById(R.id.Recycler_Persona_seg);
+        recyclerView=findViewById(R.id.Recycler_Persona_seg);
         context=this;
         linearLayout = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
        lista_Personas_Seguimientos(context);
@@ -84,6 +84,8 @@ public class ListaPersonaSeguimientoActivity extends AppCompatActivity {
                             temp.setApellidos_Persona(objeto.getString("APELLIDOS"));
                             temp.setFecha_registro_Captacion(objeto.getString("FECHA_RE"));
                             temp.setTotales_seguimientos(objeto.getInt("TOTAL_SEGUIMIENTO"));
+                            temp.setUbigeo(objeto.getString("UBIGEO"));
+
                             lista_seguimiento_persona.add(temp);
                         }
                         adapter.notifyDataSetChanged();
@@ -99,13 +101,12 @@ public class ListaPersonaSeguimientoActivity extends AppCompatActivity {
                     System.out.println("Inca  : Error de conexion al recuperar departamentos :"+e);
                 }
             }
+
         };
 
         RecuperarPersonasSeguimiento xx = new RecuperarPersonasSeguimiento(responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
-
-
 
     }
        public void onBackPressed() {
