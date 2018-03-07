@@ -27,6 +27,8 @@ import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.BarrioInti
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaPersonasGrupoPruebasActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.PruebaFisica;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActualizarPruebaDiagnostico;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActualizarPruebaFisico;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Actualizar_barrio2;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Actualizar_barrio_fisica;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarPruebaFisica;
@@ -179,6 +181,9 @@ public class PruebaFisicoActivity extends AppCompatActivity {
 
                         if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
                             progressDialog.dismiss();
+                            int id_fisico=jsonResponse.getInt("id_fisico");
+                            Actualizar_fisico(id_fisico,Usuario.getSesionActual().getGrupoPruebasTEMP().getId(),Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getPlantel().getId(),Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId());
+
                             Intent intent=new Intent(PruebaFisicoActivity.this,ListaPersonasGrupoPruebasActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             PruebaFisicoActivity.this.startActivity(intent);
@@ -703,5 +708,41 @@ public class PruebaFisicoActivity extends AppCompatActivity {
 
 
     }
+
+
+
+    private void Actualizar_fisico(int diagnostico, int grupo, int plantel, int persona) {
+        String id_fisico=String.valueOf(diagnostico);
+        String id_grupo=String.valueOf(grupo);
+        String id_plantel=String.valueOf(plantel);
+        String id_persona=String.valueOf(persona);
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+                        debug("FISICO ACTUALIZADO");
+                    }else {
+
+                        Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error ACTIVAR :"+e);
+                }
+            }
+        };
+
+        ActualizarPruebaFisico xx = new ActualizarPruebaFisico(id_fisico,id_grupo,id_plantel,id_persona, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+
+    }
+
 
 }

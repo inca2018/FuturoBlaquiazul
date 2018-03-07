@@ -13,7 +13,7 @@ public class RegistrarModuloCapta extends StringRequest {
     private static final String LOGIN_REQUEST_URL = Conexion.RUTA_SERVICIO_CAPTACION;
     private Map<String, String> params;
 
-    public RegistrarModuloCapta(String id_persona,String departamento,String provincia,String distrito, String id_user,String id_fisico,String id_capacidad,String id_social,String id_tecnico,String id_psico,String sug1,String sug2,String sug3,String lateralidad, Response.Listener<String> listener) {
+    public RegistrarModuloCapta(String id_persona,String departamento,String provincia,String distrito, String id_user,String id_fisico,String id_capacidad,String id_social,String id_tecnico,String id_psico,String sug1,String sug2,String sug3,String lateralidad,String total, Response.Listener<String> listener) {
         super(Method.POST, LOGIN_REQUEST_URL,listener, null);
         params = new HashMap<>();
         params.put("operacion","registrar_modulo_captacion");
@@ -31,6 +31,7 @@ public class RegistrarModuloCapta extends StringRequest {
         params.put("sug2", sug2);
         params.put("sug3", sug3);
         params.put("lateralidad", lateralidad);
+        params.put("total_general", total);
     }
 
     @Override

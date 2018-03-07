@@ -3,6 +3,7 @@ package org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,7 +32,10 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 
+import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.BarrioIntimoPersonaActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaPersonasGrupoPruebasActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Pruebas.PruebaFisicoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterCampo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Campo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Seguimiento;
@@ -80,6 +84,15 @@ public class SeguimientoActivity extends AppCompatActivity {
         Resultados_Diagnostico=new ArrayList<>();
 
         Seguimiento.SEGUIMIENTO.Vaciar_Datos();
+        for(int i=0;i<Recursos_Diagnostico.LISTA_SOCIAL2.size();i++){
+            Recursos_Diagnostico.LISTA_SOCIAL2.get(i).setResultado(0);
+        }
+        for(int i=0;i<Recursos_Diagnostico.LISTA_PSICO2.size();i++){
+            Recursos_Diagnostico.LISTA_PSICO2.get(i).setResultado(0);
+        }
+
+
+
 
         linea=findViewById(R.id.altura_campo);
         context=this;
@@ -264,10 +277,6 @@ public class SeguimientoActivity extends AppCompatActivity {
         queue.add(xx);
 
     }
-
-
-
-
     private void Opcion_Prueba() {
         opcion_prueba.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -617,6 +626,43 @@ public class SeguimientoActivity extends AppCompatActivity {
         SeguimientoActivity.this.startActivity(intent);
 
 
+        final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+        builder.setTitle("Seguimiento")
+                .setMessage("¿Desea salir de la Evaluaciòn de Seguimiento?")
+                .setPositiveButton("SI",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(SeguimientoActivity.this,ListaSeguimientosActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                SeguimientoActivity.this.startActivity(intent);
+
+                                Seguimiento.SEGUIMIENTO.Vaciar_Datos();
+
+                                for(int i=0;i<Recursos_Diagnostico.LISTA_SOCIAL2.size();i++){
+                                    Recursos_Diagnostico.LISTA_SOCIAL2.get(i).setResultado(0);
+                                }
+
+                                for(int i=0;i<Recursos_Diagnostico.LISTA_PSICO2.size();i++){
+                                    Recursos_Diagnostico.LISTA_PSICO2.get(i).setResultado(0);
+                                }
+
+                            }
+                        })
+                .setNegativeButton("NO",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+
+        builder.show();
+
+
     }
+
+
+
 
 }

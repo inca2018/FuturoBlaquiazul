@@ -47,24 +47,17 @@ import java.util.List;
 import static org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Diagnostico.LISTA_PRUEBA_TECNICA_PASE_CONTROL;
 
 public class PruebaPsicologicaActivity extends AppCompatActivity {
-
     ScrollView scroll_prueba_psico;
-
     TextView nombre_jugador;
     Spinner spinner_posiciones;
     TextView total_general;
     TextView ideal1,ideal2,ideal3,ideal4,ideal5;
     TextView real1,real2,real3,real4,real5;
     ProgressDialog progressDialog;
-
     String[] posiciones;
-
     Context context;
-
     Button guardar;
-
     List<Integer> Resultado;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -193,12 +186,16 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
 
-                    Registrar_Prueba_Psicologica(Usuario.SESION_ACTUAL.getId(),Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId(),PruebaPsicologico.PRUEBA,context);
+                    if(spinner_posiciones.getSelectedItemPosition()==0){
+                        Toast.makeText(context, "Seleccion una Posicion Referencial", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Registrar_Prueba_Psicologica(Usuario.SESION_ACTUAL.getId(),Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId(),PruebaPsicologico.PRUEBA,context);
+                    }
+
                 }
             }
         });
     }
-
     private void Registrar_Prueba_Psicologica(final int user,final int  persona,final PruebaPsicologico prueba,final Context context) {
 
         progressDialog = new ProgressDialog(context);
@@ -268,8 +265,6 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
 
 
     }
-
-
     private void Llenar_Spinner() {
 
         posiciones=new String[8];
@@ -394,7 +389,6 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
             }
         });
     }
-
     private void mostrar_resultados() {
 
         int temp=0;
@@ -618,7 +612,6 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
 
 
     }
-
     private void Calcular_total() {
 
         double promedio=(PruebaPsicologico.PRUEBA.getCognitivo()+PruebaPsicologico.PRUEBA.getMotivacion()+PruebaPsicologico.PRUEBA.getInteligencia()+PruebaPsicologico.PRUEBA.getLiderazgo()+PruebaPsicologico.PRUEBA.getAutoconfianza())/5;
@@ -631,14 +624,9 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
 
 
     }
-
-
     public void debug(String d ){
         System.out.println(d);
     }
-
-
-
     public void onBackPressed() {
 
         if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){

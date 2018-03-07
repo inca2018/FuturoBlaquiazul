@@ -36,8 +36,83 @@
                     android:layout_height="wrap_content"
                     android:text="Prueba Nutricional"
                     android:textAlignment="center"
+                    android:textAllCaps="true"
                     android:textColor="@color/blue"
                     android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:background="@color/blue"></LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_margin="8dp">
+
+                    <TextView
+                        style="@style/titulo2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="2dp"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="POSTULANTE:"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/letra_fisico"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/prueba_nutri_persona"
+                        style="@style/titulo2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text=" "
+                        android:textAlignment="center"
+                        android:textSize="@dimen/letra_fisico"
+                        android:textStyle="italic" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                   android:layout_margin="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/titulo2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal|center"
+                        android:text="Promedio Total"
+                        android:textAllCaps="true"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/prueba_nutri_promedio"
+                        style="@style/titulo1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="0 Ptos"
+                        android:textAlignment="center"
+                        android:textAllCaps="false"
+                        android:textColor="@color/blue"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
 
                 <TextView
                     style="@style/titulo2"
@@ -49,84 +124,106 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginLeft="32dp"
-                    android:layout_marginRight="32dp">
+                    android:orientation="horizontal">
 
                     <TextView
                         style="@style/titulo2"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_horizontal|center"
-                        android:text="IMC" />
+                        android:text="Indice de Masa Corporal (IMC)"
+                        android:textAllCaps="true"
+                        android:textSize="14sp"
+                        android:textStyle="italic" />
 
                     <EditText
+                        android:id="@+id/prueba_nutri_imc"
                         style="@style/input_texto"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
                         android:gravity="center"
+                        android:inputType="numberDecimal"
+                        android:maxLength="5"
                         android:textAlignment="center" />
 
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginLeft="32dp"
-                    android:layout_marginRight="32dp">
+                    android:orientation="horizontal">
 
                     <TextView
                         style="@style/titulo2"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_horizontal|center"
-                        android:text="GRASO" />
+                        android:text="Porcentaje Graso (%)"
+                        android:textAllCaps="true"
+                        android:textSize="14sp"
+                        android:textStyle="italic" />
 
                     <EditText
+                        android:id="@+id/prueba_nutri_graso"
                         style="@style/input_texto"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
                         android:gravity="center"
+                        android:inputType="numberDecimal"
+                        android:maxLength="5"
                         android:textAlignment="center" />
 
 
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginLeft="32dp"
-                    android:layout_marginRight="32dp">
+                    android:orientation="horizontal">
 
                     <TextView
                         style="@style/titulo2"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_horizontal|center"
-                        android:text="AKS" />
+                        android:text="AKS"
+                        android:textAllCaps="true"
+                        android:textSize="14sp"
+                        android:textStyle="italic" />
 
                     <EditText
+                        android:id="@+id/prueba_nutri_aks"
                         style="@style/input_texto"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3"
                         android:gravity="center"
+                        android:inputType="numberDecimal"
+                        android:maxLength="5"
                         android:textAlignment="center" />
 
 
                 </LinearLayout>
+
+
 
 
                 <android.support.v7.widget.CardView
@@ -138,6 +235,7 @@
                     android:layout_margin="16dp">
 
                     <Button
+                        android:id="@+id/prueba_nutri_grabar"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"

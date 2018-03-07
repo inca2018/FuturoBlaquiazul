@@ -23,6 +23,7 @@ import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActivarEvaPersona;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActivarEvaPersonaBarrio;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActualizarPruebaDiagnostico;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Actualizar_barrio;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.DesactivarPersona;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarModuloCapta;
@@ -313,7 +314,7 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
                         Usuario.SESION_ACTUAL.getPersona_captacion_individual().setId_tecnico(id_tecnico);
                         Usuario.SESION_ACTUAL.getPersona_captacion_individual().setId_psico(id_psico);
 
-                        Registrar_Modulo_Diagnostico(Usuario.SESION_ACTUAL,context);
+                        Registrar_Modulo_Diagnostico(Usuario.SESION_ACTUAL,context,total_general);
 
                         debug("PASO REGISTRO DE RESULTADOS");
 
@@ -365,7 +366,7 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
 
 
     }
-    private void Registrar_Modulo_Diagnostico(final Usuario base, final Context context) {
+    private void Registrar_Modulo_Diagnostico(final Usuario base, final Context context,int total_general2) {
 
         if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
             id_per=String.valueOf(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId());
@@ -428,6 +429,7 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
         String id_sugerido2=String.valueOf(Diagnostico_Otros.OTROS.getSugerido2().getId());
         String id_sugerido3=String.valueOf(Diagnostico_Otros.OTROS.getSugerido3().getId());
         String lateralidad=Diagnostico_Otros.OTROS.getLateralidad();
+        String total=String.valueOf(total_general2);
 
         debug("ENTRO REGISTRO DE MODULO");
         Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -443,6 +445,13 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
 
 
                         if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+
+                            int id_diagnostico=jsonResponse.getInt("id_diagnostico");
+
+
+                            Actualizar_diagnostico(id_diagnostico,Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getId(),Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getPlantel().getId(),Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId());
+
+
                             debug("ENTRO MODULO PERSONA METODOLOGIA");
 
                             Intent intent = new Intent(ValidarDiagnosticoIndividualActivity.this, ListaPersonasGrupoPruebasActivity.class);
@@ -500,11 +509,45 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
             }
         };
 
-        RegistrarModuloCapta xx = new RegistrarModuloCapta(id_per,id_Dep,id_Prov,id_Dis, id_user,id_fisico,id_capacidad,id_social,id_tecnico,id_psico,id_sugerido1,id_sugerido2,id_sugerido3,lateralidad,responseListener);
+        RegistrarModuloCapta xx = new RegistrarModuloCapta(id_per,id_Dep,id_Prov,id_Dis, id_user,id_fisico,id_capacidad,id_social,id_tecnico,id_psico,id_sugerido1,id_sugerido2,id_sugerido3,lateralidad,total,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
 
     }
+
+    private void Actualizar_diagnostico(int diagnostico, int grupo, int plantel, int persona) {
+        String id_diagnostico=String.valueOf(diagnostico);
+        String id_grupo=String.valueOf(grupo);
+        String id_plantel=String.valueOf(plantel);
+        String id_persona=String.valueOf(persona);
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+                        debug("DIAGNOSTICO ACTUALIZADO");
+                    }else {
+
+                        Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error ACTIVAR :"+e);
+                }
+            }
+        };
+
+        ActualizarPruebaDiagnostico xx = new ActualizarPruebaDiagnostico(id_diagnostico,id_grupo,id_plantel,id_persona, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+
+    }
+
     private void Limpiar_Listas() {
 
 

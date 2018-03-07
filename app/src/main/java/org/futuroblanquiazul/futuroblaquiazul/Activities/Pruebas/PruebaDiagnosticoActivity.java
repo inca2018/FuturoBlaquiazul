@@ -506,7 +506,6 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
             }
         }
     }
-
     public void onBackPressed() {
 
      if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){

@@ -59,11 +59,7 @@ public class ListaPlantelActivity extends AppCompatActivity {
 
         adapter2 = new AdapterPlantel(this, lista_escuela_competetiva, new RecyclerViewOnItemClickListener() {
             public void onClick(View v, int position) {
-                Plantel p=new Plantel();
-                p.setId(lista_escuela_base.get(position).getId());
-                Usuario.SESION_ACTUAL.setPlantel(p);
-                Intent intent = new Intent(ListaPlantelActivity.this, ListaPersonasPlantelActivity.class);
-                ListaPlantelActivity.this.startActivity(intent);
+
             }
         });
 

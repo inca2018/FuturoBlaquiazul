@@ -27,6 +27,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".Activities.Inicio.PrincipalActivity"
@@ -98,7 +99,10 @@
             android:configChanges="screenSize|orientation" />
         <activity android:name=".Activities.Pruebas.PruebaPsicologicaActivity" />
         <activity android:name=".Activities.Pruebas.PruebaTacticaActivity" />
-        <activity android:name=".Activities.Pruebas.PruebaNutricionalActivity"></activity>
+        <activity android:name=".Activities.Pruebas.PruebaNutricionalActivity">
+
+
+        </activity>
     </application>
 
 </manifest>
