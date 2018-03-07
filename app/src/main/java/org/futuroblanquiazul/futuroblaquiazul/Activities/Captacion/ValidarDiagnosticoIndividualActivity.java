@@ -19,7 +19,6 @@ import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.BarrioInti
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaPersonasGrupoPruebasActivity;
-import org.futuroblanquiazul.futuroblaquiazul.Entity.BarrioIntimo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActivarEvaPersona;

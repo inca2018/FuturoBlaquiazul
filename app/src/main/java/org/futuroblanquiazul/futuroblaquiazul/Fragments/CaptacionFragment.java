@@ -89,6 +89,8 @@ public class CaptacionFragment extends Fragment {
                     Usuario.SESION_ACTUAL.setPersona_metodologia(null);
                     Usuario.SESION_ACTUAL.setPersona_barrio(null);
                     Persona.PERSONA_TEMP.setId(0);
+                    Usuario.SESION_ACTUAL.setPersona_metodologia_pruebas(null);
+                    Usuario.SESION_ACTUAL.setPersona_metodologia(null);
 
                     Intent intent= new Intent(mContext,PruebaDiagnosticoActivity.class);
                     startActivity(intent);

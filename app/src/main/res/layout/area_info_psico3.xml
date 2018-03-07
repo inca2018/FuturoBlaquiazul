@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checkedButton="@+id/inca11"
+                android:checkedButton="@+id/inca113"
                 android:orientation="horizontal">
 
                 <android.support.v7.widget.AppCompatRadioButton
@@ -105,7 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checkedButton="@+id/inca21"
+                android:checkedButton="@+id/inca213"
                 android:orientation="horizontal">
 
                 <android.support.v7.widget.AppCompatRadioButton
@@ -172,7 +172,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checkedButton="@+id/inca31"
+                android:checkedButton="@+id/inca313"
                 android:orientation="horizontal">
 
                 <android.support.v7.widget.AppCompatRadioButton
@@ -238,7 +238,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checkedButton="@+id/inca41"
+                android:checkedButton="@+id/inca413"
                 android:orientation="horizontal">
 
                 <android.support.v7.widget.AppCompatRadioButton
@@ -304,7 +304,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checkedButton="@+id/inca41"
+                android:checkedButton="@+id/inca511"
                 android:orientation="horizontal">
 
                 <android.support.v7.widget.AppCompatRadioButton
@@ -370,7 +370,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checkedButton="@+id/inca41"
+                android:checkedButton="@+id/inca611"
                 android:orientation="horizontal">
 
                 <android.support.v7.widget.AppCompatRadioButton

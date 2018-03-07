@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Pruebas.PruebaDiagnosticoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Pruebas.PruebaFisicoActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Pruebas.PruebaPsicologicaActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Pruebas.PruebaTecnicaActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.PruebaFisica;
@@ -102,7 +103,16 @@ public class AdapterJugadoresGrupoPruebas extends RecyclerView.Adapter<AdapterJu
                             Intent intent = new Intent(context,PruebaTecnicaActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             context.startActivity(intent);
-                        }
+
+
+                    }else if(item.getTitle().toString().equalsIgnoreCase("Prueba Psicologica")){
+                        Usuario.SESION_ACTUAL.setPersona_metodologia_pruebas(my_Data.get(position));
+
+
+                        Intent intent = new Intent(context,PruebaPsicologicaActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        context.startActivity(intent);
+                    }
 
                         return true;
                     }

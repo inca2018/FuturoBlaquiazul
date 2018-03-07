@@ -22,7 +22,11 @@
         <activity
             android:name=".Activities.Inicio.LoginActivity"
             android:configChanges="screenSize|orientation">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".Activities.Inicio.PrincipalActivity"
@@ -92,14 +96,9 @@
         <activity
             android:name=".Activities.Metodologia.ListaPersonasGrupoPruebasActivity"
             android:configChanges="screenSize|orientation" />
-        <activity android:name=".Activities.Pruebas.PruebaPsicologicaActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
+        <activity android:name=".Activities.Pruebas.PruebaPsicologicaActivity" />
+        <activity android:name=".Activities.Pruebas.PruebaTacticaActivity" />
+        <activity android:name=".Activities.Pruebas.PruebaNutricionalActivity"></activity>
     </application>
 
 </manifest>
