@@ -104,6 +104,12 @@ public class CaptacionFragment extends Fragment {
             public void onClick(View view) {
 
                 if(GestionUbigeo.CAPTACION_UBIGEO.isEstado()==true){
+                    Usuario.SESION_ACTUAL.setPersona_metodologia(null);
+                    Usuario.SESION_ACTUAL.setPersona_barrio(null);
+                    Persona.PERSONA_TEMP.setId(0);
+                    Usuario.SESION_ACTUAL.setPersona_metodologia_pruebas(null);
+                    Usuario.SESION_ACTUAL.setPersona_metodologia(null);
+
                     Intent intent= new Intent(mContext,ListaPersonaSeguimientoActivity.class);
                     startActivity(intent);
                 }else{
@@ -116,6 +122,12 @@ public class CaptacionFragment extends Fragment {
             public void onClick(View view) {
 
                 if(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.isEstado()==true){
+                    Usuario.SESION_ACTUAL.setPersona_metodologia(null);
+                    Usuario.SESION_ACTUAL.setPersona_barrio(null);
+                    Persona.PERSONA_TEMP.setId(0);
+                    Usuario.SESION_ACTUAL.setPersona_metodologia_pruebas(null);
+                    Usuario.SESION_ACTUAL.setPersona_metodologia(null);
+
                     Intent intent= new Intent(mContext,ListaMasivosActivity.class);
                     startActivity(intent);
                 }else{
@@ -131,6 +143,13 @@ public class CaptacionFragment extends Fragment {
             public void onClick(View view) {
 
                 if(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.isEstado()==true){
+
+                    Usuario.SESION_ACTUAL.setPersona_metodologia(null);
+                    Usuario.SESION_ACTUAL.setPersona_barrio(null);
+                    Persona.PERSONA_TEMP.setId(0);
+                    Usuario.SESION_ACTUAL.setPersona_metodologia_pruebas(null);
+                    Usuario.SESION_ACTUAL.setPersona_metodologia(null);
+
                     Intent intent= new Intent(mContext, BarrioIntimoActivity.class);
                     startActivity(intent);
                 }else{

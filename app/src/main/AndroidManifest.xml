@@ -98,8 +98,10 @@
             android:configChanges="screenSize|orientation" />
         <activity android:name=".Activities.Pruebas.PruebaPsicologicaActivity" />
         <activity android:name=".Activities.Pruebas.PruebaTacticaActivity" />
-        <activity android:name=".Activities.Pruebas.PruebaNutricionalActivity"></activity>
-        <activity android:name=".Activities.Metodologia_Fase_Prueba.ListaPersonasFasePruebaActivity"></activity>
+        <activity android:name=".Activities.Pruebas.PruebaNutricionalActivity" />
+        <activity android:name=".Activities.Metodologia_Fase_Prueba.ListaPersonasFasePruebaActivity" />
+        <activity android:name=".Activities.Metodologia_Fase_Prueba.GestionPersonaFasePruebaActivity" />
+        <activity android:name=".Activities.Metodologia_Fase_Prueba.ListaPruebasDisponiblesActivity"></activity>
     </application>
 
 </manifest>

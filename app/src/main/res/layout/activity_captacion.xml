@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="org.futuroblanquiazul.futuroblaquiazul.Activities.Pruebas.PruebaDiagnosticoActivity"
+    tools:context=".Activities.Pruebas.PruebaDiagnosticoActivity"
     android:background="@color/colorWhite">
 
     <android.support.v7.widget.CardView
@@ -35,7 +35,7 @@
                     android:layout_weight="1"
                     android:text="CAPTACIÓN"
                     android:textColor="@android:color/white"
-                    android:textSize="18dp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:gravity="center"/>
                 <TextView
@@ -45,7 +45,7 @@
                     android:layout_weight="1"
                     android:text="Ubicación de Diagnostico: "
                     android:textColor="@android:color/white"
-                    android:textSize="12dp"
+                    android:textSize="12sp"
                     android:textStyle="italic"
                     android:gravity="center"
                     />
@@ -61,7 +61,7 @@
                 android:layout_weight="3"
                 android:text=" 0 Ptos."
                 android:textColor="@android:color/white"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 android:gravity="center"/>
         </LinearLayout>
@@ -92,7 +92,7 @@
                 android:layout_weight="1"
                 android:text="CONTINUAR CON REGISTRO"
                 android:textColor="@android:color/white"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:gravity="center"/>
 
@@ -132,7 +132,7 @@
                 android:layout_weight="1"
                 android:text="OMITIR MAXIMO DE 50 PUNTOS"
                 android:textColor="@android:color/white"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 android:gravity="center"/>
 
@@ -487,7 +487,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:text="0 Ptos"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:layout_margin="8dp"
                         android:textColor="@android:color/white"
                         android:textAlignment="center"/>
@@ -525,7 +525,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="PSICOLÓGICO"
-                        android:textSize="18dp"
+                        android:textSize="18sp"
                         android:layout_margin="8dp"
                         android:textColor="@android:color/white"/>
                     <TextView
@@ -534,7 +534,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="3"
                         android:text="0 Ptos"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:layout_margin="8dp"
                         android:textColor="@android:color/white"
                         android:textAlignment="center"/>

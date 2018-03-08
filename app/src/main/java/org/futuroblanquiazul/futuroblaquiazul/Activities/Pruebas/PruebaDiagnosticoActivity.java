@@ -3,6 +3,7 @@ package org.futuroblanquiazul.futuroblaquiazul.Activities.Pruebas;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -82,34 +83,39 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
         Listar_Posiciones(context);
         System.out.println("ID_PERSONA RECIBIDO: "+ Persona.PERSONA_TEMP.getId());
 
-        if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
-            ubicacion_texto.setText("Plantel");
+        if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
+                ubicacion_texto.setText("Plantel");
         }else{
-            if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
-
-                if(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getUbigeo_descripcion().length()!=0){
-                    ubicacion_texto.setText("Ubicación de Diagnostico: "+GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getUbigeo_descripcion());
-                }else{
-                    ubicacion_texto.setText("Ubicación no disponible");
-                }
-
+            if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+                ubicacion_texto.setText("Plantel");
             }else{
-                if(Persona.PERSONA_TEMP.getId()!=0){
-                    Activar_Persona(Persona.PERSONA_TEMP.getId());
-                    if(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getUbigeo_descripcion().length()!=0){
-                        ubicacion_texto.setText("Ubicación de Diagnostico: "+GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getUbigeo_descripcion());
+                if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
+
+                    if(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getUbigeo_descripcion().length()!=0){
+                        ubicacion_texto.setText("Ubicación de Diagnostico: "+GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getUbigeo_descripcion());
                     }else{
                         ubicacion_texto.setText("Ubicación no disponible");
                     }
+
                 }else{
-                    if(GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion().length()!=0){
-                        ubicacion_texto.setText("Ubicación de Diagnostico: "+GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion());
+                    if(Persona.PERSONA_TEMP.getId()!=0){
+                        Activar_Persona(Persona.PERSONA_TEMP.getId());
+                        if(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getUbigeo_descripcion().length()!=0){
+                            ubicacion_texto.setText("Ubicación de Diagnostico: "+GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getUbigeo_descripcion());
+                        }else{
+                            ubicacion_texto.setText("Ubicación no disponible");
+                        }
                     }else{
-                        ubicacion_texto.setText("Ubicación no disponible");
+                        if(GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion().length()!=0){
+                            ubicacion_texto.setText("Ubicación de Diagnostico: "+GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion());
+                        }else{
+                            ubicacion_texto.setText("Ubicación no disponible");
+                        }
                     }
                 }
             }
         }
+
 
 
 
@@ -125,23 +131,29 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+             if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
                     Intent intent = new Intent(PruebaDiagnosticoActivity.this, ValidarDiagnosticoIndividualActivity.class);
                     PruebaDiagnosticoActivity.this.startActivity(intent);
-                }else{
-                    if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
-                        Intent intent = new Intent(PruebaDiagnosticoActivity.this, ValidarDiagnosticoIndividualActivity.class);
-                        PruebaDiagnosticoActivity.this.startActivity(intent);
-                    }else{
-                        if(Persona.PERSONA_TEMP.getId()!=0){
-                            Intent intent = new Intent(PruebaDiagnosticoActivity.this, ValidarDiagnosticoIndividualActivity.class);
-                            PruebaDiagnosticoActivity.this.startActivity(intent);
-                        }else{
-                            Intent intent = new Intent(PruebaDiagnosticoActivity.this, RegistroPostulantesActivity.class);
-                            PruebaDiagnosticoActivity.this.startActivity(intent);
-                        }
-                    }
-                }
+             }else{
+                 if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+                     Intent intent = new Intent(PruebaDiagnosticoActivity.this, ValidarDiagnosticoIndividualActivity.class);
+                     PruebaDiagnosticoActivity.this.startActivity(intent);
+                 }else{
+                     if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
+                         Intent intent = new Intent(PruebaDiagnosticoActivity.this, ValidarDiagnosticoIndividualActivity.class);
+                         PruebaDiagnosticoActivity.this.startActivity(intent);
+                     }else{
+                         if(Persona.PERSONA_TEMP.getId()!=0){
+                             Intent intent = new Intent(PruebaDiagnosticoActivity.this, ValidarDiagnosticoIndividualActivity.class);
+                             PruebaDiagnosticoActivity.this.startActivity(intent);
+                         }else{
+                             Intent intent = new Intent(PruebaDiagnosticoActivity.this, RegistroPostulantesActivity.class);
+                             PruebaDiagnosticoActivity.this.startActivity(intent);
+                         }
+                     }
+                 }
+
+             }
 
 
             }
@@ -151,23 +163,28 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-                if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+                if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
                     Intent intent = new Intent(PruebaDiagnosticoActivity.this, ValidarDiagnosticoIndividualActivity.class);
                     PruebaDiagnosticoActivity.this.startActivity(intent);
                 }else{
-                if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
-                    Intent intent = new Intent(PruebaDiagnosticoActivity.this, ValidarDiagnosticoIndividualActivity.class);
-                    PruebaDiagnosticoActivity.this.startActivity(intent);
-                }else{
-                    if(Persona.PERSONA_TEMP.getId()!=0){
+                    if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
                         Intent intent = new Intent(PruebaDiagnosticoActivity.this, ValidarDiagnosticoIndividualActivity.class);
                         PruebaDiagnosticoActivity.this.startActivity(intent);
                     }else{
-                        Intent intent = new Intent(PruebaDiagnosticoActivity.this, RegistroPostulantesActivity.class);
-                        PruebaDiagnosticoActivity.this.startActivity(intent);
+                        if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
+                            Intent intent = new Intent(PruebaDiagnosticoActivity.this, ValidarDiagnosticoIndividualActivity.class);
+                            PruebaDiagnosticoActivity.this.startActivity(intent);
+                        }else{
+                            if(Persona.PERSONA_TEMP.getId()!=0){
+                                Intent intent = new Intent(PruebaDiagnosticoActivity.this, ValidarDiagnosticoIndividualActivity.class);
+                                PruebaDiagnosticoActivity.this.startActivity(intent);
+                            }else{
+                                Intent intent = new Intent(PruebaDiagnosticoActivity.this, RegistroPostulantesActivity.class);
+                                PruebaDiagnosticoActivity.this.startActivity(intent);
+                            }
+                        }
                     }
-                 }
+
                 }
 
             }
@@ -175,6 +192,10 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
 
         Verificar_lateralidad();
         Verificar_Sugeridos();
+
+        if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+            card_aprobacion.setVisibility(View.VISIBLE);
+        }
     }
     private void Activar_Persona(int id) {
        String id_persona=String.valueOf(id);
@@ -458,19 +479,24 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
         total_g.setText(total_general+" Ptos.");
         Diagnostico_Otros.OTROS.setTotal_puntaje(total_general);
 
-        if(total_general>=45 && total_general<=49){
-            card.setCardBackgroundColor(getResources().getColor(R.color.Orange));
-            card_aprobacion.setVisibility(View.GONE);
-            card_saltar.setVisibility(View.VISIBLE);
-        }else if(total_general>=50){
-            card.setCardBackgroundColor(getResources().getColor(R.color.green));
-            card_aprobacion.setVisibility(View.VISIBLE);
-            card_saltar.setVisibility(View.GONE);
-        }else if(total_general<=44){
-            card.setCardBackgroundColor(getResources().getColor(R.color.grey));
-            card_aprobacion.setVisibility(View.GONE);
-            card_saltar.setVisibility(View.GONE);
+        if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+
+        }else{
+            if(total_general>=45 && total_general<=49){
+                card.setCardBackgroundColor(getResources().getColor(R.color.Orange));
+                card_aprobacion.setVisibility(View.GONE);
+                card_saltar.setVisibility(View.VISIBLE);
+            }else if(total_general>=50){
+                card.setCardBackgroundColor(getResources().getColor(R.color.green));
+                card_aprobacion.setVisibility(View.VISIBLE);
+                card_saltar.setVisibility(View.GONE);
+            }else if(total_general<=44){
+                card.setCardBackgroundColor(getResources().getColor(R.color.grey));
+                card_aprobacion.setVisibility(View.GONE);
+                card_saltar.setVisibility(View.GONE);
+            }
         }
+
     }
     private void Generar_Animacion(final Captacion_Vista captacion_vista, final LinearLayout view_actual, LinearLayout Accion_Panel ) {
 

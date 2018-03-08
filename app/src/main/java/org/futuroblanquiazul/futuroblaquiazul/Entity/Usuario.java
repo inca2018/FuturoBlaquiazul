@@ -34,6 +34,8 @@ public class Usuario {
 
   Seguimiento temporal;
 
+  Persona  persona_fase_pruebas;
+
     int altura;
     int ancho;
 
@@ -52,6 +54,8 @@ public class Usuario {
 
     GrupoPruebas grupoPruebasTEMP;
 
+    TipoPruebas tipoPruebas;
+
 
     int id_fisico;
     int id_social;
@@ -68,10 +72,27 @@ public class Usuario {
 
     }
 
+
+    public TipoPruebas getTipoPruebas() {
+        return tipoPruebas;
+    }
+
+    public void setTipoPruebas(TipoPruebas tipoPruebas) {
+        this.tipoPruebas = tipoPruebas;
+    }
+
     public int getId_fisico() {
         return id_fisico;
     }
 
+
+    public Persona getPersona_fase_pruebas() {
+        return persona_fase_pruebas;
+    }
+
+    public void setPersona_fase_pruebas(Persona persona_fase_pruebas) {
+        this.persona_fase_pruebas = persona_fase_pruebas;
+    }
 
     public Seguimiento getTemporal() {
         return temporal;

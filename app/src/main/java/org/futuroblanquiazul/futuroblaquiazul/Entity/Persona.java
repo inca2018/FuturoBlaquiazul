@@ -50,6 +50,8 @@ public class Persona {
     int id_psico;
     String ubigeo;
 
+
+
     public static final Persona PERSONA_TEMP=new Persona();
 
     public Persona(){

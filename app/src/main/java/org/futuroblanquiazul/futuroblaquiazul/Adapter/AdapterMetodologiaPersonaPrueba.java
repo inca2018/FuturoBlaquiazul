@@ -1,14 +1,22 @@
 package org.futuroblanquiazul.futuroblaquiazul.Adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaGrupoPruebasActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaPersonasPlantelActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia_Fase_Prueba.GestionPersonaFasePruebaActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;
 import org.futuroblanquiazul.futuroblaquiazul.R;
 
@@ -63,6 +71,75 @@ public class AdapterMetodologiaPersonaPrueba extends RecyclerView.Adapter<Adapte
         holder.nom.setText(my_Data.get(position).getNombre_Persona()+" "+my_Data.get(position).getApellidos_Persona());
         holder.fecha.setText("Fecha de Aceptación: "+my_Data.get(position).getFecha_Ultima_modificacion());
 
+        holder.acciones.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                final PopupMenu popupMenu=new PopupMenu(context,holder.acciones);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_item_persona_prueba,popupMenu.getMenu());
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+
+                        if(item.getTitle().toString().equalsIgnoreCase("Registro de Pruebas")){
+
+                            Usuario.SESION_ACTUAL.setPersona_fase_pruebas(my_Data.get(position));
+
+                            Intent intent = new Intent(context, GestionPersonaFasePruebaActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            context.startActivity(intent);
+
+
+                        }else if(item.getTitle().toString().equalsIgnoreCase("Información de Postulante")){
+
+           /*
+                            final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+                            final View dialoglayout = inflater.inflate(R.layout.area_informacion_plantel, null);
+
+                            TextView p_grupo,p_categoria,p_usuario,p_fecha,p_estado;
+
+                            p_grupo=dialoglayout.findViewById(R.id.info_plantel_grupo);
+                            p_categoria=dialoglayout.findViewById(R.id.info_plantel_categoria);
+                            p_usuario=dialoglayout.findViewById(R.id.info_plantel_creador);
+                            p_fecha=dialoglayout.findViewById(R.id.info_plantel_fecha);
+                            p_estado=dialoglayout.findViewById(R.id.info_plantel_estado);
+
+                            final AlertDialog.Builder builder4 = new AlertDialog.Builder(context);
+                            builder4.setView(dialoglayout);
+                            da=builder4.show();
+
+
+                            p_grupo.setText(my_Data.get(position).getRango().getDescripcion());
+                            p_categoria.setText(my_Data.get(position).getNombre_categoria());
+
+                            p_usuario.setText(my_Data.get(position).getUsuario().getUsuario());
+                            p_fecha.setText(my_Data.get(position).getFecha_registro());
+
+
+                            if(my_Data.get(position).getEstado()==1){
+                                p_estado.setText("DISPONIBLE");
+                                p_estado.setTextColor(context.getResources().getColor(R.color.verde));
+                            }else if(my_Data.get(position).getEstado()==2){
+                                p_estado.setText("NO DISPONIBLE");
+                                p_estado.setTextColor(context.getResources().getColor(R.color.red));
+                            }
+
+
+*/
+
+                        }
+
+                        return true;
+                    }
+                });
+
+                popupMenu.show();
+
+            }
+        });
     }
 
     @Override

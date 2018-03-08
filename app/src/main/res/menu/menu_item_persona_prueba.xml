@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/opcion_1"
+        android:title="Registro de Pruebas">
+    </item>
+
+    <item
+        android:id="@+id/opcion_3"
+        android:title="Información de Postulante">
+    </item>
+
+</menu>

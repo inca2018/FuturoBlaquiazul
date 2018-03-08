@@ -19,6 +19,7 @@ import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.BarrioInti
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaPersonasGrupoPruebasActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia_Fase_Prueba.GestionPersonaFasePruebaActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActivarEvaPersona;
@@ -26,6 +27,7 @@ import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActivarEvaPersonaBarrio
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActualizarPruebaDiagnostico;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Actualizar_barrio;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.DesactivarPersona;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarFasePrueba;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarModuloCapta;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarPersonaRecuperarCodigo;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarResultadosDiagnostico;
@@ -71,54 +73,63 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
         RegistroPersona=new ArrayList<>();
         ResultadosDiagnostico=new ArrayList<>();
 
-        if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+        if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
+            ubigeo.setText(" Plantel");
+            nombre.setText(Usuario.SESION_ACTUAL.getPersona_fase_pruebas().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_fase_pruebas().getApellidos_Persona());
+            debug("ENTRO PERSONA DE FASE PRUEBA");
+        }else{
+            if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
 
                 ubigeo.setText(" Plantel");
                 nombre.setText(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getApellidos_Persona());
 
-            debug("ENTRO PERSONA DE METODOLOGIA");
-        }else{
-            if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
-
-                if(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getUbigeo_descripcion().length()!=0){
-                    ubigeo.setText(String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getUbigeo_descripcion()));
-                }else{
-                    ubigeo.setText("Ubigeo no encontrado!");
-                }
-
-                nombre.setText(Usuario.SESION_ACTUAL.getPersona_barrio().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_barrio().getApellidos_Persona());
-
-
-                debug("ENTRO PERSONA DE BARRIO INTIMO");
+                debug("ENTRO PERSONA DE METODOLOGIA");
             }else{
+                if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
 
-                if(Persona.PERSONA_TEMP.getId()!=0){
-                    if(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getUbigeo_descripcion().length()!=0){
-                        ubigeo.setText(String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getUbigeo_descripcion()));
-                    }else {
+                    if(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getUbigeo_descripcion().length()!=0){
+                        ubigeo.setText(String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getUbigeo_descripcion()));
+                    }else{
                         ubigeo.setText("Ubigeo no encontrado!");
                     }
 
-                    nombre.setText(Persona.PERSONA_TEMP.getNombre_Persona()+" "+Persona.PERSONA_TEMP.getApellidos_Persona());
+                    nombre.setText(Usuario.SESION_ACTUAL.getPersona_barrio().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_barrio().getApellidos_Persona());
 
-                    debug("ENTRO PERSONA DE MASIVO");
+
+                    debug("ENTRO PERSONA DE BARRIO INTIMO");
                 }else{
-                    if(GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion().length()!=0){
-                        ubigeo.setText(String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion()));
-                    }else {
-                        ubigeo.setText("Ubigeo no encontrado!");
+
+                    if(Persona.PERSONA_TEMP.getId()!=0){
+                        if(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getUbigeo_descripcion().length()!=0){
+                            ubigeo.setText(String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getUbigeo_descripcion()));
+                        }else {
+                            ubigeo.setText("Ubigeo no encontrado!");
+                        }
+
+                        nombre.setText(Persona.PERSONA_TEMP.getNombre_Persona()+" "+Persona.PERSONA_TEMP.getApellidos_Persona());
+
+                        debug("ENTRO PERSONA DE MASIVO");
+                    }else{
+                        if(GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion().length()!=0){
+                            ubigeo.setText(String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion()));
+                        }else {
+                            ubigeo.setText("Ubigeo no encontrado!");
+                        }
+
+                        if(Recursos_Registro_Postulante.LISTA_REGISTRO.get(0).getValor().length()!=0 && Recursos_Registro_Postulante.LISTA_REGISTRO.get(1).getValor().length()!=0){
+                            String nombress=Recursos_Registro_Postulante.LISTA_REGISTRO.get(0).getValor()+" "+Recursos_Registro_Postulante.LISTA_REGISTRO.get(1).getValor();
+                            nombre.setText(nombress.toUpperCase());
+                        }
+
+                        debug("ENTRO PERSONA INDIVIDUAL");
                     }
 
-                    if(Recursos_Registro_Postulante.LISTA_REGISTRO.get(0).getValor().length()!=0 && Recursos_Registro_Postulante.LISTA_REGISTRO.get(1).getValor().length()!=0){
-                        String nombress=Recursos_Registro_Postulante.LISTA_REGISTRO.get(0).getValor()+" "+Recursos_Registro_Postulante.LISTA_REGISTRO.get(1).getValor();
-                        nombre.setText(nombress.toUpperCase());
-                    }
-
-                    debug("ENTRO PERSONA INDIVIDUAL");
                 }
-
             }
         }
+
+
+
 
 
 
@@ -167,24 +178,32 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
             ResultadosDiagnostico.add(Recursos_Diagnostico.LISTA_PSICO.get(i).getResultado());
         }
 
-        if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
-            Registrar_Resultados(context,Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId(),ResultadosDiagnostico);
-            debug("ARMO RESULTADOS PERSONA DE METODOLOGIA");
-        }else{
-            if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
 
-                Registrar_Resultados(context,Usuario.SESION_ACTUAL.getPersona_barrio().getId(),ResultadosDiagnostico);
-                debug("ARMO RESULTADOS PERSONA DE BARRIO");
+        if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
+            Registrar_Resultados(context,Usuario.SESION_ACTUAL.getPersona_fase_pruebas().getId(),ResultadosDiagnostico);
+            debug("ARMO RESULTADOS PERSONA DE FASE PRUEBAS");
+        }else{
+            if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+                Registrar_Resultados(context,Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId(),ResultadosDiagnostico);
+                debug("ARMO RESULTADOS PERSONA DE METODOLOGIA");
             }else{
-                if(Persona.PERSONA_TEMP.getId()!=0){
-                    Registrar_Resultados(context,Persona.PERSONA_TEMP.getId(),ResultadosDiagnostico);
-                    debug("ARMO RESULTADOS PERSONA DE MASIVO");
+                if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
+
+                    Registrar_Resultados(context,Usuario.SESION_ACTUAL.getPersona_barrio().getId(),ResultadosDiagnostico);
+                    debug("ARMO RESULTADOS PERSONA DE BARRIO");
                 }else{
-                    Registrar_Persona(RegistroPersona,context);
-                    debug("ARMO RESULTADOS PERSONA DE INDIVIDUAL");
+                    if(Persona.PERSONA_TEMP.getId()!=0){
+                        Registrar_Resultados(context,Persona.PERSONA_TEMP.getId(),ResultadosDiagnostico);
+                        debug("ARMO RESULTADOS PERSONA DE MASIVO");
+                    }else{
+                        Registrar_Persona(RegistroPersona,context);
+                        debug("ARMO RESULTADOS PERSONA DE INDIVIDUAL");
+                    }
                 }
             }
+
         }
+
 
     }
     private void Registrar_Persona(final List<String> registroPersona,final Context context) {
@@ -307,6 +326,13 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
                             t.setId(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId());
                             Usuario.SESION_ACTUAL.setPersona_captacion_individual(t);
                         }
+                        if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
+
+                            Persona t=new Persona();
+                            t.setId(Usuario.SESION_ACTUAL.getPersona_fase_pruebas().getId());
+                            Usuario.SESION_ACTUAL.setPersona_captacion_individual(t);
+
+                        }
 
                         Usuario.SESION_ACTUAL.getPersona_captacion_individual().setId_fisico(id_fisico);
                         Usuario.SESION_ACTUAL.getPersona_captacion_individual().setId_capacidad(id_capacidad);
@@ -368,8 +394,8 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
     }
     private void Registrar_Modulo_Diagnostico(final Usuario base, final Context context,int total_general2) {
 
-        if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
-            id_per=String.valueOf(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId());
+        if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
+            id_per=String.valueOf(Usuario.SESION_ACTUAL.getPersona_fase_pruebas().getId());
             id_Dep=String.valueOf(15); //LIMA
             id_Prov=String.valueOf(127); // LIMA
             id_Dis=String.valueOf(1265);  // LA VICTORIA LUGAR DE ESTADIO DE ALIANZA LIMA
@@ -379,43 +405,59 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
             progressDialog.setMessage("Enviando Información...");
 
         }else{
-            if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
 
-                id_per=String.valueOf(Usuario.SESION_ACTUAL.getPersona_barrio().getId());
-                id_Dep=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getDepartamento().getCodigo());
-                id_Prov=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getProvincia().getCodigo());
-                id_Dis=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getDistrito().getCodigo());
-
+            if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+                id_per=String.valueOf(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId());
+                id_Dep=String.valueOf(15); //LIMA
+                id_Prov=String.valueOf(127); // LIMA
+                id_Dis=String.valueOf(1265);  // LA VICTORIA LUGAR DE ESTADIO DE ALIANZA LIMA
 
                 progressDialog = new ProgressDialog(context);
                 progressDialog.setTitle("Registro");
                 progressDialog.setMessage("Enviando Información...");
 
-
             }else{
-                if(Persona.PERSONA_TEMP.getId()!=0){
-                    id_per=String.valueOf(Persona.PERSONA_TEMP.getId());
-                    id_Dep=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getDepartamento().getCodigo());
-                    id_Prov=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getProvincia().getCodigo());
-                    id_Dis=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getDistrito().getCodigo());
+                if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
+
+                    id_per=String.valueOf(Usuario.SESION_ACTUAL.getPersona_barrio().getId());
+                    id_Dep=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getDepartamento().getCodigo());
+                    id_Prov=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getProvincia().getCodigo());
+                    id_Dis=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getDistrito().getCodigo());
+
 
                     progressDialog = new ProgressDialog(context);
                     progressDialog.setTitle("Registro");
                     progressDialog.setMessage("Enviando Información...");
 
-                    Desactivar_Persona(Integer.parseInt(id_per));
-                    Actualizar_Estado_Capta(Integer.parseInt(id_per));
+
                 }else{
-                    id_per=String.valueOf(base.getPersona_captacion_individual().getId());
-                    id_Dep=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getDepartamento().getCodigo());
-                    id_Prov=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getProvincia().getCodigo());
-                    id_Dis=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getDistrito().getCodigo());
+                    if(Persona.PERSONA_TEMP.getId()!=0){
+                        id_per=String.valueOf(Persona.PERSONA_TEMP.getId());
+                        id_Dep=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getDepartamento().getCodigo());
+                        id_Prov=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getProvincia().getCodigo());
+                        id_Dis=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getDistrito().getCodigo());
+
+                        progressDialog = new ProgressDialog(context);
+                        progressDialog.setTitle("Registro");
+                        progressDialog.setMessage("Enviando Información...");
+
+                        Desactivar_Persona(Integer.parseInt(id_per));
+                        Actualizar_Estado_Capta(Integer.parseInt(id_per));
+                    }else{
+                        id_per=String.valueOf(base.getPersona_captacion_individual().getId());
+                        id_Dep=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getDepartamento().getCodigo());
+                        id_Prov=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getProvincia().getCodigo());
+                        id_Dis=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getDistrito().getCodigo());
+                    }
+
                 }
+
 
             }
 
-
         }
+
+
 
 
 
@@ -444,53 +486,63 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
                         progressDialog.dismiss();
 
 
-                        if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+                        if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
 
                             int id_diagnostico=jsonResponse.getInt("id_diagnostico");
 
+                             Registrar_Fase_Prueba(Usuario.SESION_ACTUAL.getId(),Usuario.SESION_ACTUAL.getPersona_fase_pruebas().getId(),Usuario.SESION_ACTUAL.getTipoPruebas().getId(),id_diagnostico,context);
+                            debug("ENTRO MODULO PERSONA FASE PRUEBA");
 
-                            Actualizar_diagnostico(id_diagnostico,Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getId(),Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getPlantel().getId(),Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId());
-
-
-                            debug("ENTRO MODULO PERSONA METODOLOGIA");
-
-                            Intent intent = new Intent(ValidarDiagnosticoIndividualActivity.this, ListaPersonasGrupoPruebasActivity.class);
+                            Intent intent = new Intent(ValidarDiagnosticoIndividualActivity.this, GestionPersonaFasePruebaActivity.class);
                             ValidarDiagnosticoIndividualActivity.this.startActivity(intent);
 
                             Toast.makeText(context, "Registro Guardado con Exito!", Toast.LENGTH_SHORT).show();
-                        }else{
-                            if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
 
-                                debug("ENTRO MODULO PERSONA BARRIO");
-                                Intent intent = new Intent(ValidarDiagnosticoIndividualActivity.this, BarrioIntimoPersonaActivity.class);
+                        }else{
+                            if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+
+                                int id_diagnostico=jsonResponse.getInt("id_diagnostico");
+
+
+                                Actualizar_diagnostico(id_diagnostico,Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getId(),Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getPlantel().getId(),Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId());
+
+
+                                debug("ENTRO MODULO PERSONA METODOLOGIA");
+
+                                Intent intent = new Intent(ValidarDiagnosticoIndividualActivity.this, ListaPersonasGrupoPruebasActivity.class);
                                 ValidarDiagnosticoIndividualActivity.this.startActivity(intent);
 
-
-                                Actualizar_Estado_BARRIO(Usuario.SESION_ACTUAL.getPersona_barrio().getId());
                                 Toast.makeText(context, "Registro Guardado con Exito!", Toast.LENGTH_SHORT).show();
-
                             }else{
+                                if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
 
-                                if(Persona.PERSONA_TEMP.getId()!=0){
-
-                                    debug("ENTRO MODULO PERSONA MASIVO");
-                                    Intent intent = new Intent(ValidarDiagnosticoIndividualActivity.this, ListaPersonaMasivoActivity.class);
+                                    debug("ENTRO MODULO PERSONA BARRIO");
+                                    Intent intent = new Intent(ValidarDiagnosticoIndividualActivity.this, BarrioIntimoPersonaActivity.class);
                                     ValidarDiagnosticoIndividualActivity.this.startActivity(intent);
-                                    Toast.makeText(context, "Registro Guardado con exito!", Toast.LENGTH_SHORT).show();
+
+
+                                    Actualizar_Estado_BARRIO(Usuario.SESION_ACTUAL.getPersona_barrio().getId());
+                                    Toast.makeText(context, "Registro Guardado con Exito!", Toast.LENGTH_SHORT).show();
 
                                 }else{
-                                    Intent intent = new Intent(ValidarDiagnosticoIndividualActivity.this, PrincipalActivity.class);
-                                    intent.putExtra("o","o1");
-                                    ValidarDiagnosticoIndividualActivity.this.startActivity(intent);
-                                    Toast.makeText(context, "Registro Guardado con exito!", Toast.LENGTH_SHORT).show();
 
-                                    debug("ENTRO MODULO PERSONA INDIVIDUAL");
+                                    if(Persona.PERSONA_TEMP.getId()!=0){
 
+                                        debug("ENTRO MODULO PERSONA MASIVO");
+                                        Intent intent = new Intent(ValidarDiagnosticoIndividualActivity.this, ListaPersonaMasivoActivity.class);
+                                        ValidarDiagnosticoIndividualActivity.this.startActivity(intent);
+                                        Toast.makeText(context, "Registro Guardado con exito!", Toast.LENGTH_SHORT).show();
+
+                                    }else{
+                                        Intent intent = new Intent(ValidarDiagnosticoIndividualActivity.this, PrincipalActivity.class);
+                                        intent.putExtra("o","o1");
+                                        ValidarDiagnosticoIndividualActivity.this.startActivity(intent);
+                                        Toast.makeText(context, "Registro Guardado con exito!", Toast.LENGTH_SHORT).show();
+
+                                        debug("ENTRO MODULO PERSONA INDIVIDUAL");
+
+                                    }
                                 }
-
-
-
-
                             }
                         }
 
@@ -512,6 +564,42 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
         RegistrarModuloCapta xx = new RegistrarModuloCapta(id_per,id_Dep,id_Prov,id_Dis, id_user,id_fisico,id_capacidad,id_social,id_tecnico,id_psico,id_sugerido1,id_sugerido2,id_sugerido3,lateralidad,total,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
+
+    }
+
+    private void Registrar_Fase_Prueba(final int usuario,final int persona,final int tipo_prueba,final int id_prueba,final Context context) {
+
+        String id_usuario=String.valueOf(usuario);
+        String id_persona=String.valueOf(persona);
+        String t_prueba=String.valueOf(tipo_prueba);
+        String id_diagnostico=String.valueOf(id_persona);
+
+
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+                        debug("FASE PRUEBA REGISTRADO");
+                    }else {
+
+                        Toast.makeText(context, "Error de conexion FASE PRUEBA", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error ACTIVAR FASE PRUEBA :"+e);
+                }
+            }
+        };
+
+        RegistrarFasePrueba xx = new RegistrarFasePrueba(id_usuario,id_persona,t_prueba,id_diagnostico, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
 
     }
 
