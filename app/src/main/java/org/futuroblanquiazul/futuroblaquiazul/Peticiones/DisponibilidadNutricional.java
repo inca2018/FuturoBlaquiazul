@@ -17,11 +17,12 @@ public class DisponibilidadNutricional extends StringRequest {
     private static final String LOGIN_REQUEST_URL = Conexion.RUTA_SERVICIO_METODOLOGIA;
     private Map<String, String> params;
 
-    public DisponibilidadNutricional(String id_grupo, String id_persona, Response.Listener<String> listener) {
+    public DisponibilidadNutricional(String id_grupo,String id_plantel, String id_persona, Response.Listener<String> listener) {
         super(Method.POST, LOGIN_REQUEST_URL,listener, null);
         params = new HashMap<>();
         params.put("operacion","verificar_nutricional");
         params.put("grupo_prueba",id_grupo);
+        params.put("id_plantel",id_plantel);
         params.put("id_persona",id_persona);
 
 

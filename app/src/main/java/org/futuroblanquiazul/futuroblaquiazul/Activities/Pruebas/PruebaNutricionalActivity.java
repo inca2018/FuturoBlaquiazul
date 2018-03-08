@@ -23,6 +23,8 @@ import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaPerson
 import org.futuroblanquiazul.futuroblaquiazul.Entity.PruebaNutricional;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.PruebaTactica;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActualizarPruebaNutricional;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActualizarPruebaTactico;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarPruebaNutricion;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarPruebaTactica;
 import org.futuroblanquiazul.futuroblaquiazul.R;
@@ -49,6 +51,8 @@ public class PruebaNutricionalActivity extends AppCompatActivity {
         persona=findViewById(R.id.prueba_nutri_persona);
         context=this;
 
+        Limpiar_Entradas();
+
         variables();
 
         grabar.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +71,14 @@ public class PruebaNutricionalActivity extends AppCompatActivity {
 
             persona.setText(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getApellidos_Persona());
         }
+    }
+
+    private void Limpiar_Entradas() {
+    IMC.setText("");
+    GRASO.setText("");
+    AKS.setText("");
+    Promedio.setText("0 Ptos.");
+
     }
 
     private void RegistrarPruebaNutricional(final int user, final int persona,final  PruebaNutricional pruebaNutricional,final  Context context) {
@@ -99,18 +111,26 @@ public class PruebaNutricionalActivity extends AppCompatActivity {
 
 
                         if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+
+                            int id_nutricional=jsonResponse.getInt("id_nutricional");
+                            Actualizar_Nutricional(id_nutricional,Usuario.getSesionActual().getGrupoPruebasTEMP().getId(),Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getPlantel().getId(),Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId());
+
                             Intent intent = new Intent(PruebaNutricionalActivity.this,ListaPersonasGrupoPruebasActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             PruebaNutricionalActivity.this.startActivity(intent);
                             Toast.makeText(context, "Prueba Nutricional Registrada con exito!", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                            Limpiar_Entradas();
                         }
 
 
                     } else {
                         Toast.makeText(context, "No se pudo registrar Prueba Nutricional", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
                     }
 
                 } catch (JSONException e) {
+                    progressDialog.dismiss();
                     e.printStackTrace();
                     System.out.println("Inca  : Error en Registrar Nutricional :"+e);
                 }
@@ -246,4 +266,39 @@ public class PruebaNutricionalActivity extends AppCompatActivity {
 
 
     }
+
+
+    private void Actualizar_Nutricional(int psico, int grupo, int plantel, int persona) {
+        String id_nutri=String.valueOf(psico);
+        String id_grupo=String.valueOf(grupo);
+        String id_plantel=String.valueOf(plantel);
+        String id_persona=String.valueOf(persona);
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+                        System.out.println("NUTRICIONAL ACTUALIZADO");
+                    }else {
+
+                        Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error ACTIVAR :"+e);
+                }
+            }
+        };
+
+        ActualizarPruebaNutricional xx = new ActualizarPruebaNutricional(id_nutri,id_grupo,id_plantel,id_persona, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+
+    }
+
 }

@@ -108,28 +108,28 @@ public class AdapterJugadoresGrupoPruebas extends RecyclerView.Adapter<AdapterJu
                         }else if(item.getTitle().toString().equalsIgnoreCase("Prueba Fisico")){
 
                             Verificar_Fisico(Usuario.SESION_ACTUAL.getGrupoPruebasTEMP(),my_Data.get(position).getId(),context,my_Data.get(position));
-                            debug("VERIFICAR DIAGNOSTICO: CODIGO_GRUPO - "+Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getId()+" PERSONA CODIGO:  "+my_Data.get(position).getId());
+                            debug("VERIFICAR FISICO: CODIGO_GRUPO - "+Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getId()+" PERSONA CODIGO:  "+my_Data.get(position).getId());
 
 
                         }else if(item.getTitle().toString().equalsIgnoreCase("Prueba Tecnico")){
 
-                            Verificar_Tecnico(Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getId(),my_Data.get(position).getId(),context,my_Data.get(position));
+                            Verificar_Tecnico(Usuario.SESION_ACTUAL.getGrupoPruebasTEMP(),my_Data.get(position).getId(),context,my_Data.get(position));
                             debug("VERIFICAR DIAGNOSTICO: CODIGO_GRUPO - "+Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getId()+" PERSONA CODIGO:  "+my_Data.get(position).getId());
 
                     }else if(item.getTitle().toString().equalsIgnoreCase("Prueba Psicologica")){
-                            Verificar_Psicologica(Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getId(),my_Data.get(position).getId(),context,my_Data.get(position));
+                            Verificar_Psicologica(Usuario.SESION_ACTUAL.getGrupoPruebasTEMP(),my_Data.get(position).getId(),context,my_Data.get(position));
                             debug("VERIFICAR DIAGNOSTICO: CODIGO_GRUPO - "+Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getId()+" PERSONA CODIGO:  "+my_Data.get(position).getId());
 
 
                     }else if(item.getTitle().toString().equalsIgnoreCase("Prueba Tactica")){
 
-                            Verificar_Tactica(Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getId(),my_Data.get(position).getId(),context,my_Data.get(position));
+                            Verificar_Tactica(Usuario.SESION_ACTUAL.getGrupoPruebasTEMP(),my_Data.get(position).getId(),context,my_Data.get(position));
                             debug("VERIFICAR DIAGNOSTICO: CODIGO_GRUPO - "+Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getId()+" PERSONA CODIGO:  "+my_Data.get(position).getId());
 
 
                     }else if(item.getTitle().toString().equalsIgnoreCase("Prueba Nutricional")){
 
-                            Verificar_Nutricional(Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getId(),my_Data.get(position).getId(),context,my_Data.get(position));
+                            Verificar_Nutricional(Usuario.SESION_ACTUAL.getGrupoPruebasTEMP(),my_Data.get(position).getId(),context,my_Data.get(position));
                             debug("VERIFICAR DIAGNOSTICO: CODIGO_GRUPO - "+Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getId()+" PERSONA CODIGO:  "+my_Data.get(position).getId());
 
                     }
@@ -147,7 +147,7 @@ public class AdapterJugadoresGrupoPruebas extends RecyclerView.Adapter<AdapterJu
 
     }
 
-    private void Verificar_Nutricional(final int grupo, final int persona,final Context context,final Persona p) {
+    private void Verificar_Nutricional(final GrupoPruebas grupo, final int persona, final Context context, final Persona p) {
 
 
         progressDialog = new ProgressDialog(context);
@@ -156,7 +156,8 @@ public class AdapterJugadoresGrupoPruebas extends RecyclerView.Adapter<AdapterJu
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 
-        String id_grupo=String.valueOf(grupo);
+        String id_grupo=String.valueOf(grupo.getId());
+        String id_plantel=String.valueOf(grupo.getPlantel().getId());
         String id_persona=String.valueOf(persona);
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -187,21 +188,22 @@ public class AdapterJugadoresGrupoPruebas extends RecyclerView.Adapter<AdapterJu
             }
         };
 
-        DisponibilidadNutricional xx = new DisponibilidadNutricional(id_grupo,id_persona, responseListener);
+        DisponibilidadNutricional xx = new DisponibilidadNutricional(id_grupo,id_plantel,id_persona, responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
 
 
     }
 
-    private void Verificar_Tactica(final int grupo,final int persona,final Context context,final Persona p) {
+    private void Verificar_Tactica(final GrupoPruebas grupo, final int persona, final Context context, final Persona p) {
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Metodologia:");
         progressDialog.setMessage("Verificando...");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 
-        String id_grupo=String.valueOf(grupo);
+        String id_grupo=String.valueOf(grupo.getId());
+        String id_plantel=String.valueOf(grupo.getPlantel().getId());
         String id_persona=String.valueOf(persona);
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -232,21 +234,22 @@ public class AdapterJugadoresGrupoPruebas extends RecyclerView.Adapter<AdapterJu
             }
         };
 
-        DisponibilidadTactica xx = new DisponibilidadTactica(id_grupo,id_persona, responseListener);
+        DisponibilidadTactica xx = new DisponibilidadTactica(id_grupo,id_plantel,id_persona, responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
 
 
     }
 
-    private void Verificar_Psicologica(final int grupo,final int persona,final Context context,final Persona p) {
+    private void Verificar_Psicologica(final GrupoPruebas grupo, final int persona, final Context context, final Persona p) {
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Metodologia:");
         progressDialog.setMessage("Verificando...");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 
-        String id_grupo=String.valueOf(grupo);
+        String id_grupo=String.valueOf(grupo.getId());
+        String id_plantel=String.valueOf(grupo.getPlantel().getId());
         String id_persona=String.valueOf(persona);
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -277,7 +280,7 @@ public class AdapterJugadoresGrupoPruebas extends RecyclerView.Adapter<AdapterJu
             }
         };
 
-        DisponibilidadPsico xx = new DisponibilidadPsico(id_grupo,id_persona, responseListener);
+        DisponibilidadPsico xx = new DisponibilidadPsico(id_grupo,id_plantel,id_persona, responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
 
@@ -286,14 +289,15 @@ public class AdapterJugadoresGrupoPruebas extends RecyclerView.Adapter<AdapterJu
 
     }
 
-    private void Verificar_Tecnico(final int grupo,final int persona,final  Context context,final Persona p) {
+    private void Verificar_Tecnico(final GrupoPruebas grupo, final int persona, final  Context context, final Persona p) {
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Metodologia:");
         progressDialog.setMessage("Verificando...");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 
-        String id_grupo=String.valueOf(grupo);
+        String id_grupo=String.valueOf(grupo.getId());
+        String id_plantel=String.valueOf(grupo.getPlantel().getId());
         String id_persona=String.valueOf(persona);
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {
@@ -323,9 +327,9 @@ public class AdapterJugadoresGrupoPruebas extends RecyclerView.Adapter<AdapterJu
             }
         };
 
-        DisponibilidadTecnico validarSesion = new DisponibilidadTecnico(id_grupo,id_persona, responseListener);
+        DisponibilidadTecnico xx = new DisponibilidadTecnico(id_grupo,id_plantel,id_persona, responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
-        queue.add(validarSesion);
+        queue.add(xx);
 
 
     }

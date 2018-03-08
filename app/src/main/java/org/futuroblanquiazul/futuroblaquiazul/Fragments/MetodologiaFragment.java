@@ -12,6 +12,7 @@ import android.widget.Button;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.GestionEvaluacionActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaPlantelActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia_Fase_Prueba.ListaPersonasFasePruebaActivity;
 import org.futuroblanquiazul.futuroblaquiazul.R;
 
 /**
@@ -41,8 +42,6 @@ public class MetodologiaFragment extends Fragment {
             accion1=v.findViewById(R.id.accion_1_metodologia);
             accion2=v.findViewById(R.id.accion_2_metodologia);
 
-
-
             accion1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -54,7 +53,7 @@ public class MetodologiaFragment extends Fragment {
             accion2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent= new Intent(mContext,GestionEvaluacionActivity.class);
+                    Intent intent=new Intent(mContext, ListaPersonasFasePruebaActivity.class);
                     startActivity(intent);
 
                 }

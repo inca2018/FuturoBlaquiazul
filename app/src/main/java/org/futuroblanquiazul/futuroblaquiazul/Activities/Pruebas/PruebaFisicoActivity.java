@@ -34,6 +34,7 @@ import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Actualizar_barrio_fisic
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarPruebaFisica;
 import org.futuroblanquiazul.futuroblaquiazul.R;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Captacion_Vista;
+import org.futuroblanquiazul.futuroblaquiazul.Utils.GestionUbigeo;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Diagnostico;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,6 +50,8 @@ public class PruebaFisicoActivity extends AppCompatActivity {
     DecimalFormat df,df2;
     Context context;
     ProgressDialog progressDialog;
+
+    TextView persona_nombre ,ubigeo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +70,9 @@ public class PruebaFisicoActivity extends AppCompatActivity {
         prom_velocidad=findViewById(R.id.prom_velocidad);
         prom_potencia=findViewById(R.id.prom_potencia);
         prom_resistencia=findViewById(R.id.prom_resistencia);
+        persona_nombre=findViewById(R.id.prueba_fisica_nombre);
+        ubigeo=findViewById(R.id.prueba_fisica_ubigeo);
+
         e1=findViewById(R.id.e_Peso);
         e2=findViewById(R.id.e_talla);
         e3=findViewById(R.id.e_RJ);
@@ -75,6 +81,25 @@ public class PruebaFisicoActivity extends AppCompatActivity {
         e6=findViewById(R.id.e_FMS);
         e7=findViewById(R.id.e_vel_s);
         e8=findViewById(R.id.e_yo);
+
+        if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+            persona_nombre.setText(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getApellidos_Persona());
+            ubigeo.setText(" Plantel");
+        }else{
+            if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
+                persona_nombre.setText(Usuario.SESION_ACTUAL.getPersona_barrio().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_barrio().getApellidos_Persona());
+
+                if(GestionUbigeo.CAPTACION_UBIGEO_BARRIO!=null){
+                    ubigeo.setText(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getUbigeo_descripcion());
+                }else{
+                    ubigeo.setText("No Disponible");
+                }
+            }else{
+                ubigeo.setText("No Disponible");
+            }
+            persona_nombre.setText("No Disponible");
+            ubigeo.setText("No Disponible");
+        }
 
         Calculos();
 
@@ -225,7 +250,7 @@ public class PruebaFisicoActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.toString().length()!=0){
-                double dato=Double.parseDouble(s.toString());
+                double dato=Double.parseDouble(s.toString().trim());
                 if(dato==0){
                     PruebaFisica.PRUEBA_FISICA.setInformativoVelocidad(0);
                 }else{
@@ -263,7 +288,7 @@ public class PruebaFisicoActivity extends AppCompatActivity {
 
 
 
-                double to=Double.parseDouble(s.toString());
+                double to=Double.parseDouble(s.toString().trim());
 
                 PruebaFisica.PRUEBA_FISICA.setE_peso(to);
 
@@ -290,7 +315,7 @@ public class PruebaFisicoActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 if(s.toString().length()!=0){
-                    double to=Double.parseDouble(s.toString());
+                    double to=Double.parseDouble(s.toString().trim());
 
                 if(to==0){
                     PruebaFisica.PRUEBA_FISICA.setInformativoPotencia(0);
@@ -319,7 +344,7 @@ public class PruebaFisicoActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 if(s.toString().length()!=0){
-                 double to=Double.parseDouble(String.valueOf(s));
+                 double to=Double.parseDouble(String.valueOf(s).trim());
                  double or=4.025*to;
                  PruebaFisica.PRUEBA_FISICA.setInformativoResistencia(or);
 
@@ -356,7 +381,7 @@ public class PruebaFisicoActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.toString().length()!=0){
 
-                double to=Double.parseDouble(s.toString());
+                double to=Double.parseDouble(s.toString().trim());
                 PruebaFisica.PRUEBA_FISICA.setE_RJ(to);
                 Verificar_PromVelocidad();
 
@@ -380,7 +405,7 @@ public class PruebaFisicoActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if(s.toString().length()!=0){
 
-                double to=Double.parseDouble(s.toString());
+                double to=Double.parseDouble(s.toString().trim());
                 PruebaFisica.PRUEBA_FISICA.setE_FMS(to);
 
                 Verificar_PromVelocidad();

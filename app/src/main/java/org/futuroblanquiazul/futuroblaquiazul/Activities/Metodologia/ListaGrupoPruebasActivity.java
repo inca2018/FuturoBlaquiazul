@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -40,12 +41,17 @@ public class ListaGrupoPruebasActivity extends AppCompatActivity {
     Context context;
     ProgressDialog progressDialog;
 
+    TextView grupo,nombre,estado;
+
     private List<GrupoPruebas> lista_grupo_pruebas;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_pruebas_tiempo);
         lista_grupo_pruebas=new ArrayList<>();
+        grupo=findViewById(R.id.prueba_tiempo_grupo);
+        nombre=findViewById(R.id.prueba_tiempo_categoria);
+        estado=findViewById(R.id.prueba_tiempo_estado);
         context=this;
         lista_tiempos=findViewById(R.id.lista_tiempos);
         linearLayoutManager = new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
@@ -61,6 +67,17 @@ public class ListaGrupoPruebasActivity extends AppCompatActivity {
 
 
         if(Usuario.SESION_ACTUAL.getPlantel()!=null){
+            grupo.setText(Usuario.SESION_ACTUAL.getPlantel().getRango().getDescripcion());
+            nombre.setText(Usuario.SESION_ACTUAL.getPlantel().getNombre_categoria());
+            if(Usuario.SESION_ACTUAL.getPlantel().getEstado()==1){
+                estado.setText("DISPONIBLE");
+                estado.setTextColor(getResources().getColor(R.color.verde));
+            }else if(Usuario.SESION_ACTUAL.getPlantel().getEstado()==2){
+                estado.setText("NO DISPONIBLE");
+                estado.setTextColor(getResources().getColor(R.color.red));
+            }
+
+
             Listar_Grupo_Pruebas(Usuario.SESION_ACTUAL.getPlantel().getId(),context);
         }else{
             Toast.makeText(context, "No Hay informacion de Plantel", Toast.LENGTH_SHORT).show();
@@ -101,7 +118,7 @@ public class ListaGrupoPruebasActivity extends AppCompatActivity {
                             temp.setFecha_realizacion(objeto.getString("FECHA_REALIZAR"));
                             Plantel p=new Plantel();
                             p.setId(objeto.getInt("ID_PLANTEL"));
-                            p.setNombre_categoria("NOMBRE_CATEGORIA");
+                            p.setNombre_categoria(objeto.getString("NOMBRE_CATEGORIA"));
                             temp.setPlantel(p);
                             temp.setEstado(objeto.getInt("ESTADO"));
 

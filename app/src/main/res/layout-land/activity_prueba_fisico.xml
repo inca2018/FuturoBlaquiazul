@@ -120,6 +120,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:id="@+id/prueba_fisica_ubigeo"
                                 style="@style/titulo2"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"

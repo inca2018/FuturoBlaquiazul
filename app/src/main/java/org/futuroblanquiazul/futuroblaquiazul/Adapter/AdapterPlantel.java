@@ -94,6 +94,7 @@ public class AdapterPlantel extends RecyclerView.Adapter<AdapterPlantel.ViewHold
                            }else if(item.getTitle().toString().equalsIgnoreCase("Grupo de Evaluaciones")){
 
                                Usuario.SESION_ACTUAL.setPlantel(my_Data.get(position));
+
                                Intent intent = new Intent(context, ListaGrupoPruebasActivity.class);
                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                context.startActivity(intent);

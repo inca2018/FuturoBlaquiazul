@@ -30,6 +30,8 @@ import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.BarrioInti
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaPersonasGrupoPruebasActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.PruebaPsicologico;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActualizarPruebaFisico;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActualizarPruebaPsico;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarPruebaFisica;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarPruebaPsicologica;
 import org.futuroblanquiazul.futuroblaquiazul.R;
@@ -44,6 +46,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Diagnostico.LISTA_INCA1;
+import static org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Diagnostico.LISTA_INCA2;
+import static org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Diagnostico.LISTA_INCA3;
+import static org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Diagnostico.LISTA_INCA4;
+import static org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Diagnostico.LISTA_INCA5;
 import static org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Diagnostico.LISTA_PRUEBA_TECNICA_PASE_CONTROL;
 
 public class PruebaPsicologicaActivity extends AppCompatActivity {
@@ -79,6 +86,9 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
         guardar=findViewById(R.id.prueba_psico_guardar);
         context=this;
         Resultado=new ArrayList<>();
+
+
+        Limpiar_entradas();
 
         Llenar_Spinner();
 
@@ -196,6 +206,30 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void Limpiar_entradas() {
+
+
+      for(int i=0;i<LISTA_INCA1.size();i++){
+          LISTA_INCA1.get(i).setResultado(0);
+      }
+
+        for(int i=0;i<LISTA_INCA2.size();i++){
+            LISTA_INCA2.get(i).setResultado(0);
+        }
+        for(int i=0;i<LISTA_INCA3.size();i++){
+            LISTA_INCA3.get(i).setResultado(0);
+        }
+        for(int i=0;i<LISTA_INCA4.size();i++){
+            LISTA_INCA4.get(i).setResultado(0);
+        }
+        for(int i=0;i<LISTA_INCA5.size();i++){
+            LISTA_INCA5.get(i).setResultado(0);
+        }
+
+
+    }
+
     private void Registrar_Prueba_Psicologica(final int user,final int  persona,final PruebaPsicologico prueba,final Context context) {
 
         progressDialog = new ProgressDialog(context);
@@ -210,17 +244,17 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
         String o2=String.valueOf(Recursos_Diagnostico.LISTA_INCA1.get(1).getResultado());
         String o3=String.valueOf(Recursos_Diagnostico.LISTA_INCA1.get(2).getResultado());
         String o4=String.valueOf(Recursos_Diagnostico.LISTA_INCA1.get(3).getResultado());
-        String o5=String.valueOf(Recursos_Diagnostico.LISTA_INCA2.get(0).getResultado());
-        String o6=String.valueOf(Recursos_Diagnostico.LISTA_INCA2.get(1).getResultado());
-        String o7=String.valueOf(Recursos_Diagnostico.LISTA_INCA3.get(0).getResultado());
-        String o8=String.valueOf(Recursos_Diagnostico.LISTA_INCA3.get(1).getResultado());
-        String o9=String.valueOf(Recursos_Diagnostico.LISTA_INCA3.get(2).getResultado());
-        String o10=String.valueOf(Recursos_Diagnostico.LISTA_INCA3.get(3).getResultado());
-        String o11=String.valueOf(Recursos_Diagnostico.LISTA_INCA3.get(4).getResultado());
-        String o12=String.valueOf(Recursos_Diagnostico.LISTA_INCA3.get(5).getResultado());
-        String o13=String.valueOf(Recursos_Diagnostico.LISTA_INCA4.get(0).getResultado());
-        String o14=String.valueOf(Recursos_Diagnostico.LISTA_INCA4.get(1).getResultado());
-        String o15=String.valueOf(Recursos_Diagnostico.LISTA_INCA5.get(0).getResultado());
+        String o5=String.valueOf(LISTA_INCA2.get(0).getResultado());
+        String o6=String.valueOf(LISTA_INCA2.get(1).getResultado());
+        String o7=String.valueOf(LISTA_INCA3.get(0).getResultado());
+        String o8=String.valueOf(LISTA_INCA3.get(1).getResultado());
+        String o9=String.valueOf(LISTA_INCA3.get(2).getResultado());
+        String o10=String.valueOf(LISTA_INCA3.get(3).getResultado());
+        String o11=String.valueOf(LISTA_INCA3.get(4).getResultado());
+        String o12=String.valueOf(LISTA_INCA3.get(5).getResultado());
+        String o13=String.valueOf(LISTA_INCA4.get(0).getResultado());
+        String o14=String.valueOf(LISTA_INCA4.get(1).getResultado());
+        String o15=String.valueOf(LISTA_INCA5.get(0).getResultado());
 
         String cognitivo=String.valueOf(PruebaPsicologico.PRUEBA.getCognitivo());
         String motivacion =String.valueOf(PruebaPsicologico.PRUEBA.getMotivacion());
@@ -242,14 +276,22 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
 
 
                         if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+
+                            progressDialog.dismiss();
+                            int id_psico=jsonResponse.getInt("id_psico");
+
+                            Actualizar_Psico(id_psico,Usuario.getSesionActual().getGrupoPruebasTEMP().getId(),Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getPlantel().getId(),Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId());
+
                             Intent intent = new Intent(PruebaPsicologicaActivity.this,ListaPersonasGrupoPruebasActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             PruebaPsicologicaActivity.this.startActivity(intent);
                             Toast.makeText(context, "Prueba Psicologica Registrada con exito!", Toast.LENGTH_SHORT).show();
+                            Limpiar_entradas();
                         }
 
 
                     } else {
+                        progressDialog.dismiss();
                         Toast.makeText(context, "No se pudo registrar", Toast.LENGTH_SHORT).show();
                     }
 
@@ -265,6 +307,40 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
 
 
     }
+
+    private void Actualizar_Psico(int psico, int grupo, int plantel, int persona) {
+        String id_psico=String.valueOf(psico);
+        String id_grupo=String.valueOf(grupo);
+        String id_plantel=String.valueOf(plantel);
+        String id_persona=String.valueOf(persona);
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+                        debug("PSICO ACTUALIZADO");
+                    }else {
+
+                        Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error ACTIVAR :"+e);
+                }
+            }
+        };
+
+        ActualizarPruebaPsico xx = new ActualizarPruebaPsico(id_psico,id_grupo,id_plantel,id_persona, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+
+    }
+
     private void Llenar_Spinner() {
 
         posiciones=new String[8];
@@ -338,23 +414,23 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
 
             Generar_Funcion(i, Recursos_Diagnostico.LISTA_INCA1.get(i));
         }
-        for(int i = 0; i< Recursos_Diagnostico.LISTA_INCA2.size(); i++){
+        for(int i = 0; i< LISTA_INCA2.size(); i++){
 
-            Generar_Funcion(i, Recursos_Diagnostico.LISTA_INCA2.get(i));
+            Generar_Funcion(i, LISTA_INCA2.get(i));
 
         }
-        for(int i = 0; i< Recursos_Diagnostico.LISTA_INCA3.size(); i++){
+        for(int i = 0; i< LISTA_INCA3.size(); i++){
 
-            Generar_Funcion(i, Recursos_Diagnostico.LISTA_INCA3.get(i));
+            Generar_Funcion(i, LISTA_INCA3.get(i));
         }
-        for(int i = 0; i< Recursos_Diagnostico.LISTA_INCA4.size(); i++){
+        for(int i = 0; i< LISTA_INCA4.size(); i++){
 
-            Generar_Funcion(i, Recursos_Diagnostico.LISTA_INCA4.get(i));
+            Generar_Funcion(i, LISTA_INCA4.get(i));
         }
 
-        for(int i = 0; i< Recursos_Diagnostico.LISTA_INCA5.size(); i++){
+        for(int i = 0; i< LISTA_INCA5.size(); i++){
 
-            Generar_Funcion(i, Recursos_Diagnostico.LISTA_INCA5.get(i));
+            Generar_Funcion(i, LISTA_INCA5.get(i));
         }
 
 
@@ -401,39 +477,39 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
         PruebaPsicologico.PRUEBA.setProm1(pr1);
 
         int temp2=0;
-        for(int i=0;i<Recursos_Diagnostico.LISTA_INCA2.size();i++){
-            temp2=temp2+Recursos_Diagnostico.LISTA_INCA2.get(i).getResultado();
-            Resultado.add(Recursos_Diagnostico.LISTA_INCA2.get(i).getResultado());
+        for(int i = 0; i< LISTA_INCA2.size(); i++){
+            temp2=temp2+ LISTA_INCA2.get(i).getResultado();
+            Resultado.add(LISTA_INCA2.get(i).getResultado());
         }
-        double pr2=temp2/Recursos_Diagnostico.LISTA_INCA2.size();
+        double pr2=temp2/ LISTA_INCA2.size();
         PruebaPsicologico.PRUEBA.setProm2(pr2);
 
 
         int temp3=0;
-        for(int i=0;i<Recursos_Diagnostico.LISTA_INCA3.size();i++){
-            temp3=temp3+Recursos_Diagnostico.LISTA_INCA3.get(i).getResultado();
-            Resultado.add(Recursos_Diagnostico.LISTA_INCA3.get(i).getResultado());
+        for(int i = 0; i< LISTA_INCA3.size(); i++){
+            temp3=temp3+ LISTA_INCA3.get(i).getResultado();
+            Resultado.add(LISTA_INCA3.get(i).getResultado());
         }
-        double pr3=temp3/Recursos_Diagnostico.LISTA_INCA3.size();
+        double pr3=temp3/ LISTA_INCA3.size();
         PruebaPsicologico.PRUEBA.setProm3(pr3);
 
 
         int temp4=0;
-        for(int i=0;i<Recursos_Diagnostico.LISTA_INCA4.size();i++){
-            temp4=temp4+Recursos_Diagnostico.LISTA_INCA4.get(i).getResultado();
-            Resultado.add(Recursos_Diagnostico.LISTA_INCA4.get(i).getResultado());
+        for(int i = 0; i< LISTA_INCA4.size(); i++){
+            temp4=temp4+ LISTA_INCA4.get(i).getResultado();
+            Resultado.add(LISTA_INCA4.get(i).getResultado());
         }
-        double pr4=temp4/Recursos_Diagnostico.LISTA_INCA4.size();
+        double pr4=temp4/ LISTA_INCA4.size();
         PruebaPsicologico.PRUEBA.setProm4(pr4);
 
 
 
         int temp5=0;
-        for(int i=0;i<Recursos_Diagnostico.LISTA_INCA5.size();i++){
-            temp5=temp5+Recursos_Diagnostico.LISTA_INCA5.get(i).getResultado();
-            Resultado.add(Recursos_Diagnostico.LISTA_INCA5.get(i).getResultado());
+        for(int i = 0; i< LISTA_INCA5.size(); i++){
+            temp5=temp5+ LISTA_INCA5.get(i).getResultado();
+            Resultado.add(LISTA_INCA5.get(i).getResultado());
         }
-        double pr5=temp5/Recursos_Diagnostico.LISTA_INCA5.size();
+        double pr5=temp5/ LISTA_INCA5.size();
         PruebaPsicologico.PRUEBA.setProm5(pr5);
 
 

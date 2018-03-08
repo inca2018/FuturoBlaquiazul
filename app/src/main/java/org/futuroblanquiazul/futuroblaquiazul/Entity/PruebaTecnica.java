@@ -37,6 +37,36 @@ public class PruebaTecnica {
 
     }
 
+    public void VaciarDatos(){
+        PRUEBA_TECNICA.setId(0);
+        PRUEBA_TECNICA.setUsuario(null);
+        PRUEBA_TECNICA.setPersona(null);
+        PRUEBA_TECNICA.setDepartamento(null);
+        PRUEBA_TECNICA.setProvincia(null);
+        PRUEBA_TECNICA.setDistrito(null);
+        PRUEBA_TECNICA.setFecha_registro(null);
+        PRUEBA_TECNICA.setP_Ras(0);
+        PRUEBA_TECNICA.setP_Alto(0);
+
+        PRUEBA_TECNICA.setCabeceo(0);
+        PRUEBA_TECNICA.setControl(0);
+        PRUEBA_TECNICA.setContorl_Alto(0);
+        PRUEBA_TECNICA.setControl_Ras(0);
+        PRUEBA_TECNICA.setPase(0);
+
+        PRUEBA_TECNICA.setRemate(0);
+        PRUEBA_TECNICA.setConduccion(0);
+
+         PRUEBA_TECNICA.setTotal_general(0);
+
+        PRUEBA_TECNICA.setPASE_CONTROL_RES(null);
+        PRUEBA_TECNICA.setREMATE_RES(null);
+        PRUEBA_TECNICA.setCONDUCCION_RES(null);
+        PRUEBA_TECNICA.setCABECEO(null);
+        PRUEBA_TECNICA.setTT_conduccion(0);
+
+    }
+
     public int getTT_conduccion() {
         return TT_conduccion;
     }

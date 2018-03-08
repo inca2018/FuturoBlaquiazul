@@ -23,6 +23,8 @@ import org.futuroblanquiazul.futuroblaquiazul.Entity.PruebaNutricional;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.PruebaPsicologico;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.PruebaTactica;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActualizarPruebaPsico;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActualizarPruebaTactico;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarPruebaPsicologica;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarPruebaTactica;
 import org.futuroblanquiazul.futuroblaquiazul.R;
@@ -51,7 +53,7 @@ public class PruebaTacticaActivity extends AppCompatActivity {
         persona=findViewById(R.id.prueba_tac_persona);
         context=this;
 
-
+        Limpiar_entradas();
         variables();
 
         grabar.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +74,17 @@ public class PruebaTacticaActivity extends AppCompatActivity {
 
             persona.setText(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getApellidos_Persona());
         }
+
+
+    }
+
+    private void Limpiar_entradas() {
+    ataque.setText("");
+    definicion.setText("");
+    defensa.setText("");
+    recuperacion.setText("");
+    Promedio.setText("0 Ptos.");
+
 
 
     }
@@ -106,10 +119,19 @@ public class PruebaTacticaActivity extends AppCompatActivity {
 
 
                         if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+
+                            int id_tactico=jsonResponse.getInt("id_tactico");
+
+                            Actualizar_Tactico(id_tactico,Usuario.getSesionActual().getGrupoPruebasTEMP().getId(),Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getPlantel().getId(),Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId());
+
+
                             Intent intent = new Intent(PruebaTacticaActivity.this,ListaPersonasGrupoPruebasActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             PruebaTacticaActivity.this.startActivity(intent);
                             Toast.makeText(context, "Prueba Tactica Registrada con exito!", Toast.LENGTH_SHORT).show();
+
+
+                            Limpiar_entradas();
                         }
 
 
@@ -280,4 +302,39 @@ public class PruebaTacticaActivity extends AppCompatActivity {
 
 
     }
+
+
+    private void Actualizar_Tactico(int psico, int grupo, int plantel, int persona) {
+        String id_psico=String.valueOf(psico);
+        String id_grupo=String.valueOf(grupo);
+        String id_plantel=String.valueOf(plantel);
+        String id_persona=String.valueOf(persona);
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+                        System.out.println("TACTICO ACTUALIZADO");
+                    }else {
+
+                        Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error ACTIVAR :"+e);
+                }
+            }
+        };
+
+        ActualizarPruebaTactico xx = new ActualizarPruebaTactico(id_psico,id_grupo,id_plantel,id_persona, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+
+    }
+
 }

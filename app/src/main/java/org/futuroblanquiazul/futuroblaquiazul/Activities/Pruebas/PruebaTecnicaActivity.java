@@ -26,15 +26,19 @@ import com.android.volley.toolbox.Volley;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.BarrioIntimoPersonaActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaPersonasGrupoPruebasActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Ubigeo.UbigeoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.PruebaFisica;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.PruebaTecnica;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActualizarPruebaFisico;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActualizarPruebaTecnico;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Actualizar_barrio3;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Actualizar_barrio_tecnica;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarPruebaTecnica;
 import org.futuroblanquiazul.futuroblaquiazul.R;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Captacion_Vista;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Captacion_funcional;
+import org.futuroblanquiazul.futuroblaquiazul.Utils.GestionUbigeo;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Diagnostico;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,6 +57,8 @@ public class PruebaTecnicaActivity extends AppCompatActivity {
    Context context;
    ProgressDialog progressDialog;
 
+   TextView persona_nombre,ubigeo;
+
    Button guardar_prueba_fisica;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,11 +76,31 @@ public class PruebaTecnicaActivity extends AppCompatActivity {
         total_remate=findViewById(R.id.total_remate);
         total_conduccion=findViewById(R.id.total_conduccion);
         total_cabeceo=findViewById(R.id.total_cabeceo);
-
+        persona_nombre=findViewById(R.id.prueba_tecnica_nombre);
+        ubigeo=findViewById(R.id.prueba_tecnica_ubigeo);
         guardar_prueba_fisica=findViewById(R.id.guardar_prueba_fisica);
-
         total_general_tecnico=findViewById(R.id.total_general_tecnico);
 
+        if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+            persona_nombre.setText(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getApellidos_Persona());
+            ubigeo.setText(" Plantel");
+        }else{
+            if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
+                persona_nombre.setText(Usuario.SESION_ACTUAL.getPersona_barrio().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_barrio().getApellidos_Persona());
+                if(GestionUbigeo.CAPTACION_UBIGEO_BARRIO!=null){
+                    ubigeo.setText(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getUbigeo_descripcion());
+                }else{
+                    ubigeo.setText("No Disponible");
+                }
+
+            }else{
+                persona_nombre.setText("No Disponible");
+                ubigeo.setText("No Disponible");
+            }
+
+        }
+
+        limpiar_entradas();
 
         Creacion_Animaciones();
         Seteo_RadioGroups();
@@ -102,6 +128,39 @@ public class PruebaTecnicaActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void limpiar_entradas() {
+     pase_ras.setText("0");
+     pase_alto.setText("0");
+     c_alto.setText("0");
+     c_ras.setText("0");
+     total_pase.setText("0");
+     total_control.setText("0");
+     total_remate.setText("0");
+     total_conduccion.setText("0");
+     total_cabeceo.setText("0");
+     total_general_tecnico.setText("0 Ptos.");
+
+     PruebaTecnica.PRUEBA_TECNICA.VaciarDatos();
+
+
+     for(int i=0;i<LISTA_PRUEBA_TECNICA_CABECEO.size();i++){
+         LISTA_PRUEBA_TECNICA_CABECEO.get(i).setResultado(0);
+     }
+
+        for(int i=0;i<LISTA_PRUEBA_TECNICA_CONDUCCION.size();i++){
+            LISTA_PRUEBA_TECNICA_CONDUCCION.get(i).setResultado(0);
+        }
+
+        for(int i=0;i<LISTA_PRUEBA_TECNICA_PASE_CONTROL.size();i++){
+            LISTA_PRUEBA_TECNICA_PASE_CONTROL.get(i).setResultado(0);
+        }
+
+        for(int i=0;i<LISTA_PRUEBA_TECNICA_REMATE.size();i++){
+            LISTA_PRUEBA_TECNICA_REMATE.get(i).setResultado(0);
+        }
+
     }
 
 
@@ -430,6 +489,8 @@ public class PruebaTecnicaActivity extends AppCompatActivity {
         total_general_tecnico.setText(d+" Ptos.");
 
     }
+
+
     private void Actualizar_Total(double total_general,int id_barrios, int id_peerr,final Context context) {
 
         progressDialog = new ProgressDialog(context);
@@ -554,16 +615,21 @@ public class PruebaTecnicaActivity extends AppCompatActivity {
 
                         if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
                             progressDialog.dismiss();
+                            int id_tecnico=jsonResponse.getInt("id_tecnico");
+                            Actualizar_tecnico(id_tecnico,Usuario.getSesionActual().getGrupoPruebasTEMP().getId(),Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getPlantel().getId(),Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId());
+
                             Intent intent=new Intent(PruebaTecnicaActivity.this,ListaPersonasGrupoPruebasActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             PruebaTecnicaActivity.this.startActivity(intent);
                             Toast.makeText(context, "Registro de Prueba Tecnica Exitosa", Toast.LENGTH_SHORT).show();
+                            limpiar_entradas();
                         }else{
                             progressDialog.dismiss();
                             Intent intent=new Intent(PruebaTecnicaActivity.this,BarrioIntimoPersonaActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             PruebaTecnicaActivity.this.startActivity(intent);
                             Toast.makeText(context, "Registro de Prueba Tecnica Exitosa", Toast.LENGTH_SHORT).show();
+                            limpiar_entradas();
 
                         }
 
@@ -583,8 +649,6 @@ public class PruebaTecnicaActivity extends AppCompatActivity {
         queue.add(xx);
 
     }
-
-
 
     public void onBackPressed() {
 
@@ -638,4 +702,40 @@ public class PruebaTecnicaActivity extends AppCompatActivity {
 
 
     }
+
+    private void Actualizar_tecnico(int tecnico, int grupo, int plantel, int persona) {
+        String id_tecnico=String.valueOf(tecnico);
+        String id_grupo=String.valueOf(grupo);
+        String id_plantel=String.valueOf(plantel);
+        String id_persona=String.valueOf(persona);
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+                        debug("TECNICO ACTUALIZADO");
+                    }else {
+
+                        Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error ACTIVAR :"+e);
+                }
+            }
+        };
+
+        ActualizarPruebaTecnico xx = new ActualizarPruebaTecnico(id_tecnico,id_grupo,id_plantel,id_persona, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+
+    }
+
+
+
 }

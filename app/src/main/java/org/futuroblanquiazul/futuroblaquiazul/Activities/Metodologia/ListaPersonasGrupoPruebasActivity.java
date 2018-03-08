@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -38,12 +39,17 @@ public class ListaPersonasGrupoPruebasActivity extends AppCompatActivity {
     List<Persona> lista_personas;
     Context context;
     ProgressDialog progressDialog;
+    TextView desc,estado,obser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_personas_grupo_pruebas);
         lista_personas=new ArrayList<>();
         context=this;
+        desc=findViewById(R.id.info_grupo_pruebas_descripcion);
+        estado=findViewById(R.id.info_grupo_pruebas_estado);
+        obser=findViewById(R.id.info_grupo_pruebas_observaciones);
+
         recycler_jugadores_grupo_pruebas=findViewById(R.id.lista_jugadores_grupo_pruebas);
         linearLayoutManager=new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
 
@@ -60,6 +66,15 @@ public class ListaPersonasGrupoPruebasActivity extends AppCompatActivity {
 
 
        if(Usuario.SESION_ACTUAL.getGrupoPruebasTEMP()!=null){
+           desc.setText(Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getDescripcion());
+           obser.setText(Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getObservaciones());
+           if(Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getEstado()==1){
+               estado.setText("HABILITADO");
+               estado.setTextColor(getResources().getColor(R.color.verde));
+           }else{
+               estado.setText("DESHABILITADO");
+               estado.setTextColor(getResources().getColor(R.color.red));
+           }
            Lista_Personas_Grupo_Pruebas(Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getPlantel().getId(),context);
        }else{
            Toast.makeText(context, "No se encontro informacion", Toast.LENGTH_SHORT).show();
