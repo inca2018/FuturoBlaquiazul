@@ -7,16 +7,27 @@ package org.futuroblanquiazul.futuroblaquiazul.Entity;
 public class EtapaPruebas {
 
     int id;
+    int num;
     Usuario user;
     Persona persona;
     TipoPruebas tipoPruebas;
     int id_evaluacion;
+    String Fecha_Registro;
 
 
     public final static EtapaPruebas TIPO_PRUEBAS=new EtapaPruebas();
 
     public EtapaPruebas(){
 
+    }
+
+
+    public String getFecha_Registro() {
+        return Fecha_Registro;
+    }
+
+    public void setFecha_Registro(String fecha_Registro) {
+        Fecha_Registro = fecha_Registro;
     }
 
     public TipoPruebas getTipoPruebas() {
@@ -51,7 +62,13 @@ public class EtapaPruebas {
         this.persona = persona;
     }
 
+    public int getNum() {
+        return num;
+    }
 
+    public void setNum(int num) {
+        this.num = num;
+    }
 
     public int getId_evaluacion() {
         return id_evaluacion;

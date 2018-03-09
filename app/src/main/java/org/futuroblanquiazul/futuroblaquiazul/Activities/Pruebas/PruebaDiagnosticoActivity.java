@@ -32,6 +32,7 @@ import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ValidarDiagno
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaPersonasGrupoPruebasActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia_Fase_Prueba.GestionPersonaFasePruebaActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Posicion;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
@@ -115,11 +116,6 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
                 }
             }
         }
-
-
-
-
-
 
 
         // Animaciones de Vistas Captacion
@@ -534,72 +530,100 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
     }
     public void onBackPressed() {
 
-     if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
 
-         final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
-         builder.setTitle("Metodologia")
-                 .setMessage("¿Desea salir de la Evaluaciòn de Diagnostico?")
-                 .setPositiveButton("SI",
-                         new DialogInterface.OnClickListener() {
-                             @Override
-                             public void onClick(DialogInterface dialog, int which) {
-                                 Intent intent = new Intent(PruebaDiagnosticoActivity.this,ListaPersonasGrupoPruebasActivity.class);
-                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                 PruebaDiagnosticoActivity.this.startActivity(intent);
-                             }
-                         })
-                 .setNegativeButton("NO",
-                         new DialogInterface.OnClickListener() {
-                             @Override
-                             public void onClick(DialogInterface dialog, int which) {
-                                 dialog.dismiss();
-                             }
-                         });
+    if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
+        final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+        builder.setTitle("Metodologia")
+                .setMessage("¿Desea salir de la Evaluaciòn de Diagnostico?")
+                .setPositiveButton("SI",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(PruebaDiagnosticoActivity.this,GestionPersonaFasePruebaActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                PruebaDiagnosticoActivity.this.startActivity(intent);
+                            }
+                        })
+                .setNegativeButton("NO",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
 
-         builder.show();
+        builder.show();
 
-     }else{
-         if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
-             Intent intent = new Intent(PruebaDiagnosticoActivity.this,BarrioIntimoPersonaActivity.class);
-             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-             PruebaDiagnosticoActivity.this.startActivity(intent);
-         }else{
-             if(Persona.PERSONA_TEMP.getId()!=0){
+    }else{
+        if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
 
-                 final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
-                 builder.setTitle("Captacion")
-                         .setMessage("¿Desea salir de la Evaluaciòn?")
-                         .setPositiveButton("SI",
-                                 new DialogInterface.OnClickListener() {
-                                     @Override
-                                     public void onClick(DialogInterface dialog, int which) {
-                                         Desactivar_Persona(Persona.PERSONA_TEMP.getId());
-                                         Intent intent = new Intent(PruebaDiagnosticoActivity.this,ListaPersonaMasivoActivity.class);
-                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                         PruebaDiagnosticoActivity.this.startActivity(intent);
-                                         finish();
-                                     }
-                                 })
-                         .setNegativeButton("NO",
-                                 new DialogInterface.OnClickListener() {
-                                     @Override
-                                     public void onClick(DialogInterface dialog, int which) {
-                                         dialog.dismiss();
-                                     }
-                                 });
+            final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+            builder.setTitle("Metodologia")
+                    .setMessage("¿Desea salir de la Evaluaciòn de Diagnostico?")
+                    .setPositiveButton("SI",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(PruebaDiagnosticoActivity.this,ListaPersonasGrupoPruebasActivity.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    PruebaDiagnosticoActivity.this.startActivity(intent);
+                                }
+                            })
+                    .setNegativeButton("NO",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
 
-                 builder.show();
-             }else{
+            builder.show();
 
-                 Intent intent = new Intent(PruebaDiagnosticoActivity.this,PrincipalActivity.class);
-                 intent.putExtra("o","o1");
-                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                 PruebaDiagnosticoActivity.this.startActivity(intent);
-                 finish();
+        }else{
+            if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
+                Intent intent = new Intent(PruebaDiagnosticoActivity.this,BarrioIntimoPersonaActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                PruebaDiagnosticoActivity.this.startActivity(intent);
+            }else{
+                if(Persona.PERSONA_TEMP.getId()!=0){
 
-             }
-         }
-     }
+                    final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+                    builder.setTitle("Captacion")
+                            .setMessage("¿Desea salir de la Evaluaciòn?")
+                            .setPositiveButton("SI",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Desactivar_Persona(Persona.PERSONA_TEMP.getId());
+                                            Intent intent = new Intent(PruebaDiagnosticoActivity.this,ListaPersonaMasivoActivity.class);
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                            PruebaDiagnosticoActivity.this.startActivity(intent);
+                                            finish();
+                                        }
+                                    })
+                            .setNegativeButton("NO",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+
+                    builder.show();
+                }else{
+
+                    Intent intent = new Intent(PruebaDiagnosticoActivity.this,PrincipalActivity.class);
+                    intent.putExtra("o","o1");
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    PruebaDiagnosticoActivity.this.startActivity(intent);
+                    finish();
+
+                }
+            }
+        }
+    }
+
+
 
 
 

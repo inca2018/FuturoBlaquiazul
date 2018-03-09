@@ -28,10 +28,12 @@ import com.android.volley.toolbox.Volley;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.BarrioIntimoPersonaActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaPersonasGrupoPruebasActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia_Fase_Prueba.GestionPersonaFasePruebaActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.PruebaPsicologico;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActualizarPruebaFisico;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActualizarPruebaPsico;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarFasePrueba;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarPruebaFisica;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarPruebaPsicologica;
 import org.futuroblanquiazul.futuroblaquiazul.R;
@@ -185,21 +187,42 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
         });
 
 
-        if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
-            nombre_jugador.setText(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getApellidos_Persona());
+        if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
+            nombre_jugador.setText(Usuario.SESION_ACTUAL.getPersona_fase_pruebas().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_fase_pruebas().getApellidos_Persona());
+
+        }else{
+            if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+                nombre_jugador.setText(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getApellidos_Persona());
+            }
+
+
         }
+
 
 
 
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
 
-                    if(spinner_posiciones.getSelectedItemPosition()==0){
+                if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
+                     if(spinner_posiciones.getSelectedItemPosition()==0){
                         Toast.makeText(context, "Seleccion una Posicion Referencial", Toast.LENGTH_SHORT).show();
                     }else{
-                        Registrar_Prueba_Psicologica(Usuario.SESION_ACTUAL.getId(),Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId(),PruebaPsicologico.PRUEBA,context);
+                        Registrar_Prueba_Psicologica(Usuario.SESION_ACTUAL.getId(),Usuario.SESION_ACTUAL.getPersona_fase_pruebas().getId(),PruebaPsicologico.PRUEBA,context);
+                    }
+
+
+                }else{
+                    if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+
+                        if(spinner_posiciones.getSelectedItemPosition()==0){
+                            Toast.makeText(context, "Seleccion una Posicion Referencial", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Registrar_Prueba_Psicologica(Usuario.SESION_ACTUAL.getId(),Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId(),PruebaPsicologico.PRUEBA,context);
+                        }
+
+
                     }
 
                 }
@@ -275,19 +298,37 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
                     if (success) {
 
 
-                        if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
-
+                        if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
                             progressDialog.dismiss();
                             int id_psico=jsonResponse.getInt("id_psico");
 
-                            Actualizar_Psico(id_psico,Usuario.getSesionActual().getGrupoPruebasTEMP().getId(),Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getPlantel().getId(),Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId());
 
-                            Intent intent = new Intent(PruebaPsicologicaActivity.this,ListaPersonasGrupoPruebasActivity.class);
+
+                            Registrar_Fase_Prueba(Usuario.SESION_ACTUAL.getId(),Usuario.SESION_ACTUAL.getPersona_fase_pruebas().getId(),Usuario.SESION_ACTUAL.getTipoPruebas().getId(),id_psico,context);
+
+                            Intent intent = new Intent(PruebaPsicologicaActivity.this,GestionPersonaFasePruebaActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             PruebaPsicologicaActivity.this.startActivity(intent);
                             Toast.makeText(context, "Prueba Psicologica Registrada con exito!", Toast.LENGTH_SHORT).show();
                             Limpiar_entradas();
+                        }else{
+                            if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+
+                                progressDialog.dismiss();
+                                int id_psico=jsonResponse.getInt("id_psico");
+
+                                Actualizar_Psico(id_psico,Usuario.getSesionActual().getGrupoPruebasTEMP().getId(),Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getPlantel().getId(),Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId());
+
+                                Intent intent = new Intent(PruebaPsicologicaActivity.this,ListaPersonasGrupoPruebasActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                PruebaPsicologicaActivity.this.startActivity(intent);
+                                Toast.makeText(context, "Prueba Psicologica Registrada con exito!", Toast.LENGTH_SHORT).show();
+                                Limpiar_entradas();
+                            }
+
                         }
+
+
 
 
                     } else {
@@ -705,18 +746,19 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
     }
     public void onBackPressed() {
 
-        if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+
+
+        if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
             final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
             builder.setTitle("Metodologia")
-                    .setMessage("¿Desea salir de la Evaluaciòn Psicologica?")
+                    .setMessage("¿Desea salir de la Evaluación Tactica?")
                     .setPositiveButton("SI",
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    Intent intent = new Intent(PruebaPsicologicaActivity.this,ListaPersonasGrupoPruebasActivity.class);
+                                    Intent intent = new Intent(PruebaPsicologicaActivity.this,GestionPersonaFasePruebaActivity.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     PruebaPsicologicaActivity.this.startActivity(intent);
-
                                 }
                             })
                     .setNegativeButton("NO",
@@ -728,8 +770,73 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
                             });
 
             builder.show();
+
+        }else{
+            if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+                final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+                builder.setTitle("Metodologia")
+                        .setMessage("¿Desea salir de la Evaluaciòn Psicologica?")
+                        .setPositiveButton("SI",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(PruebaPsicologicaActivity.this,ListaPersonasGrupoPruebasActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        PruebaPsicologicaActivity.this.startActivity(intent);
+
+                                    }
+                                })
+                        .setNegativeButton("NO",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+
+                builder.show();
+            }
+
+
         }
 
+
+
+    }
+
+
+    private void Registrar_Fase_Prueba(final int usuario,final int persona,final int tipo_prueba,final int id_prueba,final Context context) {
+
+        String id_usuario=String.valueOf(usuario);
+        String id_persona=String.valueOf(persona);
+        String t_prueba=String.valueOf(tipo_prueba);
+        String id_diagnostico=String.valueOf(id_prueba);
+
+
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+
+                    }else {
+
+                        Toast.makeText(context, "Error de conexion FASE PRUEBA", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error ACTIVAR FASE PRUEBA :"+e);
+                }
+            }
+        };
+
+        RegistrarFasePrueba xx = new RegistrarFasePrueba(id_usuario,id_persona,t_prueba,id_diagnostico, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
 
 
     }

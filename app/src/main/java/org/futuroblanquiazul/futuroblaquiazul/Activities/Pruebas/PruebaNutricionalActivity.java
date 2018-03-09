@@ -20,11 +20,13 @@ import com.android.volley.toolbox.Volley;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.BarrioIntimoPersonaActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaPersonasGrupoPruebasActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia_Fase_Prueba.GestionPersonaFasePruebaActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.PruebaNutricional;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.PruebaTactica;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActualizarPruebaNutricional;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActualizarPruebaTactico;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarFasePrueba;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarPruebaNutricion;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarPruebaTactica;
 import org.futuroblanquiazul.futuroblaquiazul.R;
@@ -58,19 +60,32 @@ public class PruebaNutricionalActivity extends AppCompatActivity {
         grabar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
 
-                    RegistrarPruebaNutricional(Usuario.SESION_ACTUAL.getId(),Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId(), PruebaNutricional.PRUEBA_NUTRICIONAL,context);
+                if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
+                    RegistrarPruebaNutricional(Usuario.SESION_ACTUAL.getId(),Usuario.SESION_ACTUAL.getPersona_fase_pruebas().getId(), PruebaNutricional.PRUEBA_NUTRICIONAL,context);
+                }else{
+                    if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+
+                        RegistrarPruebaNutricional(Usuario.SESION_ACTUAL.getId(),Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId(), PruebaNutricional.PRUEBA_NUTRICIONAL,context);
+                    }
+
                 }
 
 
             }
         });
 
-        if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
 
-            persona.setText(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getApellidos_Persona());
+        if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
+
+            persona.setText(Usuario.SESION_ACTUAL.getPersona_fase_pruebas().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_fase_pruebas().getApellidos_Persona());
+        }else{
+            if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+
+                persona.setText(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getApellidos_Persona());
+            }
         }
+
     }
 
     private void Limpiar_Entradas() {
@@ -109,19 +124,34 @@ public class PruebaNutricionalActivity extends AppCompatActivity {
 
                     if (success) {
 
-
-                        if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
-
+                        if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
                             int id_nutricional=jsonResponse.getInt("id_nutricional");
-                            Actualizar_Nutricional(id_nutricional,Usuario.getSesionActual().getGrupoPruebasTEMP().getId(),Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getPlantel().getId(),Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId());
 
-                            Intent intent = new Intent(PruebaNutricionalActivity.this,ListaPersonasGrupoPruebasActivity.class);
+
+                            Registrar_Fase_Prueba(Usuario.SESION_ACTUAL.getId(),Usuario.SESION_ACTUAL.getPersona_fase_pruebas().getId(),Usuario.SESION_ACTUAL.getTipoPruebas().getId(),id_nutricional,context);
+
+                            Intent intent = new Intent(PruebaNutricionalActivity.this,GestionPersonaFasePruebaActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             PruebaNutricionalActivity.this.startActivity(intent);
                             Toast.makeText(context, "Prueba Nutricional Registrada con exito!", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
                             Limpiar_Entradas();
+                        }else{
+                            if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+
+                                int id_nutricional=jsonResponse.getInt("id_nutricional");
+                                Actualizar_Nutricional(id_nutricional,Usuario.getSesionActual().getGrupoPruebasTEMP().getId(),Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getPlantel().getId(),Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId());
+
+                                Intent intent = new Intent(PruebaNutricionalActivity.this,ListaPersonasGrupoPruebasActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                PruebaNutricionalActivity.this.startActivity(intent);
+                                Toast.makeText(context, "Prueba Nutricional Registrada con exito!", Toast.LENGTH_SHORT).show();
+                                progressDialog.dismiss();
+                                Limpiar_Entradas();
+                            }
                         }
+
+
 
 
                     } else {
@@ -239,18 +269,17 @@ public class PruebaNutricionalActivity extends AppCompatActivity {
 
     public void onBackPressed() {
 
-        if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+        if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
             final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
             builder.setTitle("Metodologia")
-                    .setMessage("¿Desea salir de la Evaluaciòn Nutricional")
+                    .setMessage("¿Desea salir de la Evaluación  Nutricional?")
                     .setPositiveButton("SI",
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    Intent intent = new Intent(PruebaNutricionalActivity.this,ListaPersonasGrupoPruebasActivity.class);
+                                    Intent intent = new Intent(PruebaNutricionalActivity.this,GestionPersonaFasePruebaActivity.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     PruebaNutricionalActivity.this.startActivity(intent);
-
                                 }
                             })
                     .setNegativeButton("NO",
@@ -262,7 +291,36 @@ public class PruebaNutricionalActivity extends AppCompatActivity {
                             });
 
             builder.show();
+
+        }else{
+
+            if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+                final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+                builder.setTitle("Metodologia")
+                        .setMessage("¿Desea salir de la Evaluaciòn Nutricional")
+                        .setPositiveButton("SI",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(PruebaNutricionalActivity.this,ListaPersonasGrupoPruebasActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        PruebaNutricionalActivity.this.startActivity(intent);
+
+                                    }
+                                })
+                        .setNegativeButton("NO",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+
+                builder.show();
+            }
+
         }
+
 
 
     }
@@ -295,6 +353,43 @@ public class PruebaNutricionalActivity extends AppCompatActivity {
         };
 
         ActualizarPruebaNutricional xx = new ActualizarPruebaNutricional(id_nutri,id_grupo,id_plantel,id_persona, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+
+    }
+
+
+    private void Registrar_Fase_Prueba(final int usuario,final int persona,final int tipo_prueba,final int id_prueba,final Context context) {
+
+        String id_usuario=String.valueOf(usuario);
+        String id_persona=String.valueOf(persona);
+        String t_prueba=String.valueOf(tipo_prueba);
+        String id_diagnostico=String.valueOf(id_prueba);
+
+
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+
+                    }else {
+
+                        Toast.makeText(context, "Error de conexion FASE PRUEBA", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error ACTIVAR FASE PRUEBA :"+e);
+                }
+            }
+        };
+
+        RegistrarFasePrueba xx = new RegistrarFasePrueba(id_usuario,id_persona,t_prueba,id_diagnostico, responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
 

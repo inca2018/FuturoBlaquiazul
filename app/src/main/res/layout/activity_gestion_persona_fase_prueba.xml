@@ -8,20 +8,18 @@
     tools:context="org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia_Fase_Prueba.GestionPersonaFasePruebaActivity">
 
 
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_margin="8dp">
+        android:layout_margin="8dp"
+        android:orientation="vertical">
 
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="4dp"
-            android:layout_weight="2"
+            android:layout_weight="1.5"
             app:cardBackgroundColor="@color/blanco"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp">
@@ -36,7 +34,7 @@
 
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="2.2"
                     android:gravity="center"
                     android:text="ETAPA DE PRUEBA"
                     android:textAlignment="center"
@@ -54,8 +52,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:background="@color/fb"
-                        android:padding="8dp">
+                        android:background="@color/fb">
 
 
                         <de.hdodenhof.circleimageview.CircleImageView
@@ -88,6 +85,7 @@
                                 android:gravity="center|start"
                                 android:text="Nombres y Apellidos:"
 
+                                android:textAllCaps="true"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -95,6 +93,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
+                                android:gravity="center"
                                 android:textAlignment="center"
                                 android:textStyle="italic" />
 
@@ -114,6 +113,7 @@
                                 android:layout_weight="1"
                                 android:gravity="center|start"
                                 android:text="Fecha de Migración:"
+                                android:textAllCaps="true"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -122,6 +122,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
+                                android:gravity="center"
                                 android:textAlignment="center"
                                 android:textStyle="italic" />
 
@@ -136,8 +137,8 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="4dp"
-                    android:layout_weight="2"
+                    android:layout_margin="8dp"
+                    android:layout_weight="1.8"
                     app:cardBackgroundColor="@color/blue"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="5dp">
@@ -159,15 +160,13 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/lista_pruebas"
+            android:id="@+id/lista_pruebas_realizadas"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="4dp"
             android:layout_weight="1">
 
         </android.support.v7.widget.RecyclerView>
-
-
 
 
     </LinearLayout>

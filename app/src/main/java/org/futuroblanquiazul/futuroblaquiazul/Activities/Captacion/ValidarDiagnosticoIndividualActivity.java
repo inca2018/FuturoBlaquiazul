@@ -572,7 +572,7 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
         String id_usuario=String.valueOf(usuario);
         String id_persona=String.valueOf(persona);
         String t_prueba=String.valueOf(tipo_prueba);
-        String id_diagnostico=String.valueOf(id_persona);
+        String id_diagnostico=String.valueOf(id_prueba);
 
 
         Response.Listener<String> responseListener = new Response.Listener<String>() {

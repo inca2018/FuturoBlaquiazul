@@ -2,6 +2,7 @@ package org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia_Fase_Prueb
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,9 +13,11 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterMetodologiaPersona;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterMetodologiaPersonaPrueba;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarPersonasPlantel;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarPersonasPrueba;
@@ -109,6 +112,18 @@ public class ListaPersonasFasePruebaActivity extends AppCompatActivity {
         RecuperarPersonasPrueba xx = new RecuperarPersonasPrueba(responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
+
+
+    }
+
+    public void onBackPressed() {
+
+        if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
+            Intent intent = new Intent(ListaPersonasFasePruebaActivity.this,PrincipalActivity.class);
+            intent.putExtra("o","o3");
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            ListaPersonasFasePruebaActivity.this.startActivity(intent);
+        }
 
 
     }

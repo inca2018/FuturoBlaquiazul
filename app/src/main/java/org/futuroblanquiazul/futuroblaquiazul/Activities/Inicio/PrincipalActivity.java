@@ -76,6 +76,7 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
             displayView(2);
         }
 
+
     }
     private void Toolbar_iniz() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);

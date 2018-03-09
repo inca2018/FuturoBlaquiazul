@@ -20,15 +20,19 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp"
         >
 
         <TextView
+            style="@style/titulo1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/titulo1"
             android:text="Seleccione Prueba:"
+            android:textAlignment="center"
+            android:textAllCaps="true"
             android:textColor="@color/blue"
-            android:textAlignment="center"/>
+            android:textStyle="bold|italic" />
 
        <android.support.v7.widget.CardView
            android:layout_width="match_parent"
@@ -39,17 +43,35 @@
            android:layout_margin="8dp"
            >
 
-           <Button
-               android:id="@+id/lista_prueba_diagnotico"
+           <LinearLayout
+               android:id="@+id/lista_prueba_diagnostico"
                android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:background="@android:color/transparent"
-               android:drawableTint="@color/blanco"
-               android:drawableTop="@mipmap/ic_prueba_diagnostico"
-               android:padding="8dp"
-               android:text="Prueba Diagnostico"
-               android:textColor="@color/blanco"
-               android:backgroundTint="@color/blanco"/>
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:layout_margin="4dp">
+
+               <android.support.v7.widget.AppCompatImageView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_weight="1"
+                   android:drawableTint="@color/blanco"
+                   android:src="@mipmap/ic_prueba_diagnostico"
+                   android:tint="@color/blanco" />
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_weight="1"
+                   android:text="Prueba Diagnostico"
+                   android:textAlignment="center"
+                   android:textAllCaps="true"
+                   android:textColor="@color/blanco"
+                   android:textStyle="bold|italic" />
+
+
+
+           </LinearLayout>
+
 
        </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
@@ -60,17 +82,35 @@
             app:cardCornerRadius="10dp"
             android:layout_margin="8dp">
 
-            <Button
+            <LinearLayout
+
                 android:id="@+id/lista_prueba_fisico"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:drawableTint="@color/blanco"
-                android:drawableTop="@mipmap/image_fisico"
-                android:padding="8dp"
-                android:text="Prueba Fisica"
-                android:textColor="@color/blanco"
-                android:backgroundTint="@color/blanco"/>
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="4dp">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawableTint="@color/blanco"
+                    android:src="@mipmap/image_fisico"
+                    android:tint="@color/blanco" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Prueba Fisica"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/blanco"
+                    android:textStyle="bold|italic" />
+
+
+
+            </LinearLayout>
 
         </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
@@ -81,17 +121,35 @@
             app:cardCornerRadius="10dp"
             android:layout_margin="8dp">
 
-            <Button
+            <LinearLayout
+
                 android:id="@+id/lista_prueba_tecnica"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:drawableTint="@color/blanco"
-                android:drawableTop="@mipmap/image_capacidad"
-                android:padding="8dp"
-                android:text="Prueba TECNICA"
-                android:textColor="@color/blanco"
-                />
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="4dp">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawableTint="@color/blanco"
+                    android:src="@mipmap/image_capacidad"
+                    android:tint="@color/blanco" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Prueba Tecnica"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/blanco"
+                    android:textStyle="bold|italic" />
+
+
+
+            </LinearLayout>
 
         </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
@@ -101,17 +159,35 @@
             app:cardElevation="5dp"
             app:cardCornerRadius="10dp"
             android:layout_margin="8dp">
+            <LinearLayout
 
-            <Button
                 android:id="@+id/lista_prueba_tactica"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:drawableTint="@color/blanco"
-                android:drawableTop="@mipmap/image_tecnico"
-                android:padding="8dp"
-                android:text="Prueba TACTICA"
-                android:textColor="@color/blanco" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="4dp">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawableTint="@color/blanco"
+                    android:src="@mipmap/image_tecnico"
+                    android:tint="@color/blanco" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Prueba Tactica"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/blanco"
+                    android:textStyle="bold|italic" />
+
+
+
+            </LinearLayout>
 
         </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
@@ -122,16 +198,35 @@
             app:cardCornerRadius="10dp"
             android:layout_margin="8dp">
 
-            <Button
+            <LinearLayout
+
                 android:id="@+id/lista_prueba_psicologica"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:drawableTint="@color/blanco"
-                android:drawableTop="@mipmap/image_psico"
-                android:padding="8dp"
-                android:text="Prueba Psicologica"
-                android:textColor="@color/blanco" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="4dp">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawableTint="@color/blanco"
+                    android:src="@mipmap/image_psico"
+                    android:tint="@color/blanco" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Prueba Psicologica"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/blanco"
+                    android:textStyle="bold|italic" />
+
+
+
+            </LinearLayout>
 
         </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
@@ -142,16 +237,36 @@
             app:cardCornerRadius="10dp"
             android:layout_margin="8dp">
 
-            <Button
+            <LinearLayout
+
                 android:id="@+id/lista_prueba_nutricional"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:drawableTint="@color/blanco"
-                android:drawableTop="@mipmap/ic_prueba_nutricional"
-                android:padding="8dp"
-                android:text="Prueba Nutricional"
-                android:textColor="@color/blanco" />
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="4dp">
+
+                <android.support.v7.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawableTint="@color/blanco"
+                    android:src="@mipmap/ic_prueba_nutricional"
+                    android:tint="@color/blanco" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Prueba Nutricional"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/blanco"
+                    android:textStyle="bold|italic" />
+
+
+
+            </LinearLayout>
+
 
         </android.support.v7.widget.CardView>
 

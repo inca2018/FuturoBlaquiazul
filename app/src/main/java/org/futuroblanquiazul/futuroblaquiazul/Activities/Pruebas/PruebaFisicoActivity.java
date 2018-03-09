@@ -25,12 +25,14 @@ import com.android.volley.toolbox.Volley;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.BarrioIntimoPersonaActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaPersonasGrupoPruebasActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia_Fase_Prueba.GestionPersonaFasePruebaActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.PruebaFisica;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActualizarPruebaDiagnostico;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActualizarPruebaFisico;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Actualizar_barrio2;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Actualizar_barrio_fisica;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarFasePrueba;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarPruebaFisica;
 import org.futuroblanquiazul.futuroblaquiazul.R;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Captacion_Vista;
@@ -82,24 +84,32 @@ public class PruebaFisicoActivity extends AppCompatActivity {
         e7=findViewById(R.id.e_vel_s);
         e8=findViewById(R.id.e_yo);
 
-        if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
-            persona_nombre.setText(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getApellidos_Persona());
+        if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
+            persona_nombre.setText(Usuario.SESION_ACTUAL.getPersona_fase_pruebas().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_fase_pruebas().getApellidos_Persona());
             ubigeo.setText(" Plantel");
         }else{
-            if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
-                persona_nombre.setText(Usuario.SESION_ACTUAL.getPersona_barrio().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_barrio().getApellidos_Persona());
 
-                if(GestionUbigeo.CAPTACION_UBIGEO_BARRIO!=null){
-                    ubigeo.setText(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getUbigeo_descripcion());
+            if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+                persona_nombre.setText(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getApellidos_Persona());
+                ubigeo.setText(" Plantel");
+            }else{
+                if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
+                    persona_nombre.setText(Usuario.SESION_ACTUAL.getPersona_barrio().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_barrio().getApellidos_Persona());
+
+                    if(GestionUbigeo.CAPTACION_UBIGEO_BARRIO!=null){
+                        ubigeo.setText(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getUbigeo_descripcion());
+                    }else{
+                        ubigeo.setText("No Disponible");
+                    }
                 }else{
                     ubigeo.setText("No Disponible");
                 }
-            }else{
+                persona_nombre.setText("No Disponible");
                 ubigeo.setText("No Disponible");
             }
-            persona_nombre.setText("No Disponible");
-            ubigeo.setText("No Disponible");
         }
+
+
 
         Calculos();
 
@@ -108,15 +118,22 @@ public class PruebaFisicoActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+                if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
                     Recuperar_entradas();
                 }else{
-                    if(Usuario.SESION_ACTUAL.getPersona_barrio().getId()!=0){
+                    if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
                         Recuperar_entradas();
                     }else{
-                        Toast.makeText(PruebaFisicoActivity.this, "Problemas para recuperar Datos de Postulante", Toast.LENGTH_SHORT).show();
+                        if(Usuario.SESION_ACTUAL.getPersona_barrio().getId()!=0){
+                            Recuperar_entradas();
+                        }else{
+                            Toast.makeText(PruebaFisicoActivity.this, "Problemas para recuperar Datos de Postulante", Toast.LENGTH_SHORT).show();
+                        }
                     }
+
+
                 }
+
 
 
             }
@@ -144,15 +161,20 @@ public class PruebaFisicoActivity extends AppCompatActivity {
              PruebaFisica.PRUEBA_FISICA.setE_Velocidad(Double.parseDouble(VELOCIDAD));
              PruebaFisica.PRUEBA_FISICA.setE_YOYO(Double.parseDouble(YOYO));
 
-             if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+             if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
 
-                 Registrar_Prueba_fisica(context,Usuario.SESION_ACTUAL.getId(),0,Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId());
+                 Registrar_Prueba_fisica(context,Usuario.SESION_ACTUAL.getId(),0,Usuario.SESION_ACTUAL.getPersona_fase_pruebas().getId());
+
              }else{
-                 Actualizar_Total(PruebaFisica.PRUEBA_FISICA.getTotal_general(),Usuario.SESION_ACTUAL.getId_barrio_intimo(),Usuario.SESION_ACTUAL.getPersona_barrio().getId(),context);
 
+                 if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+
+                     Registrar_Prueba_fisica(context,Usuario.SESION_ACTUAL.getId(),0,Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId());
+                 }else{
+                     Actualizar_Total(PruebaFisica.PRUEBA_FISICA.getTotal_general(),Usuario.SESION_ACTUAL.getId_barrio_intimo(),Usuario.SESION_ACTUAL.getPersona_barrio().getId(),context);
+
+                 }
              }
-
-
 
 
          }else{
@@ -163,9 +185,13 @@ public class PruebaFisicoActivity extends AppCompatActivity {
     }
 
     private void Registrar_Prueba_fisica(final Context context, int user, final int id_barrio_intimo, int id_per) {
-                   Debug(PruebaFisica.PRUEBA_FISICA.toString());
 
-
+                   if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
+                       progressDialog = new ProgressDialog(context);
+                       progressDialog.setTitle("Prueba Fisica:");
+                       progressDialog.setMessage("Guardando...");
+                       progressDialog.show();
+                   }
                    if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
                        progressDialog = new ProgressDialog(context);
                        progressDialog.setTitle("Prueba Fisica:");
@@ -204,22 +230,38 @@ public class PruebaFisicoActivity extends AppCompatActivity {
 
                     if (success) {
 
-                        if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+                        if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
                             progressDialog.dismiss();
                             int id_fisico=jsonResponse.getInt("id_fisico");
-                            Actualizar_fisico(id_fisico,Usuario.getSesionActual().getGrupoPruebasTEMP().getId(),Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getPlantel().getId(),Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId());
 
-                            Intent intent=new Intent(PruebaFisicoActivity.this,ListaPersonasGrupoPruebasActivity.class);
+                            Registrar_Fase_Prueba(Usuario.SESION_ACTUAL.getId(),Usuario.SESION_ACTUAL.getPersona_fase_pruebas().getId(),Usuario.SESION_ACTUAL.getTipoPruebas().getId(),id_fisico,context);
+
+                            Intent intent=new Intent(PruebaFisicoActivity.this,GestionPersonaFasePruebaActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             PruebaFisicoActivity.this.startActivity(intent);
                             Toast.makeText(context, "Registro de Prueba Tecnica Exitosa", Toast.LENGTH_SHORT).show();
+
                         }else{
-                            progressDialog.dismiss();
-                            Intent intent=new Intent(PruebaFisicoActivity.this,BarrioIntimoPersonaActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            PruebaFisicoActivity.this.startActivity(intent);
-                            Toast.makeText(context, "Registro de Prueba Tecnica Exitosa", Toast.LENGTH_SHORT).show();
+
+
+                            if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+                                progressDialog.dismiss();
+                                int id_fisico=jsonResponse.getInt("id_fisico");
+                                Actualizar_fisico(id_fisico,Usuario.getSesionActual().getGrupoPruebasTEMP().getId(),Usuario.SESION_ACTUAL.getGrupoPruebasTEMP().getPlantel().getId(),Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId());
+
+                                Intent intent=new Intent(PruebaFisicoActivity.this,ListaPersonasGrupoPruebasActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                PruebaFisicoActivity.this.startActivity(intent);
+                                Toast.makeText(context, "Registro de Prueba Tecnica Exitosa", Toast.LENGTH_SHORT).show();
+                            }else{
+                                progressDialog.dismiss();
+                                Intent intent=new Intent(PruebaFisicoActivity.this,BarrioIntimoPersonaActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                PruebaFisicoActivity.this.startActivity(intent);
+                                Toast.makeText(context, "Registro de Prueba Tecnica Exitosa", Toast.LENGTH_SHORT).show();
+                            }
                         }
+
 
                     } else {
                         Toast.makeText(context, "No se pudo registrar", Toast.LENGTH_SHORT).show();
@@ -682,7 +724,7 @@ public class PruebaFisicoActivity extends AppCompatActivity {
 
     public void onBackPressed() {
 
-        if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+        if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
             final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
             builder.setTitle("Metodologia")
                     .setMessage("¿Desea salir de la Evaluaciòn Fisica?")
@@ -690,10 +732,9 @@ public class PruebaFisicoActivity extends AppCompatActivity {
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    Intent intent = new Intent(PruebaFisicoActivity.this,ListaPersonasGrupoPruebasActivity.class);
+                                    Intent intent = new Intent(PruebaFisicoActivity.this,GestionPersonaFasePruebaActivity.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     PruebaFisicoActivity.this.startActivity(intent);
-
                                 }
                             })
                     .setNegativeButton("NO",
@@ -705,30 +746,60 @@ public class PruebaFisicoActivity extends AppCompatActivity {
                             });
 
             builder.show();
+
         }else{
-            final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
-            builder.setTitle("Barrio Intimo")
-                    .setMessage("¿Desea salir de la Evaluaciòn?")
-                    .setPositiveButton("SI",
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Intent intent = new Intent(PruebaFisicoActivity.this,BarrioIntimoPersonaActivity.class);
-                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    PruebaFisicoActivity.this.startActivity(intent);
+            if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+                final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+                builder.setTitle("Metodologia")
+                        .setMessage("¿Desea salir de la Evaluaciòn Fisica?")
+                        .setPositiveButton("SI",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(PruebaFisicoActivity.this,ListaPersonasGrupoPruebasActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        PruebaFisicoActivity.this.startActivity(intent);
 
-                                }
-                            })
-                    .setNegativeButton("NO",
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            });
+                                    }
+                                })
+                        .setNegativeButton("NO",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
 
-            builder.show();
+                builder.show();
+            }else{
+                final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+                builder.setTitle("Barrio Intimo")
+                        .setMessage("¿Desea salir de la Evaluaciòn?")
+                        .setPositiveButton("SI",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(PruebaFisicoActivity.this,BarrioIntimoPersonaActivity.class);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                        PruebaFisicoActivity.this.startActivity(intent);
+
+                                    }
+                                })
+                        .setNegativeButton("NO",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+
+                builder.show();
+            }
+
         }
+
+
+
 
 
 
@@ -770,4 +841,41 @@ public class PruebaFisicoActivity extends AppCompatActivity {
     }
 
 
+
+
+    private void Registrar_Fase_Prueba(final int usuario,final int persona,final int tipo_prueba,final int id_prueba,final Context context) {
+
+        String id_usuario=String.valueOf(usuario);
+        String id_persona=String.valueOf(persona);
+        String t_prueba=String.valueOf(tipo_prueba);
+        String id_diagnostico=String.valueOf(id_prueba);
+
+
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+                        debug("FASE PRUEBA REGISTRADO");
+                    }else {
+
+                        Toast.makeText(context, "Error de conexion FASE PRUEBA", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error ACTIVAR FASE PRUEBA :"+e);
+                }
+            }
+        };
+
+        RegistrarFasePrueba xx = new RegistrarFasePrueba(id_usuario,id_persona,t_prueba,id_diagnostico, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+
+    }
 }
