@@ -118,7 +118,7 @@ public class ListaMasivosActivity extends AppCompatActivity {
 
                             temp.setFecha_Creacion(objeto.getString("FECHA_CREACION"));
                             temp.setId_Usuario(objeto.getInt("SCOUT_ID"));
-                            temp.setUsuario_Creador(objeto.getString("CREADO_NOM"));
+                            temp.setUsuario_Creador(objeto.getString("CREADO_NOM")+" "+objeto.getString("CREADO_APE"));
                             temp.setEstado(objeto.getInt("ESTADO"));
                             temp.setTotal_postulantes(objeto.getInt("TOTAL"));
 

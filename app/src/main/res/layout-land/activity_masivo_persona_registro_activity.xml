@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.jesusinca.alianza.Activities.Captacion.RegistroPostulantesActivity"
+    tools:context=".Activities.CaptacionMasiva.PersonaNuevoMasivoActivity"
     >
 
     <ScrollView
@@ -15,7 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
             <android.support.v7.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
                 xmlns:card_view="http://schemas.android.com/tools"
@@ -25,7 +25,8 @@
                 android:backgroundTint="@android:color/transparent"
                 app:cardCornerRadius="10sp"
                 app:cardElevation="2dp"
-                card_view:cardUsedCompatPadding="true">
+                card_view:cardUsedCompatPadding="true"
+                android:layout_weight="1">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -34,147 +35,152 @@
                     android:orientation="vertical">
 
                     <TextView
-                        style="@style/titulo1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="DATOS DE ASPIRANTE:" />
-
+                        android:text="DATOS DE ASPIRANTE:"
+                        style="@style/titulo1"
+                        />
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_margin="1dp"
-                        android:background="@color/bordes_cajas"></LinearLayout>
+                        android:background="@color/bordes_cajas"
+                        android:layout_margin="1dp">
+                    </LinearLayout>
 
                     <TextView
-                        style="@style/titulo2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Nombres:" />
+                        android:text="Nombres:"
+                        style="@style/titulo2"
+                        />
 
                     <EditText
-                        android:id="@+id/capta_nombre"
-                        style="@style/input_texto"
+                        android:id="@+id/capta_nombre2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:maxLength="40" />
+                        android:maxLength="40"
+                        style="@style/input_texto"/>
 
                     <TextView
-                        style="@style/titulo2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Apellidos:" />
+                        android:text="Apellidos:"
+                        style="@style/titulo2"
+                        />
 
                     <EditText
-                        android:id="@+id/capta_apellido"
-                        style="@style/input_texto"
+                        android:id="@+id/capta_apellido2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:maxLength="40" />
-
+                        android:maxLength="40"
+                        style="@style/input_texto"
+                        />
                     <TextView
-                        style="@style/titulo2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Nacionalidad:" />
-
+                        android:text="Nacionalidad:"
+                        style="@style/titulo2"
+                        />
                     <EditText
-                        android:id="@+id/capta_nacionalidad"
-                        style="@style/input_texto"
+                        android:id="@+id/capta_nacionalidad2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:maxLength="40" />
+                        android:maxLength="40"
+                        style="@style/input_texto"
+                        />
 
                     <TextView
-                        style="@style/titulo2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Club de Procedencia:" />
-
+                        android:text="Club de Procedencia:"
+                        style="@style/titulo2"
+                        />
                     <EditText
-                        android:id="@+id/capta_procedencia"
-                        style="@style/input_texto"
+                        android:id="@+id/capta_procedencia2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:maxLength="40" />
+                        android:maxLength="40"
+                        style="@style/input_texto"/>
 
                     <TextView
-                        style="@style/titulo2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Liga Actual:" />
+                        android:text="Liga Actual:"
+                        style="@style/titulo2"
+                        />
 
                     <EditText
-                        android:id="@+id/capta_liga"
-                        style="@style/input_texto"
+                        android:id="@+id/capta_liga2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:maxLength="40" />
+                        android:maxLength="40"
+                        style="@style/input_texto" />
 
                     <TextView
-                        style="@style/titulo2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Categoria Actual:" />
-
+                        android:text="Categoria Actual:"
+                        style="@style/titulo2"
+                        />
                     <EditText
-                        android:id="@+id/capta_categoria"
-                        style="@style/input_texto"
+                        android:id="@+id/capta_categoria2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:maxLength="40" />
+                        android:maxLength="40"
+                        style="@style/input_texto" />
 
 
                     <TextView
-                        style="@style/titulo2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="DNI:" />
-
+                        android:text="DNI:"
+                        style="@style/titulo2"
+                        />
                     <EditText
-                        android:id="@+id/capta_dni"
-                        style="@style/input_texto"
+                        android:id="@+id/capta_dni2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:maxLength="8" />
+                        android:maxLength="8"
+                        style="@style/input_texto" />
 
                     <TextView
-                        style="@style/titulo2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Fecha de Nacimiento:" />
-
+                        android:text="Fecha de Nacimiento:"
+                        style="@style/titulo2"
+                        />
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="4dp"
                         android:orientation="horizontal">
-
                         <ImageButton
-                            android:id="@+id/d_fecha_nacimiento"
+                            android:id="@+id/d_fecha_nacimiento2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="6"
                             android:background="@android:color/transparent"
-                            android:src="@mipmap/icon_calendar2" />
-
+                            android:src="@mipmap/icon_calendar2"
+                            />
                         <EditText
-                            android:id="@+id/capta_fecha_nacimiento"
-                            style="@style/input_texto"
+                            android:id="@+id/capta_fecha_nacimiento2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:enabled="false"
-                            android:textAlignment="center" />
+                            style="@style/input_texto"
+                            android:textAlignment="center"
+                            android:enabled="false"/>
 
                     </LinearLayout>
+
 
 
                 </LinearLayout>
@@ -189,98 +195,104 @@
                 android:backgroundTint="@android:color/transparent"
                 app:cardCornerRadius="10sp"
                 app:cardElevation="2dp"
-                card_view:cardUsedCompatPadding="true">
+                card_view:cardUsedCompatPadding="true"
+                android:layout_weight="1">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="8dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_margin="8dp">
 
                     <TextView
-                        style="@style/titulo1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        android:text="DATOS DE CONTACTO:" />
+                        android:text="DATOS DE CONTACTO:"
+                        style="@style/titulo1"/>
+
 
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_margin="1dp"
-                        android:background="@color/bordes_cajas"></LinearLayout>
+                        android:background="@color/bordes_cajas">
+                    </LinearLayout>
 
                     <TextView
-                        style="@style/titulo2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Lugar de Residencia:" />
+                        android:text="Lugar de Residencia:"
+                        style="@style/titulo2"
+                        />
 
                     <EditText
-                        android:id="@+id/capta_residencia"
-                        style="@style/input_texto"
+                        android:id="@+id/capta_residencia2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:maxLength="200" />
+                        style="@style/input_texto"
+                        android:maxLength="200"
+                        />
 
                     <TextView
-                        style="@style/titulo2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Telefonos:" />
-
+                        android:text="Telefonos:"
+                        style="@style/titulo2"
+                        />
                     <EditText
-                        android:id="@+id/capta_telefono1"
-                        style="@style/input_texto"
+                        android:id="@+id/capta_telefono12"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:maxLength="9" />
+                        style="@style/input_texto"
+                        android:maxLength="9"/>
 
                     <TextView
-                        style="@style/titulo2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Correo:" />
-
+                        android:text="Correo:"
+                        style="@style/titulo2"
+                        />
                     <EditText
-                        android:id="@+id/capta_email"
-                        style="@style/input_texto"
+                        android:id="@+id/capta_email2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
-                        android:maxLength="40" />
+                        style="@style/input_texto"
+                        android:maxLength="40"/>
 
 
                     <TextView
-                        style="@style/titulo2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Datos de Apoderado:" />
-
+                        android:text="Datos de Apoderado:"
+                        style="@style/titulo2"
+                        />
                     <EditText
-                        android:id="@+id/capta_apoderado"
-                        style="@style/input_texto"
+                        android:id="@+id/capta_apoderado2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
-                        android:maxLength="40" />
+                        style="@style/input_texto"
+                        android:maxLength="40"/>
 
                     <TextView
-                        style="@style/titulo2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Telefonos de Apoderado:" />
-
+                        android:text="Telefonos de Apoderado:"
+                        style="@style/titulo2"
+                        />
                     <EditText
-                        android:id="@+id/capta_telefono2"
-                        style="@style/input_texto"
+                        android:id="@+id/capta_telefono22"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
-                        android:maxLength="9" />
+                        style="@style/input_texto"
+                        android:maxLength="9"/>
+
 
 
                     <android.support.v7.widget.CardView
@@ -292,12 +304,12 @@
                         app:cardElevation="5dp">
 
                         <Button
+                            android:id="@+id/guardar_persona2"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@android:color/transparent"
                             android:gravity="center"
-                            android:onClick="guardar_deportista"
-                            android:text="CONTINUAR"
+                            android:text="GUARDAR"
                             android:textColor="@android:color/white"
                             android:textStyle="bold" />
 

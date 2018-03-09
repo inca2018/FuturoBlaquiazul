@@ -184,6 +184,7 @@ public class UbigeoActivity extends AppCompatActivity {
                 progressDialog = new ProgressDialog(mcontext);
                 progressDialog.setTitle("Actualizacion");
                 progressDialog.setMessage("Actualizando Ubicación de Trabajo...");
+                progressDialog.setCanceledOnTouchOutside(false);
                 progressDialog.show();
 
 
@@ -198,6 +199,7 @@ public class UbigeoActivity extends AppCompatActivity {
                 progressDialog = new ProgressDialog(mcontext);
                 progressDialog.setTitle("Actualizacion");
                 progressDialog.setMessage("Actualizando Ubicación de Trabajo...");
+                progressDialog.setCanceledOnTouchOutside(false);
                 progressDialog.show();
 
                 Actualizar_Datos_Ubigeo(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getCodigo_modulo(), Usuario.SESION_ACTUAL.getId(),GestionUbigeo.UBIGEO_TEMP,mcontext);
@@ -211,6 +213,7 @@ public class UbigeoActivity extends AppCompatActivity {
                 progressDialog = new ProgressDialog(mcontext);
                 progressDialog.setTitle("Actualizacion");
                 progressDialog.setMessage("Actualizando Ubicación de Trabajo...");
+                progressDialog.setCanceledOnTouchOutside(false);
                 progressDialog.show();
 
                 Actualizar_Datos_Ubigeo(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getCodigo_modulo(), Usuario.SESION_ACTUAL.getId(),GestionUbigeo.UBIGEO_TEMP,mcontext);
@@ -225,6 +228,7 @@ public class UbigeoActivity extends AppCompatActivity {
                 progressDialog = new ProgressDialog(mcontext);
                 progressDialog.setTitle("Registrando");
                 progressDialog.setMessage("Guardando Ubicación de Trabajo...");
+                progressDialog.setCanceledOnTouchOutside(false);
                 progressDialog.show();
 
 
@@ -241,6 +245,7 @@ public class UbigeoActivity extends AppCompatActivity {
                 progressDialog = new ProgressDialog(mcontext);
                 progressDialog.setTitle("Registrando");
                 progressDialog.setMessage("Guardando Ubicación de Trabajo...");
+                progressDialog.setCanceledOnTouchOutside(false);
                 progressDialog.show();
 
                 Registrar_Datos_Ubigeo(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getCodigo_modulo(), Usuario.SESION_ACTUAL.getId(),GestionUbigeo.UBIGEO_TEMP,mcontext);
@@ -255,6 +260,7 @@ public class UbigeoActivity extends AppCompatActivity {
                 progressDialog = new ProgressDialog(mcontext);
                 progressDialog.setTitle("Registrando");
                 progressDialog.setMessage("Guardando Ubicación de Trabajo...");
+                progressDialog.setCanceledOnTouchOutside(false);
                 progressDialog.show();
 
                 Registrar_Datos_Ubigeo(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getCodigo_modulo(), Usuario.SESION_ACTUAL.getId(),GestionUbigeo.UBIGEO_TEMP,mcontext);

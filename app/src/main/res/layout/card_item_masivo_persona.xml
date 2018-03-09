@@ -25,11 +25,21 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_weight="3"
-                    android:src="@drawable/user_default"/>
+                    android:layout_height="match_parent"
+                    android:layout_weight="3">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/foto_perfil"
+                        />
+                </RelativeLayout>
+
+
 
 
                     <LinearLayout
@@ -67,19 +77,23 @@
 
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="12">
+                android:layout_weight="20">
                 <ImageView
                     android:id="@+id/masivo_personas_acciones"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:src="@mipmap/icon_menu_popup"
-                    android:tint="@color/titulos"/>
+                    android:tint="@color/titulos"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+
+                    />
 
 
-            </LinearLayout>
+            </RelativeLayout>
 
 
         </LinearLayout>

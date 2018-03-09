@@ -479,11 +479,11 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
 
         }else{
             if(total_general>=45 && total_general<=49){
-                card.setCardBackgroundColor(getResources().getColor(R.color.Orange));
+               // card.setCardBackgroundColor(getResources().getColor(R.color.Orange));
                 card_aprobacion.setVisibility(View.GONE);
                 card_saltar.setVisibility(View.VISIBLE);
             }else if(total_general>=50){
-                card.setCardBackgroundColor(getResources().getColor(R.color.green));
+              //  card.setCardBackgroundColor(getResources().getColor(R.color.green));
                 card_aprobacion.setVisibility(View.VISIBLE);
                 card_saltar.setVisibility(View.GONE);
             }else if(total_general<=44){

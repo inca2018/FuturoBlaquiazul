@@ -89,7 +89,7 @@
                 android:layout_margin="8dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="CONTINUAR CON REGISTR"
+                android:text="CONTINUAR CON REGISTRO"
                 android:textColor="@android:color/white"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -520,7 +520,8 @@
                                     <RadioGroup
                                         android:id="@+id/opciones_lateralidad"
                                         android:layout_width="match_parent"
-                                        android:layout_height="match_parent">
+                                        android:layout_height="match_parent"
+                                        android:checkedButton="@+id/lateral_derecho">
 
                                         <RadioButton
                                             android:id="@+id/lateral_derecho"

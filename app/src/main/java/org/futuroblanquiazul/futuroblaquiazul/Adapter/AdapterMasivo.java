@@ -64,10 +64,10 @@ public class AdapterMasivo extends RecyclerView.Adapter<AdapterMasivo.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
 
-        holder.titulo_masivo.setText("MASIVO: "+my_Data.get(position).getNombre_Masivo());
-        String ubigeo_Desc="UBICACION: "+my_Data.get(position).getDepartamento().getDescripcion()+"/"+my_Data.get(position).getProvincia().getDescripcion()+"/"+my_Data.get(position).getDistrito().getDescripcion();
+        holder.titulo_masivo.setText(my_Data.get(position).getNombre_Masivo());
+        String ubigeo_Desc=my_Data.get(position).getDepartamento().getDescripcion()+"/"+my_Data.get(position).getProvincia().getDescripcion()+"/"+my_Data.get(position).getDistrito().getDescripcion();
         holder.ubigeo_masivo.setText(ubigeo_Desc);
-        holder.creador_masivo.setText("SCOUT : "+my_Data.get(position).getUsuario_Creador());
+        holder.creador_masivo.setText(my_Data.get(position).getUsuario_Creador());
         holder.total_masivo.setText(String.valueOf(my_Data.get(position).getTotal_postulantes()));
 
     }

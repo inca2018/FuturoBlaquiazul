@@ -84,6 +84,7 @@ public class SeguimientoActivity extends AppCompatActivity {
         Resultados_Diagnostico=new ArrayList<>();
 
         Seguimiento.SEGUIMIENTO.Vaciar_Datos();
+
         for(int i=0;i<Recursos_Diagnostico.LISTA_SOCIAL2.size();i++){
             Recursos_Diagnostico.LISTA_SOCIAL2.get(i).setResultado(0);
         }
@@ -104,7 +105,7 @@ public class SeguimientoActivity extends AppCompatActivity {
         int height = metrics.heightPixels; // alto absoluto en pixels
         altura=height;
         ancho=width;
-        Usuario.SESION_ACTUAL.setAltura( height); //600
+        Usuario.SESION_ACTUAL.setAltura(height); //600
         Usuario.SESION_ACTUAL.setAncho(width); //1024
         recyclercampoooo();
 
@@ -474,7 +475,23 @@ public class SeguimientoActivity extends AppCompatActivity {
         recyclerCampo.setLayoutManager(grid);
     }
     private void listar_card() {
-        if(ancho>800){
+
+        if(ancho>1500){
+            int alt=altura;
+            int anc=ancho;
+            alt2=alt/18;
+            anc2=anc/24;
+            linea.getLayoutParams().height=(alt-65);
+
+            System.out.println("PANTALLA XX GRANDE");
+
+            for(int i=0;i<408;i++){
+                Campo temp=new Campo(i,"",0,alt2,anc2,R.drawable.layout_border);
+                Campo.LISTACAMPO.add(temp);
+            }
+
+            adapterCampo.notifyDataSetChanged();
+        }else if(ancho>800 && ancho<1200){
 
             int alt=altura;
             int anc=ancho;
@@ -620,10 +637,6 @@ public class SeguimientoActivity extends AppCompatActivity {
         Toast.makeText(context,sms, Toast.LENGTH_SHORT).show();
     }
     public void onBackPressed() {
-
-        Intent intent = new Intent(SeguimientoActivity.this,ListaSeguimientosActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        SeguimientoActivity.this.startActivity(intent);
 
 
         final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);

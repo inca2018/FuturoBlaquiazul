@@ -35,12 +35,24 @@ public class PruebaFisica {
 
     String Fecha_registro;
 
+    int estado;
+
 
 
     public static final PruebaFisica PRUEBA_FISICA=new PruebaFisica();
+
+    public static final PruebaFisica INFO_FISICA=new PruebaFisica();
   public PruebaFisica(){
 
   }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
 
     public String getFecha_registro() {
         return Fecha_registro;

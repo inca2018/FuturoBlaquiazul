@@ -334,6 +334,13 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
 
                         }
 
+                        if(Persona.PERSONA_TEMP!=null){
+                            Persona t=new Persona();
+                            t.setId(Persona.PERSONA_TEMP.getId());
+                            Usuario.SESION_ACTUAL.setPersona_captacion_individual(t);
+
+                        }
+
                         Usuario.SESION_ACTUAL.getPersona_captacion_individual().setId_fisico(id_fisico);
                         Usuario.SESION_ACTUAL.getPersona_captacion_individual().setId_capacidad(id_capacidad);
                         Usuario.SESION_ACTUAL.getPersona_captacion_individual().setId_social(id_social);

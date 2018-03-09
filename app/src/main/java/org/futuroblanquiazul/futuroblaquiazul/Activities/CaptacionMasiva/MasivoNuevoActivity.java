@@ -2,6 +2,7 @@ package org.futuroblanquiazul.futuroblaquiazul.Activities.CaptacionMasiva;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ public class MasivoNuevoActivity extends AppCompatActivity {
      TextView ubigeo_masivo;
      Button guardar_masivo;
      Context context;
+     String nombre="";
     ProgressDialog progressDialog;
 
     @Override
@@ -56,9 +58,31 @@ public class MasivoNuevoActivity extends AppCompatActivity {
         guardar_masivo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String nombre=nombre_masivo.getText().toString();
+                 nombre=nombre_masivo.getText().toString();
                 if(nombre.trim().length()!=0){
-                    Accion_Nuevo_Masivo(context,nombre,GestionUbigeo.CAPTACION_UBIGEO_MASIVO, Usuario.SESION_ACTUAL.getId());
+
+                    final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+                    builder.setTitle("Captación Masiva")
+                            .setMessage("Desea Registrar Nueva Captación Masiva en :\n\n"+"Ubigeo - "+ubigeo_masivo.getText().toString() )
+                            .setPositiveButton("SI",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Accion_Nuevo_Masivo(context,nombre,GestionUbigeo.CAPTACION_UBIGEO_MASIVO, Usuario.SESION_ACTUAL.getId());
+                                        }
+                                    })
+                            .setNegativeButton("NO",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+
+                    builder.show();
+
+                }else{
+                    Toast.makeText(context, "Ingrese Nombre de Nueva Captación Masiva", Toast.LENGTH_SHORT).show();
                 }
 
             }

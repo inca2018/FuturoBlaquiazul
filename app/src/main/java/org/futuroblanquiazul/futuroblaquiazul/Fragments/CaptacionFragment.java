@@ -91,6 +91,7 @@ public class CaptacionFragment extends Fragment {
                     Persona.PERSONA_TEMP.setId(0);
                     Usuario.SESION_ACTUAL.setPersona_metodologia_pruebas(null);
                     Usuario.SESION_ACTUAL.setPersona_metodologia(null);
+                    Usuario.SESION_ACTUAL.setPersona_fase_pruebas(null);
 
                     Intent intent= new Intent(mContext,PruebaDiagnosticoActivity.class);
                     startActivity(intent);
@@ -109,6 +110,7 @@ public class CaptacionFragment extends Fragment {
                     Persona.PERSONA_TEMP.setId(0);
                     Usuario.SESION_ACTUAL.setPersona_metodologia_pruebas(null);
                     Usuario.SESION_ACTUAL.setPersona_metodologia(null);
+                    Usuario.SESION_ACTUAL.setPersona_fase_pruebas(null);
 
                     Intent intent= new Intent(mContext,ListaPersonaSeguimientoActivity.class);
                     startActivity(intent);
@@ -127,6 +129,7 @@ public class CaptacionFragment extends Fragment {
                     Persona.PERSONA_TEMP.setId(0);
                     Usuario.SESION_ACTUAL.setPersona_metodologia_pruebas(null);
                     Usuario.SESION_ACTUAL.setPersona_metodologia(null);
+                    Usuario.SESION_ACTUAL.setPersona_fase_pruebas(null);
 
                     Intent intent= new Intent(mContext,ListaMasivosActivity.class);
                     startActivity(intent);
@@ -149,6 +152,7 @@ public class CaptacionFragment extends Fragment {
                     Persona.PERSONA_TEMP.setId(0);
                     Usuario.SESION_ACTUAL.setPersona_metodologia_pruebas(null);
                     Usuario.SESION_ACTUAL.setPersona_metodologia(null);
+                    Usuario.SESION_ACTUAL.setPersona_fase_pruebas(null);
 
                     Intent intent= new Intent(mContext, BarrioIntimoActivity.class);
                     startActivity(intent);

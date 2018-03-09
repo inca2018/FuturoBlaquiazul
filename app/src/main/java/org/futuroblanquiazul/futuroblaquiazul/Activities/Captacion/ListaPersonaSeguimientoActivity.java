@@ -48,7 +48,12 @@ public class ListaPersonaSeguimientoActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.Recycler_Persona_seg);
         context=this;
         linearLayout = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-       lista_Personas_Seguimientos(context);
+        if(Usuario.SESION_ACTUAL!=null){
+            lista_Personas_Seguimientos(Usuario.SESION_ACTUAL.getId(),context);
+        }else{
+            Toast.makeText(context, "Existe Problema de Conexion al recuperar Postulantes", Toast.LENGTH_SHORT).show();
+        }
+
 
         adapter = new AdapterSeguimientoPersona(this, lista_seguimiento_persona, new RecyclerViewOnItemClickListener() {
             public void onClick(View v, int position) {
@@ -59,8 +64,9 @@ public class ListaPersonaSeguimientoActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(linearLayout);
     }
-    private void lista_Personas_Seguimientos(final Context context) {
+    private void lista_Personas_Seguimientos(int id_us, final Context context) {
 
+        String id_user=String.valueOf(id_us);
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Postulantes:");
         progressDialog.setMessage("Listando...");
@@ -104,7 +110,7 @@ public class ListaPersonaSeguimientoActivity extends AppCompatActivity {
 
         };
 
-        RecuperarPersonasSeguimiento xx = new RecuperarPersonasSeguimiento(responseListener);
+        RecuperarPersonasSeguimiento xx = new RecuperarPersonasSeguimiento(id_user,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
 

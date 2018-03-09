@@ -24,6 +24,7 @@ import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarEtapaFasePruebas;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarInformacionDiagnostico;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarInformacionFisico;
 import org.futuroblanquiazul.futuroblaquiazul.R;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,6 +33,7 @@ import org.json.JSONObject;
 import java.util.List;
 
 import static org.futuroblanquiazul.futuroblaquiazul.Entity.InformacionDiagnostico.INFO_DIAG;
+import static org.futuroblanquiazul.futuroblaquiazul.Entity.PruebaFisica.INFO_FISICA;
 
 
 /**
@@ -112,6 +114,15 @@ public class AdapterEtapaPruebas extends RecyclerView.Adapter<AdapterEtapaPrueba
 
                 case 2:
                     holder.image.setImageResource(R.mipmap.image_fisico);
+
+                    holder.detalle.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            debug("CLICK EN DETALLE FISICO ");
+                            Recupera_Informacion_Fisica(my_Data.get(position).getPersona().getId(),my_Data.get(position).getId_evaluacion(),context);
+                        }
+                    });
+
                     break;
                 case 3:
                     holder.image.setImageResource(R.mipmap.image_capacidad);
@@ -132,6 +143,71 @@ public class AdapterEtapaPruebas extends RecyclerView.Adapter<AdapterEtapaPrueba
 
     }
 
+    private void Recupera_Informacion_Fisica(int id_per, int id_eva,final Context context2) {
+        debug("INGRESO A RECUPERAR FISICO");
+        String id_persona=String.valueOf(id_per);
+        String id_diagnostico=String.valueOf(id_eva);
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("Información:");
+        progressDialog.setMessage("Buscando Información de Prueba...");
+        progressDialog.show();
+
+
+        com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+
+                    if (success) {
+                        progressDialog.dismiss();
+
+                        debug("RECUPERO DATOS FISICO CORRECTAMENTE");
+                        INFO_FISICA.setId(jsonResponse.getInt("id"));
+                        Usuario u=new Usuario();
+                        u.setUsuario(jsonResponse.getString("usuario"));
+                        INFO_FISICA.setUsuario(u);
+                        INFO_FISICA.setE_peso(jsonResponse.getDouble("peso"));
+                        INFO_FISICA.setE_talla(jsonResponse.getDouble("talla"));
+                        INFO_FISICA.setE_RJ(jsonResponse.getDouble("rj"));
+                        INFO_FISICA.setE_CMJ(jsonResponse.getDouble("cmj"));
+                        INFO_FISICA.setE_ABK(jsonResponse.getDouble("abk"));
+                        INFO_FISICA.setE_FMS(jsonResponse.getDouble("fms"));
+                        INFO_FISICA.setE_Velocidad(jsonResponse.getDouble("velocidad"));
+                        INFO_FISICA.setE_YOYO(jsonResponse.getDouble("yoyo"));
+                        INFO_FISICA.setInformativoVelocidad(jsonResponse.getDouble("info_velocidad"));
+                        INFO_FISICA.setInformativoPotencia(jsonResponse.getDouble("info_potencia"));
+                        INFO_FISICA.setInformativoResistencia(jsonResponse.getDouble("info_resistencia"));
+                        INFO_FISICA.setPromVelocidad(jsonResponse.getDouble("prom_velocidad"));
+                        INFO_FISICA.setPromPotencia(jsonResponse.getDouble("prom_potencia"));
+                        INFO_FISICA.setPromResistencia(jsonResponse.getDouble("prom_resistencia"));
+                        INFO_FISICA.setTotal_general(jsonResponse.getDouble("total_general"));
+                        INFO_FISICA.setFecha_registro(jsonResponse.getString("fecha_registro"));
+                        INFO_FISICA.setEstado(jsonResponse.getInt("estado"));
+
+                        Mostrar_Dialog_Fisico(context2);
+                    } else {
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "No existe Informacion de FISICO", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error de conexion al recuperar Info FISICO :"+e);
+                }
+            }
+        };
+
+        RecuperarInformacionFisico xx = new RecuperarInformacionFisico(id_persona,id_diagnostico,responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+
+
+
+    }
     private void Recupera_Informacion_Diagnostico(int id_per, int id_eva,final Context context2) {
 
         debug("INGRESO A RECUPERAR DIAGNOSTICO");
@@ -191,11 +267,63 @@ public class AdapterEtapaPruebas extends RecyclerView.Adapter<AdapterEtapaPrueba
 
 
     }
+    private void Mostrar_Dialog_Fisico(Context context2) {
 
+        final LayoutInflater inflater = (LayoutInflater) context2.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+        final View dialoglayout = inflater.inflate(R.layout.area_info_prueba_fisico, null);
+
+             TextView  t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t12,t13,t14,t15,t16,t17 ;
+
+        t1=dialoglayout.findViewById(R.id.card_info_fisico_fecha);
+        t2=dialoglayout.findViewById(R.id.card_info_fisico_user);
+        t3=dialoglayout.findViewById(R.id.card_info_fisico_peso);
+        t4=dialoglayout.findViewById(R.id.card_info_fisico_talla);
+        t5=dialoglayout.findViewById(R.id.card_info_fisico_rj);
+        t6=dialoglayout.findViewById(R.id.card_info_fisico_cmj);
+        t7=dialoglayout.findViewById(R.id.card_info_fisico_abk);
+        t8=dialoglayout.findViewById(R.id.card_info_fisico_fms);
+        t9=dialoglayout.findViewById(R.id.card_info_fisico_velocidad);
+        t10=dialoglayout.findViewById(R.id.card_info_fisico_yoyo);
+        t11=dialoglayout.findViewById(R.id.card_info_fisico_info_velocidad);
+        t12=dialoglayout.findViewById(R.id.card_info_fisico_info_potencia);
+        t13=dialoglayout.findViewById(R.id.card_info_fisico_info_resistencia);
+        t14=dialoglayout.findViewById(R.id.card_info_fisico_prom_velocidad);
+        t15=dialoglayout.findViewById(R.id.card_info_fisico_prom_potencia);
+        t16=dialoglayout.findViewById(R.id.card_info_fisico_prom_resistencia);
+        t17=dialoglayout.findViewById(R.id.card_info_fisico_total_general);
+
+
+
+        final AlertDialog.Builder builder4 = new AlertDialog.Builder(context);
+        builder4.setView(dialoglayout);
+        da=builder4.show();
+
+                   t1.setText(INFO_FISICA.getFecha_registro().toString());
+                   t2.setText(INFO_FISICA.getUsuario().getUsuario());
+                   t3.setText(INFO_FISICA.getE_peso()+" Kg.");
+                   t4.setText(INFO_FISICA.getE_talla()+" mts.");
+                   t5.setText(INFO_FISICA.getE_RJ()+" cmts.");
+                   t6.setText(INFO_FISICA.getE_CMJ()+" cmts.");
+                   t7.setText(INFO_FISICA.getE_ABK()+" cmts.");
+                   t8.setText(INFO_FISICA.getE_FMS()+" Ptos.");
+                   t9.setText(INFO_FISICA.getE_Velocidad()+" seg.");
+                   t10.setText(INFO_FISICA.getE_YOYO()+" palier");
+                   t11.setText(INFO_FISICA.getInformativoVelocidad()+" Kms/Hr.");
+                   t12.setText(INFO_FISICA.getInformativoPotencia()+" W.");
+                   t13.setText(INFO_FISICA.getInformativoResistencia()+" Vo2Max");
+                   t14.setText(INFO_FISICA.getPromVelocidad()+" Ptos.");
+                   t15.setText(INFO_FISICA.getPromPotencia()+" Ptos.");
+                   t16.setText(INFO_FISICA.getPromResistencia()+" Ptos.");
+                   t17.setText(INFO_FISICA.getTotal_general()+" Ptos.");
+
+
+    }
     private void Mostrar_Dialog_Diagnostico(Context context2) {
 
-                            final LayoutInflater inflater = (LayoutInflater) context2.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-                            final View dialoglayout = inflater.inflate(R.layout.area_info_prueba_diagnostico, null);
+        final LayoutInflater inflater = (LayoutInflater) context2.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+        final View dialoglayout = inflater.inflate(R.layout.area_info_prueba_diagnostico, null);
+
+                             sugerido="";
 
                             TextView  t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11 ;
 
@@ -241,13 +369,10 @@ public class AdapterEtapaPruebas extends RecyclerView.Adapter<AdapterEtapaPrueba
 
 
     }
-
     @Override
     public int getItemCount() {
         return my_Data.size();
     }
-
-
     public void debug(String sm){
         System.out.println(sm);
     }

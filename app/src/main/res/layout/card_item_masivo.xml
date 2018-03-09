@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="@color/deep_naranja400"
     android:layout_margin="4dp"
-    app:cardElevation="5dp"
+    android:padding="2dp"
+    app:cardBackgroundColor="@color/deep_naranja400"
     app:cardCornerRadius="10dp"
-    android:padding="2dp">
+    app:cardElevation="2dp">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="4dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -25,21 +27,19 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="4dp"
                 android:layout_weight="1"
-                android:orientation="vertical"
 
-                >
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/card_masivo_titulo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-
                     android:layout_weight="2"
                     android:gravity="center|start"
                     android:text="TITULO MASIVO"
                     android:textAllCaps="true"
                     android:textColor="@color/blanco"
-                    android:textSize="14sp"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -48,31 +48,60 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/card_masivo_ubigeo"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                        android:layout_weight="2"
-                        android:gravity="center|start"
-                        android:text="UBICACION LIMA/LIMA/LOS OLIVOS"
-                        android:textAllCaps="true"
-                        android:textColor="@color/blanco"
-                        android:textSize="10dp"
-                        android:textStyle="italic" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:text="UBICACIÓN:"
+                            android:textColor="@color/blanco"
+                            android:textSize="14sp" />
 
-                    <TextView
-                        android:id="@+id/card_masivo_creador"
+                        <TextView
+                            android:id="@+id/card_masivo_ubigeo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center|start"
+                            android:text="LIMA/LIMA/LOS OLIVOS"
+                            android:textAllCaps="true"
+                            android:textColor="@color/blanco"
+                            android:textSize="14sp"
+                            android:textStyle="italic" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                        android:layout_weight="2"
-                        android:gravity="center|start"
-                        android:text="REGISTRADO POR: ADMINISTRADOR"
-                        android:textAllCaps="true"
-                        android:textColor="@color/blanco"
-                        android:textSize="10dp"
-                        android:textStyle="italic" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:text="CREADOR:"
+                            android:textColor="@color/blanco"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/card_masivo_creador"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+
+                            android:layout_weight="1"
+                            android:gravity="center|start"
+                            android:text="REGISTRADO POR: ADMINISTRADOR"
+                            android:textAllCaps="true"
+                            android:textColor="@color/blanco"
+                            android:textSize="14sp"
+                            android:textStyle="italic" />
+
+                    </LinearLayout>
 
 
                 </LinearLayout>
@@ -87,7 +116,7 @@
                 android:layout_weight="2"
                 app:cardBackgroundColor="@color/blanco"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="5dp">
+                app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -101,9 +130,9 @@
                         android:layout_weight="2"
                         android:gravity="center"
                         android:text="Nº Postulantes"
+                        android:textAllCaps="true"
                         android:textColor="@color/deep_naranja900"
-                        android:textSize="10dp"
-                        android:textStyle="bold" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/card_masivo_cantidad_postulantes"
@@ -113,7 +142,7 @@
                         android:gravity="center"
                         android:text="100"
                         android:textColor="@color/deep_naranja900"
-                        android:textSize="18dp"
+                        android:textSize="24sp"
                         android:textStyle="bold" />
 
 
@@ -123,7 +152,6 @@
 
         </LinearLayout>
     </LinearLayout>
-
 
 
 </android.support.v7.widget.CardView>

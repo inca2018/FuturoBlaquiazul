@@ -26,6 +26,7 @@
             android:layout_height="wrap_content"
             android:text="Información de Diagnostico"
             android:textAlignment="center"
+            android:textAllCaps="true"
             android:textColor="@color/blue"
             android:textStyle="bold" />
 
@@ -40,7 +41,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Fecha de Prueba:" />
+                android:text="Fecha de Prueba:"
+                android:textAllCaps="true"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/card_info_diagnostico_fecha"
@@ -48,9 +51,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:textStyle="italic"
+                android:gravity="center|start"
+                android:textSize="14sp"
+                android:textStyle="bold|italic"
                 tools:text="  " />
 
 
@@ -67,7 +70,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Encargado de Prueba" />
+                android:text="Encargado de Prueba"
+                android:textAllCaps="true"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/card_info_diagnostico_user"
@@ -75,9 +80,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:textStyle="italic"
+                android:gravity="center|start"
+                android:textAllCaps="true"
+                android:textSize="14sp"
+                android:textStyle="bold|italic"
                 tools:text="  " />
 
 
@@ -94,7 +100,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Ubicación de Prueba:" />
+                android:text="Ubicación de Prueba:"
+                android:textAllCaps="true"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/card_info_diagnostico_ubigeo"
@@ -102,9 +110,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:textStyle="italic"
+                android:gravity="center|start"
+                android:textSize="14sp"
+                android:textStyle="bold|italic"
                 tools:text="  " />
 
 
@@ -121,18 +129,20 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Posiciones Sugeridas:" />
+                android:text="Posiciones Sugeridas:"
+                android:textAllCaps="true"
+                android:textSize="14sp" />
 
             <TextView
-                style="@style/titulo2"
                 android:id="@+id/card_info_diagnostico_sugeridos"
+                style="@style/titulo2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:textAlignment="center"
+                android:gravity="center|start"
 
-                android:textStyle="italic"
+                android:textSize="14sp"
+                android:textStyle="bold|italic"
                 tools:text="  " />
 
 
@@ -149,7 +159,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Lateralidad:" />
+                android:text="Lateralidad:"
+                android:textAllCaps="true"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/card_info_diagnostico_lateralidad"
@@ -157,9 +169,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:textStyle="italic"
+                android:gravity="center|start"
+                android:textSize="14sp"
+                android:textStyle="bold|italic"
                 tools:text="  " />
 
 
@@ -177,6 +189,7 @@
                 android:layout_height="wrap_content"
                 android:text="Resultados:"
                 android:textAlignment="center"
+                android:textAllCaps="true"
                 android:textColor="@color/blue"
                 android:textSize="18sp"
                 android:textStyle="bold|italic" />
@@ -200,7 +213,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="center|start"
                     android:textAlignment="center"
                     android:textStyle="bold|italic"
                     tools:text="12 Ptos" />
@@ -227,7 +240,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="center|start"
                     android:textAlignment="center"
                     android:textStyle="bold|italic"
                     tools:text="12 Ptos" />
@@ -254,7 +267,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="center|start"
                     android:textAlignment="center"
                     android:textStyle="bold|italic"
                     tools:text="12 Ptos" />
@@ -281,7 +294,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="center|start"
                     android:textAlignment="center"
                     android:textStyle="bold|italic"
                     tools:text="12 Ptos" />
@@ -308,7 +321,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="center|start"
                     android:textAlignment="center"
                     android:textStyle="bold|italic"
                     tools:text="12 Ptos" />
@@ -327,7 +340,10 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Total General" />
+                    android:text="Total General"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/card_info_diagnostico_total_general"
