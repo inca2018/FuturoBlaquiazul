@@ -14,7 +14,6 @@ public class Plantel {
     int estado;
 
 
-
     public Plantel(){
 
     }

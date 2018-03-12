@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.NuevoEventoEstadisticoActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_margin="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_margin="8dp">
+
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/blanco"
+                android:layout_margin="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/titulo1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Creación de Nuevo Evento:"
+                        android:textAllCaps="true" />
+
+                    <TextView
+                        style="@style/titulo2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Complete la siguiente información:"
+                        android:textAlignment="center"
+                        android:textAllCaps="false" />
+
+                    <TextView
+                        style="@style/titulo2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre de Evento:"
+                        android:textAllCaps="false" />
+
+                    <EditText
+                        android:id="@+id/nuevo_evento_nombre"
+                        style="@style/input_texto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp" />
+                    <TextView
+                        style="@style/titulo2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Detalle de Evento:" />
+
+                    <EditText
+                        android:id="@+id/nuevo_evento_detalle"
+                        style="@style/input_texto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:inputType="textMultiLine"
+                        android:lines="3"
+                        android:maxLength="200" />
+
+
+                    <TextView
+                        style="@style/titulo2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Seleccione Categoria Participante:" />
+
+                    <Spinner
+                        android:id="@+id/nuevo_evento_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </Spinner>
+
+                    <TextView
+                        style="@style/titulo2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Seleccione Imagen Referencial:" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/nuevo_evento_foto"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="16dp"
+                            android:src="@drawable/foto_perfil" />
+
+                        <android.support.design.widget.FloatingActionButton
+                            android:id="@+id/floatingActionButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignBottom="@+id/nuevo_evento_foto"
+                            android:layout_alignEnd="@+id/nuevo_evento_foto"
+                            android:clickable="true"
+                            android:tint="@color/blanco"
+                            app:backgroundTint="@color/blue"
+                            app:fabSize="mini"
+                            app:srcCompat="@mipmap/icon_camera" />
+
+                    </RelativeLayout>
+
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="@color/blue"
+                        app:cardElevation="2dp"
+                        app:cardCornerRadius="10dp"
+                        android:layout_margin="8dp">
+
+                        <Button
+                            android:id="@+id/nuevo_evento_crear"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:text="CREAR"
+                            android:textColor="@color/blanco" />
+
+
+
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+</LinearLayout>

@@ -52,6 +52,7 @@ public class UbigeoActivity extends AppCompatActivity {
     boolean depa_accion=false,prov_accion=false,dist_accion=false;
 
     Button card_guardar;
+    String MODULO="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +60,7 @@ public class UbigeoActivity extends AppCompatActivity {
         DepartamentosLista=new ArrayList<>();
         ProvinciasLista=new ArrayList<>();
         DistritoLista=new ArrayList<>();
+
         mcontext=this;
 
         departamento=findViewById(R.id.spinner_departamento);
@@ -66,7 +68,7 @@ public class UbigeoActivity extends AppCompatActivity {
         distritos=findViewById(R.id.spinner_distrito);
         card_guardar=findViewById(R.id.guardar_ubigeo);
         String OPCION=getIntent().getStringExtra("TYPE");
-        String MODULO=getIntent().getStringExtra("MODULO");
+        MODULO=getIntent().getStringExtra("MODULO");
 
         switch (OPCION){
             case "UPDATE":
@@ -80,11 +82,16 @@ public class UbigeoActivity extends AppCompatActivity {
                         Listar_Departamentos_update(mcontext,GestionUbigeo.CAPTACION_UBIGEO_MASIVO);
                         activar_accion_update2();
                         break;
+
                     case "3":
                         Listar_Departamentos_update(mcontext,GestionUbigeo.CAPTACION_UBIGEO_BARRIO);
                         activar_accion_update3();
                         break;
 
+                    case "4":
+                        Listar_Departamentos_update(mcontext,GestionUbigeo.ESTADISTICO_UBIGEO);
+                        activar_accion_update4();
+                        break;
 
                 }
 
@@ -101,6 +108,9 @@ public class UbigeoActivity extends AppCompatActivity {
                         break;
                     case "3":
                         activar_accion_nuevo3();
+                        break;
+                    case "4":
+                        activar_accion_nuevo4();
                         break;
                 }
                 break;
@@ -220,6 +230,21 @@ public class UbigeoActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void activar_accion_update4() {
+        card_guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progressDialog = new ProgressDialog(mcontext);
+                progressDialog.setTitle("Actualizacion");
+                progressDialog.setMessage("Actualizando Ubicación de Trabajo...");
+                progressDialog.setCanceledOnTouchOutside(false);
+                progressDialog.show();
+
+                Actualizar_Datos_Ubigeo(GestionUbigeo.ESTADISTICO_UBIGEO.getCodigo_modulo(), Usuario.SESION_ACTUAL.getId(),GestionUbigeo.UBIGEO_TEMP,mcontext);
+            }
+        });
+    }
     private void activar_accion_nuevo1() {
         card_guardar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -268,6 +293,22 @@ public class UbigeoActivity extends AppCompatActivity {
         });
     }
 
+    private void activar_accion_nuevo4() {
+
+        card_guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progressDialog = new ProgressDialog(mcontext);
+                progressDialog.setTitle("Registrando");
+                progressDialog.setMessage("Guardando Ubicación de Trabajo...");
+                progressDialog.setCanceledOnTouchOutside(false);
+                progressDialog.show();
+
+                Registrar_Datos_Ubigeo(GestionUbigeo.ESTADISTICO_UBIGEO.getCodigo_modulo(), Usuario.SESION_ACTUAL.getId(),GestionUbigeo.UBIGEO_TEMP,mcontext);
+            }
+        });
+    }
+
     private void Actualizar_Datos_Ubigeo(final int codigo_modulo,final int id_userr,final GestionUbigeo ubigeoTemp,final Context context) {
            String id_departamento=String.valueOf(ubigeoTemp.getDepartamento().getCodigo());
            String id_provincia=String.valueOf(ubigeoTemp.getProvincia().getCodigo());
@@ -283,12 +324,23 @@ public class UbigeoActivity extends AppCompatActivity {
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
                     if (success) {
-                        progressDialog.dismiss();
-                        Toast.makeText(context, "Ubicación actualizada correctamente!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(UbigeoActivity.this, PrincipalActivity.class);
-                        intent.putExtra("o","o1");
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        UbigeoActivity.this.startActivity(intent);
+
+                        if(MODULO.equalsIgnoreCase("4")){
+                            progressDialog.dismiss();
+                            Toast.makeText(context, "Ubicación actualizada correctamente!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(UbigeoActivity.this, PrincipalActivity.class);
+                            intent.putExtra("o","o4");
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            UbigeoActivity.this.startActivity(intent);
+                        }else{
+                            progressDialog.dismiss();
+                            Toast.makeText(context, "Ubicación actualizada correctamente!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(UbigeoActivity.this, PrincipalActivity.class);
+                            intent.putExtra("o","o1");
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            UbigeoActivity.this.startActivity(intent);
+                        }
+
 
                     }else {
                         progressDialog.dismiss();
@@ -323,12 +375,23 @@ public class UbigeoActivity extends AppCompatActivity {
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
                     if (success) {
-                        progressDialog.dismiss();
-                        Toast.makeText(context, "Ubicación Registrada correctamente!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(UbigeoActivity.this, PrincipalActivity.class);
-                        intent.putExtra("o","o1");
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        UbigeoActivity.this.startActivity(intent);
+                        if(MODULO.equalsIgnoreCase("4")){
+                            progressDialog.dismiss();
+                            Toast.makeText(context, "Ubicación Registrada correctamente!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(UbigeoActivity.this, PrincipalActivity.class);
+                            intent.putExtra("o","o4");
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            UbigeoActivity.this.startActivity(intent);
+                        }else{
+                            progressDialog.dismiss();
+                            Toast.makeText(context, "Ubicación Registrada correctamente!", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(UbigeoActivity.this, PrincipalActivity.class);
+                            intent.putExtra("o","o1");
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            UbigeoActivity.this.startActivity(intent);
+
+                        }
+
 
                     }else {
                         progressDialog.dismiss();

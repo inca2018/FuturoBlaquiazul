@@ -96,20 +96,28 @@
         <activity
             android:name=".Activities.Metodologia.ListaPersonasGrupoPruebasActivity"
             android:configChanges="screenSize|orientation" />
-        <activity android:name=".Activities.Pruebas.PruebaPsicologicaActivity"
-            android:configChanges="screenSize|orientation"/>
-        <activity android:name=".Activities.Pruebas.PruebaTacticaActivity"
-            android:configChanges="screenSize|orientation"/>
-        <activity android:name=".Activities.Pruebas.PruebaNutricionalActivity"
-            android:configChanges="screenSize|orientation"/>
-        <activity android:name=".Activities.Metodologia_Fase_Prueba.ListaPersonasFasePruebaActivity"
-            android:configChanges="screenSize|orientation"/>
-        <activity android:name=".Activities.Metodologia_Fase_Prueba.GestionPersonaFasePruebaActivity"
-            android:configChanges="screenSize|orientation"/>
-        <activity android:name=".Activities.Metodologia_Fase_Prueba.ListaPruebasDisponiblesActivity"
-            android:screenOrientation="landscape"
-            android:configChanges="screenSize|orientation">
-        </activity>
+        <activity
+            android:name=".Activities.Pruebas.PruebaPsicologicaActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".Activities.Pruebas.PruebaTacticaActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".Activities.Pruebas.PruebaNutricionalActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".Activities.Metodologia_Fase_Prueba.ListaPersonasFasePruebaActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".Activities.Metodologia_Fase_Prueba.GestionPersonaFasePruebaActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".Activities.Metodologia_Fase_Prueba.ListaPruebasDisponiblesActivity"
+            android:configChanges="screenSize|orientation"
+            android:screenOrientation="landscape" />
+        <activity android:name=".Activities.Estadistico.ListaEventosEstadisticosActivity" />
+        <activity android:name=".Activities.Estadistico.ListaFechasEstadisticosActivity" />
+        <activity android:name=".Activities.Estadistico.NuevoEventoEstadisticoActivity"></activity>
     </application>
 
 </manifest>

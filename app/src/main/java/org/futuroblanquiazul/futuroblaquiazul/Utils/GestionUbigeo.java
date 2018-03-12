@@ -21,6 +21,7 @@ public class GestionUbigeo {
     public static final GestionUbigeo CAPTACION_UBIGEO =new  GestionUbigeo();
     public static final GestionUbigeo CAPTACION_UBIGEO_MASIVO =new  GestionUbigeo();
     public static final GestionUbigeo CAPTACION_UBIGEO_BARRIO =new  GestionUbigeo();
+    public static final GestionUbigeo ESTADISTICO_UBIGEO =new  GestionUbigeo();
 
     public static final GestionUbigeo UBIGEO_TEMP=new GestionUbigeo();
 

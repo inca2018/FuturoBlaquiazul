@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/titulo1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Información de Evento:"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/blue" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp">
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/foto_perfil" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/titulo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:text="Nombre Evento:"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/info_evento_es_nombre"
+                style="@style/titulo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:textAllCaps="true"
+                android:textStyle="italic"
+                tools:text="  " />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/titulo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:text="Detalle de Evento:"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/info_evento_es_detalle"
+                style="@style/titulo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:textAllCaps="true"
+                android:textStyle="italic"
+                tools:text="  " />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/titulo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:text="Categoria Asignada:"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/info_evento_es_categoria"
+                style="@style/titulo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:textAllCaps="true"
+                android:textStyle="italic"
+                tools:text="  " />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/titulo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:text="Usuario Creador:"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/info_evento_es_usuario"
+                style="@style/titulo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:textAllCaps="true"
+                android:textStyle="italic"
+                tools:text="  " />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/titulo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:text="Ubicación de Evento:"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/info_evento_es_ubicacion"
+                style="@style/titulo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:textAllCaps="true"
+                android:textStyle="italic"
+                tools:text="  " />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/titulo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:text="Fecha de Registro:"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/info_evento_es_fecha"
+                style="@style/titulo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:textAllCaps="true"
+                android:textStyle="italic"
+                tools:text="  " />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/titulo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:text="Estado:"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/info_evento_es_estado"
+                style="@style/titulo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:textAllCaps="true"
+                android:textStyle="italic"
+                tools:text="  " />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Fragments.CaptacionFragment;
+import org.futuroblanquiazul.futuroblaquiazul.Fragments.EstadisticoFragment;
 import org.futuroblanquiazul.futuroblaquiazul.Fragments.MainFragment;
 import org.futuroblanquiazul.futuroblaquiazul.Fragments.MetodologiaFragment;
 import org.futuroblanquiazul.futuroblaquiazul.Fragments.SolicitudesFragment;
@@ -74,6 +75,8 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
 
         }else if(getIntent().getStringExtra("o").equalsIgnoreCase("o3")){
             displayView(2);
+        }else if(getIntent().getStringExtra("o").equalsIgnoreCase("o4")){
+            displayView(4);
         }
 
 
@@ -125,6 +128,11 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
         else if (id == R.id.nav_10) {
             displayView(3);
             toolbar.setTitle("Solicitudes de Usuarios");
+        }
+
+        else if (id == R.id.nav_8) {
+            displayView(4);
+            toolbar.setTitle("Estadisticos");
 
         }
 
@@ -203,6 +211,10 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
 
             case 3:
                 fragment = new SolicitudesFragment();
+                break;
+
+            case 4:
+                fragment = new EstadisticoFragment();
                 break;
 
 
