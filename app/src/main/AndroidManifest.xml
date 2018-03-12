@@ -117,7 +117,8 @@
             android:screenOrientation="landscape" />
         <activity android:name=".Activities.Estadistico.ListaEventosEstadisticosActivity" />
         <activity android:name=".Activities.Estadistico.ListaFechasEstadisticosActivity" />
-        <activity android:name=".Activities.Estadistico.NuevoEventoEstadisticoActivity"></activity>
+        <activity android:name=".Activities.Estadistico.NuevoEventoEstadisticoActivity" />
+        <activity android:name=".Activities.Estadistico.NuevaFechaEstadisticoActivity"></activity>
     </application>
 
 </manifest>

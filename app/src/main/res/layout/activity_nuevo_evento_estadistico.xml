@@ -55,6 +55,8 @@
                         style="@style/titulo2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
                         android:text="Nombre de Evento:"
                         android:textAllCaps="false" />
 
@@ -64,10 +66,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp" />
+
                     <TextView
                         style="@style/titulo2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
                         android:text="Detalle de Evento:" />
 
                     <EditText
@@ -85,6 +90,8 @@
                         style="@style/titulo2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
                         android:text="Seleccione Categoria Participante:" />
 
                     <Spinner
@@ -94,10 +101,102 @@
 
                     </Spinner>
 
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/titulo2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Fecha de Inicio:" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="4dp"
+                                android:orientation="horizontal">
+
+                                <ImageButton
+                                    android:id="@+id/nuevo_evento_fecha_inicio"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="6"
+                                    android:background="@android:color/transparent"
+                                    android:src="@mipmap/icon_calendar2" />
+
+                                <EditText
+                                    android:id="@+id/nuevo_evento_fecha_inicio_texto"
+                                    style="@style/input_texto"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="1"
+                                    android:enabled="false"
+                                    android:textAlignment="center"
+                                    android:textSize="12sp" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/titulo2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Fecha de Fin:" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="4dp"
+                                android:orientation="horizontal">
+
+                                <ImageButton
+                                    android:id="@+id/nuevo_evento_fecha_fin"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="6"
+                                    android:background="@android:color/transparent"
+                                    android:src="@mipmap/icon_calendar2" />
+
+                                <EditText
+                                    android:id="@+id/nuevo_evento_fecha_fin_texto"
+                                    style="@style/input_texto"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="1"
+                                    android:enabled="false"
+                                    android:textAlignment="center"
+                                    android:textSize="12sp" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
                     <TextView
                         style="@style/titulo2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
                         android:text="Seleccione Imagen Referencial:" />
 
                     <RelativeLayout

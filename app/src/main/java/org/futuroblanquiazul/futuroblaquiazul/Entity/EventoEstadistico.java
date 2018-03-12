@@ -18,7 +18,12 @@ public class EventoEstadistico {
     String foto;
     int estado;
     int estado2;
+    String Fecha_Inicio;
+    String Fecha_Fin;
     EventoEstadistico Evento_Temporal;
+
+    int inicio_ano,inicio_mes,inicio_dia;
+    int fin_ano,fin_mes,fin_dia;
 
 
     public static final EventoEstadistico EVENTO_TEMP=new EventoEstadistico();
@@ -36,6 +41,71 @@ public class EventoEstadistico {
 
     public void setEvento_Temporal(EventoEstadistico evento_Temporal) {
         Evento_Temporal = evento_Temporal;
+    }
+
+
+    public int getInicio_ano() {
+        return inicio_ano;
+    }
+
+    public void setInicio_ano(int inicio_ano) {
+        this.inicio_ano = inicio_ano;
+    }
+
+    public int getInicio_mes() {
+        return inicio_mes;
+    }
+
+    public void setInicio_mes(int inicio_mes) {
+        this.inicio_mes = inicio_mes;
+    }
+
+    public int getInicio_dia() {
+        return inicio_dia;
+    }
+
+    public void setInicio_dia(int inicio_dia) {
+        this.inicio_dia = inicio_dia;
+    }
+
+    public int getFin_ano() {
+        return fin_ano;
+    }
+
+    public void setFin_ano(int fin_ano) {
+        this.fin_ano = fin_ano;
+    }
+
+    public int getFin_mes() {
+        return fin_mes;
+    }
+
+    public void setFin_mes(int fin_mes) {
+        this.fin_mes = fin_mes;
+    }
+
+    public int getFin_dia() {
+        return fin_dia;
+    }
+
+    public void setFin_dia(int fin_dia) {
+        this.fin_dia = fin_dia;
+    }
+
+    public String getFecha_Inicio() {
+        return Fecha_Inicio;
+    }
+
+    public void setFecha_Inicio(String fecha_Inicio) {
+        Fecha_Inicio = fecha_Inicio;
+    }
+
+    public String getFecha_Fin() {
+        return Fecha_Fin;
+    }
+
+    public void setFecha_Fin(String fecha_Fin) {
+        Fecha_Fin = fecha_Fin;
     }
 
     public int getId() {

@@ -7,24 +7,192 @@
     android:orientation="vertical"
     tools:context="org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.ListaFechasEstadisticosActivity">
 
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_margin="8dp">
 
 
-        <TextView
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/titulo1"
-            android:text="Lista de Fechas:"
-            android:textColor="@color/blue"
-            android:textAlignment="center"/>
+            app:cardCornerRadius="10dp"
+            app:cardElevation="2dp"
+            app:cardBackgroundColor="@color/blanco"
+            android:layout_margin="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/titulo1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Detalle de Evento:"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/blue" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/fecha_evento_foto"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/foto_perfil" />
 
 
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/titulo2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:gravity="center|start"
+                                android:text="Evento:"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/fecha_nombre"
+                                style="@style/titulo2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center|start"
+                                android:text="NOMBRE DE EVENTIO"
+                                android:textStyle="italic" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/titulo2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:gravity="center|start"
+                                android:text="Categoria:"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/fecha_categoria"
+                                style="@style/titulo2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center|start"
+                                android:text="CATEGORIA 2000"
+                                android:textStyle="italic" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/titulo2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="2"
+                                android:gravity="center|start"
+                                android:text="Ubicación:"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/fecha_ubicacion"
+                                style="@style/titulo2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center|start"
+                                android:text="LIMA/LIMA/LOS OLIVOS"
+                                android:textStyle="italic" />
+
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardBackgroundColor="@color/blue"
+                    app:cardElevation="2dp"
+                    app:cardCornerRadius="10dp"
+                    android:layout_margin="8dp">
+
+                    <Button
+                        android:id="@+id/boton_nueva_fecha"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:text="AGREGAR FECHA"
+                        android:textColor="@color/blanco" />
+
+
+                </android.support.v7.widget.CardView>
+
+
+
+            </LinearLayout>
+
+
+
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fecha_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp">
+
+
+        </android.support.v7.widget.RecyclerView>
 
 
 

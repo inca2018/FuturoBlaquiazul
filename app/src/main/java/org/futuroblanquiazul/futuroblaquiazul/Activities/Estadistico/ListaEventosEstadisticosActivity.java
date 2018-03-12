@@ -121,6 +121,12 @@ public class ListaEventosEstadisticosActivity extends AppCompatActivity {
                             temp.setFoto(objeto.getString("IMAGEN"));
                             temp.setEstado(objeto.getInt("ESTADO"));
                             temp.setEstado2(objeto.getInt("ESTADO2"));
+                            temp.setInicio_ano(objeto.getInt("ANO_INICIO"));
+                            temp.setInicio_mes(objeto.getInt("MES_INICIO"));
+                            temp.setInicio_dia(objeto.getInt("DIA_INICIO"));
+                            temp.setFin_ano(objeto.getInt("ANO_FIN"));
+                            temp.setFin_mes(objeto.getInt("MES_FIN"));
+                            temp.setFin_dia(objeto.getInt("DIA_FIN"));
 
                             Lista_Eventos_Estadisticos.add(temp);
 
