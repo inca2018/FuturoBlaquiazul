@@ -50,12 +50,33 @@ public class Persona {
     int id_psico;
     String ubigeo;
 
+    String foto;
+
+
+    int estado_edicion;
 
 
     public static final Persona PERSONA_TEMP=new Persona();
 
     public Persona(){
 
+    }
+
+
+    public int getEstado_edicion() {
+        return estado_edicion;
+    }
+
+    public void setEstado_edicion(int estado_edicion) {
+        this.estado_edicion = estado_edicion;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
     public int getTotal_diagnostico() {

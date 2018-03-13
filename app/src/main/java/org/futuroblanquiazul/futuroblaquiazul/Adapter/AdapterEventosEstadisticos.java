@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.DefinirFormacionActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.DefinirPosicionesEventoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.ListaFechasEstadisticosActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.EventoEstadistico;
@@ -156,7 +157,7 @@ public class AdapterEventosEstadisticos extends RecyclerView.Adapter<AdapterEven
                             EventoEstadistico.EVENTO_TEMP.setEvento_Temporal(my_Data.get(position));
 
                             EventoEstadistico.EVENTO_TEMP.setEvento_Temporal(my_Data.get(position));
-                            Intent intent = new Intent(context, ListaFechasEstadisticosActivity.class);
+                            Intent intent = new Intent(context, DefinirFormacionActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             context.startActivity(intent);
 

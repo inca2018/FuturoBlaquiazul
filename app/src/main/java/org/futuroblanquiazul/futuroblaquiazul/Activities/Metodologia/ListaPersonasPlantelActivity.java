@@ -94,6 +94,7 @@ public class ListaPersonasPlantelActivity extends AppCompatActivity {
                             temp.setId(objeto.getInt("ID"));
                             temp.setNombre_Persona(objeto.getString("NOMBRES"));
                             temp.setApellidos_Persona(objeto.getString("APELLIDOS"));
+                            temp.setFoto(objeto.getString("FOTO"));
 
                             lista_personas.add(temp);
 

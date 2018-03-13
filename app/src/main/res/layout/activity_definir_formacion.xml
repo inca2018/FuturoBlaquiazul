@@ -39,20 +39,82 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Formación de Equipo:"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textAllCaps="true" />
 
-                    <TextView
-                        style="@style/titulo2"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Seleccione Formación de Equipo:" />
+                        android:orientation="horizontal">
 
-                    <Spinner
-                        android:id="@+id/spinner_formacion"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_weight="1">
 
-                    </Spinner>
+                            <TextView
+                                style="@style/titulo2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="Seleccione Formación de Equipo:"
+                                android:textAllCaps="true" />
+
+                            <Spinner
+                                android:id="@+id/spinner_formacion"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                            </Spinner>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_weight="1">
+
+                            <TextView
+                                style="@style/titulo2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="Relación de Jugadores:"
+                                android:textAllCaps="true" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="CATEGORIA:"
+                                    android:textAllCaps="true"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/id_equipo_edicion_formacion"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="CATEGORIA 2000"
+                                    android:textAllCaps="true"
+                                    android:textStyle="italic" />
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -80,118 +142,314 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent">
 
-                                    <ImageView
-                                        android:id="@+id/base7_5"
+
+                                    <LinearLayout
+                                        android:id="@+id/base7_5_linear"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_alignStart="@+id/base7_3"
-                                        android:layout_below="@+id/base7_2"
+                                        android:layout_alignStart="@+id/base7_3_linear"
+                                        android:layout_below="@+id/base7_2_linear"
                                         android:layout_marginBottom="270dp"
                                         android:layout_marginEnd="60dp"
                                         android:layout_marginStart="120dp"
                                         android:layout_marginTop="300dp"
+                                        android:orientation="vertical"
                                         app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintEnd_toStartOf="@+id/base7_6"
+                                        app:layout_constraintEnd_toStartOf="@+id/base7_6_linear"
                                         app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
+                                        app:layout_constraintTop_toTopOf="parent">
 
-                                    <ImageView
-                                        android:id="@+id/base7_2"
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/base7_5"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/foto_perfil" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/base7_5_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="wrap_content"
+                                            android:text="  "
+                                            android:textAlignment="center"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold"
+                                            tools:text="  " />
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:id="@+id/base7_2_linear"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_alignTop="@+id/base7_7"
+                                        android:layout_alignTop="@+id/base7_7_linear"
                                         android:layout_marginEnd="150dp"
                                         android:layout_marginStart="150dp"
 
                                         android:layout_marginTop="40dp"
-                                        app:layout_constraintBottom_toTopOf="@+id/base7_7"
+                                        android:orientation="vertical"
+                                        app:layout_constraintBottom_toTopOf="@+id/base7_7_linear"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toBottomOf="@+id/base7_1"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
+                                        app:layout_constraintTop_toBottomOf="@+id/base7_1_linear">
 
-                                    <ImageView
-                                        android:id="@+id/base7_7"
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/base7_2"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/user_default" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/base7_2_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="wrap_content"
+                                            android:text="  "
+                                            android:textAlignment="center"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold"
+                                            tools:text="  " />
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:id="@+id/base7_7_linear"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_centerVertical="true"
-
                                         android:layout_marginBottom="150dp"
                                         android:layout_marginEnd="170dp"
                                         android:layout_marginStart="170dp"
                                         android:layout_marginTop="230dp"
+                                        android:orientation="vertical"
                                         app:layout_constraintBottom_toBottomOf="parent"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toBottomOf="@+id/base7_2"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
+                                        app:layout_constraintTop_toBottomOf="@+id/base7_2_linear">
 
-                                    <ImageView
-                                        android:id="@+id/base7_1"
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/base7_7"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/foto_perfil" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/base7_7_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="wrap_content"
+                                            android:text="  "
+                                            android:textAlignment="center"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold"
+                                            tools:text="  " />
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:id="@+id/base7_1_linear"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_alignTop="@+id/base7_6"
+                                        android:layout_alignTop="@+id/base7_6_linear"
                                         android:layout_marginBottom="40dp"
                                         android:layout_marginEnd="150dp"
                                         android:layout_marginStart="150dp"
                                         android:layout_marginTop="60dp"
-                                        android:layout_toEndOf="@+id/base7_7"
-                                        app:layout_constraintBottom_toTopOf="@+id/base7_2"
+                                        android:layout_toEndOf="@+id/base7_7_linear"
+                                        android:orientation="vertical"
+                                        app:layout_constraintBottom_toTopOf="@+id/base7_2_linear"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
+                                        app:layout_constraintTop_toTopOf="parent">
 
-                                    <ImageView
-                                        android:id="@+id/base7_3"
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/base7_1"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/user_default" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/base7_1_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="wrap_content"
+                                            android:text="  "
+                                            android:textAlignment="center"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold"
+                                            tools:text="  " />
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:id="@+id/base7_3_linear"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_alignStart="@+id/base7_4"
-                                        android:layout_below="@+id/base7_4"
+                                        android:layout_alignStart="@+id/base7_4_linear"
+                                        android:layout_below="@+id/base7_4_linear"
                                         android:layout_marginBottom="300dp"
                                         android:layout_marginEnd="90dp"
                                         android:layout_marginStart="50dp"
                                         android:layout_marginTop="160dp"
+                                        android:orientation="vertical"
                                         app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintEnd_toStartOf="@+id/base7_4"
+                                        app:layout_constraintEnd_toStartOf="@+id/base7_4_linear"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent"
-                                        app:layout_constraintVertical_bias="0.086"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
+                                        app:layout_constraintVertical_bias="0.086">
 
-                                    <ImageView
-                                        android:id="@+id/base7_6"
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/base7_3"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/foto_perfil" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/base7_3_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="wrap_content"
+                                            android:text="  "
+                                            android:textAlignment="center"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold"
+                                            tools:text="  " />
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:id="@+id/base7_6_linear"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_alignParentStart="true"
-                                        android:layout_alignTop="@+id/base7_3"
+
+                                        android:layout_alignTop="@+id/base7_3_linear"
                                         android:layout_marginBottom="270dp"
                                         android:layout_marginEnd="120dp"
                                         android:layout_marginStart="60dp"
                                         android:layout_marginTop="300dp"
+                                        android:orientation="vertical"
                                         app:layout_constraintBottom_toBottomOf="parent"
                                         app:layout_constraintEnd_toEndOf="parent"
-                                        app:layout_constraintStart_toEndOf="@+id/base7_5"
-                                        app:layout_constraintTop_toTopOf="parent"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
+                                        app:layout_constraintStart_toEndOf="@+id/base7_5_linear"
+                                        app:layout_constraintTop_toTopOf="parent">
 
-                                    <ImageView
-                                        android:id="@+id/base7_4"
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/base7_6"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/foto_perfil" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/base7_6_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="wrap_content"
+                                            android:text="  "
+                                            android:textAlignment="center"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold"
+                                            tools:text="  " />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/base7_4_linear"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_alignParentTop="true"
+
                                         android:layout_centerHorizontal="true"
                                         android:layout_marginBottom="300dp"
                                         android:layout_marginEnd="50dp"
                                         android:layout_marginStart="90dp"
                                         android:layout_marginTop="160dp"
+                                        android:orientation="vertical"
                                         app:layout_constraintBottom_toBottomOf="parent"
                                         app:layout_constraintEnd_toEndOf="parent"
-                                        app:layout_constraintStart_toEndOf="@+id/base7_3"
+                                        app:layout_constraintStart_toEndOf="@+id/base7_3_linear"
                                         app:layout_constraintTop_toTopOf="parent"
-                                        app:layout_constraintVertical_bias="0.086"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
+                                        app:layout_constraintVertical_bias="0.086">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/base7_4"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/foto_perfil" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/base7_4_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="wrap_content"
+                                            android:text="  "
+                                            android:textAlignment="center"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold"
+                                            tools:text="  " />
+                                    </LinearLayout>
+
+
                                 </android.support.constraint.ConstraintLayout>
 
 
@@ -210,118 +468,307 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent">
 
-                                    <ImageView
-                                        android:id="@+id/base8_8"
+
+                                    <LinearLayout
+                                        android:id="@+id/base8_8_linear"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_alignTop="@+id/base8_7"
+                                        android:layout_alignTop="@+id/base8_7_linear"
                                         android:layout_marginBottom="120dp"
                                         android:layout_marginEnd="140dp"
                                         android:layout_marginStart="50dp"
                                         android:layout_marginTop="40dp"
-                                        android:layout_toEndOf="@+id/base8_2"
+                                        android:layout_toEndOf="@+id/base8_2_linear"
+                                        android:orientation="vertical"
                                         app:layout_constraintBottom_toBottomOf="parent"
                                         app:layout_constraintEnd_toEndOf="parent"
-                                        app:layout_constraintStart_toEndOf="@+id/base8_7"
-                                        app:layout_constraintTop_toBottomOf="@+id/base8_6"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
+                                        app:layout_constraintStart_toEndOf="@+id/base8_7_linear"
+                                        app:layout_constraintTop_toBottomOf="@+id/base8_6_linear">
 
-                                    <ImageView
-                                        android:id="@+id/base8_7"
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/base8_8"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/foto_perfil" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/base8_8_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="match_parent"
+                                            android:textAlignment="center"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:id="@+id/base8_7_linear"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_below="@+id/base8_5"
+                                        android:layout_below="@+id/base8_5_linear"
+
                                         android:layout_marginBottom="120dp"
                                         android:layout_marginEnd="50dp"
                                         android:layout_marginStart="140dp"
                                         android:layout_marginTop="40dp"
-                                        android:layout_toEndOf="@+id/base8_3"
+                                        android:layout_toEndOf="@+id/base8_3_linear"
+                                        android:orientation="vertical"
                                         app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintEnd_toStartOf="@+id/base8_8"
+                                        app:layout_constraintEnd_toStartOf="@+id/base8_8_linear"
                                         app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toBottomOf="@+id/base8_5"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
+                                        app:layout_constraintTop_toBottomOf="@+id/base8_5_linear">
 
-                                    <ImageView
-                                        android:id="@+id/base8_6"
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/base8_7"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/foto_perfil" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/base8_7_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="match_parent"
+                                            android:textAlignment="center"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:id="@+id/base8_6_linear"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_alignTop="@+id/base8_5"
+                                        android:layout_alignTop="@+id/base8_5_linear"
+
                                         android:layout_marginBottom="40dp"
                                         android:layout_marginEnd="140dp"
                                         android:layout_marginStart="50dp"
                                         android:layout_marginTop="290dp"
-                                        android:layout_toEndOf="@+id/base8_2"
-                                        app:layout_constraintBottom_toTopOf="@+id/base8_8"
+                                        android:layout_toEndOf="@+id/base8_2_linear"
+                                        android:orientation="vertical"
+                                        app:layout_constraintBottom_toTopOf="@+id/base8_8_linear"
                                         app:layout_constraintEnd_toEndOf="parent"
-                                        app:layout_constraintStart_toEndOf="@+id/base8_5"
-                                        app:layout_constraintTop_toTopOf="parent"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
+                                        app:layout_constraintStart_toEndOf="@+id/base8_5_linear"
+                                        app:layout_constraintTop_toTopOf="parent">
 
-                                    <ImageView
-                                        android:id="@+id/base8_5"
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/base8_6"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/foto_perfil" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/base8_6_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="match_parent"
+                                            android:textAlignment="center"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:id="@+id/base8_5_linear"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_alignStart="@+id/base8_7"
+                                        android:layout_alignStart="@+id/base8_7_linear"
+
                                         android:layout_centerVertical="true"
                                         android:layout_marginBottom="40dp"
                                         android:layout_marginEnd="50dp"
                                         android:layout_marginStart="140dp"
                                         android:layout_marginTop="290dp"
-                                        app:layout_constraintBottom_toTopOf="@+id/base8_7"
-                                        app:layout_constraintEnd_toStartOf="@+id/base8_6"
+                                        android:orientation="vertical"
+                                        app:layout_constraintBottom_toTopOf="@+id/base8_7_linear"
+                                        app:layout_constraintEnd_toStartOf="@+id/base8_6_linear"
                                         app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
+                                        app:layout_constraintTop_toTopOf="parent">
 
-                                    <ImageView
-                                        android:id="@+id/base8_4"
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/base8_5"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/foto_perfil" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/base8_5_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="match_parent"
+                                            android:textAlignment="center"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:id="@+id/base8_4_linear"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_alignTop="@+id/base8_2"
+                                        android:layout_alignTop="@+id/base8_2_linear"
+
                                         android:layout_marginBottom="360dp"
                                         android:layout_marginEnd="50dp"
                                         android:layout_marginStart="100dp"
-                                        android:layout_toEndOf="@+id/base8_5"
+                                        android:layout_toEndOf="@+id/base8_5_linear"
+                                        android:orientation="vertical"
                                         app:layout_constraintBottom_toBottomOf="parent"
                                         app:layout_constraintEnd_toEndOf="parent"
-                                        app:layout_constraintStart_toEndOf="@+id/base8_2"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
+                                        app:layout_constraintStart_toEndOf="@+id/base8_2_linear">
 
-                                    <ImageView
-                                        android:id="@+id/base8_3"
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/base8_4"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/foto_perfil" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/base8_4_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="match_parent"
+                                            android:textAlignment="center"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:id="@+id/base8_3_linear"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_alignStart="@+id/base8_1"
-                                        android:layout_below="@+id/base8_1"
+                                        android:layout_alignStart="@+id/base8_1_linear"
+
+                                        android:layout_below="@+id/base8_1_linear"
                                         android:layout_marginBottom="460dp"
                                         android:layout_marginEnd="150dp"
                                         android:layout_marginStart="150dp"
                                         android:layout_marginTop="40dp"
+                                        android:orientation="vertical"
                                         app:layout_constraintBottom_toBottomOf="parent"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toBottomOf="@+id/base8_1"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
+                                        app:layout_constraintTop_toBottomOf="@+id/base8_1_linear">
 
-                                    <ImageView
-                                        android:id="@+id/base8_2"
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/base8_3"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/foto_perfil" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/base8_3_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="match_parent"
+                                            android:textAlignment="center"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:id="@+id/base8_2_linear"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_alignParentStart="true"
-                                        android:layout_alignTop="@+id/base8_3"
+
+                                        android:layout_alignTop="@+id/base8_3_linear"
                                         android:layout_marginBottom="360dp"
                                         android:layout_marginEnd="100dp"
                                         android:layout_marginStart="50dp"
                                         android:layout_marginTop="190dp"
+                                        android:orientation="vertical"
                                         app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintEnd_toStartOf="@+id/base8_4"
+                                        app:layout_constraintEnd_toStartOf="@+id/base8_4_linear"
                                         app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
+                                        app:layout_constraintTop_toTopOf="parent">
 
-                                    <ImageView
-                                        android:id="@+id/base8_1"
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/base8_2"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/foto_perfil" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/base8_2_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="match_parent"
+                                            android:textAlignment="center"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:id="@+id/base8_1_linear"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_alignParentTop="true"
@@ -330,11 +777,38 @@
                                         android:layout_marginEnd="150dp"
                                         android:layout_marginStart="150dp"
                                         android:layout_marginTop="60dp"
-                                        app:layout_constraintBottom_toTopOf="@+id/base8_3"
+                                        android:orientation="vertical"
+                                        app:layout_constraintBottom_toTopOf="@+id/base8_3_linear"
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
+                                        app:layout_constraintTop_toTopOf="parent">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/base8_1"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/foto_perfil" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/base8_1_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="match_parent"
+                                            android:textAlignment="center"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+
                                 </android.support.constraint.ConstraintLayout>
 
 
@@ -358,149 +832,385 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent">
 
-                                        <ImageView
-                                            android:id="@+id/base9_4"
+                                        <LinearLayout
+                                            android:id="@+id/base9_4_linear"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:layout_alignTop="@+id/base9_8"
+                                            android:layout_alignTop="@+id/base9_8_linear"
                                             android:layout_marginBottom="350dp"
                                             android:layout_marginEnd="100dp"
                                             android:layout_marginStart="40dp"
                                             android:layout_marginTop="210dp"
-                                            android:layout_toStartOf="@+id/base9_1"
+                                            android:layout_toStartOf="@+id/base9_1_linear"
+                                            android:orientation="vertical"
                                             app:layout_constraintBottom_toBottomOf="parent"
-                                            app:layout_constraintEnd_toStartOf="@+id/base9_5"
+                                            app:layout_constraintEnd_toStartOf="@+id/base9_5_linear"
                                             app:layout_constraintStart_toStartOf="parent"
-                                            app:layout_constraintTop_toTopOf="parent"
-                                            app:srcCompat="@mipmap/icon_camiseta" />
+                                            app:layout_constraintTop_toTopOf="parent">
 
-                                        <ImageView
-                                            android:id="@+id/base9_3"
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1">
+
+                                                <de.hdodenhof.circleimageview.CircleImageView
+                                                    android:id="@+id/base9_4"
+                                                    android:layout_width="50dp"
+                                                    android:layout_height="50dp"
+                                                    android:layout_centerHorizontal="true"
+                                                    android:layout_centerVertical="true"
+                                                    android:src="@drawable/foto_perfil" />
+                                            </RelativeLayout>
+
+                                            <TextView
+                                                android:id="@+id/base9_4_text"
+                                                android:layout_width="100dp"
+                                                android:layout_height="match_parent"
+                                                android:textAllCaps="false"
+                                                android:textColor="@color/blue900"
+                                                android:textSize="10sp"
+                                                android:textStyle="bold" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/base9_3_linear"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:layout_alignStart="@+id/base9_4"
-                                            android:layout_below="@+id/base9_6"
+                                            android:layout_alignStart="@+id/base9_4_linear"
+
+                                            android:layout_below="@+id/base9_6_linear"
                                             android:layout_marginBottom="70dp"
                                             android:layout_marginEnd="100dp"
                                             android:layout_marginStart="40dp"
                                             android:layout_marginTop="120dp"
-                                            app:layout_constraintBottom_toTopOf="@+id/base9_7"
+                                            android:orientation="vertical"
+                                            app:layout_constraintBottom_toTopOf="@+id/base9_7_linear"
                                             app:layout_constraintEnd_toEndOf="parent"
-                                            app:layout_constraintStart_toEndOf="@+id/base9_2"
+                                            app:layout_constraintStart_toEndOf="@+id/base9_2_linear"
                                             app:layout_constraintTop_toTopOf="parent"
-                                            app:srcCompat="@mipmap/icon_camiseta" />
 
-                                        <ImageView
-                                            android:id="@+id/base9_2"
+                                            >
+
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1">
+
+                                                <de.hdodenhof.circleimageview.CircleImageView
+                                                    android:id="@+id/base9_3"
+                                                    android:layout_width="50dp"
+                                                    android:layout_height="50dp"
+                                                    android:layout_centerHorizontal="true"
+                                                    android:layout_centerVertical="true"
+                                                    android:src="@drawable/foto_perfil" />
+                                            </RelativeLayout>
+
+                                            <TextView
+                                                android:id="@+id/base9_3_text"
+                                                android:layout_width="100dp"
+                                                android:layout_height="match_parent"
+                                                android:textAllCaps="false"
+                                                android:textColor="@color/blue900"
+                                                android:textSize="10sp"
+                                                android:textStyle="bold" />
+                                        </LinearLayout>
+
+
+                                        <LinearLayout
+                                            android:id="@+id/base9_2_linear"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:layout_alignStart="@+id/base9_6"
-                                            android:layout_alignTop="@+id/base9_3"
+                                            android:layout_alignStart="@+id/base9_6_linear"
+
+                                            android:layout_alignTop="@+id/base9_3_linear"
                                             android:layout_marginBottom="70dp"
                                             android:layout_marginEnd="40dp"
                                             android:layout_marginStart="100dp"
                                             android:layout_marginTop="120dp"
-                                            app:layout_constraintBottom_toTopOf="@+id/base9_6"
-                                            app:layout_constraintEnd_toStartOf="@+id/base9_3"
+                                            android:orientation="vertical"
+                                            app:layout_constraintBottom_toTopOf="@+id/base9_6_linear"
+                                            app:layout_constraintEnd_toStartOf="@+id/base9_3_linear"
                                             app:layout_constraintStart_toStartOf="parent"
                                             app:layout_constraintTop_toTopOf="parent"
-                                            app:srcCompat="@mipmap/icon_camiseta" />
 
-                                        <ImageView
-                                            android:id="@+id/base9_7"
+                                            >
+
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1">
+
+                                                <de.hdodenhof.circleimageview.CircleImageView
+                                                    android:id="@+id/base9_2"
+                                                    android:layout_width="50dp"
+                                                    android:layout_height="50dp"
+                                                    android:layout_centerHorizontal="true"
+                                                    android:layout_centerVertical="true"
+                                                    android:src="@drawable/foto_perfil" />
+                                            </RelativeLayout>
+
+                                            <TextView
+                                                android:id="@+id/base9_2_text"
+                                                android:layout_width="100dp"
+                                                android:layout_height="match_parent"
+                                                android:textAllCaps="false"
+                                                android:textColor="@color/blue900"
+                                                android:textSize="10sp"
+                                                android:textStyle="bold" />
+                                        </LinearLayout>
+
+
+                                        <LinearLayout
+                                            android:id="@+id/base9_7_linear"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:layout_alignStart="@+id/base9_3"
+                                            android:layout_alignStart="@+id/base9_3_linear"
+
                                             android:layout_centerVertical="true"
                                             android:layout_marginBottom="40dp"
                                             android:layout_marginEnd="100dp"
                                             android:layout_marginStart="40dp"
                                             android:layout_marginTop="70dp"
-                                            app:layout_constraintBottom_toTopOf="@+id/base9_9"
+                                            android:orientation="vertical"
+                                            app:layout_constraintBottom_toTopOf="@+id/base9_9_linear"
                                             app:layout_constraintEnd_toEndOf="parent"
-                                            app:layout_constraintStart_toEndOf="@+id/base9_6"
-                                            app:layout_constraintTop_toBottomOf="@+id/base9_3"
-                                            app:srcCompat="@mipmap/icon_camiseta" />
+                                            app:layout_constraintStart_toEndOf="@+id/base9_6_linear"
+                                            app:layout_constraintTop_toBottomOf="@+id/base9_3_linear">
 
-                                        <ImageView
-                                            android:id="@+id/base9_6"
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1">
+
+                                                <de.hdodenhof.circleimageview.CircleImageView
+                                                    android:id="@+id/base9_7"
+                                                    android:layout_width="50dp"
+                                                    android:layout_height="50dp"
+                                                    android:layout_centerHorizontal="true"
+                                                    android:layout_centerVertical="true"
+                                                    android:src="@drawable/foto_perfil" />
+                                            </RelativeLayout>
+
+                                            <TextView
+                                                android:id="@+id/base9_7_text"
+                                                android:layout_width="100dp"
+                                                android:layout_height="match_parent"
+                                                android:textAllCaps="false"
+                                                android:textColor="@color/blue900"
+                                                android:textSize="10sp"
+                                                android:textStyle="bold" />
+                                        </LinearLayout>
+
+
+                                        <LinearLayout
+                                            android:id="@+id/base9_6_linear"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:layout_alignTop="@+id/base9_7"
+                                            android:layout_alignTop="@+id/base9_7_linear"
+
                                             android:layout_marginBottom="40dp"
                                             android:layout_marginEnd="40dp"
                                             android:layout_marginStart="100dp"
                                             android:layout_marginTop="70dp"
-                                            android:layout_toStartOf="@+id/base9_9"
-                                            app:layout_constraintBottom_toTopOf="@+id/base9_8"
-                                            app:layout_constraintEnd_toStartOf="@+id/base9_7"
+                                            android:layout_toStartOf="@+id/base9_9_linear"
+                                            android:orientation="vertical"
+                                            app:layout_constraintBottom_toTopOf="@+id/base9_8_linear"
+                                            app:layout_constraintEnd_toStartOf="@+id/base9_7_linear"
                                             app:layout_constraintStart_toStartOf="parent"
-                                            app:layout_constraintTop_toBottomOf="@+id/base9_2"
-                                            app:srcCompat="@mipmap/icon_camiseta" />
+                                            app:layout_constraintTop_toBottomOf="@+id/base9_2_linear">
 
-                                        <ImageView
-                                            android:id="@+id/base9_9"
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1">
+
+                                                <de.hdodenhof.circleimageview.CircleImageView
+                                                    android:id="@+id/base9_6"
+                                                    android:layout_width="50dp"
+                                                    android:layout_height="50dp"
+                                                    android:layout_centerHorizontal="true"
+                                                    android:layout_centerVertical="true"
+                                                    android:src="@drawable/foto_perfil" />
+                                            </RelativeLayout>
+
+                                            <TextView
+                                                android:id="@+id/base9_6_text"
+                                                android:layout_width="100dp"
+                                                android:layout_height="match_parent"
+                                                android:textAllCaps="false"
+                                                android:textColor="@color/blue900"
+                                                android:textSize="10sp"
+                                                android:textStyle="bold" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/base9_9_linear"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:layout_below="@+id/base9_8"
+                                            android:layout_below="@+id/base9_8_linear"
+
                                             android:layout_marginBottom="140dp"
                                             android:layout_marginEnd="100dp"
                                             android:layout_marginStart="40dp"
                                             android:layout_marginTop="40dp"
-                                            android:layout_toEndOf="@+id/base9_8"
+                                            android:layout_toEndOf="@+id/base9_8_linear"
+                                            android:orientation="vertical"
                                             app:layout_constraintBottom_toBottomOf="parent"
                                             app:layout_constraintEnd_toEndOf="parent"
-                                            app:layout_constraintStart_toEndOf="@+id/base9_8"
-                                            app:layout_constraintTop_toBottomOf="@+id/base9_7"
-                                            app:srcCompat="@mipmap/icon_camiseta" />
+                                            app:layout_constraintStart_toEndOf="@+id/base9_8_linear"
+                                            app:layout_constraintTop_toBottomOf="@+id/base9_7_linear"
+                                            app:srcCompat="@mipmap/icon_camiseta">
 
-                                        <ImageView
-                                            android:id="@+id/base9_8"
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1">
+
+                                                <de.hdodenhof.circleimageview.CircleImageView
+                                                    android:id="@+id/base9_9"
+                                                    android:layout_width="50dp"
+                                                    android:layout_height="50dp"
+                                                    android:layout_centerHorizontal="true"
+                                                    android:layout_centerVertical="true"
+                                                    android:src="@drawable/foto_perfil" />
+                                            </RelativeLayout>
+
+                                            <TextView
+                                                android:id="@+id/base9_9_text"
+                                                android:layout_width="100dp"
+                                                android:layout_height="match_parent"
+                                                android:textAllCaps="false"
+                                                android:textColor="@color/blue900"
+                                                android:textSize="10sp"
+                                                android:textStyle="bold" />
+                                        </LinearLayout>
+
+
+                                        <LinearLayout
+                                            android:id="@+id/base9_8_linear"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:layout_below="@+id/base9_1"
+                                            android:layout_below="@+id/base9_1_linear"
+
                                             android:layout_marginBottom="140dp"
                                             android:layout_marginEnd="40dp"
                                             android:layout_marginStart="100dp"
                                             android:layout_marginTop="40dp"
-                                            android:layout_toEndOf="@+id/base9_1"
+                                            android:layout_toEndOf="@+id/base9_1_linear"
+                                            android:orientation="vertical"
                                             app:layout_constraintBottom_toBottomOf="parent"
-                                            app:layout_constraintEnd_toStartOf="@+id/base9_9"
+                                            app:layout_constraintEnd_toStartOf="@+id/base9_9_linear"
                                             app:layout_constraintStart_toStartOf="parent"
-                                            app:layout_constraintTop_toBottomOf="@+id/base9_6"
-                                            app:srcCompat="@mipmap/icon_camiseta" />
+                                            app:layout_constraintTop_toBottomOf="@+id/base9_6_linear">
 
-                                        <ImageView
-                                            android:id="@+id/base9_5"
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1">
+
+                                                <de.hdodenhof.circleimageview.CircleImageView
+                                                    android:id="@+id/base9_8"
+                                                    android:layout_width="50dp"
+                                                    android:layout_height="50dp"
+                                                    android:layout_centerHorizontal="true"
+                                                    android:layout_centerVertical="true"
+                                                    android:src="@drawable/foto_perfil" />
+                                            </RelativeLayout>
+
+                                            <TextView
+                                                android:id="@+id/base9_8_text"
+                                                android:layout_width="100dp"
+                                                android:layout_height="match_parent"
+                                                android:textAllCaps="false"
+                                                android:textColor="@color/blue900"
+                                                android:textSize="10sp"
+                                                android:textStyle="bold" />
+                                        </LinearLayout>
+
+
+                                        <LinearLayout
+                                            android:id="@+id/base9_5_linear"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_alignParentStart="true"
-                                            android:layout_below="@+id/base9_4"
+
+                                            android:layout_below="@+id/base9_4_linear"
                                             android:layout_marginBottom="350dp"
                                             android:layout_marginEnd="40dp"
                                             android:layout_marginStart="100dp"
                                             android:layout_marginTop="210dp"
+                                            android:orientation="vertical"
                                             app:layout_constraintBottom_toBottomOf="parent"
                                             app:layout_constraintEnd_toEndOf="parent"
-                                            app:layout_constraintStart_toEndOf="@+id/base9_4"
-                                            app:layout_constraintTop_toTopOf="parent"
-                                            app:srcCompat="@mipmap/icon_camiseta" />
+                                            app:layout_constraintStart_toEndOf="@+id/base9_4_linear"
+                                            app:layout_constraintTop_toTopOf="parent">
 
-                                        <ImageView
-                                            android:id="@+id/base9_1"
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1">
+
+                                                <de.hdodenhof.circleimageview.CircleImageView
+                                                    android:id="@+id/base9_5"
+                                                    android:layout_width="50dp"
+                                                    android:layout_height="50dp"
+                                                    android:layout_centerHorizontal="true"
+                                                    android:layout_centerVertical="true"
+                                                    android:src="@drawable/foto_perfil" />
+                                            </RelativeLayout>
+
+                                            <TextView
+                                                android:id="@+id/base9_5_text"
+                                                android:layout_width="100dp"
+                                                android:layout_height="match_parent"
+                                                android:textAllCaps="false"
+                                                android:textColor="@color/blue900"
+                                                android:textSize="10sp"
+                                                android:textStyle="bold" />
+                                        </LinearLayout>
+
+
+                                        <LinearLayout
+                                            android:id="@+id/base9_1_linear"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_alignParentTop="true"
+
                                             android:layout_centerHorizontal="true"
                                             android:layout_marginBottom="540dp"
                                             android:layout_marginEnd="150dp"
                                             android:layout_marginStart="150dp"
                                             android:layout_marginTop="60dp"
+                                            android:orientation="vertical"
                                             app:layout_constraintBottom_toBottomOf="parent"
                                             app:layout_constraintEnd_toEndOf="parent"
                                             app:layout_constraintStart_toStartOf="parent"
-                                            app:layout_constraintTop_toTopOf="parent"
-                                            app:srcCompat="@mipmap/icon_camiseta" />
+                                            app:layout_constraintTop_toTopOf="parent">
+
+                                            <RelativeLayout
+                                                android:layout_width="match_parent"
+                                                android:layout_height="wrap_content"
+                                                android:layout_weight="1">
+
+                                                <de.hdodenhof.circleimageview.CircleImageView
+                                                    android:id="@+id/base9_1"
+                                                    android:layout_width="50dp"
+                                                    android:layout_height="50dp"
+                                                    android:layout_centerHorizontal="true"
+                                                    android:layout_centerVertical="true"
+                                                    android:src="@drawable/foto_perfil" />
+                                            </RelativeLayout>
+
+                                            <TextView
+                                                android:id="@+id/base9_1_text"
+                                                android:layout_width="100dp"
+                                                android:layout_height="match_parent"
+                                                android:textAllCaps="false"
+                                                android:textColor="@color/blue900"
+                                                android:textSize="10sp"
+                                                android:textStyle="bold" />
+                                        </LinearLayout>
+
                                     </android.support.constraint.ConstraintLayout>
 
                                 </RelativeLayout>
@@ -514,180 +1224,493 @@
                                 android:layout_height="600dp"
                                 android:background="@drawable/campo_vertical"
                                 android:orientation="vertical"
-                                android:visibility="visible">
+                                android:visibility="gone">
 
 
                                 <android.support.constraint.ConstraintLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent">
 
-                                    <ImageView
-                                        android:id="@+id/compete7"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignTop="@+id/compete3"
-                                        android:layout_centerHorizontal="true"
-                                        android:layout_marginBottom="240dp"
-                                        android:layout_marginEnd="40dp"
-                                        android:layout_marginStart="90dp"
-                                        app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintEnd_toStartOf="@+id/compete8"
-                                        app:layout_constraintStart_toStartOf="parent"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
 
-                                    <ImageView
-                                        android:id="@+id/compete5"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_below="@+id/compete4"
-                                        android:layout_marginBottom="80dp"
-                                        android:layout_marginEnd="40dp"
-                                        android:layout_marginStart="90dp"
-                                        android:layout_marginTop="180dp"
-                                        android:layout_toEndOf="@+id/compete2"
-                                        app:layout_constraintBottom_toTopOf="@+id/compete10"
-                                        app:layout_constraintEnd_toEndOf="parent"
-                                        app:layout_constraintStart_toEndOf="@+id/compete4"
-                                        app:layout_constraintTop_toTopOf="parent"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
-
-                                    <ImageView
-                                        android:id="@+id/compete2"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignTop="@+id/compete1"
-                                        android:layout_marginEnd="40dp"
-                                        android:layout_marginStart="90dp"
-                                        android:layout_marginTop="120dp"
-                                        android:layout_toStartOf="@+id/compete10"
-                                        app:layout_constraintEnd_toStartOf="@+id/compete3"
-                                        app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
-
-                                    <ImageView
-                                        android:id="@+id/compete3"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignTop="@+id/compete8"
-                                        android:layout_marginEnd="90dp"
-                                        android:layout_marginStart="40dp"
-                                        android:layout_marginTop="120dp"
-                                        android:layout_toStartOf="@+id/compete2"
-                                        app:layout_constraintEnd_toEndOf="parent"
-                                        app:layout_constraintStart_toEndOf="@+id/compete2"
-                                        app:layout_constraintTop_toTopOf="parent"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
-
-                                    <ImageView
-                                        android:id="@+id/compete8"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignEnd="@+id/compete6"
-                                        android:layout_below="@+id/compete11"
-                                        android:layout_marginBottom="240dp"
-                                        android:layout_marginEnd="90dp"
-                                        android:layout_marginStart="40dp"
-                                        app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintEnd_toEndOf="parent"
-                                        app:layout_constraintStart_toEndOf="@+id/compete7"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
-
-                                    <ImageView
-                                        android:id="@+id/compete9"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_centerVertical="true"
-                                        android:layout_marginBottom="130dp"
-                                        android:layout_marginEnd="120dp"
-                                        android:layout_marginStart="50dp"
-                                        android:layout_marginTop="60dp"
-                                        android:layout_toEndOf="@+id/compete3"
-                                        app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintEnd_toStartOf="@+id/compete10"
-                                        app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toBottomOf="@+id/compete4"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
-
-                                    <ImageView
-                                        android:id="@+id/compete11"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignStart="@+id/compete1"
-                                        android:layout_alignTop="@+id/compete9"
-                                        android:layout_marginBottom="100dp"
-                                        android:layout_marginEnd="120dp"
-                                        android:layout_marginStart="120dp"
-                                        android:layout_marginTop="100dp"
-                                        app:layout_constraintBottom_toBottomOf="parent"
-                                        app:layout_constraintEnd_toEndOf="parent"
-                                        app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toBottomOf="@+id/compete6"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
-
-                                    <ImageView
-                                        android:id="@+id/compete6"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignParentEnd="true"
-                                        android:layout_alignTop="@+id/compete4"
-                                        android:layout_marginBottom="100dp"
-                                        android:layout_marginEnd="280dp"
-                                        android:layout_marginStart="280dp"
-                                        android:layout_marginTop="80dp"
-                                        app:layout_constraintBottom_toTopOf="@+id/compete11"
-                                        app:layout_constraintEnd_toEndOf="parent"
-                                        app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toBottomOf="@+id/compete1"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
-
-                                    <ImageView
-                                        android:id="@+id/compete1"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_below="@+id/compete10"
-                                        android:layout_marginBottom="120dp"
-                                        android:layout_marginEnd="150dp"
-                                        android:layout_marginStart="150dp"
-                                        android:layout_marginTop="60dp"
-                                        android:layout_toEndOf="@+id/compete10"
-                                        app:layout_constraintBottom_toTopOf="@+id/compete6"
-                                        app:layout_constraintEnd_toEndOf="parent"
-                                        app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
-
-                                    <ImageView
-                                        android:id="@+id/compete4"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_alignTop="@+id/compete2"
-                                        android:layout_marginBottom="80dp"
-                                        android:layout_marginEnd="90dp"
-                                        android:layout_marginStart="40dp"
-                                        android:layout_marginTop="180dp"
-                                        android:layout_toStartOf="@+id/compete2"
-                                        app:layout_constraintBottom_toTopOf="@+id/compete9"
-                                        app:layout_constraintEnd_toStartOf="@+id/compete5"
-                                        app:layout_constraintStart_toStartOf="parent"
-                                        app:layout_constraintTop_toTopOf="parent"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
-
-                                    <ImageView
-                                        android:id="@+id/compete10"
+                                    <LinearLayout
+                                        android:id="@+id/compete7_linear"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_alignParentTop="true"
+                                        android:layout_alignTop="@+id/compete3_linear"
+
                                         android:layout_centerHorizontal="true"
-                                        android:layout_marginBottom="130dp"
-                                        android:layout_marginEnd="50dp"
+                                        android:layout_marginBottom="240dp"
+                                        android:layout_marginEnd="40dp"
+                                        android:layout_marginStart="90dp"
+                                        android:orientation="vertical"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toStartOf="@+id/compete8_linear"
+                                        app:layout_constraintStart_toStartOf="parent">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/compete7_foto"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/foto_perfil" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/compete7_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="match_parent"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:id="@+id/compete5_linear"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentTop="true"
+                                        android:layout_below="@+id/compete4_linear"
+
+                                        android:layout_marginBottom="80dp"
+                                        android:layout_marginEnd="20dp"
                                         android:layout_marginStart="120dp"
-                                        android:layout_marginTop="60dp"
+                                        android:layout_marginTop="180dp"
+                                        android:layout_toEndOf="@+id/compete2_linear"
+                                        android:orientation="vertical"
+                                        app:layout_constraintBottom_toTopOf="@+id/compete10_linear"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@+id/compete4_linear"
+                                        app:layout_constraintTop_toTopOf="parent">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/compete5_foto"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/foto_perfil" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/compete5_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="match_parent"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:id="@+id/compete2_linear"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentTop="true"
+                                        android:layout_alignTop="@+id/compete1_linear"
+
+                                        android:layout_marginEnd="40dp"
+                                        android:layout_marginStart="100dp"
+                                        android:layout_marginTop="100dp"
+                                        android:layout_toStartOf="@+id/compete10_linear"
+                                        android:orientation="vertical"
+                                        app:layout_constraintEnd_toStartOf="@+id/compete3_linear"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent">
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/compete2_foto"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/foto_perfil" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/compete2_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="match_parent"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:id="@+id/compete3_linear"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentTop="true"
+                                        android:layout_alignTop="@+id/compete8_linear"
+
+                                        android:layout_marginEnd="100dp"
+                                        android:layout_marginStart="40dp"
+                                        android:layout_marginTop="100dp"
+                                        android:layout_toStartOf="@+id/compete2_linear"
+                                        android:orientation="vertical"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@+id/compete2_linear"
+                                        app:layout_constraintTop_toTopOf="parent"
+
+                                        >
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/compete3_foto"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/foto_perfil" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/compete3_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="match_parent"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:id="@+id/compete8_linear"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignEnd="@+id/compete6_linear"
+                                        android:layout_alignParentTop="true"
+
+                                        android:layout_below="@+id/compete11_linear"
+                                        android:layout_marginBottom="240dp"
+                                        android:layout_marginEnd="90dp"
+                                        android:layout_marginStart="40dp"
+                                        android:orientation="vertical"
                                         app:layout_constraintBottom_toBottomOf="parent"
                                         app:layout_constraintEnd_toEndOf="parent"
-                                        app:layout_constraintStart_toEndOf="@+id/compete9"
-                                        app:layout_constraintTop_toBottomOf="@+id/compete5"
-                                        app:srcCompat="@mipmap/icon_camiseta" />
+                                        app:layout_constraintStart_toEndOf="@+id/compete7_linear"
+
+                                        >
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/compete8_foto"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/foto_perfil" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/compete8_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="match_parent"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:id="@+id/compete9_linear"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentTop="true"
+                                        android:layout_centerVertical="true"
+
+                                        android:layout_marginBottom="150dp"
+                                        android:layout_marginEnd="120dp"
+                                        android:layout_marginStart="50dp"
+                                        android:layout_marginTop="50dp"
+                                        android:layout_toEndOf="@+id/compete3_linear"
+                                        android:orientation="vertical"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toStartOf="@+id/compete10_linear"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/compete4_linear"
+
+                                        >
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/compete9_foto"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/foto_perfil" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/compete9_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="match_parent"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+                                    <LinearLayout
+                                        android:id="@+id/compete11_linear"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentTop="true"
+                                        android:layout_alignStart="@+id/compete1_linear"
+
+                                        android:layout_alignTop="@+id/compete9_linear"
+                                        android:layout_marginBottom="180dp"
+                                        android:layout_marginEnd="120dp"
+                                        android:layout_marginStart="120dp"
+                                        android:layout_marginTop="30dp"
+                                        android:orientation="vertical"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/compete6_linear"
+
+                                        >
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/compete11_foto"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/foto_perfil" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/compete11_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="match_parent"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:id="@+id/compete6_linear"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentEnd="true"
+                                        android:layout_alignParentTop="true"
+
+                                        android:layout_alignTop="@+id/compete4_linear"
+                                        android:layout_marginBottom="120dp"
+                                        android:layout_marginEnd="280dp"
+                                        android:layout_marginStart="280dp"
+                                        android:layout_marginTop="80dp"
+                                        android:orientation="vertical"
+                                        app:layout_constraintBottom_toTopOf="@+id/compete11_linear"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toBottomOf="@+id/compete1_linear"
+
+                                        >
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/compete6_foto"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/foto_perfil" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/compete6_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="match_parent"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:id="@+id/compete1_linear"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentTop="true"
+                                        android:layout_below="@+id/compete10_linear"
+
+                                        android:layout_marginBottom="100dp"
+                                        android:layout_marginEnd="150dp"
+                                        android:layout_marginStart="150dp"
+                                        android:layout_marginTop="60dp"
+                                        android:layout_toEndOf="@+id/compete10_linear"
+                                        android:orientation="vertical"
+                                        app:layout_constraintBottom_toTopOf="@+id/compete6_linear"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+
+                                        >
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/compete1_foto"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/foto_perfil" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/compete1_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="match_parent"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:id="@+id/compete4_linear"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentTop="true"
+                                        android:layout_alignTop="@+id/compete2_linear"
+
+                                        android:layout_marginBottom="80dp"
+                                        android:layout_marginEnd="120dp"
+                                        android:layout_marginStart="20dp"
+                                        android:layout_marginTop="180dp"
+                                        android:layout_toStartOf="@+id/compete2_linear"
+                                        android:orientation="vertical"
+                                        app:layout_constraintBottom_toTopOf="@+id/compete9_linear"
+                                        app:layout_constraintEnd_toStartOf="@+id/compete5_linear"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent"
+
+                                        >
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/compete4_foto"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/foto_perfil" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/compete4_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="match_parent"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+
+                                    <LinearLayout
+                                        android:id="@+id/compete10_linear"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentTop="true"
+
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginBottom="150dp"
+                                        android:layout_marginEnd="50dp"
+                                        android:layout_marginStart="120dp"
+                                        android:layout_marginTop="50dp"
+                                        android:orientation="vertical"
+                                        app:layout_constraintBottom_toBottomOf="parent"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toEndOf="@+id/compete9_linear"
+                                        app:layout_constraintTop_toBottomOf="@+id/compete5_linear"
+
+                                        >
+
+                                        <RelativeLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1">
+
+                                            <de.hdodenhof.circleimageview.CircleImageView
+                                                android:id="@+id/compete10_foto"
+                                                android:layout_width="50dp"
+                                                android:layout_height="50dp"
+                                                android:layout_centerHorizontal="true"
+                                                android:layout_centerVertical="true"
+                                                android:src="@drawable/foto_perfil" />
+                                        </RelativeLayout>
+
+                                        <TextView
+                                            android:id="@+id/compete10_text"
+                                            android:layout_width="100dp"
+                                            android:layout_height="match_parent"
+                                            android:textAllCaps="false"
+                                            android:textColor="@color/blue900"
+                                            android:textSize="10sp"
+                                            android:textStyle="bold" />
+                                    </LinearLayout>
+
+
                                 </android.support.constraint.ConstraintLayout>
 
 
@@ -697,7 +1720,17 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_weight="1">
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <android.support.v7.widget.RecyclerView
+                                android:id="@+id/recycler_Equipo_Edicion_Formacion"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="8dp">
+
+
+                            </android.support.v7.widget.RecyclerView>
 
 
                         </LinearLayout>

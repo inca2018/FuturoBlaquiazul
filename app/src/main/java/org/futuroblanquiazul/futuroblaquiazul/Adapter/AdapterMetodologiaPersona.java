@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;
 import org.futuroblanquiazul.futuroblaquiazul.R;
@@ -31,6 +33,7 @@ public class AdapterMetodologiaPersona extends RecyclerView.Adapter<AdapterMetod
 
         TextView nom;
         ImageView acciones;
+        ImageView metodologia_persona_foto;
 
 
         public ViewHolder(View itemView) {
@@ -38,6 +41,7 @@ public class AdapterMetodologiaPersona extends RecyclerView.Adapter<AdapterMetod
             itemView.setOnClickListener(this);
             nom=itemView.findViewById(R.id.card_metodologia_jugador);
             acciones=itemView.findViewById(R.id.metodologia_personas_acciones);
+            metodologia_persona_foto=itemView.findViewById(R.id.metodologia_persona_foto);
 
         }
         @Override
@@ -59,7 +63,7 @@ public class AdapterMetodologiaPersona extends RecyclerView.Adapter<AdapterMetod
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
         holder.nom.setText(my_Data.get(position).getNombre_Persona()+" "+my_Data.get(position).getApellidos_Persona());
-
+        Glide.with(context).load(my_Data.get(position).getFoto()).into(holder.metodologia_persona_foto);
 
     }
 
