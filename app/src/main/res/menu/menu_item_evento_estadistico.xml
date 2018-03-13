@@ -5,10 +5,18 @@
         android:id="@+id/opcion_1"
         android:title="Lista de Fechas">
     </item>
-
     <item
         android:id="@+id/opcion_3"
         android:title="Información de Evento">
+    </item>
+    <item
+        android:id="@+id/opcion_5"
+        android:title="Definir Posiciones de Jugadores">
+    </item>
+
+    <item
+        android:id="@+id/opcion_7"
+        android:title="Definir Formación de Equipo">
     </item>
 
 </menu>

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.DefinirPosicionesEventoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.ListaFechasEstadisticosActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.EventoEstadistico;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;
@@ -106,7 +107,7 @@ public class AdapterEventosEstadisticos extends RecyclerView.Adapter<AdapterEven
                             final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
                             final View dialoglayout = inflater.inflate(R.layout.area_informacion_evento_estadistico, null);
 
-                            TextView nom_evento,desc_evento,usuario_evento,ubigeo_evento,fecha_evento,estado_evento,categoria;
+                            TextView nom_evento,desc_evento,usuario_evento,ubigeo_evento,fecha_evento,estado_evento,categoria,inicio,fin;
 
                             nom_evento=dialoglayout.findViewById(R.id.info_evento_es_nombre);
                             desc_evento=dialoglayout.findViewById(R.id.info_evento_es_detalle);
@@ -115,6 +116,8 @@ public class AdapterEventosEstadisticos extends RecyclerView.Adapter<AdapterEven
                             fecha_evento=dialoglayout.findViewById(R.id.info_evento_es_fecha);
                             estado_evento=dialoglayout.findViewById(R.id.info_evento_es_estado);
                             categoria=dialoglayout.findViewById(R.id.info_evento_es_categoria);
+                            inicio=dialoglayout.findViewById(R.id.info_evento_es_fecha_inicio);
+                            fin=dialoglayout.findViewById(R.id.info_evento_es_fecha_fin);
 
                             final AlertDialog.Builder builder4 = new AlertDialog.Builder(context);
                             builder4.setView(dialoglayout);
@@ -127,6 +130,8 @@ public class AdapterEventosEstadisticos extends RecyclerView.Adapter<AdapterEven
                             ubigeo_evento.setText(my_Data.get(position).getDepartamento().getDescripcion()+"/"+my_Data.get(position).getProvincia().getDescripcion()+"/"+my_Data.get(position).getDistrito().getDescripcion());
                             fecha_evento.setText(my_Data.get(position).getFecha_Registro());
 
+                            inicio.setText(my_Data.get(position).getInicio_dia()+"/"+my_Data.get(position).getInicio_mes()+"/"+my_Data.get(position).getInicio_ano());
+                            fin.setText(my_Data.get(position).getFin_dia()+"/"+my_Data.get(position).getFin_mes()+"/"+my_Data.get(position).getFin_ano());
 
                             if(my_Data.get(position).getEstado()==1){
                                 estado_evento.setText("DISPONIBLE");
@@ -137,6 +142,23 @@ public class AdapterEventosEstadisticos extends RecyclerView.Adapter<AdapterEven
                             }
 
                             categoria.setText(my_Data.get(position).getPlantel().getNombre_categoria());
+
+                        }else if(item.getTitle().toString().equalsIgnoreCase("Definir Posiciones de Jugadores")){
+
+                            EventoEstadistico.EVENTO_TEMP.setEvento_Temporal(my_Data.get(position));
+
+                            Intent intent = new Intent(context, DefinirPosicionesEventoActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            context.startActivity(intent);
+
+                        }else if(item.getTitle().toString().equalsIgnoreCase("Definir Formación de Equipo")){
+
+                            EventoEstadistico.EVENTO_TEMP.setEvento_Temporal(my_Data.get(position));
+
+                            EventoEstadistico.EVENTO_TEMP.setEvento_Temporal(my_Data.get(position));
+                            Intent intent = new Intent(context, ListaFechasEstadisticosActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            context.startActivity(intent);
 
                         }
 

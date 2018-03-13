@@ -245,7 +245,7 @@ public class NuevoEventoEstadisticoActivity extends AppCompatActivity {
         String id_plantel=String.valueOf(eventoCreacion.getPlantel().getId());
         String foto="";
         String estado=String.valueOf(1);
-        String estado2=String.valueOf(2);
+        String estado2=String.valueOf(1);
         String fecha_inicio=String.valueOf(eventoCreacion.getFecha_Inicio());
         String fecha_fin=String.valueOf(eventoCreacion.getFecha_Fin());
 

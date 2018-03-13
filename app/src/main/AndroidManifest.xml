@@ -22,11 +22,7 @@
         <activity
             android:name=".Activities.Inicio.LoginActivity"
             android:configChanges="screenSize|orientation">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Activities.Inicio.PrincipalActivity"
@@ -118,7 +114,16 @@
         <activity android:name=".Activities.Estadistico.ListaEventosEstadisticosActivity" />
         <activity android:name=".Activities.Estadistico.ListaFechasEstadisticosActivity" />
         <activity android:name=".Activities.Estadistico.NuevoEventoEstadisticoActivity" />
-        <activity android:name=".Activities.Estadistico.NuevaFechaEstadisticoActivity"></activity>
+        <activity android:name=".Activities.Estadistico.NuevaFechaEstadisticoActivity" />
+        <activity android:name=".Activities.Estadistico.DefinirPosicionesEventoActivity" />
+        <activity android:name=".Activities.Estadistico.DefinirFormacionActivity"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
