@@ -2,6 +2,7 @@ package org.futuroblanquiazul.futuroblaquiazul.Utils;
 
 import android.app.AlertDialog;
 
+import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.R;
 
 import java.util.ArrayList;
@@ -19,11 +20,22 @@ public class Recursos_Estadistico {
     public static final List<Estadistico_Base> LISTA_BASE_9=new ArrayList<>();
     public static final List<Estadistico_Base> LISTA_BASE_COMPETETITIVA=new ArrayList<>();
 
+
+    public static  final List<Persona> LISTA_PERSONA_GENERAL =new ArrayList<>();
+    public static  final List<Persona> LISTA_PERSONA_TEMPORAL =new ArrayList<>();
+    public static  final List<Persona> LISTA_PERSONA_BASE_ACTUAL =new ArrayList<>();
+
     AlertDialog dialog;
     int codigo_base;
     int codigo_campo;
 
     public static final Recursos_Estadistico RECURSO =new Recursos_Estadistico();
+
+    List<Persona> TemporalBASE7;
+    List<Persona> TemporalBASE8;
+    List<Persona> TemporalBASE9;
+    List<Persona> TemporalBASE_COMPETITIVA;
+
 
     static{
 
@@ -105,6 +117,39 @@ public class Recursos_Estadistico {
         LISTA_BASE_COMPETETITIVA.add(
                 new Estadistico_Base(11,1,null,null,R.id.compete11_foto,null,R.id.compete11_linear,null,R.id.compete11_text,null));
 
+    }
+
+
+    public List<Persona> getTemporalBASE7() {
+        return TemporalBASE7;
+    }
+
+    public void setTemporalBASE7(List<Persona> temporalBASE7) {
+        TemporalBASE7 = temporalBASE7;
+    }
+
+    public List<Persona> getTemporalBASE8() {
+        return TemporalBASE8;
+    }
+
+    public void setTemporalBASE8(List<Persona> temporalBASE8) {
+        TemporalBASE8 = temporalBASE8;
+    }
+
+    public List<Persona> getTemporalBASE9() {
+        return TemporalBASE9;
+    }
+
+    public void setTemporalBASE9(List<Persona> temporalBASE9) {
+        TemporalBASE9 = temporalBASE9;
+    }
+
+    public List<Persona> getTemporalBASE_COMPETITIVA() {
+        return TemporalBASE_COMPETITIVA;
+    }
+
+    public void setTemporalBASE_COMPETITIVA(List<Persona> temporalBASE_COMPETITIVA) {
+        TemporalBASE_COMPETITIVA = temporalBASE_COMPETITIVA;
     }
 
     public int getCodigo_base() {

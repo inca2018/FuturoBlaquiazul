@@ -76,10 +76,16 @@ public class AdapterPlantelEdicionFormacion2 extends RecyclerView.Adapter<Adapte
                holder.accion.setOnClickListener(new View.OnClickListener() {
                    @Override
                    public void onClick(View v) {
-                       Toast.makeText(context, "click Salio", Toast.LENGTH_SHORT).show();
+
                        if(Recursos_Estadistico.RECURSO.getDialog()!=null){
                            Recursos_Estadistico.RECURSO.getDialog().dismiss();
                            DefinirFormacionActivity.DEFINIR.Actualizar_Campo(my_Data.get(position),context);
+                           Recursos_Estadistico.LISTA_PERSONA_TEMPORAL.clear();
+                           Recursos_Estadistico.LISTA_PERSONA_BASE_ACTUAL.clear();
+                           DefinirFormacionActivity.adapter.notifyDataSetChanged();
+                           DefinirFormacionActivity.DEFINIR.ReordenarLista();
+
+
                        }
 
                    }
@@ -95,5 +101,7 @@ public class AdapterPlantelEdicionFormacion2 extends RecyclerView.Adapter<Adapte
     public void debug(String msn){
         System.out.println(msn);
     }
+
+
 
 }

@@ -80,7 +80,7 @@ public class AdapterPlantelEdicionFormacion extends RecyclerView.Adapter<Adapter
 
                Glide.with(context).load(my_Data.get(position).getFoto()).into(holder.foto_jugador);
                if(my_Data.get(position).getEstado_edicion()==0){
-                   holder.estado_texto.setText("DISPONIBLE");
+                   holder.estado_texto.setText("SUPLENTE");
                    holder.color.setCardBackgroundColor(context.getResources().getColor(R.color.verde_bajo));
                }else if(my_Data.get(position).getEstado_edicion()==1){
                    holder.estado_texto.setText("TITULAR");

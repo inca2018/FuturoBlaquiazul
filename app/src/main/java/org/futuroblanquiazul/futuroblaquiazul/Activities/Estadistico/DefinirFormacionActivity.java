@@ -3,6 +3,8 @@ package org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,6 +23,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia_Fase_Prueba.GestionPersonaFasePruebaActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Pruebas.PruebaDiagnosticoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterPlantelEdicionFormacion;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterPlantelEdicionFormacion2;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.EventoEstadistico;
@@ -47,14 +51,16 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
     TextView equipo;
 
     private LinearLayoutManager linearLayout,linearLayout2;
-    private AdapterPlantelEdicionFormacion adapter;
+
     private AdapterPlantelEdicionFormacion2 adapter2;
-    List<Persona> Lista_Jugadores;
+
     List<Persona> Lista_JugadoresEdicion;
     ProgressDialog progressDialog;
     AlertDialog da;
 
     public static final DefinirFormacionActivity DEFINIR=new DefinirFormacionActivity();
+    public static final  List<Persona> Lista_Jugadores =new ArrayList<>();
+    public static  AdapterPlantelEdicionFormacion adapter = null;
 
     RecyclerView recyclerView2;
 
@@ -70,27 +76,21 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
         competetitiva=findViewById(R.id.area_campetetiva);
         recyclerView=findViewById(R.id.recycler_Equipo_Edicion_Formacion);
         equipo=findViewById(R.id.id_equipo_edicion_formacion);
-        Lista_Jugadores=new ArrayList<>();
+
         Lista_JugadoresEdicion=new ArrayList<>();
 
         linearLayout = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         linearLayout2= new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         adapter = new AdapterPlantelEdicionFormacion(this, Lista_Jugadores, new RecyclerViewOnItemClickListener() {
             public void onClick(View v, int position) {
-
             }
         });
-        adapter2 = new AdapterPlantelEdicionFormacion2(this, Lista_JugadoresEdicion, new RecyclerViewOnItemClickListener() {
+        adapter2 = new AdapterPlantelEdicionFormacion2(this,Recursos_Estadistico.LISTA_PERSONA_TEMPORAL, new RecyclerViewOnItemClickListener() {
             public void onClick(View v, int position) {
-
             }
         });
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(linearLayout);
-
-
-
-
 
         if(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal()!=null){
             equipo.setText(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getPlantel().getNombre_categoria());
@@ -98,19 +98,124 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
         }else{
             equipo.setText("No Disponible");
         }
-
-
        armar_Spinner();
-
        Gestion_Recursos();
-
        Activar_Funcionalidad();
-
        Iniciar_datos();
+       LimpiarEntradas();
+    }
+    private void LimpiarEntradas() {
+        for(int i=0;i<Recursos_Estadistico.LISTA_BASE_7.size();i++){
+            Recursos_Estadistico.LISTA_BASE_7.get(i).setPersona(null);
+            Recursos_Estadistico.LISTA_BASE_7.get(i).setEstado(1);
+        }
+        for(int i=0;i<Recursos_Estadistico.LISTA_BASE_8.size();i++){
+            Recursos_Estadistico.LISTA_BASE_8.get(i).setPersona(null);
+            Recursos_Estadistico.LISTA_BASE_8.get(i).setEstado(1);
+        }
+        for(int i=0;i<Recursos_Estadistico.LISTA_BASE_9.size();i++){
+            Recursos_Estadistico.LISTA_BASE_9.get(i).setPersona(null);
+            Recursos_Estadistico.LISTA_BASE_9.get(i).setEstado(1);
+        }
+        for(int i=0;i<Recursos_Estadistico.LISTA_BASE_COMPETETITIVA.size();i++){
+            Recursos_Estadistico.LISTA_BASE_COMPETETITIVA.get(i).setPersona(null);
+            Recursos_Estadistico.LISTA_BASE_COMPETETITIVA.get(i).setEstado(1);
+        }
+
+        Recursos_Estadistico.LISTA_PERSONA_GENERAL.clear();
+        Recursos_Estadistico.LISTA_BASE_COMPETETITIVA.clear();
+        Recursos_Estadistico.LISTA_PERSONA_BASE_ACTUAL.clear();
+
+        Lista_Jugadores.clear();
+        adapter.notifyDataSetChanged();
+    }
+
+    private void LimpiarEntradas2(int codigo) {
+
+        switch (codigo){
+            case 0:
+                for(int i=0;i<Lista_Jugadores.size();i++){
+                    Lista_Jugadores.get(i).setEstado_edicion(0);
+                }
+
+                for(int i=0;i<Lista_Jugadores.size();i++){
+                    for(int z=0;z<Recursos_Estadistico.LISTA_BASE_7.size();z++){
+                        if(Recursos_Estadistico.LISTA_BASE_7.get(z).getEstado()==2){
+                            if(Recursos_Estadistico.LISTA_BASE_7.get(z).getPersona().getId()==Lista_Jugadores.get(i).getId()){
+                                Lista_Jugadores.get(i).setEstado_edicion(1);
+                            }
+                        }
+
+                    }
+                }
+
+                ReordenarLista();
+                adapter.notifyDataSetChanged();
+                break;
+            case 1:
+
+                for(int i=0;i<Lista_Jugadores.size();i++){
+                    Lista_Jugadores.get(i).setEstado_edicion(0);
+                }
+
+                for(int i=0;i<Lista_Jugadores.size();i++){
+                    for(int z=0;z<Recursos_Estadistico.LISTA_BASE_8.size();z++){
+                        if(Recursos_Estadistico.LISTA_BASE_8.get(z).getEstado()==2){
+                            if(Recursos_Estadistico.LISTA_BASE_8.get(z).getPersona().getId()==Lista_Jugadores.get(i).getId()){
+                                Lista_Jugadores.get(i).setEstado_edicion(1);
+                            }
+                        }
+
+                    }
+                }
+
+                ReordenarLista();
+                adapter.notifyDataSetChanged();
+                break;
+            case 2:
+
+                for(int i=0;i<Lista_Jugadores.size();i++){
+                    Lista_Jugadores.get(i).setEstado_edicion(0);
+                }
+
+                for(int i=0;i<Lista_Jugadores.size();i++){
+                    for(int z=0;z<Recursos_Estadistico.LISTA_BASE_9.size();z++){
+                        if(Recursos_Estadistico.LISTA_BASE_9.get(z).getEstado()==2){
+                            if(Recursos_Estadistico.LISTA_BASE_9.get(z).getPersona().getId()==Lista_Jugadores.get(i).getId()){
+                                Lista_Jugadores.get(i).setEstado_edicion(1);
+                            }
+                        }
+
+                    }
+                }
+
+                ReordenarLista();
+                adapter.notifyDataSetChanged();
+                break;
+            case 3:
+                for(int i=0;i<Lista_Jugadores.size();i++){
+                    Lista_Jugadores.get(i).setEstado_edicion(0);
+                }
+
+                for(int i=0;i<Lista_Jugadores.size();i++){
+                    for(int z=0;z<Recursos_Estadistico.LISTA_BASE_COMPETETITIVA.size();z++){
+                        if(Recursos_Estadistico.LISTA_BASE_COMPETETITIVA.get(z).getEstado()==2){
+                            if(Recursos_Estadistico.LISTA_BASE_COMPETETITIVA.get(z).getPersona().getId()==Lista_Jugadores.get(i).getId()){
+                                Lista_Jugadores.get(i).setEstado_edicion(1);
+                            }
+                        }
+
+                    }
+                }
+
+                ReordenarLista();
+                adapter.notifyDataSetChanged();
+                break;
+        }
+
 
 
     }
-
     private void Listar_Personas_Plantel(int id, final Context context) {
 
         String id_plantel=String.valueOf(id);
@@ -140,6 +245,9 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
                             temp.setFoto(objeto.getString("FOTO"));
                             temp.setEstado_edicion(0);
                             Lista_Jugadores.add(temp);
+                            Recursos_Estadistico.LISTA_PERSONA_GENERAL.add(temp);
+
+
                         }
 
                         adapter.notifyDataSetChanged();
@@ -164,7 +272,6 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
         queue.add(xx);
 
     }
-
     private void Iniciar_datos() {
         for(int i=0;i<Recursos_Estadistico.LISTA_BASE_7.size();i++){
             Recursos_Estadistico.LISTA_BASE_7.get(i).getImageView().setImageResource(R.drawable.user_default);
@@ -180,7 +287,6 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
             Recursos_Estadistico.LISTA_BASE_COMPETETITIVA.get(i).getImageView().setImageResource(R.drawable.user_default);
         }
     }
-
     private void Activar_Funcionalidad() {
 
         for(int i=0;i<Recursos_Estadistico.LISTA_BASE_7.size();i++){
@@ -274,24 +380,29 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
                          base8.setVisibility(View.GONE);
                          base9.setVisibility(View.GONE);
                          competetitiva.setVisibility(View.GONE);
+
+                         LimpiarEntradas2(0);
                          break;
                      case 2:
                          base7.setVisibility(View.GONE);
                          base8.setVisibility(View.VISIBLE);
                          base9.setVisibility(View.GONE);
                          competetitiva.setVisibility(View.GONE);
+                         LimpiarEntradas2(1);
                          break;
                      case 3:
                          base7.setVisibility(View.GONE);
                          base8.setVisibility(View.GONE);
                          base9.setVisibility(View.VISIBLE);
                          competetitiva.setVisibility(View.GONE);
+                         LimpiarEntradas2(2);
                          break;
                      case 4:
                          base7.setVisibility(View.GONE);
                          base8.setVisibility(View.GONE);
                          base9.setVisibility(View.GONE);
                          competetitiva.setVisibility(View.VISIBLE);
+                         LimpiarEntradas2(3);
                          break;
                  }
             }
@@ -332,14 +443,16 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
             if(Recursos_Estadistico.LISTA_BASE_COMPETETITIVA.get(i).getRecurso_area()==v.getId()){
                 Mostrar_Dialog_Seleccion(Recursos_Estadistico.LISTA_BASE_COMPETETITIVA, Recursos_Estadistico.LISTA_BASE_COMPETETITIVA.get(i),context);
                 Recursos_Estadistico.RECURSO.setCodigo_base(3);
+                Toast.makeText(context, "click en :"+Recursos_Estadistico.LISTA_BASE_COMPETETITIVA.get(i).getId(), Toast.LENGTH_SHORT).show();
             }
         }
 
     }
-
-    private void Mostrar_Dialog_Seleccion(List<Estadistico_Base> listaBase7, Estadistico_Base BASE, final Context context) {
+    private void Mostrar_Dialog_Seleccion(List<Estadistico_Base> listaBase, Estadistico_Base BASE, final Context context) {
 
         Recursos_Estadistico.RECURSO.setCodigo_campo(BASE.getId());
+        Recursos_Estadistico.LISTA_PERSONA_BASE_ACTUAL.clear();
+        Recursos_Estadistico.LISTA_PERSONA_TEMPORAL.clear();
 
         final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
         final View dialoglayout = inflater.inflate(R.layout.area_seleccion_persona, null);
@@ -357,23 +470,42 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
         da=builder4.show();
 
 
+        if(linearLayout2!=null){
+            linearLayout2= new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        }
+
+        recyclerView2.setAdapter(adapter2);
+        recyclerView2.setLayoutManager(linearLayout2);
+
 
         if(BASE.getEstado()==1){
 
+             //Armar Lista Base
+                for(int rr=0;rr<listaBase.size();rr++){
+                    if(listaBase.get(rr).getEstado()==2){
+                        Recursos_Estadistico.LISTA_PERSONA_BASE_ACTUAL.add(listaBase.get(rr).getPersona());
+                    }
+                }
+             // Armar Lista Temporal
+
+                for(int f=0;f<Recursos_Estadistico.LISTA_PERSONA_GENERAL.size();f++){
+                    Recursos_Estadistico.LISTA_PERSONA_TEMPORAL.add(Recursos_Estadistico.LISTA_PERSONA_GENERAL.get(f));
+                   }
 
 
-            if(linearLayout2!=null){
-                linearLayout2= new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-            }
+                debug(" CAPACIDAD LISTA BASE ACTUAL:"+Recursos_Estadistico.LISTA_PERSONA_BASE_ACTUAL.size());
+                debug(" CAPACIDAD LISTA TEMPORAL:"+Recursos_Estadistico.LISTA_PERSONA_TEMPORAL.size());
 
-            recyclerView2.setAdapter(adapter2);
-            recyclerView2.setLayoutManager(linearLayout2);
 
-            if(Lista_JugadoresEdicion.size()!=0){
-                Lista_JugadoresEdicion.clear();
-                Listar_Personas_Edicion(listaBase7,BASE,context);
+
+            if(Recursos_Estadistico.LISTA_PERSONA_BASE_ACTUAL.size()==0){
+                    adapter2.notifyDataSetChanged();
             }else{
-                Listar_Personas_Edicion(listaBase7, BASE, context);
+                for(int y=0;y<Recursos_Estadistico.LISTA_PERSONA_BASE_ACTUAL.size();y++){
+                           RemoverPersona(Recursos_Estadistico.LISTA_PERSONA_BASE_ACTUAL.get(y));
+
+                }
+                    adapter2.notifyDataSetChanged();
             }
 
 
@@ -383,101 +515,82 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
             Glide.with(context).load(BASE.getPersona().getFoto()).into(foto);
             jugador.setText(BASE.getPersona().getNombre_Persona()+" "+BASE.getPersona().getApellidos_Persona());
 
-            if(linearLayout2!=null){
-                linearLayout2= new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+            Actualizar_Persona_Cambiada(BASE);
+
+            //Armar Lista Base
+            for(int rr=0;rr<listaBase.size();rr++){
+                if(listaBase.get(rr).getEstado()==2){
+                    Recursos_Estadistico.LISTA_PERSONA_BASE_ACTUAL.add(listaBase.get(rr).getPersona());
+                }
+            }
+            // Armar Lista Temporal
+
+            for(int f=0;f<Recursos_Estadistico.LISTA_PERSONA_GENERAL.size();f++){
+                Recursos_Estadistico.LISTA_PERSONA_TEMPORAL.add(Recursos_Estadistico.LISTA_PERSONA_GENERAL.get(f));
             }
 
 
+            debug(" CAPACIDAD LISTA BASE ACTUAL:"+Recursos_Estadistico.LISTA_PERSONA_BASE_ACTUAL.size());
+            debug(" CAPACIDAD LISTA TEMPORAL:"+Recursos_Estadistico.LISTA_PERSONA_TEMPORAL.size());
 
-            recyclerView2.setAdapter(adapter2);
-            recyclerView2.setLayoutManager(linearLayout2);
 
-            if(Lista_JugadoresEdicion.size()!=0){
-                Lista_JugadoresEdicion.clear();
-                Listar_Personas_Edicion(listaBase7,BASE,context);
+
+            if(Recursos_Estadistico.LISTA_PERSONA_BASE_ACTUAL.size()==0){
+                adapter2.notifyDataSetChanged();
             }else{
-                Listar_Personas_Edicion(listaBase7, BASE, context);
+                for(int y=0;y<Recursos_Estadistico.LISTA_PERSONA_BASE_ACTUAL.size();y++){
+                    RemoverPersona(Recursos_Estadistico.LISTA_PERSONA_BASE_ACTUAL.get(y));
+
+                }
+                adapter2.notifyDataSetChanged();
             }
-
-
         }
-
-
 
         Recursos_Estadistico.RECURSO.setDialog(da);
     }
-
-    private void Listar_Personas_Edicion(final List<Estadistico_Base> listaBase7, final Estadistico_Base BASE, final Context context) {
-        if(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal()!=null){
-            String id_plantel=String.valueOf(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getPlantel().getId());
-
-
-            progressDialog = new ProgressDialog(context);
-            progressDialog.setTitle("Estadistico:");
-            progressDialog.setMessage("Listando Jugadores...");
-            progressDialog.show();
-
-            com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-
-                    try {
-                        JSONObject jsonResponse = new JSONObject(response);
-                        boolean success = jsonResponse.getBoolean("success");
-
-                        if (success) {
-                            JSONArray departamentos=jsonResponse.getJSONArray("personas2");
-                            for(int i=0;i<departamentos.length();i++){
-                                JSONObject objeto= departamentos.getJSONObject(i);
-                                Persona temp=new Persona();
-                                temp.setId(objeto.getInt("ID"));
-                                temp.setNombre_Persona(objeto.getString("NOMBRES"));
-                                temp.setApellidos_Persona(objeto.getString("APELLIDOS"));
-                                temp.setFoto(objeto.getString("FOTO"));
-                                temp.setEstado_edicion(0);
-
-                                if(BASE.getPersona()!=null){
-                                        if(BASE.getPersona().getId()!=temp.getId()){
-                                            for(int x=0;x<listaBase7.size();x++){
-                                                if(listaBase7.get(x).getPersona()!=null){
-                                                    if(listaBase7.get(x).getPersona().getId()!=temp.getId()){
-                                                        Lista_JugadoresEdicion.add(temp);
-                                                    }
-                                                }
-
-                                            }
-                                        }
-                                }else{
-                                    Lista_JugadoresEdicion.add(temp);
-                                }
-                            }
-
-                            adapter2.notifyDataSetChanged();
-
-                            progressDialog.dismiss();
-
-                            System.out.println("LISTADO COMPLETO DE JUGADORES");
-                        } else {
-                            progressDialog.dismiss();
-                            Toast.makeText(context, "Listado Vacio", Toast.LENGTH_SHORT).show();
-                        }
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        System.out.println("Inca  : Error de conexion al recuperar departamentos :"+e);
-                    }
-                }
-            };
-
-            RecuperarPersonasPlantel2 xx = new RecuperarPersonasPlantel2(id_plantel,responseListener);
-            RequestQueue queue = Volley.newRequestQueue(context);
-            queue.add(xx);
-        }else{
-            Toast.makeText(context, "No se encontro Codigo del Plantel", Toast.LENGTH_SHORT).show();
+    private void Actualizar_Persona_Cambiada(Estadistico_Base base) {
+       debug("entro a cambiada");
+        for(int i=0;i<Lista_Jugadores.size();i++){
+            if(Lista_Jugadores.get(i).getId()==base.getPersona().getId()){
+                Lista_Jugadores.get(i).setEstado_edicion(0);
+                //adapter.notifyDataSetChanged();
+                debug("actualizo a cambiada");
+            }
         }
 
     }
+    public void ReordenarLista(){
+           List<Persona> TEMP=new ArrayList<>();
+          for(int i=0;i<Lista_Jugadores.size();i++){
+            if(Lista_Jugadores.get(i).getEstado_edicion()==1){
+                TEMP.add(Lista_Jugadores.get(i));
+            }
+         }
+        for(int i=0;i<Lista_Jugadores.size();i++){
+            if(Lista_Jugadores.get(i).getEstado_edicion()==0){
+                TEMP.add(Lista_Jugadores.get(i));
+            }
+        }
 
+        Lista_Jugadores.clear();
+
+       for(int t=0;t<TEMP.size();t++){
+           Lista_Jugadores.add(TEMP.get(t));
+       }
+
+       adapter.notifyDataSetChanged();
+
+
+
+    }
+    private void RemoverPersona(Persona persona) {
+
+       for(int i=0;i<Recursos_Estadistico.LISTA_PERSONA_TEMPORAL.size();i++){
+            if(Recursos_Estadistico.LISTA_PERSONA_TEMPORAL.get(i).getId()==persona.getId()){
+                Recursos_Estadistico.LISTA_PERSONA_TEMPORAL.remove(i);
+            }
+       }
+    }
     public void Actualizar_Campo(Persona p, Context context2){
 
         switch (Recursos_Estadistico.RECURSO.getCodigo_base()){
@@ -489,8 +602,11 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
                         Glide.with(context2).load(p.getFoto()).into( Recursos_Estadistico.LISTA_BASE_7.get(i).getImageView());
                         Recursos_Estadistico.LISTA_BASE_7.get(i).setEstado(2);
                         Recursos_Estadistico.LISTA_BASE_7.get(i).setPersona(p);
+                        Actualizar_lista_general(0,p);
+
                     }
                 }
+
                 break;
             case 1:
                 for(int i=0;i<Recursos_Estadistico.LISTA_BASE_8.size();i++){
@@ -499,8 +615,11 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
                         Glide.with(context2).load(p.getFoto()).into( Recursos_Estadistico.LISTA_BASE_8.get(i).getImageView());
                         Recursos_Estadistico.LISTA_BASE_8.get(i).setEstado(2);
                         Recursos_Estadistico.LISTA_BASE_8.get(i).setPersona(p);
+                        Actualizar_lista_general(1,p);
+
                     }
                 }
+
                 break;
             case 2:
                 for(int i=0;i<Recursos_Estadistico.LISTA_BASE_9.size();i++){
@@ -509,8 +628,11 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
                         Glide.with(context2).load(p.getFoto()).into( Recursos_Estadistico.LISTA_BASE_9.get(i).getImageView());
                         Recursos_Estadistico.LISTA_BASE_9.get(i).setEstado(2);
                         Recursos_Estadistico.LISTA_BASE_9.get(i).setPersona(p);
+                        Actualizar_lista_general(2,p);
+
                     }
                 }
+
                 break;
             case 3:
                 for(int i=0;i<Recursos_Estadistico.LISTA_BASE_COMPETETITIVA.size();i++){
@@ -519,11 +641,57 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
                         Glide.with(context2).load(p.getFoto()).into( Recursos_Estadistico.LISTA_BASE_COMPETETITIVA.get(i).getImageView());
                         Recursos_Estadistico.LISTA_BASE_COMPETETITIVA.get(i).setEstado(2);
                         Recursos_Estadistico.LISTA_BASE_COMPETETITIVA.get(i).setPersona(p);
+                        Actualizar_lista_general(3,p);
+
                     }
                 }
+
                 break;
         }
 
     }
+    private void Actualizar_lista_general(int codigo,Persona p) {
 
+
+                if(Lista_Jugadores.size()!=0){
+
+                    for(int i=0;i<Lista_Jugadores.size();i++){
+                        if(Lista_Jugadores.get(i).getId()==p.getId()){
+                            Lista_Jugadores.get(i).setEstado_edicion(1);
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+
+                }else{
+                    Toast.makeText(context, "Lista Vacia, no se puede actualizar", Toast.LENGTH_SHORT).show();
+                }
+
+
+
+    }
+    public void onBackPressed() {
+
+        final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+        builder.setTitle("Formación de Equipo")
+                .setMessage("¿Desea salir de la Gestión de Formación del Equipo?")
+                .setPositiveButton("SI",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                LimpiarEntradas();
+                                Intent intent = new Intent(DefinirFormacionActivity.this,ListaEventosEstadisticosActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                DefinirFormacionActivity.this.startActivity(intent);
+                            }
+                        })
+                .setNegativeButton("NO",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+
+        builder.show();
+    }
 }
