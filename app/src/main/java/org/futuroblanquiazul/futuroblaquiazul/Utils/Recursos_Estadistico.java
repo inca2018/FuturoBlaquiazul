@@ -31,12 +31,6 @@ public class Recursos_Estadistico {
 
     public static final Recursos_Estadistico RECURSO =new Recursos_Estadistico();
 
-    List<Persona> TemporalBASE7;
-    List<Persona> TemporalBASE8;
-    List<Persona> TemporalBASE9;
-    List<Persona> TemporalBASE_COMPETITIVA;
-
-
     static{
 
         LISTA_BASE_7.add(
@@ -120,37 +114,7 @@ public class Recursos_Estadistico {
     }
 
 
-    public List<Persona> getTemporalBASE7() {
-        return TemporalBASE7;
-    }
 
-    public void setTemporalBASE7(List<Persona> temporalBASE7) {
-        TemporalBASE7 = temporalBASE7;
-    }
-
-    public List<Persona> getTemporalBASE8() {
-        return TemporalBASE8;
-    }
-
-    public void setTemporalBASE8(List<Persona> temporalBASE8) {
-        TemporalBASE8 = temporalBASE8;
-    }
-
-    public List<Persona> getTemporalBASE9() {
-        return TemporalBASE9;
-    }
-
-    public void setTemporalBASE9(List<Persona> temporalBASE9) {
-        TemporalBASE9 = temporalBASE9;
-    }
-
-    public List<Persona> getTemporalBASE_COMPETITIVA() {
-        return TemporalBASE_COMPETITIVA;
-    }
-
-    public void setTemporalBASE_COMPETITIVA(List<Persona> temporalBASE_COMPETITIVA) {
-        TemporalBASE_COMPETITIVA = temporalBASE_COMPETITIVA;
-    }
 
     public int getCodigo_base() {
         return codigo_base;

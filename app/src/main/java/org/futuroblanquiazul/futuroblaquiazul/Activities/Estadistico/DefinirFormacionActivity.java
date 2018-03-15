@@ -122,10 +122,6 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
             Recursos_Estadistico.LISTA_BASE_COMPETETITIVA.get(i).setEstado(1);
         }
 
-        Recursos_Estadistico.LISTA_PERSONA_GENERAL.clear();
-        Recursos_Estadistico.LISTA_BASE_COMPETETITIVA.clear();
-        Recursos_Estadistico.LISTA_PERSONA_BASE_ACTUAL.clear();
-
         Lista_Jugadores.clear();
         adapter.notifyDataSetChanged();
     }
