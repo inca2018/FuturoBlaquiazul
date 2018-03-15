@@ -5,6 +5,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * Created by Jesus Inca on 13/03/2018.
@@ -117,5 +119,20 @@ public class Estadistico_Base {
 
     public void setNombre(TextView nombre) {
         Nombre = nombre;
+    }
+
+    public JSONObject getJSONObject() {
+
+
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("ID",String.valueOf(id));
+            obj.put("ESTADO",String.valueOf(estado));
+            obj.put("PERSONA_ID",String.valueOf(persona.getId()));
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return obj;
     }
 }
