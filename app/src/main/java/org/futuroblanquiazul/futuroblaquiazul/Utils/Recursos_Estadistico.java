@@ -25,6 +25,8 @@ public class Recursos_Estadistico {
     public static  final List<Persona> LISTA_PERSONA_TEMPORAL =new ArrayList<>();
     public static  final List<Persona> LISTA_PERSONA_BASE_ACTUAL =new ArrayList<>();
 
+
+
     AlertDialog dialog;
     int codigo_base;
     int codigo_campo;

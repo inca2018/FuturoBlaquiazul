@@ -1,7 +1,9 @@
 package org.futuroblanquiazul.futuroblaquiazul.Entity;
 
 
-
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Created by Jesus Inca on 24/01/2018.
@@ -54,7 +56,11 @@ public class Persona {
 
 
     int estado_edicion;
+    int numero_camiseta;
+    int id_posicion;
+    int estado_seleccion;
 
+    List<Integer> Numeros_Disponibles;
 
     public static final Persona PERSONA_TEMP=new Persona();
 
@@ -62,6 +68,62 @@ public class Persona {
 
     }
 
+
+    public List<Integer> getNumeros_Disponibles() {
+        return Numeros_Disponibles;
+}
+
+    public void setNumeros_Disponibles(List<Integer> numeros_Disponibles) {
+        Numeros_Disponibles = numeros_Disponibles;
+    }
+
+    public void Eliminar_Elemento(int elemento){
+        for(int i=0;i<this.Numeros_Disponibles.size();i++){
+            if(this.Numeros_Disponibles.get(i)==(elemento)){
+                this.Numeros_Disponibles.remove(i);
+            }
+        }
+
+        Ordenar(this.Numeros_Disponibles);
+    }
+
+    private void Ordenar(List<Integer> numeros_disponibles) {
+
+        Collections.sort(numeros_disponibles);
+    }
+
+    public void Agregar_Elemento(int elemento){
+        for(int i=0;i<this.Numeros_Disponibles.size();i++){
+                this.Numeros_Disponibles.add(elemento);
+        }
+        Ordenar(this.Numeros_Disponibles);
+    }
+
+
+
+    public int getNumero_camiseta() {
+        return numero_camiseta;
+    }
+
+    public void setNumero_camiseta(int numero_camiseta) {
+        this.numero_camiseta = numero_camiseta;
+    }
+
+    public int getId_posicion() {
+        return id_posicion;
+    }
+
+    public void setId_posicion(int id_posicion) {
+        this.id_posicion = id_posicion;
+    }
+
+    public int getEstado_seleccion() {
+        return estado_seleccion;
+    }
+
+    public void setEstado_seleccion(int estad_seleccion) {
+        this.estado_seleccion = estad_seleccion;
+    }
 
     public int getEstado_edicion() {
         return estado_edicion;

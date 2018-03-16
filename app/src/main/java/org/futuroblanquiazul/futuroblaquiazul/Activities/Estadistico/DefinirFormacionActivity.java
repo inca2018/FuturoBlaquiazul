@@ -140,6 +140,200 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
        LimpiarEntradas();
 
 
+       Accion_Limpiar();
+
+        limpiar_grupo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId==R.id.limpiar_seleccion){
+                    estado_accion=1;
+                }else if(checkedId==R.id.limpiar_todo){
+                    estado_accion=2;
+                }
+            }
+        });
+
+
+       Accion_Guardar();
+    }
+
+    private void Accion_Guardar() {
+        definir_formacion_guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+                final View dialoglayout = inflater.inflate(R.layout.area_seleccion_guardar_formacion, null);
+
+                RadioGroup radio;
+                Button boton_guardar;
+                final AlertDialog.Builder builder4 = new AlertDialog.Builder(context);
+                builder4.setView(dialoglayout);
+                da2=builder4.show();
+
+                radio=dialoglayout.findViewById(R.id.grupo_formacion_guardar);
+                boton_guardar=dialoglayout.findViewById(R.id.guardar_definir_formacion);
+
+
+                radio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                        if(checkedId==R.id.radio_formacion7){
+                            estado_accion_guardar=1;
+
+                        }else if(checkedId==R.id.radio_formacion8){
+                            estado_accion_guardar=2;
+
+                        }else if(checkedId==R.id.radio_formacion9){
+                            estado_accion_guardar=3;
+
+                        }else if(checkedId==R.id.radio_formacionCompete){
+                            estado_accion_guardar=4;
+
+                        }
+                    }
+                });
+
+                boton_guardar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if(estado_accion_guardar!=0){
+                            switch (estado_accion_guardar){
+                                case 1:
+                                    boolean vacio=Verificar_Lista_Completo(Recursos_Estadistico.LISTA_BASE_7);
+                                    Mostrar_elementos(Recursos_Estadistico.LISTA_BASE_7);
+                                    if(vacio!=true){
+
+                                        final android.support.v7.app.AlertDialog.Builder builder4 = new android.support.v7.app.AlertDialog.Builder(context);
+                                        builder4.setTitle("Formación de Equipo")
+                                                .setMessage("¿Desea Guardar datos de  Formación (BASE 7 Jugadores)?")
+                                                .setPositiveButton("SI",
+                                                        new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+                                                                Enviar_Datos(Recursos_Estadistico.LISTA_BASE_7,1);
+
+                                                            }
+                                                        })
+                                                .setNegativeButton("NO",
+                                                        new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+                                                                dialog.dismiss();
+                                                            }
+                                                        });
+
+                                        builder4.show();
+
+                                    }else{
+                                        Toast.makeText(DefinirFormacionActivity.this, "Formación de Base 7 Jugadores no esta Completa", Toast.LENGTH_SHORT).show();
+                                    }
+                                    break;
+                                case 2:
+                                    boolean vacio2=Verificar_Lista_Completo(Recursos_Estadistico.LISTA_BASE_8);
+                                    Mostrar_elementos(Recursos_Estadistico.LISTA_BASE_8);
+                                    if(vacio2!=true){
+                                        final android.support.v7.app.AlertDialog.Builder builder4 = new android.support.v7.app.AlertDialog.Builder(context);
+                                        builder4.setTitle("Formación de Equipo")
+                                                .setMessage("¿Desea Guardar datos de  Formación (BASE 8 Jugadores)?")
+                                                .setPositiveButton("SI",
+                                                        new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+                                                                Enviar_Datos(Recursos_Estadistico.LISTA_BASE_8,2);
+
+                                                            }
+                                                        })
+                                                .setNegativeButton("NO",
+                                                        new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+                                                                dialog.dismiss();
+                                                            }
+                                                        });
+
+                                        builder4.show();
+
+                                    }else{
+                                        Toast.makeText(DefinirFormacionActivity.this, "Formación de Base 8 Jugadores no esta Completa", Toast.LENGTH_SHORT).show();
+                                    }
+                                    break;
+                                case 3:
+
+                                    boolean vacio3=Verificar_Lista_Completo(Recursos_Estadistico.LISTA_BASE_9);
+                                    Mostrar_elementos(Recursos_Estadistico.LISTA_BASE_9);
+                                    if(vacio3!=true){
+
+                                        final android.support.v7.app.AlertDialog.Builder builder4 = new android.support.v7.app.AlertDialog.Builder(context);
+                                        builder4.setTitle("Formación de Equipo")
+                                                .setMessage("¿Desea Guardar datos de  Formación (BASE 9 Jugadores)?")
+                                                .setPositiveButton("SI",
+                                                        new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+                                                                Enviar_Datos(Recursos_Estadistico.LISTA_BASE_9,3);
+
+                                                            }
+                                                        })
+                                                .setNegativeButton("NO",
+                                                        new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+                                                                dialog.dismiss();
+                                                            }
+                                                        });
+
+                                        builder4.show();
+
+                                    }else{
+                                        Toast.makeText(DefinirFormacionActivity.this, "Formación de Base 9 Jugadores no esta Completa", Toast.LENGTH_SHORT).show();
+                                    }
+                                    break;
+                                case 4:
+                                    boolean vacio4=Verificar_Lista_Completo(Recursos_Estadistico.LISTA_BASE_COMPETETITIVA);
+                                    Mostrar_elementos(Recursos_Estadistico.LISTA_BASE_COMPETETITIVA);
+                                    if(vacio4!=true){
+
+                                        final android.support.v7.app.AlertDialog.Builder builder4 = new android.support.v7.app.AlertDialog.Builder(context);
+                                        builder4.setTitle("Formación de Equipo")
+                                                .setMessage("¿Desea Guardar datos de  Formación (BASE COMPETETITIVA 11 Jugadores)?")
+                                                .setPositiveButton("SI",
+                                                        new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+                                                                Enviar_Datos(Recursos_Estadistico.LISTA_BASE_COMPETETITIVA,4);
+                                                            }
+                                                        })
+                                                .setNegativeButton("NO",
+                                                        new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+                                                                dialog.dismiss();
+                                                            }
+                                                        });
+
+                                        builder4.show();
+
+                                    }else{
+                                        Toast.makeText(DefinirFormacionActivity.this, "Formación de Base Competetitiva 11 Jugadores no esta Completa", Toast.LENGTH_SHORT).show();
+                                    }
+                                    break;
+
+
+                            }
+                        }else{
+                            Toast.makeText(DefinirFormacionActivity.this, "No se puede guardar seleccion", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+
+
+            }
+        });
+    }
+    private void Accion_Limpiar() {
         accion_limpiar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -281,195 +475,7 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
                 }
             }
         });
-
-        limpiar_grupo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if(checkedId==R.id.limpiar_seleccion){
-                    estado_accion=1;
-                }else if(checkedId==R.id.limpiar_todo){
-                    estado_accion=2;
-                }
-            }
-        });
-
-
-        definir_formacion_guardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-                final View dialoglayout = inflater.inflate(R.layout.area_seleccion_guardar_formacion, null);
-
-                RadioGroup radio;
-                Button boton_guardar;
-                final AlertDialog.Builder builder4 = new AlertDialog.Builder(context);
-                builder4.setView(dialoglayout);
-                da2=builder4.show();
-
-                radio=dialoglayout.findViewById(R.id.grupo_formacion_guardar);
-                boton_guardar=dialoglayout.findViewById(R.id.guardar_definir_formacion);
-
-
-                radio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-                        if(checkedId==R.id.radio_formacion7){
-                            estado_accion_guardar=1;
-
-                        }else if(checkedId==R.id.radio_formacion8){
-                            estado_accion_guardar=2;
-
-                        }else if(checkedId==R.id.radio_formacion9){
-                            estado_accion_guardar=3;
-
-                        }else if(checkedId==R.id.radio_formacionCompete){
-                            estado_accion_guardar=4;
-
-                        }
-                    }
-                });
-
-                boton_guardar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                       if(estado_accion_guardar!=0){
-                           switch (estado_accion_guardar){
-                               case 1:
-                                    boolean vacio=Verificar_Lista_Completo(Recursos_Estadistico.LISTA_BASE_7);
-                                      Mostrar_elementos(Recursos_Estadistico.LISTA_BASE_7);
-                                      if(vacio!=true){
-
-                                          final android.support.v7.app.AlertDialog.Builder builder4 = new android.support.v7.app.AlertDialog.Builder(context);
-                                          builder4.setTitle("Formación de Equipo")
-                                                  .setMessage("¿Desea Guardar datos de  Formación (BASE 7 Jugadores)?")
-                                                  .setPositiveButton("SI",
-                                                          new DialogInterface.OnClickListener() {
-                                                              @Override
-                                                              public void onClick(DialogInterface dialog, int which) {
-                                                                  Enviar_Datos(Recursos_Estadistico.LISTA_BASE_7,1);
-
-                                                              }
-                                                          })
-                                                  .setNegativeButton("NO",
-                                                          new DialogInterface.OnClickListener() {
-                                                              @Override
-                                                              public void onClick(DialogInterface dialog, int which) {
-                                                                  dialog.dismiss();
-                                                              }
-                                                          });
-
-                                          builder4.show();
-
-                                      }else{
-                                       Toast.makeText(DefinirFormacionActivity.this, "Formación de Base 7 Jugadores no esta Completa", Toast.LENGTH_SHORT).show();
-                                      }
-                                   break;
-                               case 2:
-                                   boolean vacio2=Verificar_Lista_Completo(Recursos_Estadistico.LISTA_BASE_8);
-                                   Mostrar_elementos(Recursos_Estadistico.LISTA_BASE_8);
-                                   if(vacio2!=true){
-                                       final android.support.v7.app.AlertDialog.Builder builder4 = new android.support.v7.app.AlertDialog.Builder(context);
-                                       builder4.setTitle("Formación de Equipo")
-                                               .setMessage("¿Desea Guardar datos de  Formación (BASE 8 Jugadores)?")
-                                               .setPositiveButton("SI",
-                                                       new DialogInterface.OnClickListener() {
-                                                           @Override
-                                                           public void onClick(DialogInterface dialog, int which) {
-                                                               Enviar_Datos(Recursos_Estadistico.LISTA_BASE_8,2);
-
-                                                           }
-                                                       })
-                                               .setNegativeButton("NO",
-                                                       new DialogInterface.OnClickListener() {
-                                                           @Override
-                                                           public void onClick(DialogInterface dialog, int which) {
-                                                               dialog.dismiss();
-                                                           }
-                                                       });
-
-                                       builder4.show();
-
-                                   }else{
-                                       Toast.makeText(DefinirFormacionActivity.this, "Formación de Base 8 Jugadores no esta Completa", Toast.LENGTH_SHORT).show();
-                                   }
-                                   break;
-                               case 3:
-
-                                   boolean vacio3=Verificar_Lista_Completo(Recursos_Estadistico.LISTA_BASE_9);
-                                   Mostrar_elementos(Recursos_Estadistico.LISTA_BASE_9);
-                                   if(vacio3!=true){
-
-                                       final android.support.v7.app.AlertDialog.Builder builder4 = new android.support.v7.app.AlertDialog.Builder(context);
-                                       builder4.setTitle("Formación de Equipo")
-                                               .setMessage("¿Desea Guardar datos de  Formación (BASE 9 Jugadores)?")
-                                               .setPositiveButton("SI",
-                                                       new DialogInterface.OnClickListener() {
-                                                           @Override
-                                                           public void onClick(DialogInterface dialog, int which) {
-                                                               Enviar_Datos(Recursos_Estadistico.LISTA_BASE_9,3);
-
-                                                           }
-                                                       })
-                                               .setNegativeButton("NO",
-                                                       new DialogInterface.OnClickListener() {
-                                                           @Override
-                                                           public void onClick(DialogInterface dialog, int which) {
-                                                               dialog.dismiss();
-                                                           }
-                                                       });
-
-                                       builder4.show();
-
-                                   }else{
-                                       Toast.makeText(DefinirFormacionActivity.this, "Formación de Base 9 Jugadores no esta Completa", Toast.LENGTH_SHORT).show();
-                                   }
-                                   break;
-                               case 4:
-                                   boolean vacio4=Verificar_Lista_Completo(Recursos_Estadistico.LISTA_BASE_COMPETETITIVA);
-                                   Mostrar_elementos(Recursos_Estadistico.LISTA_BASE_COMPETETITIVA);
-                                   if(vacio4!=true){
-
-                                       final android.support.v7.app.AlertDialog.Builder builder4 = new android.support.v7.app.AlertDialog.Builder(context);
-                                       builder4.setTitle("Formación de Equipo")
-                                               .setMessage("¿Desea Guardar datos de  Formación (BASE COMPETETITIVA 11 Jugadores)?")
-                                               .setPositiveButton("SI",
-                                                       new DialogInterface.OnClickListener() {
-                                                           @Override
-                                                           public void onClick(DialogInterface dialog, int which) {
-                                                               Enviar_Datos(Recursos_Estadistico.LISTA_BASE_COMPETETITIVA,4);
-                                                           }
-                                                       })
-                                               .setNegativeButton("NO",
-                                                       new DialogInterface.OnClickListener() {
-                                                           @Override
-                                                           public void onClick(DialogInterface dialog, int which) {
-                                                               dialog.dismiss();
-                                                           }
-                                                       });
-
-                                       builder4.show();
-
-                                   }else{
-                                       Toast.makeText(DefinirFormacionActivity.this, "Formación de Base Competetitiva 11 Jugadores no esta Completa", Toast.LENGTH_SHORT).show();
-                                   }
-                                   break;
-
-
-                           }
-                       }else{
-                           Toast.makeText(DefinirFormacionActivity.this, "No se puede guardar seleccion", Toast.LENGTH_SHORT).show();
-                       }
-                    }
-                });
-
-
-
-            }
-        });
     }
-
     private void Mostrar_elementos(List<Estadistico_Base> listaBase7) {
 
        for(int i=0;i<listaBase7.size();i++){
@@ -479,7 +485,6 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
 
        }
     }
-
     private void Enviar_Datos(List<Estadistico_Base> listaBase,int codigo_formacion) {
 
 
@@ -519,7 +524,6 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
           }
 
     }
-
     private void Actualizar_Evento(int id, final Context context) {
 
         progressDialog = new ProgressDialog(context);
@@ -564,7 +568,6 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
         queue.add(xx);
 
     }
-
     private int Buscar_Posicion(int id_persona, List<Estadistico_Base> listaBase) {
         int val=-1;
 
@@ -576,8 +579,6 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
 
         return val;
     }
-
-
     private void Guardar_Formación(Formacion myarray, final Context context) {
          String id_user=String.valueOf(myarray.getUser());
          String id_evento=String.valueOf(myarray.getEvento());
@@ -611,7 +612,6 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
     }
-
     private boolean Verificar_Lista_Completo(List<Estadistico_Base> listaBase) {
         debug("Entra a verificar");
        boolean temp=false;
