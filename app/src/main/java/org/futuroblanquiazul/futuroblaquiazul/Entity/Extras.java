@@ -77,4 +77,11 @@ public class Extras {
     public void setEstado(int estado) {
         this.estado = estado;
     }
+
+    public void Mostrar_Lista(){
+        System.out.println("-------------Persona: "+this.persona.getId()+"---------------------------------------------");
+        for(int i=0;i<this.Lista_Numeros.size();i++){
+            System.out.println("-------------Numero : "+this.Lista_Numeros.get(i)+"---------------------------------------------");
+        }
+    }
 }

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,13 +19,17 @@ import com.android.volley.toolbox.Volley;
 
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterEstadisticoPersonaNumero;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterEstadisticoPersonaPosicion;
+import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterNumero;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterPlantelEdicionFormacion;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterPlantelEdicionFormacion2;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.EventoEstadistico;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Extras;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.NumeroDisponible;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.Posicion;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarPersonasPlantel2;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarPosiciones;
 import org.futuroblanquiazul.futuroblaquiazul.R;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Estadistico;
 import org.json.JSONArray;
@@ -39,31 +44,39 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
     RecyclerView recyclerView1,recyclerView2;
     AdapterEstadisticoPersonaPosicion adapter1;
     AdapterEstadisticoPersonaNumero adapter2;
+    AdapterNumero adapter3;
     ProgressDialog progressDialog;
-    private LinearLayoutManager linearLayout,linearLayout2;
+    private LinearLayoutManager linearLayout,linearLayout2,linearlayout3;
     List<Persona> Lista_Persona_Numero,Lista_Persona_Posiciones;
-    List<Integer> Lista_Numero;
+    List<Integer> Lista_Numero,Lista_Numeros_No_Disponibles,Lista_Disponible;
     TextView equipo,evento;
     Context context;
-    Extras Temporal;
-    int num_temporal;
+    List<NumeroDisponible> Lista_Visible;
+    RecyclerView recyclerView3;
+    List<Posicion> ListaPosiciones;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_definir_posiciones_evento);
-
         recyclerView1=findViewById(R.id.recycler_gestion_jugadores_posiciones);
         recyclerView2=findViewById(R.id.recycler_gestion_jugadores_numeros);
         Lista_Persona_Numero=new ArrayList<>();
+        Lista_Numeros_No_Disponibles=new ArrayList<>();
         Lista_Persona_Posiciones=new ArrayList<>();
+        Lista_Disponible=new ArrayList<>();
         equipo=findViewById(R.id.definir_extra_categoria);
         evento=findViewById(R.id.definir_extra_evento);
+        recyclerView3=findViewById(R.id.recycler_numeros_disponibles);
+        Lista_Visible=new ArrayList<>();
+        ListaPosiciones=new ArrayList<>();
         context=this;
 
         Armar_Lista();
 
         linearLayout=new LinearLayoutManager(context, LinearLayout.VERTICAL,false);
         linearLayout2=new LinearLayoutManager(context, LinearLayout.VERTICAL,false);
+        linearlayout3=new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
 
 
         adapter1 = new AdapterEstadisticoPersonaPosicion(this, Lista_Persona_Posiciones, new RecyclerViewOnItemClickListener() {
@@ -72,9 +85,11 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
         });
         adapter2 = new AdapterEstadisticoPersonaNumero(this,Extras.LISTA_EXTRAS, new RecyclerViewOnItemClickListener() {
             public void onClick(View v, int position) {
+            }
+        });
 
-                    Temporal=adapter2.Recuperar_Modificado();
-
+        adapter3 = new AdapterNumero(this,Lista_Visible, new RecyclerViewOnItemClickListener() {
+            public void onClick(View v, int position) {
             }
         });
 
@@ -85,10 +100,22 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
         recyclerView2.setAdapter(adapter2);
         recyclerView2.setLayoutManager(linearLayout2);
 
+        recyclerView3.setAdapter(adapter3);
+        recyclerView3.setLayoutManager(linearlayout3);
+
+        for(int i=1;i<=25;i++){
+            NumeroDisponible temp=new NumeroDisponible();
+            temp.setEstado(0);
+            temp.setNumero(i);
+            Lista_Visible.add(temp);
+        }
+        adapter3.notifyDataSetChanged();
+
         if(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal()!=null){
             equipo.setText(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getPlantel().getNombre_categoria());
             evento.setText(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getDescripcion_Nombre_evento());
-            Listar_Personas_Plantel_Posicion(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getPlantel().getId(), context);
+            //Listar_Personas_Plantel_Posicion(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getPlantel().getId(), context);
+            Listar_Posiciones(context);
         }else{
             equipo.setText("No Disponible");
         }
@@ -99,113 +126,60 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
             public void onChanged() {
                 super.onChanged();
 
-                  int accion=adapter2.getAccion();
-                  if(accion==1){
-                      System.out.println("ACTUALIZAR");
-
-
-
-                  }else if(accion==2){
-                      System.out.println("NUEVO");
-
-                      Temporal=adapter2.getPersona_temp();
-                      num_temporal=adapter2.getNumero_seleccion();
-
-                      for(int i=0;i<Lista_Numero.size();i++){
-                          if(Lista_Numero.get(i)==num_temporal){
-                              Lista_Numero.remove(i);
-                          }
-                      }
-                      for(int i=0;i<Extras.LISTA_EXTRAS.size();i++){
-                              Extras.LISTA_EXTRAS.get(i).setLista_Numeros(Lista_Numero);
-                              Ordenar(Extras.LISTA_EXTRAS.get(i).getLista_Numeros());
-                      }
-
-                      for(int i=0;i<Extras.LISTA_EXTRAS.size();i++){
-                          if(Extras.LISTA_EXTRAS.get(i).getPersona().getId()==Temporal.getPersona().getId()){
-                              Agregar_Numero(Extras.LISTA_EXTRAS.get(i),num_temporal);
-                              Extras.LISTA_EXTRAS.get(i).setNumero_Camiseta(num_temporal);
-                              Extras.LISTA_EXTRAS.get(i).setEstado2(1);
-                          }
-
-                      }
-
-                      adapter2.setAccion(0);
-                      adapter2.setNumero_seleccion(0);
-                      adapter2.setPersona_temp(null);
-                      adapter2.notifyDataSetChanged();
-                  }
-
-
-
+                for(int i=0;i<Lista_Visible.size();i++){
+                    if(Encontrado_en_Disponible(Lista_Visible.get(i))){
+                        Lista_Visible.get(i).setEstado(1);
+                    }else{
+                        Lista_Visible.get(i).setEstado(0);
+                    }
+                }
+                adapter3.notifyDataSetChanged();
             }
         });
 
 
     }
-
-    private void Agregar_Numero(Extras extras, int num_temporal) {
-
-         extras.getLista_Numeros().add(num_temporal);
-         Ordenar(extras.getLista_Numeros());
+    private boolean Encontrado_en_Disponible(NumeroDisponible numeroDisponible) {
+      boolean ff=false;
+      for(int i=0;i<Recursos_Estadistico.LISTA_NUMEROS_SELECCIONADOS.size();i++){
+          if(Recursos_Estadistico.LISTA_NUMEROS_SELECCIONADOS.get(i)==numeroDisponible.getNumero()){
+            ff=true;
+          }
+      }
+      return ff;
     }
+    private boolean Encontro(int d) {
+      boolean ff=false;
 
-    private void Eliminar_Numero(Extras extras, int num_temporal) {
+      for(int i=0;i<Lista_Numeros_No_Disponibles.size();i++){
+          if(Lista_Numeros_No_Disponibles.get(i)==d){
+              ff=true;
+          }
+      }
 
-       for(int i=0;i<extras.getLista_Numeros().size();i++){
-           if(extras.getLista_Numeros().get(i)==num_temporal){
-               extras.getLista_Numeros().remove(i);
-           }else{
-               System.out.println("Num No eliminado "+extras.getLista_Numeros().get(i));
-           }
-       }
-
-       Ordenar(extras.getLista_Numeros());
-
+      return ff;
     }
-
     private void Ordenar(List<Integer> numeros_disponibles) {
         Collections.sort(numeros_disponibles);
 
     }
-
     private void Armar_Lista() {
         Lista_Numero=new ArrayList<>();
-        Lista_Numero.add(1);
-        Lista_Numero.add(2);
-        Lista_Numero.add(3);
-        Lista_Numero.add(4);
-        Lista_Numero.add(5);
-        Lista_Numero.add(6);
-        Lista_Numero.add(7);
-        Lista_Numero.add(8);
-        Lista_Numero.add(9);
-        Lista_Numero.add(10);
-        Lista_Numero.add(11);
-        Lista_Numero.add(12);
-        Lista_Numero.add(13);
-        Lista_Numero.add(14);
-        Lista_Numero.add(15);
-        Lista_Numero.add(16);
-        Lista_Numero.add(17);
-        Lista_Numero.add(18);
-        Lista_Numero.add(19);
-        Lista_Numero.add(20);
-        Lista_Numero.add(21);
-        Lista_Numero.add(22);
-        Lista_Numero.add(23);
-        Lista_Numero.add(24);
-        Lista_Numero.add(25);
+        for(int i=1;i<=25;i++){
+            Lista_Numero.add(i);
+            Lista_Disponible.add(i);
+            NumeroDisponible temp=new NumeroDisponible();
+            temp.setEstado(0);
+            temp.setNumero(i);
+
+        }
+
     }
 
     private void Listar_Personas_Plantel_Posicion(final int id,final Context context) {
 
         String id_plantel=String.valueOf(id);
 
-        progressDialog = new ProgressDialog(context);
-        progressDialog.setTitle("Estadistico:");
-        progressDialog.setMessage("Listando Jugadores...");
-        progressDialog.show();
 
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
@@ -226,6 +200,9 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
                             temp.setFoto(objeto.getString("FOTO"));
                             temp.setEstado_seleccion(0);
                             temp.setId_posicion(0);
+                            temp.setLista_Posiciones(ListaPosiciones);
+                            temp.setCodigo_posicion(0);
+                            temp.setEstado_posicion(0);
                             Lista_Persona_Posiciones.add(temp);
                             //Recursos_Estadistico.LISTA_PERSONA_GENERAL.add(temp);
                         }
@@ -249,8 +226,6 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
     }
-
-
     private void Listar_Personas_Plantel_Numero(final int id,final Context context) {
 
         String id_plantel=String.valueOf(id);
@@ -312,7 +287,51 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
         queue.add(xx);
 
     }
+    private void Listar_Posiciones(final Context context) {
+        com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
 
+
+                progressDialog = new ProgressDialog(context);
+                progressDialog.setTitle("Estadistico:");
+                progressDialog.setMessage("Listando Jugadores...");
+                progressDialog.show();
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+
+                    if (success) {
+                        JSONArray departamentos=jsonResponse.getJSONArray("posiciones");
+                        for(int i=0;i<departamentos.length();i++){
+                            JSONObject objeto= departamentos.getJSONObject(i);
+                            Posicion temp=new Posicion();
+                            temp.setId(objeto.getInt("ID"));
+                            temp.setNombre_Posicione(objeto.getString("NOMBRE_POSICION"));
+                            temp.setEstado(objeto.getInt("ESTADO"));
+                            ListaPosiciones.add(temp);
+                        }
+
+                        System.out.println("LISTA DE POSICIONES OK");
+                        Listar_Personas_Plantel_Posicion(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getPlantel().getId(), context);
+
+                    } else {
+
+                        Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error de conexion al recuperar departamentos :"+e);
+                }
+            }
+        };
+
+        RecuperarPosiciones xx = new RecuperarPosiciones(responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+    }
     public void onBackPressed() {
 
         final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);

@@ -60,14 +60,53 @@ public class Persona {
     int id_posicion;
     int estado_seleccion;
 
+    int estado_posicion;
+    int codigo_posicion;
+    int posicion_posicion;
+
     List<Integer> Numeros_Disponibles;
 
     public static final Persona PERSONA_TEMP=new Persona();
+
+    List<Posicion> Lista_Posiciones;
+
+
 
     public Persona(){
 
     }
 
+    public int getPosicion_posicion() {
+        return posicion_posicion;
+    }
+
+    public void setPosicion_posicion(int posicion_posicion) {
+        this.posicion_posicion = posicion_posicion;
+    }
+
+    public int getEstado_posicion() {
+        return estado_posicion;
+    }
+
+    public void setEstado_posicion(int estado_posicion) {
+        this.estado_posicion = estado_posicion;
+    }
+
+    public int getCodigo_posicion() {
+        return codigo_posicion;
+    }
+
+    public void setCodigo_posicion(int codigo_posicion) {
+        this.codigo_posicion = codigo_posicion;
+    }
+
+    public List<Posicion> getLista_Posiciones() {
+        return Lista_Posiciones;
+    }
+
+    public void setLista_Posiciones(List<Posicion> lista_Posiciones) {
+        Lista_Posiciones = lista_Posiciones;
+    }
 
     public List<Integer> getNumeros_Disponibles() {
         return Numeros_Disponibles;

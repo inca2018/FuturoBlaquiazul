@@ -33,8 +33,8 @@
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/card_foto_numero"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:src="@drawable/foto_perfil" />
@@ -56,8 +56,7 @@
                         android:gravity="center"
                         android:text="JESUS INCA CARDENAS"
                         android:textAlignment="center"
-                        android:textColor="@color/titulos"
-                        android:textSize="15dp" />
+                        android:textColor="@color/titulos" />
 
 
                 </LinearLayout>
@@ -65,15 +64,31 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="3">
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
 
 
                     <Spinner
                         android:id="@+id/card_espinner_numero"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
 
                     </Spinner>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5">
+
+                        <CheckBox
+                            android:id="@+id/definir_numero"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerInParent="true" />
+                    </RelativeLayout>
+
                 </LinearLayout>
 
 

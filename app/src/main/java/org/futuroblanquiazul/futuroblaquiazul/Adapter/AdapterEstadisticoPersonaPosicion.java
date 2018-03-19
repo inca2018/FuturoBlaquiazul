@@ -7,8 +7,11 @@ import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.Spinner;
@@ -43,6 +46,7 @@ public class AdapterEstadisticoPersonaPosicion extends RecyclerView.Adapter<Adap
     public Context context;
     private List<Persona> my_Data;
     ProgressDialog progressDialog;
+    private Boolean spinnerTouched = false;
     private RecyclerViewOnItemClickListener recyclerViewOnItemClickListener;
 
     public AdapterEstadisticoPersonaPosicion(Context context, List<Persona> my_Data, RecyclerViewOnItemClickListener
@@ -82,11 +86,66 @@ public class AdapterEstadisticoPersonaPosicion extends RecyclerView.Adapter<Adap
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-
+        if(my_Data.get(position).getEstado_posicion()==1){
+            holder.spinner_numero.setSelection(my_Data.get(position).getPosicion_posicion());
+        }
 
         holder.persona.setText(my_Data.get(position).getNombre_Persona()+" "+my_Data.get(position).getApellidos_Persona());
         Glide.with(context).load(my_Data.get(position).getFoto()).into(holder.foto);
 
+
+        Listar_Posiciones(holder.spinner_numero,position);
+
+
+
+        holder.spinner_numero.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                System.out.println("Check Toco.");
+                spinnerTouched = true;
+                return false;
+            }
+        });
+        holder.spinner_numero.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+
+                if (spinnerTouched){
+
+                    Object dato=parent.getItemAtPosition(pos);
+                    if(String.valueOf(dato).equalsIgnoreCase("-- SELECCIONE --")){
+                          my_Data.get(position).setEstado_posicion(0);
+                          my_Data.get(position).setCodigo_posicion(0);
+                          my_Data.get(position).setPosicion_posicion(0);
+                    }else{
+                          my_Data.get(position).setEstado_posicion(1);
+                          my_Data.get(position).setCodigo_posicion(my_Data.get(position).getLista_Posiciones().get(pos).getId());
+                          my_Data.get(position).setPosicion_posicion(pos);
+                    }
+
+                }
+                spinnerTouched=false;
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+    }
+
+    private void Listar_Posiciones(Spinner spinner_numero, int position) {
+        String [] lista_bases_numeros=new String[my_Data.get(position).getLista_Posiciones().size()+1];
+
+        for(int i=0;i<my_Data.get(position).getLista_Posiciones().size();i++){
+            lista_bases_numeros[i]=String.valueOf(my_Data.get(position).getLista_Posiciones().get(i).getNombre_Posicione()).trim();
+        }
+
+        ArrayAdapter<String> adapter_arr=new ArrayAdapter<String>(context,android.R.layout.simple_spinner_dropdown_item,lista_bases_numeros);
+        spinner_numero.setAdapter(adapter_arr);
 
     }
 

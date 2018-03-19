@@ -25,6 +25,9 @@ public class Recursos_Estadistico {
     public static  final List<Persona> LISTA_PERSONA_TEMPORAL =new ArrayList<>();
     public static  final List<Persona> LISTA_PERSONA_BASE_ACTUAL =new ArrayList<>();
 
+    public static final List<Integer> LISTA_NUMEROS_SELECCIONADOS=new ArrayList<>();
+    public static final List<Integer> LISTA_COMPLETA=new ArrayList<>();
+
 
 
     AlertDialog dialog;
@@ -34,6 +37,10 @@ public class Recursos_Estadistico {
     public static final Recursos_Estadistico RECURSO =new Recursos_Estadistico();
 
     static{
+
+        for(int i=1;i<=25;i++){
+            LISTA_COMPLETA.add(i);
+        }
 
         LISTA_BASE_7.add(
                 new Estadistico_Base(1,1,null,null,R.id.base7_1,null,R.id.base7_1_linear,null,R.id.base7_1_text,null));
