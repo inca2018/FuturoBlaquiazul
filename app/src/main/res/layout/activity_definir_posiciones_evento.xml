@@ -224,6 +224,7 @@
                         android:layout_weight="3">
 
                         <ImageButton
+                            android:id="@+id/borrar_posiciones"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
@@ -241,7 +242,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
+                    android:layout_marginRight="8dp"
                     android:layout_weight="1.2">
 
                 </android.support.v7.widget.RecyclerView>
@@ -271,6 +272,7 @@
                         android:layout_weight="3">
 
                         <ImageButton
+                            android:id="@+id/borrar_camisetas"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"

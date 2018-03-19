@@ -15,12 +15,42 @@ public class FechaEstadistico {
     String Observacion;
     int estado;
 
+
+    int cantidad_tiempos;
+    int minutos_x_tiempo;
+
+
+    FechaEstadistico fecha_actual;
+
     public final static FechaEstadistico FECHA_ESTADISTICO_TEMP=new FechaEstadistico();
     public final static FechaEstadistico FECHA_ESTADISTICO_CREACION=new FechaEstadistico();
     public FechaEstadistico(){
 
     }
 
+    public int getMinutos_x_tiempo() {
+        return minutos_x_tiempo;
+    }
+
+    public void setMinutos_x_tiempo(int minutos_x_tiempo) {
+        this.minutos_x_tiempo = minutos_x_tiempo;
+    }
+
+    public int getCantidad_tiempos() {
+        return cantidad_tiempos;
+    }
+
+    public void setCantidad_tiempos(int cantidad_tiempos) {
+        this.cantidad_tiempos = cantidad_tiempos;
+    }
+
+    public FechaEstadistico getFecha_actual() {
+        return fecha_actual;
+    }
+
+    public void setFecha_actual(FechaEstadistico fecha_actual) {
+        this.fecha_actual = fecha_actual;
+    }
 
     public int getNum() {
         return num;

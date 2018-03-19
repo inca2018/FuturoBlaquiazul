@@ -127,6 +127,8 @@ public class ListaEventosEstadisticosActivity extends AppCompatActivity {
                             temp.setFin_ano(objeto.getInt("ANO_FIN"));
                             temp.setFin_mes(objeto.getInt("MES_FIN"));
                             temp.setFin_dia(objeto.getInt("DIA_FIN"));
+                            temp.setEstado_formacion(objeto.getInt("FORMACION"));
+                            temp.setEstado_posiciones(objeto.getInt("POSICIONES"));
 
                             Lista_Eventos_Estadisticos.add(temp);
 

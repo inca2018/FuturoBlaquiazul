@@ -25,6 +25,9 @@ public class EventoEstadistico {
     int inicio_ano,inicio_mes,inicio_dia;
     int fin_ano,fin_mes,fin_dia;
 
+    int estado_formacion;
+    int estado_posiciones;
+
 
     public static final EventoEstadistico EVENTO_TEMP=new EventoEstadistico();
     public static final EventoEstadistico EVENTO_CREACION=new EventoEstadistico();
@@ -43,6 +46,21 @@ public class EventoEstadistico {
         Evento_Temporal = evento_Temporal;
     }
 
+    public int getEstado_formacion() {
+        return estado_formacion;
+    }
+
+    public void setEstado_formacion(int estado_formacion) {
+        this.estado_formacion = estado_formacion;
+    }
+
+    public int getEstado_posiciones() {
+        return estado_posiciones;
+    }
+
+    public void setEstado_posiciones(int estado_posiciones) {
+        this.estado_posiciones = estado_posiciones;
+    }
 
     public int getInicio_ano() {
         return inicio_ano;

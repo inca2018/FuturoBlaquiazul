@@ -527,8 +527,8 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
     private void Actualizar_Evento(int id, final Context context) {
 
         progressDialog = new ProgressDialog(context);
-        progressDialog.setTitle("Barrio Intimo:");
-        progressDialog.setMessage("Listando...");
+        progressDialog.setTitle("Formación Estadistico:");
+        progressDialog.setMessage("Guardando Información de Formación...");
         progressDialog.setCanceledOnTouchOutside(true);
         progressDialog.show();
     String evento=String.valueOf(id);

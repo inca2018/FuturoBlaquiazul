@@ -22,11 +22,6 @@
         <activity
             android:name=".Activities.Inicio.LoginActivity"
             android:configChanges="screenSize|orientation">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity
@@ -113,20 +108,29 @@
             android:name=".Activities.Metodologia_Fase_Prueba.GestionPersonaFasePruebaActivity"
             android:configChanges="screenSize|orientation" />
         <activity
-                  android:name=".Activities.Metodologia_Fase_Prueba.ListaPruebasDisponiblesActivity"
-                  android:configChanges="screenSize|orientation"
-                  android:screenOrientation="landscape" />
+            android:name=".Activities.Metodologia_Fase_Prueba.ListaPruebasDisponiblesActivity"
+            android:configChanges="screenSize|orientation"
+            android:screenOrientation="landscape" />
         <activity android:name=".Activities.Estadistico.ListaEventosEstadisticosActivity" />
         <activity android:name=".Activities.Estadistico.ListaFechasEstadisticosActivity" />
         <activity android:name=".Activities.Estadistico.NuevoEventoEstadisticoActivity" />
         <activity android:name=".Activities.Estadistico.NuevaFechaEstadisticoActivity" />
-        <activity android:name=".Activities.Estadistico.DefinirPosicionesEventoActivity"
-                  android:screenOrientation="landscape"
-                  android:configChanges="screenSize|orientation"/>
-        <activity android:name=".Activities.Estadistico.DefinirFormacionActivity"
-            android:screenOrientation="landscape">
+        <activity
+            android:name=".Activities.Estadistico.DefinirPosicionesEventoActivity"
+            android:configChanges="screenSize|orientation"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Activities.Estadistico.DefinirFormacionActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".Activities.Estadistico.GestionFechaEstadisticoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
+        <activity android:name=".Activities.Estadistico.DefinirTiemposActivity"></activity>
     </application>
 
 </manifest>

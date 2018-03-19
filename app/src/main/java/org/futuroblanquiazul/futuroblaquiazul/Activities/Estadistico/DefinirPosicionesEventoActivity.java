@@ -10,11 +10,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterEstadisticoPersonaNumero;
@@ -24,10 +27,17 @@ import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterPlantelEdicionForma
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterPlantelEdicionFormacion2;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.EventoEstadistico;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Extras;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.Formacion;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.NumeroDisponible;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Posicion;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.PosicionEstadistico;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActualizarEventoFormacion;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActualizarEventoFormacion2;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.GuardarFormacion;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.GuardarPosiciones;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarPersonasPlantel2;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarPosiciones;
 import org.futuroblanquiazul.futuroblaquiazul.R;
@@ -54,7 +64,10 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
     List<NumeroDisponible> Lista_Visible;
     RecyclerView recyclerView3;
     List<Posicion> ListaPosiciones;
-
+    ImageView borrar_1,borrar_2;
+    Button guardar;
+    List<PosicionEstadistico> Lista_Resultados;
+    boolean posiciones_pase=false,numeros_pase=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +83,11 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
         recyclerView3=findViewById(R.id.recycler_numeros_disponibles);
         Lista_Visible=new ArrayList<>();
         ListaPosiciones=new ArrayList<>();
+        borrar_1=findViewById(R.id.borrar_posiciones);
+        borrar_2=findViewById(R.id.borrar_camisetas);
+        guardar=findViewById(R.id.guardar_definir_posicion);
+        Lista_Resultados=new ArrayList<>();
+
         context=this;
 
         Armar_Lista();
@@ -137,8 +155,262 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
             }
         });
 
+        // POSICIONES LIMPIAR
+        borrar_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+                builder.setTitle("Posiciones del Equipo")
+                        .setMessage("¿Desea eliminar datos de posiciones seleccionadas?")
+                        .setPositiveButton("SI",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        Borrar_Datos_Posiciones();
+
+                                    }
+                                })
+                        .setNegativeButton("NO",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+
+                builder.show();
+
+            }
+        });
+
+        // CAMISETAS LIMPIAR
+        borrar_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+                builder.setTitle("Numero de Camisetas del Equipo")
+                        .setMessage("¿Desea eliminar datos de camisetas seleccionadas?")
+                        .setPositiveButton("SI",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        Borrar_Datos_Camisetas();
+
+                                    }
+                                })
+                        .setNegativeButton("NO",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+
+                builder.show();
+            }
+        });
+
+
+        guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+                builder.setTitle("Posiciones y Camisetas")
+                        .setMessage("¿Desea guardar la Información seleccionada?")
+                        .setPositiveButton("SI",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                        for(int i=0;i<Extras.LISTA_EXTRAS.size();i++){
+                                            if(Extras.LISTA_EXTRAS.get(i).getNumero_Camiseta()==0){
+                                                numeros_pase=true;
+                                            }
+                                        }
+
+                                        for(int i=0;i<Lista_Persona_Posiciones.size();i++){
+                                            if(Lista_Persona_Posiciones.get(i).getEstado_posicion()==0){
+                                                posiciones_pase=true;
+                                            }
+                                        }
+
+                                        if(numeros_pase==true && posiciones_pase==true){
+                                            Toast.makeText(context, "Debe completar Información de Posiciones y Numero de Camisetas para Continuar", Toast.LENGTH_SHORT).show();
+                                        }else{
+                                            if(numeros_pase==true){
+                                                Toast.makeText(context, "Debe Seleccionar Numero de Camisetas para todos los Integrantes del Equipo", Toast.LENGTH_SHORT).show();
+                                                numeros_pase=false;
+                                            }else{
+                                                if(posiciones_pase==true){
+                                                    Toast.makeText(context, "Debe Seleccionar Posición inicial para todos los Integrantes del Equipo", Toast.LENGTH_SHORT).show();
+                                                    posiciones_pase=false;
+                                                }else{
+                                                    Guardar_Informacion();
+                                                }
+                                            }
+
+                                        }
+
+
+                                    }
+                                })
+                        .setNegativeButton("NO",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+
+                builder.show();
+
+            }
+        });
 
     }
+
+    private void Guardar_Informacion() {
+
+          for(int i=0;i<Extras.LISTA_EXTRAS.size();i++){
+               PosicionEstadistico pos=new PosicionEstadistico();
+               pos.setPersona(Extras.LISTA_EXTRAS.get(i).getPersona());
+               pos.setNum_Camiseta(Extras.LISTA_EXTRAS.get(i).getNumero_Camiseta());
+               Lista_Resultados.add(pos);
+          }
+
+          for(int i=0;i<Lista_Resultados.size();i++){
+               Buscar_Posicion_Persona(Lista_Resultados.get(i));
+          }
+
+
+          for(int i=0;i<Lista_Resultados.size();i++){
+              Guardar_Resultados(Lista_Resultados.get(i), Usuario.SESION_ACTUAL.getId(),EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getId(),context);
+              if(i==Lista_Resultados.size()-1){
+                  Actualizar_Evento(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getId(),context);
+              }
+          }
+
+    }
+
+    private void Actualizar_Evento(int id_e,final Context context) {
+
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("Posiciones Estadistico:");
+        progressDialog.setMessage("Guardando Información...");
+        progressDialog.setCanceledOnTouchOutside(true);
+        progressDialog.show();
+        String evento=String.valueOf(id_e);
+
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+                        progressDialog.dismiss();
+                        Borrar_Datos_Camisetas();
+                        Borrar_Datos_Posiciones();
+
+                        Intent intent = new Intent(DefinirPosicionesEventoActivity.this,ListaEventosEstadisticosActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        DefinirPosicionesEventoActivity.this.startActivity(intent);
+                        Toast.makeText(context, "Información Guardada Correctamente", Toast.LENGTH_SHORT).show();
+
+                    }else {
+
+                        Toast.makeText(context, "Error de Conexion al guardar formacion", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error de Servidor:"+e);
+                }
+            }
+        };
+
+        ActualizarEventoFormacion2 xx = new ActualizarEventoFormacion2(evento, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+    }
+
+    private void Guardar_Resultados(final PosicionEstadistico posicionEstadistico, int id_u, int id_ev,final Context context) {
+
+        String id_user=String.valueOf(id_u);
+        String id_evento=String.valueOf(id_ev);
+        String id_persona=String.valueOf(posicionEstadistico.getPersona().getId());
+        String id_posicion=String.valueOf(posicionEstadistico.getPosicion().getId());
+        String num_camiseta=String.valueOf(posicionEstadistico.getNum_Camiseta());
+        String estado=String.valueOf(1);
+
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+                        System.out.println(" POSICION GUARDADA");
+                    }else {
+
+                        Toast.makeText(context, "Error de Conexion al guardar formacion", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error de Servidor:"+e);
+                }
+            }
+        };
+
+        GuardarPosiciones xx = new GuardarPosiciones(id_user,id_evento,id_persona,id_posicion,num_camiseta,estado, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+    }
+
+    private void Buscar_Posicion_Persona(PosicionEstadistico posicionEstadistico) {
+
+        for(int i=0;i<Lista_Persona_Posiciones.size();i++){
+             if(Lista_Persona_Posiciones.get(i).getId()==posicionEstadistico.getPersona().getId()){
+                 Posicion n=new Posicion();
+                 n.setId(Lista_Persona_Posiciones.get(i).getCodigo_posicion());
+                 posicionEstadistico.setPosicion(n);
+             }
+        }
+
+    }
+
+    private void Borrar_Datos_Camisetas() {
+
+        for(int i=0;i<Extras.LISTA_EXTRAS.size();i++){
+            Extras.LISTA_EXTRAS.get(i).setNumero_Camiseta(0);
+            Extras.LISTA_EXTRAS.get(i).setEstado2(0);
+            Extras.LISTA_EXTRAS.get(i).setLista_Numeros(Lista_Numero);
+        }
+
+        Recursos_Estadistico.LISTA_NUMEROS_SELECCIONADOS.clear();
+
+        adapter2.notifyDataSetChanged();
+
+    }
+
+    private void Borrar_Datos_Posiciones() {
+
+        for(int i=0;i<Lista_Persona_Posiciones.size();i++){
+            Lista_Persona_Posiciones.get(i).setEstado_posicion(0);
+            Lista_Persona_Posiciones.get(i).setCodigo_posicion(0);
+            Lista_Persona_Posiciones.get(i).setPosicion_posicion(0);
+        }
+
+        adapter1.notifyDataSetChanged();
+    }
+
     private boolean Encontrado_en_Disponible(NumeroDisponible numeroDisponible) {
       boolean ff=false;
       for(int i=0;i<Recursos_Estadistico.LISTA_NUMEROS_SELECCIONADOS.size();i++){
@@ -175,7 +447,6 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
         }
 
     }
-
     private void Listar_Personas_Plantel_Posicion(final int id,final Context context) {
 
         String id_plantel=String.valueOf(id);

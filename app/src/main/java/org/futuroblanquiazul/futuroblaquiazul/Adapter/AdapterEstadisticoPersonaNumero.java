@@ -85,7 +85,7 @@ public class AdapterEstadisticoPersonaNumero extends RecyclerView.Adapter<Adapte
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-          setAccion(0);
+
           holder.persona.setText(my_Data.get(position).getPersona().getNombre_Persona()+" "+my_Data.get(position).getPersona().getApellidos_Persona());
           Glide.with(context).load(my_Data.get(position).getPersona().getFoto()).into(holder.foto);
 
@@ -216,19 +216,6 @@ public class AdapterEstadisticoPersonaNumero extends RecyclerView.Adapter<Adapte
              }
          }
     }
-
-    private boolean Encontro_Elemento(int num) {
-      boolean s =false;
-
-       for(int i=0;i<Recursos_Estadistico.LISTA_NUMEROS_SELECCIONADOS.size();i++){
-           if(Recursos_Estadistico.LISTA_NUMEROS_SELECCIONADOS.get(i)==num){
-               s=true;
-           }
-       }
-
-      return s;
-    }
-
 
     @Override
     public int getItemCount() {

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.DefinirFormacionActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.DefinirPosicionesEventoActivity;
@@ -146,20 +147,29 @@ public class AdapterEventosEstadisticos extends RecyclerView.Adapter<AdapterEven
 
                         }else if(item.getTitle().toString().equalsIgnoreCase("Definir Posiciones de Jugadores")){
 
-                            EventoEstadistico.EVENTO_TEMP.setEvento_Temporal(my_Data.get(position));
+                            if(my_Data.get(position).getEstado_posiciones()==2){
+                                EventoEstadistico.EVENTO_TEMP.setEvento_Temporal(my_Data.get(position));
 
-                            Intent intent = new Intent(context, DefinirPosicionesEventoActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            context.startActivity(intent);
+                                Intent intent = new Intent(context, DefinirPosicionesEventoActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                context.startActivity(intent);
+                            }else{
+                                Toast.makeText(context, "Ya se estableció Posiciones en los Jugadores del Evento Seleccionado", Toast.LENGTH_SHORT).show();
+                            }
 
                         }else if(item.getTitle().toString().equalsIgnoreCase("Definir Formación de Equipo")){
 
-                            EventoEstadistico.EVENTO_TEMP.setEvento_Temporal(my_Data.get(position));
+                            if(my_Data.get(position).getEstado_formacion()==2){
+                                EventoEstadistico.EVENTO_TEMP.setEvento_Temporal(my_Data.get(position));
 
-                            EventoEstadistico.EVENTO_TEMP.setEvento_Temporal(my_Data.get(position));
-                            Intent intent = new Intent(context, DefinirFormacionActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            context.startActivity(intent);
+                                EventoEstadistico.EVENTO_TEMP.setEvento_Temporal(my_Data.get(position));
+                                Intent intent = new Intent(context, DefinirFormacionActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                context.startActivity(intent);
+                            }else{
+                                Toast.makeText(context, "Ya se estableció Formación en los Jugadores del Evento Seleccionado", Toast.LENGTH_SHORT).show();
+                            }
+
 
                         }
 

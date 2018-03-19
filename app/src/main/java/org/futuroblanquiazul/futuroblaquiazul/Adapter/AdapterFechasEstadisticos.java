@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.DefinirTiemposActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.GestionFechaEstadisticoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.ListaFechasEstadisticosActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.EventoEstadistico;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.FechaEstadistico;
@@ -94,50 +96,13 @@ public class AdapterFechasEstadisticos extends RecyclerView.Adapter<AdapterFecha
 
                         if(item.getTitle().toString().equalsIgnoreCase("Gestión de Fecha")){
 
-                           // EventoEstadistico.EVENTO_TEMP.setEvento_Temporal(my_Data.get(position));
-                              /*
-                            Intent intent = new Intent(context, ListaFechasEstadisticosActivity.class);
+                          FechaEstadistico.FECHA_ESTADISTICO_TEMP.setFecha_actual(my_Data.get(position));
+                            Intent intent = new Intent(context, DefinirTiemposActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            context.startActivity(intent);*/
-
+                            context.startActivity(intent);
 
                         }else if(item.getTitle().toString().equalsIgnoreCase("Información de Fecha")){
 
-                             /*
-                            final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-                            final View dialoglayout = inflater.inflate(R.layout.area_informacion_evento_estadistico, null);
-
-                            TextView nom_evento,desc_evento,usuario_evento,ubigeo_evento,fecha_evento,estado_evento,categoria;
-
-                            nom_evento=dialoglayout.findViewById(R.id.info_evento_es_nombre);
-                            desc_evento=dialoglayout.findViewById(R.id.info_evento_es_detalle);
-                            usuario_evento=dialoglayout.findViewById(R.id.info_evento_es_usuario);
-                            ubigeo_evento=dialoglayout.findViewById(R.id.info_evento_es_ubicacion);
-                            fecha_evento=dialoglayout.findViewById(R.id.info_evento_es_fecha);
-                            estado_evento=dialoglayout.findViewById(R.id.info_evento_es_estado);
-                            categoria=dialoglayout.findViewById(R.id.info_evento_es_categoria);
-
-                            final AlertDialog.Builder builder4 = new AlertDialog.Builder(context);
-                            builder4.setView(dialoglayout);
-                            da=builder4.show();
-
-
-                            nom_evento.setText(my_Data.get(position).getDescripcion_Nombre_evento());
-                            desc_evento.setText(my_Data.get(position).getDetalle_Evento());
-                            usuario_evento.setText(my_Data.get(position).getUsuario().getUsuario().toString());
-                            ubigeo_evento.setText(my_Data.get(position).getDepartamento().getDescripcion()+"/"+my_Data.get(position).getProvincia().getDescripcion()+"/"+my_Data.get(position).getDistrito().getDescripcion());
-                            fecha_evento.setText(my_Data.get(position).getFecha_Registro());
-
-
-                            if(my_Data.get(position).getEstado()==1){
-                                estado_evento.setText("DISPONIBLE");
-                                estado_evento.setTextColor(context.getResources().getColor(R.color.verde));
-                            }else if(my_Data.get(position).getEstado()==2){
-                                estado_evento.setText("NO DISPONIBLE");
-                                estado_evento.setTextColor(context.getResources().getColor(R.color.red));
-                            }
-
-                            categoria.setText(my_Data.get(position).getPlantel().getNombre_categoria());*/
                         }
 
                         return true;
