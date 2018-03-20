@@ -40,7 +40,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/caja_borde"
-                    android:gravity="center"
+                    android:gravity="center|start"
                     android:text="Alineación"
                     android:textAllCaps="true"
                     android:textColor="@color/blue"

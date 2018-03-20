@@ -1,5 +1,7 @@
 package org.futuroblanquiazul.futuroblaquiazul.Utils;
 
+import java.util.List;
+
 /**
  * Created by Jesus Inca on 19/03/2018.
  */
@@ -16,10 +18,22 @@ public class Estadistico_Gestion {
 
     int tiempo_actual;
 
+    List<String> Nombres_Personas;
+
     public static final Estadistico_Gestion TEMP=new Estadistico_Gestion();
     public Estadistico_Gestion(){
 
     }
+
+    public List<String> getNombres_Personas() {
+        return Nombres_Personas;
+    }
+
+    public void setNombres_Personas(List<String> nombres_Personas) {
+        Nombres_Personas = nombres_Personas;
+    }
+
+
 
     public int getCantidad_tiempos() {
         return cantidad_tiempos;

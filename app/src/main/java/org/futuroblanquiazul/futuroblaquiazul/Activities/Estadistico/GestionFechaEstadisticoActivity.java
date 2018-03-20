@@ -25,8 +25,10 @@ import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.BarrioInti
 import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.BarrioIntimoPersonaActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterBarrio;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterCampo;
+import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterCampoEstadistico;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterInfoEquipo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Campo;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.CampoEstadistico;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.EventoEstadistico;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.PersonaEstadistico;
@@ -37,6 +39,7 @@ import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnIt
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarPersonas;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarPersonasEstadisticos;
 import org.futuroblanquiazul.futuroblaquiazul.R;
+import org.futuroblanquiazul.futuroblaquiazul.Utils.Estadistico_Gestion;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -52,24 +55,20 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
     Context context;
     LinearLayout altura2,linear2;
     ProgressDialog progressDialog;
-
     int altura,ancho,alt2,anc2;
-
     private GridLayoutManager grid;
     private LinearLayoutManager linearLayoutManager;
-    private AdapterCampo adapterCampo;
+    private AdapterCampoEstadistico adapterCampo;
     AlertDialog da;
     AdapterInfoEquipo adapterInfoEquipo;
-
     Button opcion_Defenza_zona,opcion_zona_juego,opcion_informacion,opcion_leyenda;
-
     List<PersonaEstadistico> List_Persona_INFO;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gestion_fecha_estadistico);
         List_Persona_INFO=new ArrayList<>();
-
         recyclerView=findViewById(R.id.Recycler_Estadistico);
         context=this;
         cronometro=findViewById(R.id.cronometro_general);
@@ -79,6 +78,50 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
         opcion_zona_juego=findViewById(R.id.opcion_zona_juego);
         opcion_informacion=findViewById(R.id.opcion_informacion);
         opcion_leyenda=findViewById(R.id.opcion_leyenda);
+
+
+        Listar_Persona_Estadistico(context);
+        Generar_Listas_Campos();
+        Gestion_Cronometro();
+        Gestion_Campo_Estadistico();
+        Opcion_Leyenda();
+        Opcion_Zona_de_Juego();
+        Opcion_Informacion();
+    }
+
+    private void Generar_Listas_Campos() {
+        List<String> TEMP_NOMBRES=new ArrayList<>();
+        List<String> TEMP_OPCIONES=new ArrayList<>();
+        TEMP_NOMBRES.add("-- SELECCIONE --");
+        for(int i=0;i<List_Persona_INFO.size();i++){
+            if(List_Persona_INFO.get(i).getTitular()==1){
+                TEMP_NOMBRES.add(List_Persona_INFO.get(i).getPersona().getNombre_Persona()+" "+List_Persona_INFO.get(i).getPersona().getApellidos_Persona());
+            }
+        }
+
+        Estadistico_Gestion.TEMP.setNombres_Personas(TEMP_NOMBRES);
+
+
+    }
+    private void Gestion_Campo_Estadistico() {
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int width = metrics.widthPixels; // ancho absoluto en pixels
+        int height = metrics.heightPixels; // alto absoluto en pixels
+        altura=height;
+        ancho=width;
+        Usuario.SESION_ACTUAL.setAltura(height); //600
+        Usuario.SESION_ACTUAL.setAncho(width); //1024
+        recyclercampoooo();
+        if(CampoEstadistico.LISTACAMPOESTADISTICO.size()==0){
+            listar_card();
+        }else{
+            CampoEstadistico.LISTACAMPOESTADISTICO.clear();
+            listar_card();
+        }
+    }
+    private void Gestion_Cronometro() {
 
         cronometro.setBase( SystemClock.elapsedRealtime() );
         cronometro.start();
@@ -94,30 +137,7 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
                 }
             }
         });
-
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        int width = metrics.widthPixels; // ancho absoluto en pixels
-        int height = metrics.heightPixels; // alto absoluto en pixels
-        altura=height;
-        ancho=width;
-        Usuario.SESION_ACTUAL.setAltura(height); //600
-        Usuario.SESION_ACTUAL.setAncho(width); //1024
-        recyclercampoooo();
-
-        if(Campo.LISTACAMPO.size()==0){
-            listar_card();
-        }else{
-            Campo.LISTACAMPO.clear();
-            listar_card();
-
-        }
-
-        Opcion_Leyenda();
-        Opcion_Zona_de_Juego();
-        Opcion_Informacion();
     }
-
     private void Opcion_Informacion() {
     opcion_informacion.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -142,14 +162,9 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
             recyclerView.setAdapter(adapterInfoEquipo);
             recyclerView.setLayoutManager(linearLayoutManager);
 
-            Listar_Persona_Estadistico(context);
-
-
-
         }
     });
     }
-
     private void Listar_Persona_Estadistico(final Context context) {
 
         progressDialog = new ProgressDialog(context);
@@ -157,8 +172,8 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
         progressDialog.setMessage("Recuperando Información de Equipo...");
         progressDialog.show();
 
-        // String id_evento=String.valueOf(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getId());
-        String id_evento=String.valueOf(4);
+         String id_evento=String.valueOf(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getId());
+        //String id_evento=String.valueOf(4);
 
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
@@ -223,7 +238,7 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
                             temp.setEstado(1);
 
                             temp.setNum(i+1);
-
+                            temp.setTitular(objeto.getInt("TITULAR"));
                             List_Persona_INFO.add(temp);
 
                         }
@@ -248,7 +263,6 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
         queue.add(xx);
 
     }
-
     private void Opcion_Zona_de_Juego() {
 
    opcion_zona_juego.setOnClickListener(new View.OnClickListener() {
@@ -264,7 +278,6 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
    });
 
     }
-
     private void Opcion_Leyenda() {
 
     opcion_leyenda.setOnClickListener(new View.OnClickListener() {
@@ -282,11 +295,10 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
         }
     });
     }
-
     private void recyclercampoooo() {
 
         grid = new GridLayoutManager(this,24);
-        adapterCampo = new AdapterCampo(this,Campo.LISTACAMPO, new RecyclerViewOnItemClickListener(){
+        adapterCampo = new AdapterCampoEstadistico(this,CampoEstadistico.LISTACAMPOESTADISTICO, new RecyclerViewOnItemClickListener(){
             @Override
             public void onClick(View v, int position) {
             }
@@ -303,14 +315,8 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
             alt2=alt/18;
             anc2=anc/24;
             altura2.getLayoutParams().height=(alt-65);
-
             System.out.println("PANTALLA XX GRANDE");
-
-            for(int i=0;i<408;i++){
-                Campo temp=new Campo(i,"",0,alt2,anc2,R.drawable.layout_border);
-                Campo.LISTACAMPO.add(temp);
-            }
-
+            Agregado_Campos();
             adapterCampo.notifyDataSetChanged();
         }else if(ancho>800 && ancho<1200){
 
@@ -319,14 +325,8 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
             alt2=alt/18;
             anc2=anc/24;
             altura2.getLayoutParams().height=(alt-25);
-
             System.out.println("PANTALLA GRANDE");
-
-            for(int i=0;i<408;i++){
-                Campo temp=new Campo(i,"",0,alt2,anc2,R.drawable.layout_border);
-                Campo.LISTACAMPO.add(temp);
-            }
-
+            Agregado_Campos();
             adapterCampo.notifyDataSetChanged();
         }else{
             int alt=altura;
@@ -335,23 +335,52 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
             anc2=anc/24;
             altura2.getLayoutParams().height=(alt-30);
             System.out.println("PANTALLA PEKE");
-            for(int i=0;i<312;i++){
-                Campo temp=new Campo(i,"",0,alt2+1,anc2,R.drawable.layout_border);
-                Campo.LISTACAMPO.add(temp);
-            }
-
+            Agregado_Campos();
             adapterCampo.notifyDataSetChanged();
         }
-
         System.out.println("Altura BASE:"+(altura-20));
         System.out.println("ANcho BASE:"+(ancho-20));
-
         System.out.println("Altura Card:"+alt2);
         System.out.println("ANcho Card:"+anc2);
+    }
+    private void Agregado_Campos() {
 
+        for(int i=1;i<=408;i++){
+            if(i<=12 ||  i>24 && i<=36 || i>48 && i<=60){
+                Crear_Campo(1);
+            }
+            if(i>7 && i<=19 || i>36 && i<=48 || i>60 && i<=72){
+                Crear_Campo(2);
+            }
+
+            if(i>72 && i<=76 || i>96 && i<=100  || i>120 && i<=124 || i>144 && i<=148  || i>168  && i<=172  || i>192  && i<=196   || i>216  && i<=220   || i>240  && i<=244   || i>264  && i<=268  || i> 288 && i<=292  || i>312  && i<= 316){
+                Crear_Campo(3);
+            }
+            if(i>76 && i<=84 || i>100 && i<=108 || i>124 && i<=132  || i>148 && i<= 156  || i>172  && i<=180 || i>196  && i<=204  || i>220 && i<=228  || i>244  && i<=252   || i> 268 && i<=276  || i>292  && i<=300  || i>316  && i<=324 ){
+                Crear_Campo(4);
+            }
+
+            if(i>84 && i<=92 || i>108 && i<=116 || i> 132 && i<=140 || i>156 && i<= 164  || i>180  && i<=188  || i>204  && i<= 212 || i>228  && i<=236  || i>252  && i<=260  || i> 276 && i<=284  || i> 300 && i<= 308   || i> 324 && i<=332 ){
+                Crear_Campo(5);
+            }
+            if(i>92 && i<=96 || i>116 && i<=120 || i>140  && i<=144  || i>164 && i<= 168  || i>188  && i<=192  || i>212  && i<=216 || i>236  && i<=240 || i>260  && i<=264  || i> 284 && i<=288  || i> 308 && i<=312  || i>332  && i<=336  ){
+                Crear_Campo(6);
+            }
+
+            if(i>336 && i<=348  || i>360  && i<=372  || i>384  && i<=396  ){
+                Crear_Campo(7);
+            }
+
+            if(i>348 && i<=360  || i>372  && i<=384 || i>396  && i<=408  ){
+                Crear_Campo(8);
+            }
+          }
+        }
+    private void Crear_Campo(int estado) {
+        CampoEstadistico temp =new CampoEstadistico(estado,null,null,1,alt2,anc2,R.drawable.layout_border,""+estado,Estadistico_Gestion.TEMP.getNombres_Personas());
+        CampoEstadistico.LISTACAMPOESTADISTICO.add(temp);
 
     }
-
     public void debug(String sm){
         System.out.println(sm);
     }

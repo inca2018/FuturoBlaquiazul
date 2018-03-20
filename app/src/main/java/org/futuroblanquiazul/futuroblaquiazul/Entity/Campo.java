@@ -14,6 +14,7 @@ public class Campo {
 
     public static final List<Campo> LISTACAMPO=new ArrayList<Campo>();
 
+
     public Campo(int cod, String dato, int cant,int altura, int ancho,int Drawable) {
         this.cod = cod;
         this.dato = dato;

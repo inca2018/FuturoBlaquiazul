@@ -147,7 +147,7 @@ public class AdapterEventosEstadisticos extends RecyclerView.Adapter<AdapterEven
 
                         }else if(item.getTitle().toString().equalsIgnoreCase("Definir Posiciones de Jugadores")){
 
-                            if(my_Data.get(position).getEstado_posiciones()==2){
+                            if(my_Data.get(position).getEstado_posiciones()!=2){
                                 EventoEstadistico.EVENTO_TEMP.setEvento_Temporal(my_Data.get(position));
 
                                 Intent intent = new Intent(context, DefinirPosicionesEventoActivity.class);
@@ -159,7 +159,7 @@ public class AdapterEventosEstadisticos extends RecyclerView.Adapter<AdapterEven
 
                         }else if(item.getTitle().toString().equalsIgnoreCase("Definir Formación de Equipo")){
 
-                            if(my_Data.get(position).getEstado_formacion()==2){
+                            if(my_Data.get(position).getEstado_formacion()!=2){
                                 EventoEstadistico.EVENTO_TEMP.setEvento_Temporal(my_Data.get(position));
 
                                 EventoEstadistico.EVENTO_TEMP.setEvento_Temporal(my_Data.get(position));

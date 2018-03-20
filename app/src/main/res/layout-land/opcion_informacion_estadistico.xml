@@ -1,317 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="1200dp"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp"
-        android:orientation="vertical">
+        android:fillViewport="true">
 
-
-        <TextView
-            style="@style/titulo1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Información de Equipo"
-            android:textAlignment="center"
-            android:textColor="@color/blue" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/blue"></LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="16dp"
-
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_margin="8dp"
             android:orientation="vertical">
 
 
-            <LinearLayout
+            <TextView
+                style="@style/titulo1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/caja_borde2"
-                android:orientation="horizontal">
+                android:text="Información de Equipo"
+                android:textAlignment="center"
+                android:textColor="@color/blue" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/blue"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="900dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="16dp"
+
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical">
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/caja_borde2"
                     android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="5"
-                            android:background="@drawable/caja_borde"
-                            android:gravity="center"
-                            android:text="Nº"
-                            android:textAllCaps="true"
-                            android:textColor="@color/blue"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:background="@drawable/caja_borde"
-                            android:gravity="center"
-                            android:text="Alineación"
-                            android:textAllCaps="true"
-                            android:textColor="@color/blue"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="2"
-                        android:background="@drawable/caja_borde"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:background="@drawable/caja_borde"
-                            android:gravity="center"
-                            android:text="#JUG"
-                            android:textColor="@color/blue"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:background="@drawable/caja_borde"
-                            android:gravity="center"
-                            android:text="POS"
-                            android:textColor="@color/blue"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/caja_borde"
                         android:orientation="horizontal">
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="1"
-                            android:orientation="vertical">
+                            android:orientation="horizontal">
 
                             <TextView
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="5"
                                 android:background="@drawable/caja_borde"
                                 android:gravity="center"
-                                android:text="OFENSIVO"
+                                android:text="Nº"
+                                android:textAllCaps="true"
                                 android:textColor="@color/blue"
+                                android:textSize="14sp"
                                 android:textStyle="bold" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/caja_borde"
-                                    android:gravity="center"
-                                    android:text="PG"
-                                    android:textColor="@color/blue"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/caja_borde"
-                                    android:gravity="center"
-                                    android:text="DR"
-                                    android:textColor="@color/blue"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/caja_borde"
-                                    android:gravity="center"
-                                    android:text="OG"
-                                    android:textColor="@color/blue"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/caja_borde"
-                                    android:gravity="center"
-                                    android:text="R"
-                                    android:textColor="@color/blue"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/caja_borde"
-                                    android:gravity="center"
-                                    android:text="G"
-                                    android:textColor="@color/blue"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/caja_borde"
-                                    android:gravity="center"
-                                    android:text="OF"
-                                    android:textColor="@color/blue"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/caja_borde"
-                                    android:gravity="center"
-                                    android:text="BP"
-                                    android:textColor="@color/blue"
-                                    android:textStyle="bold" />
-
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
 
                             <TextView
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
                                 android:background="@drawable/caja_borde"
                                 android:gravity="center"
-                                android:text="DEFENSIVO"
+                                android:text="Alineación"
+                                android:textAllCaps="true"
                                 android:textColor="@color/blue"
+                                android:textSize="14sp"
                                 android:textStyle="bold" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/caja_borde"
-                                    android:gravity="center"
-                                    android:text="BR"
-                                    android:textColor="@color/blue"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/caja_borde"
-                                    android:gravity="center"
-                                    android:text="F"
-                                    android:textColor="@color/blue"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/caja_borde"
-                                    android:gravity="center"
-                                    android:text="TA"
-                                    android:textColor="@color/blue"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/caja_borde"
-                                    android:gravity="center"
-                                    android:text="TR"
-                                    android:textColor="@color/blue"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:background="@drawable/caja_borde"
-                                    android:gravity="center"
-                                    android:text="ATJ"
-                                    android:textColor="@color/blue"
-                                    android:textStyle="bold" />
-                            </LinearLayout>
                         </LinearLayout>
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="4"
-                        android:background="@drawable/caja_borde"
-                        android:orientation="vertical">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:background="@drawable/caja_borde"
                             android:orientation="horizontal">
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
+                                android:background="@drawable/caja_borde"
                                 android:gravity="center"
-                                android:text="TJ"
+                                android:text="#JUG"
                                 android:textColor="@color/blue"
+                                android:textSize="14sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -320,29 +108,255 @@
                                 android:layout_weight="1"
                                 android:background="@drawable/caja_borde"
                                 android:gravity="center"
-                                android:text="PTJE"
+                                android:text="POS"
                                 android:textColor="@color/blue"
+                                android:textSize="14sp"
                                 android:textStyle="bold" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/caja_borde"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/caja_borde"
+                                    android:gravity="center"
+                                    android:text="OFENSIVO"
+                                    android:textColor="@color/blue"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/caja_borde"
+                                        android:gravity="center"
+                                        android:text="PG"
+                                        android:textColor="@color/blue"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/caja_borde"
+                                        android:gravity="center"
+                                        android:paddingLeft="8dp"
+                                        android:paddingRight="8dp"
+                                        android:text="DR"
+                                        android:textColor="@color/blue"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/caja_borde"
+                                        android:gravity="center"
+                                        android:text="OG"
+                                        android:textColor="@color/blue"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/caja_borde"
+                                        android:gravity="center"
+                                        android:paddingLeft="8dp"
+                                        android:paddingRight="8dp"
+                                        android:text="R"
+                                        android:textColor="@color/blue"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/caja_borde"
+                                        android:gravity="center"
+                                        android:paddingLeft="8dp"
+                                        android:paddingRight="8dp"
+                                        android:text="G"
+                                        android:textColor="@color/blue"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/caja_borde"
+                                        android:gravity="center"
+                                        android:text="OF"
+                                        android:textColor="@color/blue"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/caja_borde"
+                                        android:gravity="center"
+                                        android:text="BP"
+                                        android:textColor="@color/blue"
+                                        android:textStyle="bold" />
+
+
+                                </LinearLayout>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@drawable/caja_borde"
+                                    android:gravity="center"
+                                    android:text="DEFENSIVO"
+                                    android:textColor="@color/blue"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/caja_borde"
+                                        android:gravity="center"
+                                        android:text="BR"
+                                        android:textColor="@color/blue"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/caja_borde"
+                                        android:gravity="center"
+                                        android:text="F"
+                                        android:textColor="@color/blue"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/caja_borde"
+                                        android:gravity="center"
+                                        android:text="TA"
+                                        android:textColor="@color/blue"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/caja_borde"
+                                        android:gravity="center"
+                                        android:text="TR"
+                                        android:textColor="@color/blue"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/caja_borde"
+                                        android:gravity="center"
+                                        android:text="ATJ"
+                                        android:textColor="@color/blue"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4"
+                            android:background="@drawable/caja_borde"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:text="TJ"
+                                    android:textColor="@color/blue"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:background="@drawable/caja_borde"
+                                    android:gravity="center"
+                                    android:text="PTJE"
+                                    android:textColor="@color/blue"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
 
                         </LinearLayout>
+
 
                     </LinearLayout>
 
 
                 </LinearLayout>
 
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_info_equipo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.v7.widget.RecyclerView>
+
 
             </LinearLayout>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_info_equipo"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </android.support.v7.widget.RecyclerView>
-
-
         </LinearLayout>
-    </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

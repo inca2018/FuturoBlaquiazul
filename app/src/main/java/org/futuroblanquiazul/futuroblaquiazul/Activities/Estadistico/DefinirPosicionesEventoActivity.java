@@ -40,6 +40,7 @@ import org.futuroblanquiazul.futuroblaquiazul.Peticiones.GuardarFormacion;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.GuardarPosiciones;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarPersonasPlantel2;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarPosiciones;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarPosiciones2;
 import org.futuroblanquiazul.futuroblaquiazul.R;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Estadistico;
 import org.json.JSONArray;
@@ -599,7 +600,7 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
             }
         };
 
-        RecuperarPosiciones xx = new RecuperarPosiciones(responseListener);
+        RecuperarPosiciones2 xx = new RecuperarPosiciones2(responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
     }
