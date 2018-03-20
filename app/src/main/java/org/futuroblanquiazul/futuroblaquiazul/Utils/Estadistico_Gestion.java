@@ -1,39 +1,78 @@
 package org.futuroblanquiazul.futuroblaquiazul.Utils;
-
+import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.PersonaEstadistico;
+import org.futuroblanquiazul.futuroblaquiazul.R;
+import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Created by Jesus Inca on 19/03/2018.
- */
-
 public class Estadistico_Gestion {
 
     int cantidad_tiempos;
     int minutos_x_tiempo;
     int primer_aviso;
     int segundo_aviso;
+    int Tiempo_Adicional1;
+    int Tiempo_Adicional2;
 
     int posesion_1erTiempo;
     int getPosesion_2doTiempo;
 
     int tiempo_actual;
 
-    List<String> Nombres_Personas;
+    List<Persona> Nombres_Personas;
+
+    public static final List<RecursoEstadisticoRadioButton> RADIOS =new ArrayList<>();
+
+
+    public static final List<PersonaEstadistico> LISTA_PERSONAS_INFO=new ArrayList<>();
+
 
     public static final Estadistico_Gestion TEMP=new Estadistico_Gestion();
+
+    static {
+
+        RADIOS.add(new RecursoEstadisticoRadioButton(1, R.id.gestion_campo_pase_gol,null,1,1,"PG"));
+        RADIOS.add(new RecursoEstadisticoRadioButton(2, R.id.gestion_campo_dribbling,null,1,1,"DR"));
+        RADIOS.add(new RecursoEstadisticoRadioButton(3, R.id.gestion_campo_opcion_gol,null,1,1,"OG"));
+        RADIOS.add(new RecursoEstadisticoRadioButton(4, R.id.gestion_campo_remate,null,1,1,"R"));
+        RADIOS.add(new RecursoEstadisticoRadioButton(5, R.id.gestion_campo_gol,null,1,1,"G"));
+        RADIOS.add(new RecursoEstadisticoRadioButton(6, R.id.gestion_campo_off_sides,null,1,1,"OF"));
+        RADIOS.add(new RecursoEstadisticoRadioButton(7, R.id.gestion_campo_balones_perdidos,null,1,1,"BP"));
+        RADIOS.add(new RecursoEstadisticoRadioButton(8, R.id.gestion_campo_balones_recuperados,null,1,2,"BR"));
+        RADIOS.add(new RecursoEstadisticoRadioButton(9, R.id.gestion_campo_faltas,null,1,2,"F"));
+        RADIOS.add(new RecursoEstadisticoRadioButton(10, R.id.gestion_campo_tarjeta_amarilla,null,1,2,"TA"));
+        RADIOS.add(new RecursoEstadisticoRadioButton(11, R.id.gestion_campo_tarjeta_roja,null,1,2,"TR"));
+        RADIOS.add(new RecursoEstadisticoRadioButton(12, R.id.gestion_campo_atajadas,null,1,2,"ATJ"));
+
+    }
     public Estadistico_Gestion(){
 
     }
 
-    public List<String> getNombres_Personas() {
+
+
+    public int getTiempo_Adicional1() {
+        return Tiempo_Adicional1;
+    }
+
+    public void setTiempo_Adicional1(int tiempo_Adicional1) {
+        Tiempo_Adicional1 = tiempo_Adicional1;
+    }
+
+    public int getTiempo_Adicional2() {
+        return Tiempo_Adicional2;
+    }
+
+    public void setTiempo_Adicional2(int tiempo_Adicional2) {
+        Tiempo_Adicional2 = tiempo_Adicional2;
+    }
+
+    public List<Persona> getNombres_Personas() {
         return Nombres_Personas;
     }
 
-    public void setNombres_Personas(List<String> nombres_Personas) {
+    public void setNombres_Personas(List<Persona> nombres_Personas) {
         Nombres_Personas = nombres_Personas;
     }
-
-
 
     public int getCantidad_tiempos() {
         return cantidad_tiempos;

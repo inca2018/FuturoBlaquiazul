@@ -20,17 +20,6 @@
             android:orientation="vertical">
 
 
-            <android.support.v7.widget.CardView
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:layout_weight="1"
-                android:background="@color/verde_bajo"
-                android:backgroundTint="@color/blanco"
-                android:elevation="5dp"
-                app:cardBackgroundColor="@color/blanco"
-                app:cardCornerRadius="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -98,12 +87,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <RadioGroup
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal">
+                        android:orientation="horizontal">
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
@@ -113,10 +97,10 @@
                                 <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:orientation="vertical"
                                     android:layout_centerHorizontal="true"
                                     android:layout_centerVertical="true"
-                                    >
+                                    android:layout_margin="8dp"
+                                    android:orientation="vertical">
 
                                     <TextView
                                         style="@style/titulo2"
@@ -127,7 +111,10 @@
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
 
+
+
                                     <android.support.v7.widget.AppCompatRadioButton
+                                        android:id="@+id/gestion_campo_pase_gol"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="2dp"
@@ -140,28 +127,43 @@
                                         android:textAllCaps="true" />
 
                                     <android.support.v7.widget.AppCompatRadioButton
+                                        android:id="@+id/gestion_campo_dribbling"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="2dp"
-                                        android:buttonTint="@color/blue"
-                                        android:drawableLeft="@mipmap/icon_camiseta"
+                                        android:buttonTint="@color/titulos"
+                                        android:drawableLeft="@mipmap/icon_opcion_dribbling"
                                         android:drawablePadding="10dp"
-                                        android:drawableTint="@color/blue"
+                                        android:drawableTint="@color/titulos"
                                         android:text="1 vs 1 Profundo (DR)"
                                         android:textAllCaps="true" />
 
                                     <android.support.v7.widget.AppCompatRadioButton
+                                        android:id="@+id/gestion_campo_opcion_gol"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="2dp"
-                                        android:buttonTint="@color/blue"
-                                        android:drawableLeft="@mipmap/icon_camiseta"
+                                        android:buttonTint="@color/titulos"
+                                        android:drawableLeft="@mipmap/icon_opcion_opcion_gol"
                                         android:drawablePadding="10dp"
-                                        android:drawableTint="@color/blue"
+                                        android:drawableTint="@color/titulos"
                                         android:text="Opcion de Gol (OG)"
                                         android:textAllCaps="true" />
 
                                     <android.support.v7.widget.AppCompatRadioButton
+                                        android:id="@+id/gestion_campo_remate"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_margin="2dp"
+                                        android:buttonTint="@color/titulos"
+                                        android:drawableLeft="@mipmap/icon_opcion_remate"
+                                        android:drawablePadding="10dp"
+                                        android:drawableTint="@color/titulos"
+                                        android:text="Remate (R)"
+                                        android:textAllCaps="true" />
+
+                                    <android.support.v7.widget.AppCompatRadioButton
+                                        android:id="@+id/gestion_campo_gol"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="2dp"
@@ -173,6 +175,7 @@
                                         android:textAllCaps="true" />
 
                                     <android.support.v7.widget.AppCompatRadioButton
+                                        android:id="@+id/gestion_campo_off_sides"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="2dp"
@@ -184,15 +187,17 @@
                                         android:textAllCaps="true" />
 
                                     <android.support.v7.widget.AppCompatRadioButton
+                                        android:id="@+id/gestion_campo_balones_perdidos"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="2dp"
-                                        android:buttonTint="@color/blue"
-                                        android:drawableLeft="@mipmap/icon_camiseta"
+                                        android:buttonTint="@color/titulos"
+                                        android:drawableLeft="@mipmap/icon_opcion_balones_perdidos"
                                         android:drawablePadding="10dp"
-                                        android:drawableTint="@color/blue"
+                                        android:drawableTint="@color/titulos"
                                         android:text="Balones Perdidos (BP)"
                                         android:textAllCaps="true" />
+
                                 </LinearLayout>
 
                             </RelativeLayout>
@@ -205,10 +210,10 @@
                                 <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:orientation="vertical"
                                     android:layout_centerHorizontal="true"
                                     android:layout_centerVertical="true"
-                                    >
+                                    android:layout_margin="8dp"
+                                    android:orientation="vertical">
 
                                     <TextView
                                         style="@style/titulo2"
@@ -219,78 +224,97 @@
                                         android:textSize="14sp"
                                         android:textStyle="bold" />
 
-                                    <android.support.v7.widget.AppCompatRadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="2dp"
-                                        android:buttonTint="@color/blue"
-                                        android:drawableLeft="@mipmap/icon_camiseta"
-                                        android:drawablePadding="10dp"
-                                        android:drawableTint="@color/blue"
-                                        android:gravity="center"
-                                        android:text="Balones Recuperados (BR)"
-                                        android:textAllCaps="true" />
 
-                                    <android.support.v7.widget.AppCompatRadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="2dp"
-                                        android:buttonTint="@color/blue"
-                                        android:drawableLeft="@mipmap/icon_opcion_faltas"
-                                        android:drawablePadding="10dp"
-                                        android:drawableTint="@color/titulos"
-                                        android:text="Faltas Cometidas (F)"
-                                        android:textAllCaps="true" />
+                                        <android.support.v7.widget.AppCompatRadioButton
+                                            android:id="@+id/gestion_campo_balones_recuperados"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="2dp"
+                                            android:buttonTint="@color/titulos"
+                                            android:drawableLeft="@mipmap/icon_opcion_balones_recuperados"
+                                            android:drawablePadding="10dp"
+                                            android:drawableTint="@color/titulos"
+                                            android:gravity="center"
+                                            android:text="Balones Recuperados (BR)"
+                                            android:textAllCaps="true" />
 
-                                    <android.support.v7.widget.AppCompatRadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="2dp"
-                                        android:buttonTint="@color/blue"
-                                        android:drawableLeft="@mipmap/icon_opcion_tarjeta_amarilla"
-                                        android:drawablePadding="10dp"
-                                        android:text="Tarjetas Amarillas (TA)"
-                                        android:textAllCaps="true" />
+                                        <android.support.v7.widget.AppCompatRadioButton
+                                            android:id="@+id/gestion_campo_faltas"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="2dp"
+                                            android:buttonTint="@color/titulos"
+                                            android:drawableLeft="@mipmap/icon_opcion_faltas"
+                                            android:drawablePadding="10dp"
+                                            android:drawableTint="@color/titulos"
+                                            android:text="Faltas Cometidas (F)"
+                                            android:textAllCaps="true" />
 
-                                    <android.support.v7.widget.AppCompatRadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="2dp"
-                                        android:buttonTint="@color/blue"
-                                        android:drawableLeft="@mipmap/icon_opcion_tarjeta_roja"
-                                        android:drawablePadding="10dp"
+                                        <android.support.v7.widget.AppCompatRadioButton
+                                            android:id="@+id/gestion_campo_tarjeta_amarilla"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="2dp"
+                                            android:buttonTint="@color/titulos"
+                                            android:drawableLeft="@mipmap/icon_opcion_tarjeta_amarilla"
+                                            android:drawablePadding="10dp"
+                                            android:text="Tarjetas Amarillas (TA)"
+                                            android:textAllCaps="true" />
 
-                                        android:text="Tarjeta Roja (TR)"
-                                        android:textAllCaps="true" />
+                                        <android.support.v7.widget.AppCompatRadioButton
+                                            android:id="@+id/gestion_campo_tarjeta_roja"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="2dp"
+                                            android:buttonTint="@color/titulos"
+                                            android:drawableLeft="@mipmap/icon_opcion_tarjeta_roja"
 
-                                    <android.support.v7.widget.AppCompatRadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="2dp"
-                                        android:buttonTint="@color/titulos"
-                                        android:drawableLeft="@mipmap/icon_opcion_atajada"
-                                        android:drawablePadding="10dp"
-                                        android:drawableTint="@color/titulos"
-                                        android:text="Atajadas (ATJ)"
-                                        android:textAllCaps="true" />
+                                            android:drawablePadding="10dp"
+                                            android:text="Tarjeta Roja (TR)"
+                                            android:textAllCaps="true" />
 
-                                    <android.support.v7.widget.AppCompatRadioButton
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="2dp"
-                                        android:buttonTint="@color/blue"
-                                        android:drawableLeft="@mipmap/icon_camiseta"
-                                        android:drawablePadding="10dp"
-                                        android:drawableTint="@color/blue"
-                                        android:text="Atajadas (ATJ)"
-                                        android:textAllCaps="true"
-                                        android:visibility="invisible" />
+                                        <android.support.v7.widget.AppCompatRadioButton
+                                            android:id="@+id/gestion_campo_atajadas"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="2dp"
+                                            android:buttonTint="@color/titulos"
+                                            android:drawableLeft="@mipmap/icon_opcion_atajada"
+                                            android:drawablePadding="10dp"
+                                            android:drawableTint="@color/titulos"
+                                            android:text="Atajadas (ATJ)"
+                                            android:textAllCaps="true" />
+
+                                        <android.support.v7.widget.AppCompatRadioButton
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="2dp"
+                                            android:buttonTint="@color/blue"
+                                            android:drawableLeft="@mipmap/icon_camiseta"
+                                            android:drawablePadding="10dp"
+                                            android:drawableTint="@color/blue"
+
+                                            android:textAllCaps="true"
+                                            android:visibility="invisible" />
+
+                                        <android.support.v7.widget.AppCompatRadioButton
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_margin="2dp"
+                                            android:buttonTint="@color/blue"
+                                            android:drawableLeft="@mipmap/icon_camiseta"
+                                            android:drawablePadding="10dp"
+                                            android:drawableTint="@color/blue"
+
+                                            android:textAllCaps="true"
+                                            android:visibility="invisible" />
+
+
+
                                 </LinearLayout>
 
                             </RelativeLayout>
 
-
-                        </RadioGroup>
 
                     </LinearLayout>
 
@@ -298,7 +322,6 @@
 
 
 
-            </android.support.v7.widget.CardView>
 
 
         </LinearLayout>

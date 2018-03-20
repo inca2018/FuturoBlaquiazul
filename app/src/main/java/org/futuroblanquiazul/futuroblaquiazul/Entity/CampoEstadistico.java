@@ -13,13 +13,9 @@ public class CampoEstadistico {
     int ancho;
     int Drawable;
     String Dato;
-    List<String> Nombres_Titulares;
 
     public static final List<CampoEstadistico> LISTACAMPOESTADISTICO=new ArrayList<CampoEstadistico>();
-
-
-
-    public CampoEstadistico(int cod, OpcionEstadistico opcion, Persona persona, int estado, int altura, int ancho, int drawable, String dato, List<String> nombres_Titulares) {
+    public CampoEstadistico(int cod, OpcionEstadistico opcion, Persona persona, int estado, int altura, int ancho, int drawable, String dato) {
         this.cod = cod;
         Opcion = opcion;
         this.persona = persona;
@@ -28,81 +24,55 @@ public class CampoEstadistico {
         this.ancho = ancho;
         Drawable = drawable;
         Dato = dato;
-        Nombres_Titulares = nombres_Titulares;
 
     }
-
     public int getDrawable() {
         return Drawable;
     }
-
     public void setDrawable(int drawable) {
         Drawable = drawable;
     }
-
-    public List<String> getNombres_Titulares() {
-        return Nombres_Titulares;
-    }
-
     public int getAncho() {
         return ancho;
     }
-
     public void setAncho(int ancho) {
         this.ancho = ancho;
     }
-
-    public void setNombres_Titulares(List<String> nombres_Titulares) {
-        Nombres_Titulares = nombres_Titulares;
-    }
-
-
-
     public String getDato() {
         return Dato;
     }
-
     public void setDato(String dato) {
         Dato = dato;
     }
-
     public int getAltura() {
         return altura;
     }
-
     public void setAltura(int altura) {
         this.altura = altura;
     }
-
     public int getCod() {
         return cod;
     }
-
     public void setCod(int cod) {
         this.cod = cod;
     }
-
     public OpcionEstadistico getOpcion() {
         return Opcion;
     }
-
     public void setOpcion(OpcionEstadistico opcion) {
         Opcion = opcion;
     }
-
     public Persona getPersona() {
         return persona;
     }
-
     public void setPersona(Persona persona) {
         this.persona = persona;
     }
-
     public int getEstado() {
         return estado;
     }
-
     public void setEstado(int estado) {
         this.estado = estado;
     }
+
 }

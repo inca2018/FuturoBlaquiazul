@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:cardBackgroundColor="@color/blanco"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/texto_alerta"
+            style="@style/titulo1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="El Tiempo Terminara en 5 Minutos!"
+            android:textAlignment="center" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="8dp"
+                app:cardBackgroundColor="@color/blue"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp">
+
+                <Button
+                    android:id="@+id/boton_ok"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:padding="8dp"
+                    android:text="OK"
+                    android:textAlignment="center"
+                    android:textColor="@color/blanco" />
+
+            </android.support.v7.widget.CardView>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>

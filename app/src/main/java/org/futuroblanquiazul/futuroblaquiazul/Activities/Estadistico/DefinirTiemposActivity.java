@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import org.futuroblanquiazul.futuroblaquiazul.Entity.FechaEstadistico;
 import org.futuroblanquiazul.futuroblaquiazul.R;
+import org.futuroblanquiazul.futuroblaquiazul.Utils.Estadistico_Gestion;
 
 public class DefinirTiemposActivity extends AppCompatActivity {
 
@@ -34,16 +35,32 @@ public class DefinirTiemposActivity extends AppCompatActivity {
              @Override
              public void onClick(View v) {
 
-                 int num=Integer.parseInt(tiempo.getText().toString());
-                 if(num>45){
-                     Toast.makeText(DefinirTiemposActivity.this, "El tiempo por Partido no puede ser mayor a 45 Minutos", Toast.LENGTH_SHORT).show();
-                 }else{
-                     FechaEstadistico.FECHA_ESTADISTICO_TEMP.setMinutos_x_tiempo(num);
+                  if(tiempo.getText().toString().length()!=0){
+                      int num=Integer.parseInt(tiempo.getText().toString());
+                      if(num>20){
+                          Toast.makeText(context, "El Tiempo Minimo por Fase es de 20 Minutos", Toast.LENGTH_SHORT).show();
+                      }else{
+                          if(num>45){
+                              Toast.makeText(DefinirTiemposActivity.this, "El tiempo Maximo por Fase es de 45 Minutos", Toast.LENGTH_SHORT).show();
+                          }else{
+                              Estadistico_Gestion.TEMP.setMinutos_x_tiempo(num);
+                              int Aviso1=num-5;
+                              Estadistico_Gestion.TEMP.setPrimer_aviso(Aviso1);
+                              int Aviso2=num-1;
+                              Estadistico_Gestion.TEMP.setSegundo_aviso(Aviso2);
+                              Estadistico_Gestion.TEMP.setTiempo_Adicional1(0);
+                              Estadistico_Gestion.TEMP.setTiempo_Adicional2(0);
 
-                     Intent intent = new Intent(context, GestionFechaEstadisticoActivity.class);
-                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                     context.startActivity(intent);
-                 }
+                              Intent intent = new Intent(context, GestionFechaEstadisticoActivity.class);
+                              intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                              context.startActivity(intent);
+                          }
+                      }
+
+                  }else{
+                      Toast.makeText(context, "Ingrese Tiempo", Toast.LENGTH_SHORT).show();
+                  }
+
 
 
              }
@@ -54,9 +71,9 @@ public class DefinirTiemposActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
 
                 if(checkedId==R.id.solo_uno_tiempo){
-                    FechaEstadistico.FECHA_ESTADISTICO_TEMP.setCantidad_tiempos(1);
+                    Estadistico_Gestion.TEMP.setCantidad_tiempos(1);
                 }else if(checkedId==R.id.dos_tiempos){
-                    FechaEstadistico.FECHA_ESTADISTICO_TEMP.setCantidad_tiempos(2);
+                    Estadistico_Gestion.TEMP.setCantidad_tiempos(2);
                 }
             }
         });

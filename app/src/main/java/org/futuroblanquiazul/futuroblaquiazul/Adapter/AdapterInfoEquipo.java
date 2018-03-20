@@ -34,7 +34,6 @@ public class AdapterInfoEquipo extends RecyclerView.Adapter<AdapterInfoEquipo.Vi
 
     public  class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-
              TextView o1,o2,o3,o4,o5,o6,o7,o8,o9,o10,o11,o12,o13,o14,o15,o16,o17,o18;
         public ViewHolder(View itemView) {
             super(itemView);
@@ -77,7 +76,7 @@ public class AdapterInfoEquipo extends RecyclerView.Adapter<AdapterInfoEquipo.Vi
         holder.o4.setText(String.valueOf(my_Data.get(position).getPosicion_persona().getNombre_Posicione()));
 
 
-        if(Estadistico_Gestion.TEMP.getTiempo_actual()==1){
+       // if(Estadistico_Gestion.TEMP.getTiempo_actual()==1){
             holder.o5.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getPaseGol()));
             holder.o6.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getDribling()));
             holder.o7.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getOpcionGol()));
@@ -92,7 +91,7 @@ public class AdapterInfoEquipo extends RecyclerView.Adapter<AdapterInfoEquipo.Vi
             holder.o16.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getAtajadas()));
             holder.o17.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getTiempo_Jugados()));
             holder.o18.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getPuntajes()));
-        }else{
+       /* }else{
             holder.o5.setText(String.valueOf(my_Data.get(position).getPuntosSegundoTiempo().getPaseGol()));
             holder.o6.setText(String.valueOf(my_Data.get(position).getPuntosSegundoTiempo().getDribling()));
             holder.o7.setText(String.valueOf(my_Data.get(position).getPuntosSegundoTiempo().getOpcionGol()));
@@ -107,10 +106,7 @@ public class AdapterInfoEquipo extends RecyclerView.Adapter<AdapterInfoEquipo.Vi
             holder.o16.setText(String.valueOf(my_Data.get(position).getPuntosSegundoTiempo().getAtajadas()));
             holder.o17.setText(String.valueOf(my_Data.get(position).getPuntosSegundoTiempo().getTiempo_Jugados()));
             holder.o18.setText(String.valueOf(my_Data.get(position).getPuntosSegundoTiempo().getPuntajes()));
-        }
-
-
-
+        }*/
 
     }
 
