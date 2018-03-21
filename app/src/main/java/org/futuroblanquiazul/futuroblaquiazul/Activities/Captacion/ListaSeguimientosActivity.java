@@ -2,6 +2,7 @@ package org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -116,9 +117,29 @@ public class ListaSeguimientosActivity extends AppCompatActivity {
         opcion_migrar_fase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Usuario.SESION_ACTUAL.getPersona_seguimiento()!=null){
-                    Migrar_fase_pruebas(Usuario.SESION_ACTUAL.getPersona_seguimiento().getId(),context);
-                }
+
+                final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+                builder.setTitle("Migrar")
+                        .setMessage("¿Desea Migrar a "+Usuario.SESION_ACTUAL.getPersona_seguimiento().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_seguimiento().getApellidos_Persona() +" hacia la Fase Prueba?")
+                        .setPositiveButton("SI",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        if(Usuario.SESION_ACTUAL.getPersona_seguimiento()!=null){
+                                            Migrar_fase_pruebas(Usuario.SESION_ACTUAL.getPersona_seguimiento().getId(),context);
+                                        }
+                                    }
+                                })
+                        .setNegativeButton("NO",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+
+                builder.show();
+
             }
         });
     }
@@ -229,9 +250,6 @@ public class ListaSeguimientosActivity extends AppCompatActivity {
         RecuperarSeguimientos xx = new RecuperarSeguimientos(id_persona,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
-
-
-
 
     }
     public void onBackPressed() {

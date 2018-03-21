@@ -21,6 +21,7 @@ import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Fragments.CaptacionFragment;
 import org.futuroblanquiazul.futuroblaquiazul.Fragments.EstadisticoFragment;
 import org.futuroblanquiazul.futuroblaquiazul.Fragments.MainFragment;
+import org.futuroblanquiazul.futuroblaquiazul.Fragments.MantenimientoFragment;
 import org.futuroblanquiazul.futuroblaquiazul.Fragments.MetodologiaFragment;
 import org.futuroblanquiazul.futuroblaquiazul.Fragments.SolicitudesFragment;
 import org.futuroblanquiazul.futuroblaquiazul.R;
@@ -50,6 +51,14 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
     }
     private void Setear_usuario() {
 
+        if(Usuario.SESION_ACTUAL.getUsuario()!=null){
+            usuario.setText(Usuario.SESION_ACTUAL.getNombres()+" "+Usuario.SESION_ACTUAL.getApellidos());
+            tipo.setText("Administrador");
+        }else{
+            usuario.setText("No Disponible");
+            tipo.setText("No Disponible");
+        }
+
         usuario.setText(Usuario.SESION_ACTUAL.getUsuario());
         tipo.setText("Administrador");
         //String ruta="http://alianza2.esy.es/alianza/imagenes/"+ Usuario_Sesion.SESION.getFoto();
@@ -64,6 +73,7 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
         tipo = (TextView) headerView.findViewById(R.id.tipo_principal);
         foto=(ImageView)headerView.findViewById(R.id.profile_image);
         navigationView.setNavigationItemSelectedListener(this);
+        Setear_usuario();
     }
     private void mostrar_vistas() {
         if(getIntent().getStringExtra("o")==null){
@@ -77,6 +87,10 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
             displayView(2);
         }else if(getIntent().getStringExtra("o").equalsIgnoreCase("o4")){
             displayView(4);
+        }
+
+        else if(getIntent().getStringExtra("o").equalsIgnoreCase("o5")){
+            displayView(5);
         }
 
 
@@ -109,7 +123,7 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+
         int id = item.getItemId();
         if (id == R.id.nav_1) {
             displayView(0);
@@ -135,38 +149,13 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
             toolbar.setTitle("Estadisticos");
 
         }
-
-
-       /* else if (id == R.id.mant_usuario) {
+       else if (id == R.id.mant_generales) {
             displayView(5);
-            toolbar.setTitle("Usuarios");
+            toolbar.setTitle("Mantenimiento General");
         }
-        else if (id == R.id.mant_perfiles) {
-            displayView(6);
-            toolbar.setTitle("Perfiles");
-        }*/
 
-       /* else if (id == R.id.mant_categorias) {
-            displayView(7);
-            toolbar.setTitle("Categorias");
-        }
-        else if (id == R.id.mant_jugadores) {
-            displayView(8);
-            toolbar.setTitle("Jugadores");
-        }
-        else if (id == R.id.mant_eventos_barrio) {
-            displayView(9);
-            toolbar.setTitle("Campeonatos");
-        }
-        else if (id == R.id.mant_barrio) {
-            displayView(21);
-            toolbar.setTitle("Barrio Intimo -Mant");
-        }
-        else if (id == R.id.mant_mis_equipos) {
-            displayView(10);
-            toolbar.setTitle("Mis Equipos");
 
-        }*/
+
 
         if (id == R.id.nav_salir) {
 
@@ -208,13 +197,16 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
             case 2:
                 fragment = new MetodologiaFragment();
                 break;
-
             case 3:
                 fragment = new SolicitudesFragment();
                 break;
 
             case 4:
                 fragment = new EstadisticoFragment();
+                break;
+
+            case 5:
+                fragment = new MantenimientoFragment();
                 break;
 
 

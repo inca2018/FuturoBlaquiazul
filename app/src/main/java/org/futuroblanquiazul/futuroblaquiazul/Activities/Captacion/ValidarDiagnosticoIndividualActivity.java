@@ -451,7 +451,10 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
                         Desactivar_Persona(Integer.parseInt(id_per));
                         Actualizar_Estado_Capta(Integer.parseInt(id_per));
                     }else{
-                        id_per=String.valueOf(base.getPersona_captacion_individual().getId());
+                        //id_per=String.valueOf(base.getPersona_captacion_individual().getId());
+                         if(id_persona!=0){
+                             id_per=String.valueOf(id_persona);
+                         }
                         id_Dep=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getDepartamento().getCodigo());
                         id_Prov=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getProvincia().getCodigo());
                         id_Dis=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getDistrito().getCodigo());

@@ -9,6 +9,7 @@ public class Conexion {
     public static final String RUTA_SERVICIO_CAPTACION="http://futuroblanquiazul.org/alianza/Captacion/servicio_captacion.php";
     public static final String RUTA_SERVICIO_METODOLOGIA="http://futuroblanquiazul.org/alianza/Metodologia/servicio_metodologia.php";
     public static final String RUTA_SERVICIO_ESTADISTICO="http://futuroblanquiazul.org/alianza/Estadistico/servicio_estadistico.php";
+    public static final String RUTA_SERVICIO_MANTENIMIENTO="http://futuroblanquiazul.org/alianza/Mantenimiento/servicio_mantenimiento.php";
 
 
 }

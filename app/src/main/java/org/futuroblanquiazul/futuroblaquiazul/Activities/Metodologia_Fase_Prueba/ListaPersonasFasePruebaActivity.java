@@ -118,12 +118,10 @@ public class ListaPersonasFasePruebaActivity extends AppCompatActivity {
 
     public void onBackPressed() {
 
-        if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
             Intent intent = new Intent(ListaPersonasFasePruebaActivity.this,PrincipalActivity.class);
             intent.putExtra("o","o3");
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             ListaPersonasFasePruebaActivity.this.startActivity(intent);
-        }
 
 
     }

@@ -2,8 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -47,39 +46,13 @@
                                 style="@style/titulo1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Captación Individual" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:id="@+id/texto_ubigeo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    style="@style/titulo2"
-                                    android:text=""
-                                    android:textSize="12dp"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:textStyle="italic"/>
-                                <ImageView
-                                    android:id="@+id/icon_ubigeo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="3"
-                                    android:src="@mipmap/icon_next"
-                                    android:tint="@color/blue"/>
-
-
-                            </LinearLayout>
+                                android:text="Usuarios" />
 
                             <TextView
+                                style="@style/titulo2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                style="@style/titulo2"
-                                android:text="Realizar Captación - Prueba Diagnostico Individual"/>
+                                android:text="Mantenimiento General de Usuarios" />
 
                             <android.support.v7.widget.CardView
                                 android:layout_width="match_parent"
@@ -88,39 +61,15 @@
                                 app:cardCornerRadius="10dp"
                                 app:cardBackgroundColor="@color/blue"
                                 android:layout_margin="8dp">
+
                                 <Button
-                                    android:id="@+id/accion_1"
+                                    android:id="@+id/accion_1_mantenimiento"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Realizar Diagnostico"
                                     android:background="@android:color/transparent"
-                                    android:textColor="@color/colorWhite"
-                                    />
+                                    android:text="Ingresar"
+                                    android:textColor="@color/colorWhite" />
                             </android.support.v7.widget.CardView>
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                style="@style/titulo2"
-                                android:text="Seguimiento de Postulante"/>
-
-                            <android.support.v7.widget.CardView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                app:cardElevation="5dp"
-                                app:cardCornerRadius="10dp"
-                                app:cardBackgroundColor="@color/blue"
-                                android:layout_margin="8dp">
-                                <Button
-                                    android:id="@+id/accion_2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:text="Seguimientos"
-                                    android:background="@android:color/transparent"
-                                    android:textColor="@color/colorWhite"
-                                    />
-                            </android.support.v7.widget.CardView>
-
 
 
                         </LinearLayout>
@@ -152,44 +101,17 @@
                             android:layout_margin="8dp">
 
                             <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
                                 style="@style/titulo1"
-                                android:text="Captación Masiva"/>
-
-                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:id="@+id/texto_ubigeo_masivo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    style="@style/titulo2"
-                                    android:text=""
-                                    android:textSize="12dp"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:textStyle="italic"/>
-                                <ImageView
-                                    android:id="@+id/icon_ubigeo_masivo"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="3"
-                                    android:src="@mipmap/icon_next"
-                                    android:tint="@color/blue"/>
-
-
-                            </LinearLayout>
-
+                                android:text="Posiciones" />
 
 
                             <TextView
+                                style="@style/titulo2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                style="@style/titulo2"
-                                android:text="Gestión de Diagnostico Masivo"/>
+                                android:text="Mantenimiento General de Posiciones" />
 
                             <android.support.v7.widget.CardView
                                 android:layout_width="match_parent"
@@ -198,14 +120,14 @@
                                 app:cardCornerRadius="10dp"
                                 app:cardBackgroundColor="@color/deep_naranja400"
                                 android:layout_margin="8dp">
+
                                 <Button
-                                    android:id="@+id/accion_3"
+                                    android:id="@+id/accion_2_mantenimiento"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Ingresar"
                                     android:background="@android:color/transparent"
-                                    android:textColor="@color/colorWhite"
-                                    />
+                                    android:text="Ingresar"
+                                    android:textColor="@color/colorWhite" />
                             </android.support.v7.widget.CardView>
 
 
@@ -238,42 +160,16 @@
                             android:layout_margin="8dp">
 
                             <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
                                 style="@style/titulo1"
-                                android:text="Barrio Intimo"/>
-
-                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-
-                                <TextView
-                                    android:id="@+id/texto_ubigeo_barrio"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    style="@style/titulo2"
-                                    android:text=""
-                                    android:textSize="12dp"
-                                    android:layout_weight="1"
-                                    android:gravity="center"
-                                    android:textStyle="italic"/>
-                                <ImageView
-                                    android:id="@+id/icon_ubigeo_barrio"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="3"
-                                    android:src="@mipmap/icon_next"
-                                    android:tint="@color/blue"/>
-
-
-                            </LinearLayout>
+                                android:text="Jugadores" />
 
                             <TextView
+                                style="@style/titulo2"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                style="@style/titulo2"
-                                android:text="Gestión de Eventos"/>
+                                android:text="Mantenimiento General de Jugadores" />
 
                             <android.support.v7.widget.CardView
                                 android:layout_width="match_parent"
@@ -282,14 +178,14 @@
                                 app:cardCornerRadius="10dp"
                                 app:cardBackgroundColor="@color/verde_bajo"
                                 android:layout_margin="8dp">
+
                                 <Button
-                                    android:id="@+id/accion_5"
+                                    android:id="@+id/accion_3_mantenimiento"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:text="Ir a Eventos"
                                     android:background="@android:color/transparent"
-                                    android:textColor="@color/colorWhite"
-                                    />
+                                    android:text="Ir a Eventos"
+                                    android:textColor="@color/colorWhite" />
                             </android.support.v7.widget.CardView>
 
 

@@ -26,6 +26,7 @@
         </menu>
     </item>
 
+    <!--
     <item android:title="MODULO FORMACIÓN:"
         android:id="@+id/menu_modulo_formacion">
         <menu>
@@ -36,7 +37,7 @@
                 android:title="Información Formación"
                 android:checkable="true"/>
         </menu>
-    </item>
+    </item>  -->
 
     <item android:title="MODULO METODOLOGIA:"
         android:id="@+id/menu_modulo_metodologia">
@@ -65,41 +66,17 @@
 
 
 
-   <!--
+
     <item android:title="MODULO MANTENIMIENTO:"
-        android:id="@+id/menu_modulo_mantenimiento"
-        android:visible="false">
+        android:id="@+id/menu_modulo_mantenimiento">
         <menu>
-            <item android:id="@+id/mant_usuario" android:icon="@mipmap/ic_menu_usuarios"
-                android:title="Usuarios"
+            <item android:id="@+id/mant_generales" android:icon="@mipmap/icon_mantenimiento"
+                android:title="Generales"
                 android:checkable="true"
                 />
-            <item android:id="@+id/mant_perfiles" android:icon="@mipmap/ic_menu_perfil"
-                android:title="Perfiles"
-                android:checkable="true"
-                />
-            <item android:id="@+id/mant_categorias" android:icon="@mipmap/ic_menu_categoria"
-                android:title="Categorias"
-                android:checkable="true"
-                />
-            <item android:id="@+id/mant_jugadores" android:icon="@mipmap/ic_menu_jugadores"
-                android:title="Jugadores"
-                android:checkable="true"
-                />
-            <item android:id="@+id/mant_eventos_barrio" android:icon="@mipmap/ic_menu_campeo"
-                android:title="Campeonatos"
-                android:checkable="true"
-                />
-            <item android:id="@+id/mant_mis_equipos" android:icon="@mipmap/ic_menu_equipos"
-                android:title="Mis Equipos"
-                android:checkable="true"
-                />
-            <item android:id="@+id/mant_barrio" android:icon="@mipmap/ic_menu_campeo"
-                android:title="Barrio Intimo -Mant"
-                android:checkable="true"
-                />
+
         </menu>
-    </item> -->
+    </item>
 
         <item android:id="@+id/nav_salir" android:icon="@mipmap/icon_exit"
             android:title="Cerrar Sesión"

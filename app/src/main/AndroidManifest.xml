@@ -22,13 +22,11 @@
         <activity
             android:name=".Activities.Inicio.LoginActivity"
             android:configChanges="screenSize|orientation">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".Activities.Inicio.PrincipalActivity"
@@ -128,11 +126,10 @@
         <activity
             android:name=".Activities.Estadistico.DefinirFormacionActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".Activities.Estadistico.GestionFechaEstadisticoActivity">
-
-
-        </activity>
-        <activity android:name=".Activities.Estadistico.DefinirTiemposActivity"></activity>
+        <activity android:name=".Activities.Estadistico.GestionFechaEstadisticoActivity" />
+        <activity android:name=".Activities.Estadistico.DefinirTiemposActivity" />
+        <activity android:name=".Activities.Mantenimientos.MantenimientoUsuarioActivity" />
+        <activity android:name=".Activities.Mantenimientos.EdicionUsuarioActivity"></activity>
     </application>
 
 </manifest>

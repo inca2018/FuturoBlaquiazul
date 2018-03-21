@@ -226,7 +226,7 @@ public class LoginActivity extends AppCompatActivity {
                         UsuarioTemp.setNombres(jsonResponse.getString("NOMBRES"));
                         UsuarioTemp.setApellidos(jsonResponse.getString("APELLIDOS"));
                         UsuarioTemp.setDni(jsonResponse.getInt("DNI"));
-                        UsuarioTemp.setArea(jsonResponse.getString("AREA"));
+                        UsuarioTemp.setArea(jsonResponse.getInt("AREA"));
                         UsuarioTemp.setCargo(jsonResponse.getString("CARGO"));
                         UsuarioTemp.setCorreo(jsonResponse.getString("CORREO"));
                         UsuarioTemp.setTipo_usuario(jsonResponse.getInt("TIPO"));

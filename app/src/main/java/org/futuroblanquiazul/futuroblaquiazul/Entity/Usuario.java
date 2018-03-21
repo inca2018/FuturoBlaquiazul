@@ -18,7 +18,7 @@ public class Usuario {
   int dni;
   int tipo_usuario;
   int estado;
-  String area;
+  int area;
   String Cargo;
   String foto;
   String correo;
@@ -64,6 +64,12 @@ public class Usuario {
     int id_psico;
 
 
+    Perfil perfil;
+    Area_Usuario area_usuario;
+
+    String FechaModificado;
+
+
     public static final Usuario SESION_ACTUAL=new Usuario();
 
 
@@ -72,6 +78,29 @@ public class Usuario {
 
     }
 
+    public String getFechaModificado() {
+        return FechaModificado;
+    }
+
+    public void setFechaModificado(String fechaModificado) {
+        FechaModificado = fechaModificado;
+    }
+
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
+    }
+
+    public Area_Usuario getArea_usuario() {
+        return area_usuario;
+    }
+
+    public void setArea_usuario(Area_Usuario area_usuario) {
+        this.area_usuario = area_usuario;
+    }
 
     public TipoPruebas getTipoPruebas() {
         return tipoPruebas;
@@ -322,11 +351,11 @@ public class Usuario {
         this.estado = estado;
     }
 
-    public String getArea() {
+    public int getArea() {
         return area;
     }
 
-    public void setArea(String area) {
+    public void setArea(int area) {
         this.area = area;
     }
 
