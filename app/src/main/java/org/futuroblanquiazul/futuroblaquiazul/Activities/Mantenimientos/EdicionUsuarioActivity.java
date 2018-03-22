@@ -1,13 +1,23 @@
 package org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.hardware.Camera;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -25,6 +35,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +48,13 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     String [] lista_areas_desc,lista_perfiles_desc;
     FloatingActionButton accion_foto;
+    ImageView foto_usuario;
+    String nombre_creado="";
+
+    String path;
+
+    private final String CARPETA_RAIZ="FuturoBlanquiazul/";
+    private final String RUTA_IMAGEN=CARPETA_RAIZ+"MisFotos";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +62,7 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
         lista_perfiles=new ArrayList<>();
         lista_areas=new ArrayList<>();
         accion_foto=findViewById(R.id.u_accion_usuario);
+        foto_usuario=findViewById(R.id.u_foto_usuario);
 
         areas=findViewById(R.id.u_spinner_areas);
         perfiles=findViewById(R.id.u_spinner_perfiles);
@@ -55,9 +74,84 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
         accion_foto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Accion foto", Toast.LENGTH_SHORT).show();
+                final  CharSequence[] opciones={"Tomar Foto","Cargar Imagen","Cancelar"};
+                final AlertDialog.Builder alertOpciones=new AlertDialog.Builder(context);
+                alertOpciones.setTitle("Seleccione una Opción");
+                alertOpciones.setItems(opciones, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                              if(opciones[i].equals("Tomar Foto")){
+                                  Tomar_Foto();
+                              }else if(opciones[i].equals("Cargar Imagen")){
+                                  Cargar_Galeria_Imagen();
+                              }else if(opciones[i].equals("Cancelar")){
+                                  dialog.dismiss();
+                              }
+                    }
+                });
+
+                alertOpciones.show();
+
+
+
             }
         });
+    }
+
+    private void Tomar_Foto() {
+            File fileImagen=new File(Environment.getExternalStorageDirectory(),RUTA_IMAGEN);
+            boolean isCreada=fileImagen.exists();
+
+            if(isCreada==false){
+                isCreada=fileImagen.mkdirs();
+            }
+
+            if(isCreada){
+                nombre_creado=(System.currentTimeMillis()/1000)+".jpg";
+            }
+
+            String path=Environment.getExternalStorageDirectory()+File.separator+RUTA_IMAGEN+File.separator+nombre_creado;
+
+            File imagen=new File(path);
+
+            Intent intent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT,Uri.fromFile(imagen));
+
+            startActivityForResult(intent,20);
+
+    }
+
+    private void Cargar_Galeria_Imagen() {
+
+        Intent intent=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/");
+        startActivityForResult(intent.createChooser(intent,"Seleccione Aplicación"),10);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK){
+
+            switch (requestCode){
+                case 10:
+                    Uri Mipath=data.getData();
+                    foto_usuario.setImageURI(Mipath);
+                    break;
+                case 20:
+                    MediaScannerConnection.scanFile(context, new String[]{path}, null, new MediaScannerConnection.OnScanCompletedListener() {
+                        @Override
+                        public void onScanCompleted(String path, Uri uri) {
+                                 System.out.println("Confirmado");
+                        }
+                    });
+                    Bitmap bitmap= BitmapFactory.decodeFile(path);
+                    foto_usuario.setImageBitmap(bitmap);
+                    break;
+            }
+
+
+        }
     }
 
     private void Listar_Perfiles(final Context context) {
@@ -176,6 +270,5 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
         queue.add(xx);
 
     }
-
 
 }
