@@ -2,12 +2,12 @@ package org.futuroblanquiazul.futuroblaquiazul.Entity;
 
 
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
+
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Created by Jesus Inca on 09/02/2018.
- */
 
 public class Usuario {
   int id;
@@ -70,6 +70,9 @@ public class Usuario {
     String FechaModificado;
 
 
+    Usuario usuario_mantenimiento;
+
+
     public static final Usuario SESION_ACTUAL=new Usuario();
 
 
@@ -80,6 +83,14 @@ public class Usuario {
 
     public String getFechaModificado() {
         return FechaModificado;
+    }
+
+    public Usuario getUsuario_mantenimiento() {
+        return usuario_mantenimiento;
+    }
+
+    public void setUsuario_mantenimiento(Usuario usuario_mantenimiento) {
+        this.usuario_mantenimiento = usuario_mantenimiento;
     }
 
     public void setFechaModificado(String fechaModificado) {

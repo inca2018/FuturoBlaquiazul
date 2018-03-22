@@ -3,9 +3,9 @@
     package="org.futuroblanquiazul.futuroblaquiazul">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -132,7 +132,20 @@
         <activity android:name=".Activities.Estadistico.GestionFechaEstadisticoActivity" />
         <activity android:name=".Activities.Estadistico.DefinirTiemposActivity" />
         <activity android:name=".Activities.Mantenimientos.MantenimientoUsuarioActivity" />
-        <activity android:name=".Activities.Mantenimientos.EdicionUsuarioActivity"></activity>
+        <activity
+            android:name=".Activities.Mantenimientos.EdicionUsuarioActivity"
+            android:configChanges="screenSize|orientation"></activity>
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="org.futuroblanquiazul.futuroblaquiazul.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
+
     </application>
 
 </manifest>
