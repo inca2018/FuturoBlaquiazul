@@ -3,6 +3,7 @@ package org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Debug;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -40,7 +41,6 @@ public class MantenimientoUsuarioActivity extends AppCompatActivity implements S
     Context context;
     AdapterUsuarios adapterUsuarios;
     List<Usuario> Lista_Usuarios;
-
     ProgressDialog progressDialog;
     Button nuevo_usuario;
     @Override
@@ -125,6 +125,7 @@ public class MantenimientoUsuarioActivity extends AppCompatActivity implements S
                             temp.setArea_usuario(a);
 
                             Lista_Usuarios.add(temp);
+                            debug("FOTO RECUPERADA "+temp.getFoto());
 
                         }
 
@@ -136,13 +137,10 @@ public class MantenimientoUsuarioActivity extends AppCompatActivity implements S
                         progressDialog.dismiss();
                         Toast.makeText(context, "Listado Vacio", Toast.LENGTH_SHORT).show();
                     }
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                     System.out.println("Inca  : Error de conexion al recuperar departamentos :"+e);
                 }
-
-
            }
         };
 
@@ -166,7 +164,7 @@ public class MantenimientoUsuarioActivity extends AppCompatActivity implements S
 
         List<Usuario> filteredValues = new ArrayList<Usuario>(Lista_Usuarios);
         for (Usuario value : Lista_Usuarios) {
-            if (!value.getNombres().toLowerCase().contains(newText.toLowerCase()) || !value.getApellidos().toLowerCase().contains(newText.toLowerCase()) ) {
+            if (!(value.getNombres().toLowerCase()+value.getApellidos().toLowerCase()).contains(newText.toLowerCase())) {
                 filteredValues.remove(value);
             }
         }
@@ -196,13 +194,15 @@ public class MantenimientoUsuarioActivity extends AppCompatActivity implements S
 
         //Opciones();
     }
-
-
     public void onBackPressed() {
         Intent intent= new Intent(context,PrincipalActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra("o","o5");
         startActivity(intent);
 
+    }
+
+    public void debug(String d){
+        System.out.println(d);
     }
 }

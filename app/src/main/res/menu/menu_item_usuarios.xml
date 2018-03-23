@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/opcion_1"
+        android:title="Editar">
+    </item>
+    <item
+        android:id="@+id/opcion_2"
+        android:title="Desactivar">
+    </item>
+    <item
+        android:id="@+id/opcion_3"
+        android:title="Bloquear">
+    </item>
+    <item
+        android:id="@+id/opcion_4"
+        android:title="Información del Usuario">
+    </item>
+
+</menu>

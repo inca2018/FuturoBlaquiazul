@@ -1,5 +1,8 @@
 package org.futuroblanquiazul.futuroblaquiazul;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+
 /**
  * Created by Jesus Inca on 21/03/2018.
  */
@@ -8,7 +11,6 @@ public class COMPONENTES {
 
       // CUERPO DE RECYCLER
     /*      linearLayoutManager=new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
-
 
         adapterUsuarios = new AdapterUsuarios(context,Lista_Usuarios, new RecyclerViewOnItemClickListener() {
             @Override
@@ -19,7 +21,6 @@ public class COMPONENTES {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         Listar_Usuarios(context);*/
-
 
 
       int  ARMADO_DE_SPINNER=1;
@@ -36,6 +37,78 @@ public class COMPONENTES {
             spinner_numero.setAdapter(adapter_arr);
 
             */
+
+      int  VERIFICACION=1;
+
+      /*
+      final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+        builder.setTitle("SALIR")
+                .setMessage("¿Desea Cerrar Aplicación?")
+                .setPositiveButton("SI",
+                                           new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+      })
+              .setNegativeButton("NO",
+                                         new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                  dialog.dismiss();
+            }
+      });
+        builder.show();
+        */
+
+
+
+      int CUERPO_DE_PETICION=1;
+
+
+      /*
+
+
+        String id_usuario=String.valueOf(id);
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+
+                    }else {
+
+                        Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error ACTIVAR :"+e);
+                }
+            }
+        };
+
+        BloquearUsuario xx = new BloquearUsuario(id_usuario, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+      */
+
+
+      int PROGRESS=1;
+
+      /*
+      *      progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("Usuario:");
+        progressDialog.setMessage("Registrando Usuario...");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+
+      *
+      * */
 
 
 }

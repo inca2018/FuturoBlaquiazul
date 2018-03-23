@@ -13,6 +13,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Debug;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
@@ -23,6 +24,8 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -35,11 +38,13 @@ import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.ListaEventosEstadisticosActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Area_Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Perfil;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActualizarUsuario;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarAreas;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarPerfiles;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarEventoNuevo;
@@ -53,13 +58,14 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
-
-
 public class EdicionUsuarioActivity extends AppCompatActivity {
     Spinner areas,perfiles,estado;
     List<Perfil> lista_perfiles;
@@ -73,21 +79,115 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
     String path;
     private final String CARPETA_RAIZ="FuturoBlanquiazul/";
     private final String RUTA_IMAGEN=CARPETA_RAIZ+"MisFotos";
-
     Bitmap bitmap;
-
     Button u_boton_guardar;
     EditText usuario,password,nombres,apellidos,dni,correo,cargo;
-
     String area_seleccion;
     String perfil_seleccion;
     String estado_seleccion;
 
 
+
+    Boolean sinCambiosFoto=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edicion_usuario);
+        Iniciar_variables();
+        Acciones_Componentes();
+    }
+    private void Acciones_Componentes() {
+
+        if(Validar_Permisos()){
+            accion_foto.setEnabled(true);
+        }else{
+            accion_foto.setEnabled(false);
+        }
+        accion_foto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Opciones_de_Fotos();
+            }
+        });
+        u_boton_guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Recupera_Valores();
+
+            }
+        });
+            areas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    if(position!=0){
+                        Object objeto=parent.getItemAtPosition(position);
+                        area_seleccion=String.valueOf(objeto);
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+            perfiles.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                        if(position!=0){
+                            Object objeto=parent.getItemAtPosition(position);
+                             perfil_seleccion=String.valueOf(objeto);
+                         }
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+            estado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    if(position!=0){
+                        Object objeto=parent.getItemAtPosition(position);
+
+                        estado_seleccion=String.valueOf(objeto);
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+    }
+    private void Mostrar_Valores_Recuperados() {
+        if(Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getFoto().length()!=0){
+            debug("TIENE FOTO EL USUARIO");
+            Glide.with(context).load(Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getFoto()).into(foto_usuario);
+        }else{
+            debug("NO TIENE FOTO EL USUARIO");
+            foto_usuario.setImageResource(R.drawable.user_default);
+        }
+        debug("------------------------------------------DATOS RECUPERADOS ----------------------------------------------------");
+        debug(" ESTADO RECUPERADO "+Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getEstado());
+        debug("CODIGO PERFIL: "+Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getPerfil().getId()+" PERFIL : "+Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getPerfil().getNombre_Perfil());
+        debug("CODIGO AREA: "+Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getArea_usuario().getId()+" AREA :"+Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getArea_usuario().getDescripcion());
+
+        nombres.setText(Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getNombres());
+        apellidos.setText(Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getApellidos());
+        dni.setText(String.valueOf(Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getDni()));
+        correo.setText(Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getCorreo());
+        cargo.setText(Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getCargo());
+        password.setText(Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getPassword());
+        estado.setSelection((Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getEstado())-1);
+        perfiles.setSelection(obtenerPosicionItem(perfiles,Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getPerfil().getNombre_Perfil()));
+        areas.setSelection(obtenerPosicionItem(areas,Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getArea_usuario().getDescripcion()));
+        usuario.setText(Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getUsuario());
+    }
+    private void Iniciar_variables() {
+
         lista_perfiles=new ArrayList<>();
         lista_areas=new ArrayList<>();
         accion_foto=findViewById(R.id.u_accion_usuario);
@@ -107,78 +207,6 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
 
         context=this;
         Listar_Perfiles(context);
-
-
-        if(Validar_Permisos()){
-            accion_foto.setEnabled(true);
-        }else{
-            accion_foto.setEnabled(false);
-        }
-
-        accion_foto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                    Opciones_de_Fotos();
-            }
-        });
-
-
-        u_boton_guardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Recupera_Valores();
-
-            }
-        });
-
-        areas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position!=0){
-                    Object objeto=parent.getItemAtPosition(position);
-                    area_seleccion=String.valueOf(objeto);
-                }
-
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        perfiles.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position!=0){
-                    Object objeto=parent.getItemAtPosition(position);
-                    perfil_seleccion=String.valueOf(objeto);
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        estado.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position!=0){
-                    Object objeto=parent.getItemAtPosition(position);
-
-                    estado_seleccion=String.valueOf(objeto);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
-
     }
     //GESTION DE ACTIVITY ACTUAL
     private void Recupera_Valores() {
@@ -203,37 +231,39 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
                                               temp.setArea_usuario(RecuperarArea());
                                               temp.setEstado((estado.getSelectedItemPosition()+1));
 
+                                              debug("Perfil : "+temp.getPerfil().getId()+" DESC: "+temp.getPerfil().getNombre_Perfil());
+                                              debug("Area :"+temp.getArea_usuario().getId()+" DESC:"+temp.getArea_usuario().getDescripcion());
+
                                               if(bitmap!=null){
-                                                  String info=convertirImgString(bitmap);
-                                                   byte[] bytecode= Base64.decode(info,Base64.DEFAULT);
-                                                  int alto=100;
-                                                  int ancho=100;
-                                                  Bitmap fo=BitmapFactory.decodeByteArray(bytecode,0,bytecode.length);
-                                                  Bitmap d=Bitmap.createScaledBitmap(fo,alto,ancho,true);
-                                                 temp.setFoto(convertirImgString(d));
-                                                  temp.setFoto(convertirImgString(bitmap));
+                                                  String nuevo=Minimizar(bitmap);
+                                                  temp.setFoto(nuevo);
 
                                                   debug("CON FOTO ENVIO");
                                                   debug("---------------------------------------------------------------------------------");
-                                                  // debug(String.valueOf(convertirImgString(bitmap)));
+                                                 debug(nuevo);
                                               }else{
-                                                  Bitmap bitmap_actual = ((BitmapDrawable)foto_usuario.getDrawable()).getBitmap();
-                                                  String info=convertirImgString(bitmap_actual);
-                                                  byte[] bytecode= Base64.decode(info,Base64.DEFAULT);
-                                                  int alto=100;
-                                                  int ancho=100;
-                                                  Bitmap fo=BitmapFactory.decodeByteArray(bytecode,0,bytecode.length);
-                                                  Bitmap d=Bitmap.createScaledBitmap(fo,alto,ancho,true);
-                                                  temp.setFoto(convertirImgString(d));
-                                                  temp.setFoto(convertirImgString(bitmap_actual));
 
-                                                  debug("SIN FOTO EN DEFAULT");
-                                                  debug("---------------------------------------------------------------------------------");
-                                                 // debug(String.valueOf(convertirImgString(bitmap_actual)));
+                                                  if(Usuario.SESION_ACTUAL.getUsuario_mantenimiento()!=null){
+                                                      debug("ENTRO CON FOTO, PERO SIN CAMBIOS");
+                                                      sinCambiosFoto=true;
+                                                  }else{
+                                                      Bitmap bitmap_actual = ((BitmapDrawable)foto_usuario.getDrawable()).getBitmap();
+                                                      String nuevo2=Minimizar(bitmap_actual);
+                                                      temp.setFoto(nuevo2);
+
+                                                      debug("SIN FOTO EN DEFAULT");
+                                                      debug("---------------------------------------------------------------------------------");
+                                                      debug(nuevo2);
+                                                  }
+
                                               }
 
+                                              if(Usuario.SESION_ACTUAL.getUsuario_mantenimiento()!=null){
+                                                  Actualizar_Usuario(temp,Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getId(),Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getFoto(),context);
+                                              }else{
+                                                  Registrar_Usuario_Nuevo(temp,context);
+                                              }
 
-                                              Registrar_Usuario_Nuevo(temp,context);
 
                                           }else{
                                               Toast.makeText(context, "Seleccione Perfil", Toast.LENGTH_SHORT).show();
@@ -265,10 +295,82 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
         }
 
     }
+    private void Actualizar_Usuario(final Usuario temp,final int id_u,final String ru , final Context context) {
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("Usuario:");
+        progressDialog.setMessage("Actualizando Usuario...");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
 
+
+        debug("------------------------------------------DATOS RECUPERADOS ----------------------------------------------------");
+        debug(" ESTADO RECUPERADO "+temp.getEstado());
+        debug("CODIGO PERFIL: "+temp.getPerfil().getId()+" PERFIL : "+temp.getPerfil().getNombre_Perfil());
+        debug("CODIGO AREA: "+temp.getArea_usuario().getId()+" AREA :"+temp.getArea_usuario().getDescripcion());
+
+
+        String usuario=temp.getUsuario();
+        String pass=temp.getPassword();
+        String nom=temp.getNombres().toUpperCase().toString();
+        String ape=temp.getApellidos().toUpperCase().toString();
+        String dni=String.valueOf(temp.getDni());
+        String area=String.valueOf(temp.getArea_usuario().getId());
+        String cargo=String.valueOf(temp.getCargo().toUpperCase());
+        String correo=temp.getCorreo().toUpperCase();
+        String tipo=String.valueOf(temp.getPerfil().getId());
+        String foto=String.valueOf(temp.getFoto());
+        String estado=String.valueOf(temp.getEstado());
+
+        String id_usuario=String.valueOf(id_u);
+        String ruta=ru;
+        String sinCambioFoto="";
+
+        if(sinCambiosFoto){
+             sinCambioFoto=String.valueOf(1) ;
+        }else{
+             sinCambioFoto=String.valueOf(0);
+        }
+
+
+
+        com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+
+                    if (success) {
+
+                        Intent intent=new Intent(context,MantenimientoUsuarioActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        context.startActivity(intent);
+
+                        Usuario.SESION_ACTUAL.setUsuario_mantenimiento(null);
+
+                        Toast.makeText(context, "Usuario Actualizado Exitosamente", Toast.LENGTH_SHORT).show();
+
+
+                    } else {
+
+                        Toast.makeText(context, "Error de al Actualizar Usuario", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error de conexion al Actualizar Usuario :"+e);
+                }
+            }
+        };
+
+        ActualizarUsuario xx = new ActualizarUsuario( usuario, pass, nom, ape, dni, area, cargo, correo, tipo, estado, foto, id_usuario,ruta,sinCambioFoto,responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+
+    }
     private void Registrar_Usuario_Nuevo(final Usuario temp,final Context context) {
-
-
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Usuario:");
         progressDialog.setMessage("Registrando Usuario...");
@@ -286,12 +388,9 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
         String tipo=String.valueOf(temp.getPerfil().getId());
         String foto=String.valueOf(temp.getFoto());
         String estado=String.valueOf(temp.getEstado());
-
-
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
                 try {
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
@@ -321,14 +420,7 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
         RegistrarUsuario xx = new RegistrarUsuario( usuario, pass, nom, ape, dni, area, cargo, correo, tipo, estado, foto ,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
-
-
-
     }
-
-    private void limpiar_Campos() {
-    }
-
     private Area_Usuario RecuperarArea() {
         Area_Usuario area=new Area_Usuario();
         for(int i=0;i<lista_areas.size();i++){
@@ -338,7 +430,6 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
         }
         return  area;
     }
-
     private Perfil RecuperarPerfil() {
         Perfil perfil=new Perfil();
         for(int i=0;i<lista_perfiles.size();i++){
@@ -348,8 +439,6 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
         }
         return  perfil;
     }
-
-
     public String convertirImgString(Bitmap bitmap){
 
         ByteArrayOutputStream array=new ByteArrayOutputStream();
@@ -359,7 +448,6 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
 
         return imagenString;
     }
-
     // LISTAS DE SPINNER
     private void Listar_Perfiles(final Context context) {
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
@@ -367,8 +455,8 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
             public void onResponse(String response) {
 
                 progressDialog = new ProgressDialog(context);
-                progressDialog.setTitle("Barrio Intimo:");
-                progressDialog.setMessage("Listando...");
+                progressDialog.setTitle("Mantenimiento:");
+                progressDialog.setMessage("Listando Información...");
                 progressDialog.setCanceledOnTouchOutside(false);
                 progressDialog.show();
                 try {
@@ -458,6 +546,11 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
                         estado.setAdapter(adapter_arr2);
 
                         progressDialog.dismiss();
+
+
+                        if(Usuario.SESION_ACTUAL.getUsuario_mantenimiento()!=null){
+                            Mostrar_Valores_Recuperados();
+                        }
                     } else {
 
                         Toast.makeText(context, "Error de conexion Recuperar Areas", Toast.LENGTH_SHORT).show();
@@ -475,7 +568,6 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
         queue.add(xx);
 
     }
-
    // OPCIONES PARA RECUPERAR IMAGEN
     private void Opciones_de_Fotos() {
         final  CharSequence[] opciones={"Tomar Foto","Cargar Imagen","Cancelar"};
@@ -531,6 +623,12 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
         Intent intent=new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
         startActivityForResult(intent.createChooser(intent,"Seleccione Aplicación"),10);
+
+        /*
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Imagen"), PICK_IMAGE_REQUEST); */
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -540,11 +638,10 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
             switch (requestCode){
                 case 10:
                     Uri Mipath=data.getData();
-                    debug(" PATH ----------------------  :  "+String.valueOf(Mipath));
-                    foto_usuario.setImageURI(Mipath);
-
+                    // debug(" PATH ----------------------  :  "+String.valueOf(Mipath));
+                    //foto_usuario.setImageURI(Mipath);
                     try {
-                        bitmap=MediaStore.Images.Media.getBitmap(context.getContentResolver(),Mipath);
+                        bitmap=MediaStore.Images.Media.getBitmap(getContentResolver(),Mipath);
                         foto_usuario.setImageBitmap(bitmap);
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -566,8 +663,6 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
 
         }
     }
-
-
     // VALIDACION DE PERMISOS  DE VERSIONES ANDROID
     private boolean Validar_Permisos() {
         if(Build.VERSION.SDK_INT<Build.VERSION_CODES.M){
@@ -638,8 +733,61 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
         alertOpciones.show();
     }
 
+    public String Minimizar(Bitmap bitmap){
+        String nuevo="";
+        String info=convertirImgString(bitmap);
+        byte[] bytecode= Base64.decode(info,Base64.DEFAULT);
+        int alto=400;
+        int ancho=400;
+        Bitmap fo= BitmapFactory.decodeByteArray(bytecode,0,bytecode.length);
+        Bitmap d=Bitmap.createScaledBitmap(fo,alto,ancho,true);
+        nuevo=convertirImgString(d);
+        return nuevo;
+    }
+    public  int obtenerPosicionItem(Spinner spinner, String dato) {
+        //Creamos la variable posicion y lo inicializamos en 0
+        int posicion = 0;
+        //Recorre el spinner en busca del ítem que coincida con el parametro `String fruta`
+        //que lo pasaremos posteriormente
+        for (int i = 0; i < spinner.getCount(); i++) {
+            //Almacena la posición del ítem que coincida con la búsqueda
+            debug("i");
+            if (spinner.getItemAtPosition(i).toString().equalsIgnoreCase(dato)) {
+                posicion = i;
+            }
+        }
+        //Devuelve un valor entero (si encontro una coincidencia devuelve la
+        // posición 0 o N, de lo contrario devuelve 0 = posición inicial)
+        return posicion;
+    }
+
+
+    public static Bitmap getBitmapFromURL(String url_image) {
+        try {
+            URL url = new URL(url_image);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            Log.e("Bitmap","returned");
+            return myBitmap;
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("Exception",e.getMessage());
+            return null;
+        }
+    }
+    public void onBackPressed() {
+
+        Intent intent=new Intent(context,MantenimientoUsuarioActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        context.startActivity(intent);
+
+        Usuario.SESION_ACTUAL.setUsuario_mantenimiento(null);
+    }
+
     public void debug(String sm){
         System.out.println(sm);
     }
-
 }
