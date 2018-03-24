@@ -6,6 +6,7 @@ package org.futuroblanquiazul.futuroblaquiazul.Entity;
 
 public class Posicion {
 
+    int num;
     int id;
     String Nombre_Posicione;
     int estado;
@@ -13,6 +14,14 @@ public class Posicion {
 
     public Posicion( ) {
 
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
     }
 
     public int getId() {

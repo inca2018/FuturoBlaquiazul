@@ -146,6 +146,8 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
+        <activity android:name=".Activities.Mantenimientos.EdicionPruebaActivity" />
+        <activity android:name=".Activities.Mantenimientos.MantenimientoPosicionesActivity"></activity>
     </application>
 
 </manifest>
