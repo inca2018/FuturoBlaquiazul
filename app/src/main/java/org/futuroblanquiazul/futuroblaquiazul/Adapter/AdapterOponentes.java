@@ -13,43 +13,50 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos.MantenimientoOponentesActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos.MantenimientoPosicionesActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.Oponente;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Posicion;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.EliminarOponentes;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.EliminarPos1;
-import org.futuroblanquiazul.futuroblaquiazul.Peticiones.EliminarPos2;
 import org.futuroblanquiazul.futuroblaquiazul.R;
+import org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Mantenimientos;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
 
-public class AdapterPosiciones2 extends RecyclerView.Adapter<AdapterPosiciones2.ViewHolder> {
+public class AdapterOponentes extends RecyclerView.Adapter<AdapterOponentes.ViewHolder> {
     private Context context;
-    private List<Posicion> my_Data;
+    private List<Oponente> my_Data;
 
     private RecyclerViewOnItemClickListener recyclerViewOnItemClickListener;
-    int Puntostotal=0;
+
     AlertDialog da;
 
-    public AdapterPosiciones2(Context context, List<Posicion> my_Data, RecyclerViewOnItemClickListener
+    public AdapterOponentes(Context context, List<Oponente> my_Data, RecyclerViewOnItemClickListener
             recyclerViewOnItemClickListener) {
         this.context = context;
         this.my_Data = my_Data;
         this.recyclerViewOnItemClickListener = recyclerViewOnItemClickListener;
-
     }
 
     public  class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView num,posicion;
-        ImageView eliminar;
+        TextView num,nombre,abreviado;
+        ImageView eliminar,editar;
+        ImageView foto;
         public ViewHolder(View itemView) {
             super(itemView);
-         num=itemView.findViewById(R.id.card_mant_pos_numero);
-         posicion=itemView.findViewById(R.id.card_mant_pos_posicion);
-         eliminar=itemView.findViewById(R.id.card_mant_pos_eliminar);
+         num=itemView.findViewById(R.id.card_mant_opo_numero);
+         nombre=itemView.findViewById(R.id.card_mant_opo_nombre);
+         abreviado=itemView.findViewById(R.id.card_mant_opo_abreviado);
+         eliminar=itemView.findViewById(R.id.card_mant_opo_eliminar);
+            editar=itemView.findViewById(R.id.card_mant_opo_editar);
+            foto=itemView.findViewById(R.id.card_mant_opo_foto);
 
         }
         @Override
@@ -58,28 +65,38 @@ public class AdapterPosiciones2 extends RecyclerView.Adapter<AdapterPosiciones2.
         }
     }
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView= LayoutInflater.from(parent.getContext()).inflate(R.layout.card_mant_posicion,parent,false);
+        View itemView= LayoutInflater.from(parent.getContext()).inflate(R.layout.card_mant_oponente,parent,false);
         return new ViewHolder(itemView);
 
     }
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-       holder.num.setText(String.valueOf(my_Data.get(position).getNum()));
-       holder.posicion.setText(my_Data.get(position).getNombre_Posicione());
+      holder.num.setText(String.valueOf(my_Data.get(position).getNum()));
+      holder.nombre.setText(my_Data.get(position).getNombre_Oponente());
+      holder.abreviado.setText(my_Data.get(position).getAbreviado());
+        Glide.with(context).load(my_Data.get(position).getFoto()).into(holder.foto);
 
        holder.eliminar.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               Eliminar_Posicion(my_Data.get(position).getId(),context,position);
+               Eliminar_Oponente(my_Data.get(position).getId(),context,position);
 
+           }
+       });
+
+       holder.editar.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Recursos_Mantenimientos.TEMP.setOponente_temporal(my_Data.get(position)) ;
+               MantenimientoOponentesActivity.OPONENTE_TEMP.Mostrar_Oponente(context);
            }
        });
     }
 
-
-    private void Eliminar_Posicion(int id,final Context context,final int pos) {
+    private void Eliminar_Oponente(int id,final Context context,final int pos) {
         String id_posicion=String.valueOf(id);
+        debug("CODIGO ENVIADO "+id_posicion);
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -89,7 +106,9 @@ public class AdapterPosiciones2 extends RecyclerView.Adapter<AdapterPosiciones2.
                     boolean success = jsonResponse.getBoolean("success");
                     if (success) {
                         Toast.makeText(context, "Posición Eliminado Correctamente!", Toast.LENGTH_SHORT).show();
-                        MantenimientoPosicionesActivity.MANT_POS.Actualizar_Pos2(context);
+
+                        MantenimientoOponentesActivity.OPONENTE_TEMP.Actualizar_Oponentes(context);
+
                     }else {
 
                         Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
@@ -102,7 +121,7 @@ public class AdapterPosiciones2 extends RecyclerView.Adapter<AdapterPosiciones2.
             }
         };
 
-        EliminarPos2 xx = new EliminarPos2(id_posicion, responseListener);
+        EliminarOponentes xx = new EliminarOponentes(id_posicion, responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
 
@@ -113,6 +132,11 @@ public class AdapterPosiciones2 extends RecyclerView.Adapter<AdapterPosiciones2.
     @Override
     public int getItemCount() {
         return my_Data.size();
+    }
+
+
+    public void debug(String d){
+        System.out.println(d);
     }
 
 }

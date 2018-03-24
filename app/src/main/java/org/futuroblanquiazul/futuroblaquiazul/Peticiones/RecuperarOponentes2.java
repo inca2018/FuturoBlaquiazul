@@ -9,19 +9,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Jesus Inca on 09/02/2018.
+ * Created by Jesus Inca on 14/02/2018.
  */
 
-public class EliminarPos1 extends StringRequest {
+public class RecuperarOponentes2 extends StringRequest {
 
     private static final String LOGIN_REQUEST_URL = Conexion.RUTA_SERVICIO_MANTENIMIENTO;
     private Map<String, String> params;
 
-    public EliminarPos1(String id_pos, Response.Listener<String> listener) {
+    public RecuperarOponentes2(Response.Listener<String> listener) {
         super(Method.POST, LOGIN_REQUEST_URL,listener, null);
         params = new HashMap<>();
-        params.put("operacion","eliminar_Posicion1");
-        params.put("id_posicion",id_pos);
+        params.put("operacion","recuperarOponentes");
 
 
     }

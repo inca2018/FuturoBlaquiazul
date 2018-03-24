@@ -84,7 +84,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.ViewHo
         holder.usuario_usuario.setText("Perfil: "+my_Data.get(position).getPerfil().getNombre_Perfil());
         holder.nombres_usuario.setText(my_Data.get(position).getNombres()+" "+my_Data.get(position).getApellidos());
 
-        System.out.println(" FOTO MOSTRADA "+my_Data.get(position).getFoto());
+
         Glide.with(context).load(my_Data.get(position).getFoto()).into(holder.foto_usuario);
 
         if(my_Data.get(position).getEstado()==1){

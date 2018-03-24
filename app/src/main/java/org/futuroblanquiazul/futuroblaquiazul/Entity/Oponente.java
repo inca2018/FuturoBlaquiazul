@@ -7,7 +7,9 @@ package org.futuroblanquiazul.futuroblaquiazul.Entity;
 public class Oponente {
 
     int id;
+    int num;
     String Nombre_Oponente;
+    String abreviado;
     Usuario usuario;
     String Fecha_Registro;
     String foto;
@@ -16,6 +18,23 @@ public class Oponente {
 
     public Oponente(){
 
+    }
+
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    public String getAbreviado() {
+        return abreviado;
+    }
+
+    public void setAbreviado(String abreviado) {
+        this.abreviado = abreviado;
     }
 
     public int getId() {

@@ -12,16 +12,16 @@ import java.util.Map;
  * Created by Jesus Inca on 09/02/2018.
  */
 
-public class EliminarPos1 extends StringRequest {
+public class EliminarOponentes extends StringRequest {
 
     private static final String LOGIN_REQUEST_URL = Conexion.RUTA_SERVICIO_MANTENIMIENTO;
     private Map<String, String> params;
 
-    public EliminarPos1(String id_pos, Response.Listener<String> listener) {
+    public EliminarOponentes(String id_pos, Response.Listener<String> listener) {
         super(Method.POST, LOGIN_REQUEST_URL,listener, null);
         params = new HashMap<>();
-        params.put("operacion","eliminar_Posicion1");
-        params.put("id_posicion",id_pos);
+        params.put("operacion","Eliminar_Oponente");
+        params.put("id_oponente",id_pos);
 
 
     }

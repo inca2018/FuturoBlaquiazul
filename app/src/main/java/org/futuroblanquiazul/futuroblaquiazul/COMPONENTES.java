@@ -111,4 +111,19 @@ public class COMPONENTES {
       * */
 
 
+      int REGRESO_BACK=1;
+
+
+      /*
+       *
+        *   public void onBackPressed() {
+        Intent intent=new Intent(BarrioIntimoActivity.this,PrincipalActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra("o","o1");
+        BarrioIntimoActivity.this.startActivity(intent);
+    }
+        *
+        * */
+
+
 }

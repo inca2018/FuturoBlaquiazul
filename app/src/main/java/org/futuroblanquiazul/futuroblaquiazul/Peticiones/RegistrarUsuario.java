@@ -17,7 +17,7 @@ public class RegistrarUsuario extends StringRequest {
     private static final String LOGIN_REQUEST_URL = Conexion.RUTA_SERVICIO_MANTENIMIENTO;
     private Map<String, String> params;
 
-    public RegistrarUsuario(String usuario,String pass,String nom,String ape,String dni,String area,String cargo,String correo,String tipo,String estado,String foto, Response.Listener<String> listener) {
+    public RegistrarUsuario(String usuario,String pass,String nom,String ape,String dni,String area,String cargo,String correo,String tipo,String estado,String foto,String foto_nom, Response.Listener<String> listener) {
         super(Method.POST, LOGIN_REQUEST_URL,listener, null);
         params = new HashMap<>();
         params.put("operacion","registrarUsuario");
@@ -32,6 +32,7 @@ public class RegistrarUsuario extends StringRequest {
         params.put("tipo_usuario",tipo);
         params.put("estado",estado);
         params.put("foto",foto);
+        params.put("foto_nom",foto_nom);
 
 
     }

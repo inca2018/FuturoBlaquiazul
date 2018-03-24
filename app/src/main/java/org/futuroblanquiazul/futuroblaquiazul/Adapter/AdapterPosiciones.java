@@ -2,6 +2,7 @@ package org.futuroblanquiazul.futuroblaquiazul.Adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.os.Debug;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos.MantenimientoPosicionesActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Campo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Posicion;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;
@@ -66,21 +68,21 @@ public class AdapterPosiciones extends RecyclerView.Adapter<AdapterPosiciones.Vi
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-       holder.num.setText(my_Data.get(position).getNum());
+       holder.num.setText(String.valueOf(my_Data.get(position).getNum()));
        holder.posicion.setText(my_Data.get(position).getNombre_Posicione());
 
        holder.eliminar.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               Eliminar_Posicion(my_Data.get(position).getId(),context);
-               my_Data.remove(position);
-               notifyDataSetChanged();
+               Eliminar_Posicion(my_Data.get(position).getId(),context,position);
+
            }
        });
     }
 
-    private void Eliminar_Posicion(int id,final Context context) {
+    private void Eliminar_Posicion(int id,final Context context,final int pos) {
         String id_posicion=String.valueOf(id);
+        debug("CODIGO ENVIADO "+id_posicion);
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -90,6 +92,9 @@ public class AdapterPosiciones extends RecyclerView.Adapter<AdapterPosiciones.Vi
                     boolean success = jsonResponse.getBoolean("success");
                     if (success) {
                         Toast.makeText(context, "Posición Eliminado Correctamente!", Toast.LENGTH_SHORT).show();
+
+                        MantenimientoPosicionesActivity.MANT_POS.Actualizar_Pos1(context);
+
                     }else {
 
                         Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
@@ -113,6 +118,11 @@ public class AdapterPosiciones extends RecyclerView.Adapter<AdapterPosiciones.Vi
     @Override
     public int getItemCount() {
         return my_Data.size();
+    }
+
+
+    public void debug(String d){
+        System.out.println(d);
     }
 
 }

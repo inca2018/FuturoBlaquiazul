@@ -61,8 +61,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
@@ -85,16 +88,13 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
     String area_seleccion;
     String perfil_seleccion;
     String estado_seleccion;
-
-
-
-    Boolean sinCambiosFoto=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edicion_usuario);
         Iniciar_variables();
         Acciones_Componentes();
+
     }
     private void Acciones_Componentes() {
 
@@ -205,6 +205,8 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
         correo=findViewById(R.id.u_usuario_correo);
         cargo=findViewById(R.id.u_usuario_cargo);
 
+
+
         context=this;
         Listar_Perfiles(context);
     }
@@ -245,7 +247,7 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
 
                                                   if(Usuario.SESION_ACTUAL.getUsuario_mantenimiento()!=null){
                                                       debug("ENTRO CON FOTO, PERO SIN CAMBIOS");
-                                                      sinCambiosFoto=true;
+                                                      temp.setFoto(Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getFoto());
                                                   }else{
                                                       Bitmap bitmap_actual = ((BitmapDrawable)foto_usuario.getDrawable()).getBitmap();
                                                       String nuevo2=Minimizar(bitmap_actual);
@@ -303,12 +305,6 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
         progressDialog.show();
 
 
-        debug("------------------------------------------DATOS RECUPERADOS ----------------------------------------------------");
-        debug(" ESTADO RECUPERADO "+temp.getEstado());
-        debug("CODIGO PERFIL: "+temp.getPerfil().getId()+" PERFIL : "+temp.getPerfil().getNombre_Perfil());
-        debug("CODIGO AREA: "+temp.getArea_usuario().getId()+" AREA :"+temp.getArea_usuario().getDescripcion());
-
-
         String usuario=temp.getUsuario();
         String pass=temp.getPassword();
         String nom=temp.getNombres().toUpperCase().toString();
@@ -323,13 +319,14 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
 
         String id_usuario=String.valueOf(id_u);
         String ruta=ru;
-        String sinCambioFoto="";
 
-        if(sinCambiosFoto){
-             sinCambioFoto=String.valueOf(1) ;
-        }else{
-             sinCambioFoto=String.valueOf(0);
-        }
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
+        Date date = new Date();
+
+        String fecha = dateFormat.format(date);
+        String foto_nom=nom+fecha;
+
+
 
 
 
@@ -364,7 +361,7 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
             }
         };
 
-        ActualizarUsuario xx = new ActualizarUsuario( usuario, pass, nom, ape, dni, area, cargo, correo, tipo, estado, foto, id_usuario,ruta,sinCambioFoto,responseListener);
+        ActualizarUsuario xx = new ActualizarUsuario( usuario, pass, nom, ape, dni, area, cargo, correo, tipo, estado, foto, id_usuario,ruta,foto_nom,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
 
@@ -388,6 +385,8 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
         String tipo=String.valueOf(temp.getPerfil().getId());
         String foto=String.valueOf(temp.getFoto());
         String estado=String.valueOf(temp.getEstado());
+
+        String nombre_ruta=nom+"INCA";
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -417,7 +416,7 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
             }
         };
 
-        RegistrarUsuario xx = new RegistrarUsuario( usuario, pass, nom, ape, dni, area, cargo, correo, tipo, estado, foto ,responseListener);
+        RegistrarUsuario xx = new RegistrarUsuario( usuario, pass, nom, ape, dni, area, cargo, correo, tipo, estado, foto,nombre_ruta ,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
     }
@@ -732,7 +731,6 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
         });
         alertOpciones.show();
     }
-
     public String Minimizar(Bitmap bitmap){
         String nuevo="";
         String info=convertirImgString(bitmap);
@@ -760,8 +758,6 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
         // posición 0 o N, de lo contrario devuelve 0 = posición inicial)
         return posicion;
     }
-
-
     public static Bitmap getBitmapFromURL(String url_image) {
         try {
             URL url = new URL(url_image);
@@ -786,7 +782,6 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
 
         Usuario.SESION_ACTUAL.setUsuario_mantenimiento(null);
     }
-
     public void debug(String sm){
         System.out.println(sm);
     }

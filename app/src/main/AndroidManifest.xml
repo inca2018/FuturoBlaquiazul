@@ -9,8 +9,10 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/logo"
         android:label="Futuro Blanquiazul"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
@@ -146,8 +148,14 @@
                 android:resource="@xml/provider_paths" />
         </provider>
 
-        <activity android:name=".Activities.Mantenimientos.EdicionPruebaActivity" />
-        <activity android:name=".Activities.Mantenimientos.MantenimientoPosicionesActivity"></activity>
+        <activity
+            android:name=".Activities.Mantenimientos.EdicionPruebaActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".Activities.Mantenimientos.MantenimientoPosicionesActivity"
+            android:configChanges="screenSize|orientation"></activity>
+        <activity android:name=".Activities.Mantenimientos.MantenimientoOponentesActivity"
+            android:configChanges="screenSize|orientation" ></activity>
     </application>
 
 </manifest>
