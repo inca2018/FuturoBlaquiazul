@@ -19,6 +19,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos.EdicionUsuarioActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos.MantenimientoUsuarioActivity;
@@ -31,6 +32,7 @@ import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActivarPersona;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.BloquearUsuario;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.DesactivarUsuario;
 import org.futuroblanquiazul.futuroblaquiazul.R;
+import org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Mantenimientos;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -84,9 +86,10 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.ViewHo
         holder.usuario_usuario.setText("Perfil: "+my_Data.get(position).getPerfil().getNombre_Perfil());
         holder.nombres_usuario.setText(my_Data.get(position).getNombres()+" "+my_Data.get(position).getApellidos());
 
-
-        Glide.with(context).load(my_Data.get(position).getFoto()).into(holder.foto_usuario);
-
+        Glide.with(context).load(my_Data.get(position).getFoto())
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(holder.foto_usuario);
         if(my_Data.get(position).getEstado()==1){
             holder.estado.setText("ACTIVO");
             holder.estado.setTextColor(context.getResources().getColor(R.color.verde));
@@ -109,8 +112,8 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.ViewHo
                     public boolean onMenuItemClick(MenuItem item) {
 
                         if(item.getTitle().toString().equalsIgnoreCase("Editar")){
+                            Recursos_Mantenimientos.TEMP.setActualizar_usuarios(true);
                             Usuario.SESION_ACTUAL.setUsuario_mantenimiento(my_Data.get(position));
-
                             Intent intent= new Intent(context,EdicionUsuarioActivity.class);
                             context.startActivity(intent);
 
@@ -147,7 +150,6 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.ViewHo
                             final AlertDialog.Builder builder4 = new AlertDialog.Builder(context);
                             builder4.setView(dialoglayout);
                             da=builder4.show();
-
 
                             Glide.with(context).load(my_Data.get(position).getFoto()).into(foto_info);
 

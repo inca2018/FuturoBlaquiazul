@@ -1,5 +1,6 @@
 package org.futuroblanquiazul.futuroblaquiazul.Utils;
 
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -22,6 +23,9 @@ public class Recursos_Mantenimientos {
     EditText apodo;
     ImageView foto_oponente;
     Oponente oponente_temporal;
+    Button  accion_guardar;
+    boolean actualizar;
+    boolean actualizar_usuarios;
 
     public static final  List<Posicion> Posiciones1=new ArrayList<>();
     public static final  List<Posicion> Posiciones2=new ArrayList<>();
@@ -31,7 +35,7 @@ public class Recursos_Mantenimientos {
     public static  final List<Oponente> OPONENTES=new ArrayList<>();
     public static AdapterOponentes ADAPTER_OPONENTE=null;
 
-    public static   Oponente OPONENTE=new Oponente();
+
 
 
     public static final Recursos_Mantenimientos TEMP=new Recursos_Mantenimientos();
@@ -40,6 +44,31 @@ public class Recursos_Mantenimientos {
 
     public Recursos_Mantenimientos(){
 
+    }
+
+
+    public boolean isActualizar_usuarios() {
+        return actualizar_usuarios;
+    }
+
+    public void setActualizar_usuarios(boolean actualizar_usuarios) {
+        this.actualizar_usuarios = actualizar_usuarios;
+    }
+
+    public Button getAccion_guardar() {
+        return accion_guardar;
+    }
+
+    public boolean isActualizar() {
+        return actualizar;
+    }
+
+    public void setActualizar(boolean actualizar) {
+        this.actualizar = actualizar;
+    }
+
+    public void setAccion_guardar(Button accion_guardar) {
+        this.accion_guardar = accion_guardar;
     }
 
     public Oponente getOponente_temporal() {

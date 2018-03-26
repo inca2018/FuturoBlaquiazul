@@ -17,7 +17,7 @@ public class ActualizarUsuario extends StringRequest {
     private static final String LOGIN_REQUEST_URL = Conexion.RUTA_SERVICIO_MANTENIMIENTO;
     private Map<String, String> params;
 
-    public ActualizarUsuario(String usuario, String pass, String nom, String ape, String dni, String area, String cargo, String correo, String tipo, String estado, String foto,String id_user,String ruta,String foto_nom,  Response.Listener<String> listener) {
+    public ActualizarUsuario(String usuario, String pass, String nom, String ape, String dni, String area, String cargo, String correo, String tipo, String estado, String foto,String id_user,String ruta,String foto_nom,String foto_nom_antigua,  Response.Listener<String> listener) {
         super(Method.POST, LOGIN_REQUEST_URL,listener, null);
         params = new HashMap<>();
         params.put("operacion","actualizarUsuario");
@@ -36,9 +36,7 @@ public class ActualizarUsuario extends StringRequest {
         params.put("id_usuario",id_user);
         params.put("ruta_antigua",ruta);
         params.put("foto_nom",foto_nom);
-
-
-
+        params.put("foto_nom_antigua",foto_nom_antigua);
     }
 
     @Override

@@ -39,6 +39,7 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.ListaEventosEstadisticosActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Area_Usuario;
@@ -51,6 +52,7 @@ import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarEventoNuevo;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarUsuario;
 import org.futuroblanquiazul.futuroblaquiazul.R;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.GestionUbigeo;
+import org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Mantenimientos;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -165,15 +167,15 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
     private void Mostrar_Valores_Recuperados() {
         if(Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getFoto().length()!=0){
             debug("TIENE FOTO EL USUARIO");
-            Glide.with(context).load(Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getFoto()).into(foto_usuario);
+            Glide.with(context)
+                    .load(Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getFoto())
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
+                    .into(foto_usuario);
         }else{
             debug("NO TIENE FOTO EL USUARIO");
             foto_usuario.setImageResource(R.drawable.user_default);
         }
-        debug("------------------------------------------DATOS RECUPERADOS ----------------------------------------------------");
-        debug(" ESTADO RECUPERADO "+Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getEstado());
-        debug("CODIGO PERFIL: "+Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getPerfil().getId()+" PERFIL : "+Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getPerfil().getNombre_Perfil());
-        debug("CODIGO AREA: "+Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getArea_usuario().getId()+" AREA :"+Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getArea_usuario().getDescripcion());
 
         nombres.setText(Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getNombres());
         apellidos.setText(Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getApellidos());
@@ -217,55 +219,68 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
                 if(nombres.getText().toString().length()!=0){
                       if(apellidos.getText().toString().length()!=0){
                           if(dni.getText().toString().length()!=0){
-                              if(correo.getText().toString().length()!=0){
-                                  if(cargo.getText().toString().length()!=0){
                                       if(areas.getSelectedItemPosition()!=0){
                                           if(perfiles.getSelectedItemPosition()!=0){
-                                              Usuario temp=new Usuario();
-                                              temp.setUsuario(usuario.getText().toString());
-                                              temp.setPassword(password.getText().toString());
-                                              temp.setNombres(nombres.getText().toString());
-                                              temp.setApellidos(apellidos.getText().toString());
-                                              temp.setDni(Integer.parseInt(dni.getText().toString()));
-                                              temp.setCorreo(correo.getText().toString());
-                                              temp.setCargo(cargo.getText().toString());
-                                              temp.setPerfil(RecuperarPerfil());
-                                              temp.setArea_usuario(RecuperarArea());
-                                              temp.setEstado((estado.getSelectedItemPosition()+1));
+                                              if(Recursos_Mantenimientos.TEMP.isActualizar_usuarios()==true){
 
-                                              debug("Perfil : "+temp.getPerfil().getId()+" DESC: "+temp.getPerfil().getNombre_Perfil());
-                                              debug("Area :"+temp.getArea_usuario().getId()+" DESC:"+temp.getArea_usuario().getDescripcion());
+                                                  debug("ENTRO A ACTUALIZAR USUARIO");
+                                                  Usuario temp=new Usuario();
+                                                  temp.setUsuario(usuario.getText().toString());
+                                                  temp.setPassword(password.getText().toString());
+                                                  temp.setNombres(nombres.getText().toString());
+                                                  temp.setApellidos(apellidos.getText().toString());
+                                                  temp.setDni(Integer.parseInt(dni.getText().toString()));
+                                                  temp.setCorreo(correo.getText().toString());
+                                                  temp.setCargo(cargo.getText().toString());
+                                                  temp.setPerfil(RecuperarPerfil());
+                                                  temp.setArea_usuario(RecuperarArea());
+                                                  temp.setEstado((estado.getSelectedItemPosition()+1));
 
-                                              if(bitmap!=null){
-                                                  String nuevo=Minimizar(bitmap);
-                                                  temp.setFoto(nuevo);
+                                                  if(bitmap!=null){
+                                                      String nuevo=Minimizar(bitmap);
+                                                      temp.setFoto(nuevo);
 
-                                                  debug("CON FOTO ENVIO");
-                                                  debug("---------------------------------------------------------------------------------");
-                                                 debug(nuevo);
-                                              }else{
-
-                                                  if(Usuario.SESION_ACTUAL.getUsuario_mantenimiento()!=null){
-                                                      debug("ENTRO CON FOTO, PERO SIN CAMBIOS");
-                                                      temp.setFoto(Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getFoto());
+                                                      debug("ACTUALIZAR USUARIO,CON IMAGEN DE CAMARA O GALERIA");
                                                   }else{
-                                                      Bitmap bitmap_actual = ((BitmapDrawable)foto_usuario.getDrawable()).getBitmap();
-                                                      String nuevo2=Minimizar(bitmap_actual);
-                                                      temp.setFoto(nuevo2);
+                                                      debug("ACTUALIZAR USUARIO CON FOTO DE SERVIDOR");
+                                                      foto_usuario.buildDrawingCache();
+                                                      Bitmap bmap = foto_usuario.getDrawingCache();
+                                                      String no=convertirImgString(bmap);
+                                                      temp.setFoto(no);
+                                                      foto_usuario.destroyDrawingCache();
 
-                                                      debug("SIN FOTO EN DEFAULT");
-                                                      debug("---------------------------------------------------------------------------------");
-                                                      debug(nuevo2);
                                                   }
+                                                  Actualizar_Usuario(temp,Usuario.SESION_ACTUAL.getUsuario_mantenimiento(),context);
 
-                                              }
-
-                                              if(Usuario.SESION_ACTUAL.getUsuario_mantenimiento()!=null){
-                                                  Actualizar_Usuario(temp,Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getId(),Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getFoto(),context);
                                               }else{
-                                                  Registrar_Usuario_Nuevo(temp,context);
-                                              }
+                                                  debug("ENTRO A  CREAR NUEVO USUARIO");
+                                                  Usuario temp=new Usuario();
+                                                  temp.setUsuario(usuario.getText().toString());
+                                                  temp.setPassword(password.getText().toString());
+                                                  temp.setNombres(nombres.getText().toString());
+                                                  temp.setApellidos(apellidos.getText().toString());
+                                                  temp.setDni(Integer.parseInt(dni.getText().toString()));
+                                                  temp.setCorreo(correo.getText().toString());
+                                                  temp.setCargo(cargo.getText().toString());
+                                                  temp.setPerfil(RecuperarPerfil());
+                                                  temp.setArea_usuario(RecuperarArea());
+                                                  temp.setEstado((estado.getSelectedItemPosition()+1));
 
+                                                  if(bitmap!=null){
+                                                      String nuevo=Minimizar(bitmap);
+                                                      temp.setFoto(nuevo);
+
+                                                       debug("NUEVO USUARIO, IMAGEN DE CAMARA O GALERIA");
+                                                  }else{
+                                                          Bitmap bitmap_actual = ((BitmapDrawable)foto_usuario.getDrawable()).getBitmap();
+                                                          String nuevo2=Minimizar(bitmap_actual);
+                                                          temp.setFoto(nuevo2);
+                                                          debug("SIN FOTO EN DEFAULT");
+                                                          debug("---------------------------------------------------------------------------------");
+                                                          debug(nuevo2);
+                                                  }
+                                                Registrar_Usuario_Nuevo(temp,context);
+                                              }
 
                                           }else{
                                               Toast.makeText(context, "Seleccione Perfil", Toast.LENGTH_SHORT).show();
@@ -273,12 +288,8 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
                                       }else{
                                           Toast.makeText(context, "Seleccione Area", Toast.LENGTH_SHORT).show();
                                       }
-                                  }else{
-                                      cargo.setError("Campo Obligatorio");
-                                  }
-                              }else{
-                                  correo.setError("Campo Obligatorio");
-                              }
+
+
                           }else{
                               dni.setError("Campo Obligatorio");
                           }
@@ -297,13 +308,13 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
         }
 
     }
-    private void Actualizar_Usuario(final Usuario temp,final int id_u,final String ru , final Context context) {
+    private void Actualizar_Usuario(final Usuario temp, Usuario usuario_mantenimiento, final Context context) {
+        debug("ENTRO A FUNCION ACTUALIZAR");
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Usuario:");
         progressDialog.setMessage("Actualizando Usuario...");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
-
 
         String usuario=temp.getUsuario();
         String pass=temp.getPassword();
@@ -316,19 +327,10 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
         String tipo=String.valueOf(temp.getPerfil().getId());
         String foto=String.valueOf(temp.getFoto());
         String estado=String.valueOf(temp.getEstado());
-
-        String id_usuario=String.valueOf(id_u);
-        String ruta=ru;
-
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd", Locale.getDefault());
-        Date date = new Date();
-
-        String fecha = dateFormat.format(date);
-        String foto_nom=nom+fecha;
-
-
-
-
+        String id_usuario=String.valueOf(usuario_mantenimiento.getId());
+        String ruta=usuario_mantenimiento.getFoto();
+        String foto_nom=dni+".jpg";
+        String foto_nom_antigua=usuario_mantenimiento.getDni()+".jpg";
 
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
@@ -343,9 +345,8 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
                         Intent intent=new Intent(context,MantenimientoUsuarioActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         context.startActivity(intent);
-
                         Usuario.SESION_ACTUAL.setUsuario_mantenimiento(null);
-
+                        Recursos_Mantenimientos.TEMP.setActualizar_usuarios(false);
                         Toast.makeText(context, "Usuario Actualizado Exitosamente", Toast.LENGTH_SHORT).show();
 
 
@@ -361,13 +362,14 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
             }
         };
 
-        ActualizarUsuario xx = new ActualizarUsuario( usuario, pass, nom, ape, dni, area, cargo, correo, tipo, estado, foto, id_usuario,ruta,foto_nom,responseListener);
+        ActualizarUsuario xx = new ActualizarUsuario( usuario, pass, nom, ape, dni, area, cargo, correo, tipo, estado, foto, id_usuario,ruta,foto_nom,foto_nom_antigua,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
 
 
     }
     private void Registrar_Usuario_Nuevo(final Usuario temp,final Context context) {
+        debug("ENTRO A FUNCION REGISTRO NUEVO");
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Usuario:");
         progressDialog.setMessage("Registrando Usuario...");
@@ -386,7 +388,8 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
         String foto=String.valueOf(temp.getFoto());
         String estado=String.valueOf(temp.getEstado());
 
-        String nombre_ruta=nom+"INCA";
+        String foto_nom=dni+".jpg";
+
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -416,7 +419,7 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
             }
         };
 
-        RegistrarUsuario xx = new RegistrarUsuario( usuario, pass, nom, ape, dni, area, cargo, correo, tipo, estado, foto,nombre_ruta ,responseListener);
+        RegistrarUsuario xx = new RegistrarUsuario( usuario, pass, nom, ape, dni, area, cargo, correo, tipo, estado, foto,foto_nom ,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
     }
@@ -503,7 +506,6 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
 
     }
     private void Listar_Areas(final Context context) {
-
 
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
@@ -781,6 +783,7 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
         context.startActivity(intent);
 
         Usuario.SESION_ACTUAL.setUsuario_mantenimiento(null);
+        Recursos_Mantenimientos.TEMP.setActualizar_usuarios(false);
     }
     public void debug(String sm){
         System.out.println(sm);

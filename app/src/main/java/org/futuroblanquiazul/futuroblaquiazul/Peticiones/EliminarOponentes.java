@@ -17,11 +17,12 @@ public class EliminarOponentes extends StringRequest {
     private static final String LOGIN_REQUEST_URL = Conexion.RUTA_SERVICIO_MANTENIMIENTO;
     private Map<String, String> params;
 
-    public EliminarOponentes(String id_pos, Response.Listener<String> listener) {
+    public EliminarOponentes(String id_pos,String nom_foto, Response.Listener<String> listener) {
         super(Method.POST, LOGIN_REQUEST_URL,listener, null);
         params = new HashMap<>();
         params.put("operacion","Eliminar_Oponente");
         params.put("id_oponente",id_pos);
+        params.put("nombre_foto",nom_foto);
 
 
     }

@@ -2,6 +2,7 @@ package org.futuroblanquiazul.futuroblaquiazul.Adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos.MantenimientoOponentesActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos.MantenimientoPosicionesActivity;
@@ -75,16 +77,39 @@ public class AdapterOponentes extends RecyclerView.Adapter<AdapterOponentes.View
       holder.num.setText(String.valueOf(my_Data.get(position).getNum()));
       holder.nombre.setText(my_Data.get(position).getNombre_Oponente());
       holder.abreviado.setText(my_Data.get(position).getAbreviado());
-        Glide.with(context).load(my_Data.get(position).getFoto()).into(holder.foto);
+      Glide.with(context)
+              .load(my_Data.get(position).getFoto())
+              .diskCacheStrategy(DiskCacheStrategy.NONE)
+              .skipMemoryCache(true)
+              .into(holder.foto);
 
        holder.eliminar.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               Eliminar_Oponente(my_Data.get(position).getId(),context,position);
+
+
+               final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+               builder.setTitle("Oponentes")
+                       .setMessage("¿Desea Eliminar Oponente?")
+                       .setPositiveButton("SI",
+                               new DialogInterface.OnClickListener() {
+                                   @Override
+                                   public void onClick(DialogInterface dialog, int which) {
+                                       Eliminar_Oponente(my_Data.get(position),context,position);
+                                   }
+                               })
+                       .setNegativeButton("NO",
+                               new DialogInterface.OnClickListener() {
+                                   @Override
+                                   public void onClick(DialogInterface dialog, int which) {
+                                       dialog.dismiss();
+                                   }
+                               });
+               builder.show();
+
 
            }
        });
-
        holder.editar.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -93,27 +118,26 @@ public class AdapterOponentes extends RecyclerView.Adapter<AdapterOponentes.View
            }
        });
     }
-
-    private void Eliminar_Oponente(int id,final Context context,final int pos) {
-        String id_posicion=String.valueOf(id);
+    private void Eliminar_Oponente(Oponente oponente, final Context context, final int pos) {
+        String id_posicion=String.valueOf(oponente.getId());
+        String nom_foto=oponente.getAbreviado()+".jpg";
         debug("CODIGO ENVIADO "+id_posicion);
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
                 try {
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
                     if (success) {
                         Toast.makeText(context, "Posición Eliminado Correctamente!", Toast.LENGTH_SHORT).show();
-
+                        my_Data.remove(pos);
+                        notifyDataSetChanged();
                         MantenimientoOponentesActivity.OPONENTE_TEMP.Actualizar_Oponentes(context);
 
-                    }else {
 
+                    }else {
                         Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
                     }
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                     System.out.println("Inca  : Error ACTIVAR :"+e);
@@ -121,19 +145,17 @@ public class AdapterOponentes extends RecyclerView.Adapter<AdapterOponentes.View
             }
         };
 
-        EliminarOponentes xx = new EliminarOponentes(id_posicion, responseListener);
+        EliminarOponentes xx = new EliminarOponentes(id_posicion,nom_foto, responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
 
 
     }
 
-
     @Override
     public int getItemCount() {
         return my_Data.size();
     }
-
 
     public void debug(String d){
         System.out.println(d);

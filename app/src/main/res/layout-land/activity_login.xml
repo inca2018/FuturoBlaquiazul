@@ -5,14 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="0dp"
-    android:background="@drawable/bienvenido"
+    android:background="@drawable/portada_fondo"
     android:orientation="vertical">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="@integer/bloqueA_login">
+        android:layout_weight="@integer/bloqueA_login"
+        android:visibility="visible">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -26,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
-                android:text="@string/titulo"
+                android:text=""
                 android:textAlignment="center"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/blanco"
@@ -41,12 +42,12 @@
 
                 <ImageView
                     android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_height="300dp"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:layout_gravity="center"
 
-                    android:background="@drawable/escudo"
+                    android:background="@drawable/portada_descripcion"
                     android:contentDescription="alianza_escudo"
                     tools:ignore="HardcodedText" />
             </RelativeLayout>
@@ -184,7 +185,8 @@
                         android:layout_margin="8dp"
                         android:layout_weight="0.1"
                         android:gravity="center"
-                        android:text="@string/recuperar_pass" />
+                        android:text="@string/recuperar_pass"
+                        android:textColor="@color/blue"/>
 
 
                 </LinearLayout>
@@ -223,17 +225,18 @@
         android:layout_height="match_parent"
         android:layout_weight="@integer/bloqueC_login"
         android:orientation="vertical">
+
         <TextView
+            android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="V 0.2 BETA"
-            android:id="@+id/textView3"
-            android:textColor="@color/blanco"
-            android:gravity="bottom"
-            android:textAlignment="center"
-            android:textSize="15sp"
             android:alpha="0.5"
+            android:gravity="bottom"
+            android:text="V 0.2 BETA"
+            android:textAlignment="center"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/blanco"
+            android:textSize="15sp"
             tools:ignore="HardcodedText" />
 
     </LinearLayout>

@@ -49,15 +49,11 @@ public class MantenimientoUsuarioActivity extends AppCompatActivity implements S
         setContentView(R.layout.activity_mantenimiento_usuario);
         buscador_usuarios=findViewById(R.id.buscador_usuarios);
         buscador_usuarios.setOnQueryTextListener(this);
-
         nuevo_usuario=findViewById(R.id.accion_boton_nuevo_usuario);
-
         recyclerView=findViewById(R.id.lista_usuarios);
         Lista_Usuarios=new ArrayList<>();
         context=this;
         linearLayoutManager=new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
-
-
         adapterUsuarios = new AdapterUsuarios(context,Lista_Usuarios, new RecyclerViewOnItemClickListener() {
             @Override
             public void onClick(View v, int position) {
@@ -66,8 +62,8 @@ public class MantenimientoUsuarioActivity extends AppCompatActivity implements S
         recyclerView.setAdapter(adapterUsuarios);
         recyclerView.setLayoutManager(linearLayoutManager);
 
+        Lista_Usuarios.clear();
         Listar_Usuarios(context);
-
 
         nuevo_usuario.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,6 +143,7 @@ public class MantenimientoUsuarioActivity extends AppCompatActivity implements S
         RecuperarUsuarios xx = new RecuperarUsuarios(responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
+
     }
     @Override
     public boolean onQueryTextSubmit(String query) {
@@ -201,7 +198,6 @@ public class MantenimientoUsuarioActivity extends AppCompatActivity implements S
         startActivity(intent);
 
     }
-
     public void debug(String d){
         System.out.println(d);
     }

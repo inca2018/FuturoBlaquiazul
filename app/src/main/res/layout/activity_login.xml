@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="0dp"
-    android:background="@drawable/bienvenido"
+    android:background="@drawable/portada_vertical"
     android:orientation="vertical">
-
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -32,6 +31,7 @@
                     android:textColor="@color/blanco"
                     android:textSize="30sp"
                     android:textStyle="bold|italic"
+                    android:visibility="invisible"
 
                     />
                 <RelativeLayout
@@ -40,13 +40,13 @@
                     android:layout_weight="1">
 
                     <ImageView
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
+                        android:layout_width="300dp"
+                        android:layout_height="500dp"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
 
-                        android:background="@drawable/escudo"
+                        android:background="@drawable/portada_descripcion"
                         android:contentDescription="alianza_escudo"
                         tools:ignore="HardcodedText" />
                 </RelativeLayout>
@@ -184,7 +184,8 @@
                         android:layout_margin="8dp"
                         android:layout_weight="0.1"
                         android:gravity="center"
-                        android:text="@string/recuperar_pass" />
+                        android:text="@string/recuperar_pass"
+                        android:textColor="@color/blue"/>
 
 
                 </LinearLayout>

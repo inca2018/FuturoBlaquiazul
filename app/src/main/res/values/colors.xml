@@ -14,6 +14,8 @@
 
     <color name="boton_facebook">#f6f7f9</color>
 
+    <color name="color_login">#24234d</color>
+
     <item name="blue" type="color">@android:color/holo_blue_dark</item>
     <item name="blue500" type="color">#2196f3</item>
     <item name="blue600" type="color">#1E88E5</item>

@@ -16,6 +16,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 
+import org.futuroblanquiazul.futuroblaquiazul.Entity.Area_Usuario;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.Perfil;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarCodigoUsuario;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarUsuario;
@@ -32,19 +34,13 @@ public class LoginActivity extends AppCompatActivity {
     DialogosSalidas d;
     EditText usuario_login, pass_login;
     ProgressDialog progressDialog;
-
-
     Button ingresar;
-
     Context context;
-
     String respuesta="";
     int codigo_usuario;
     Usuario UsuarioTemp=null;
     String codigo="";
-
     TextView  recuperar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,8 +73,6 @@ public class LoginActivity extends AppCompatActivity {
         //Recuperar variables de sesion
          String usuario=usuario_login.getText().toString().trim();
          String pass=pass_login.getText().toString().trim();
-
-
 
          if(usuario.length()!=0){
 
@@ -226,13 +220,21 @@ public class LoginActivity extends AppCompatActivity {
                         UsuarioTemp.setNombres(jsonResponse.getString("NOMBRES"));
                         UsuarioTemp.setApellidos(jsonResponse.getString("APELLIDOS"));
                         UsuarioTemp.setDni(jsonResponse.getInt("DNI"));
-                        UsuarioTemp.setArea(jsonResponse.getInt("AREA"));
+                        Area_Usuario a=new Area_Usuario();
+                        a.setId(jsonResponse.getInt("AREA_ID"));
+                        a.setDescripcion(jsonResponse.getString("AREA_DESC"));
+                        UsuarioTemp.setArea_usuario(a);
                         UsuarioTemp.setCargo(jsonResponse.getString("CARGO"));
                         UsuarioTemp.setCorreo(jsonResponse.getString("CORREO"));
-                        UsuarioTemp.setTipo_usuario(jsonResponse.getInt("TIPO"));
+                        Perfil p=new Perfil();
+                        p.setId(jsonResponse.getInt("PERFIL_ID"));
+                        p.setNombre_Perfil(jsonResponse.getString("PERFIL_DESC"));
+                        UsuarioTemp.setPerfil(p);
                         UsuarioTemp.setEstado(jsonResponse.getInt("ESTADO"));
                         UsuarioTemp.setFecha_creacion(jsonResponse.getString("FECHA_CREACION"));
                         UsuarioTemp.setFecha_conexion(jsonResponse.getString("FECHA_CONEXION"));
+                        UsuarioTemp.setFoto(jsonResponse.getString("FOTO"));
+                        UsuarioTemp.setFechaModificado(jsonResponse.getString("FECHA_MODIFICADO"));
 
 
 
@@ -244,15 +246,17 @@ public class LoginActivity extends AppCompatActivity {
                             SESION_ACTUAL.setNombres(UsuarioTemp.getNombres());
                             SESION_ACTUAL.setApellidos(UsuarioTemp.getApellidos());
                             SESION_ACTUAL.setDni(UsuarioTemp.getDni());
-                            SESION_ACTUAL.setArea(UsuarioTemp.getArea());
+                            SESION_ACTUAL.setArea_usuario(UsuarioTemp.getArea_usuario());
                             SESION_ACTUAL.setEstado(UsuarioTemp.getEstado());
-                            SESION_ACTUAL.setTipo_usuario(UsuarioTemp.getTipo_usuario());
+                            SESION_ACTUAL.setPerfil(UsuarioTemp.getPerfil());
                             SESION_ACTUAL.setCargo(UsuarioTemp.getCargo());
                             SESION_ACTUAL.setFoto(UsuarioTemp.getFoto());
                             SESION_ACTUAL.setPassword(UsuarioTemp.getPassword());
                             SESION_ACTUAL.setCorreo(UsuarioTemp.getCorreo());
                             SESION_ACTUAL.setFecha_creacion(UsuarioTemp.getFecha_creacion());
                             SESION_ACTUAL.setFecha_conexion(UsuarioTemp.getFecha_conexion());
+                            SESION_ACTUAL.setFechaModificado(UsuarioTemp.getFechaModificado());
+
                             //Cierra progress
                             progressDialog.dismiss();
                             //Cambia de activity al validar correctamente la sesion

@@ -17,6 +17,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Fragments.CaptacionFragment;
 import org.futuroblanquiazul.futuroblaquiazul.Fragments.EstadisticoFragment;
@@ -41,8 +44,8 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
 
-        captacion=(Menu)findViewById(R.id.menu_modulo_captacion);
-        estadistico=(Menu)findViewById(R.id.menu_modulo_estadisticos);
+        // captacion=(Menu)findViewById(R.id.menu_modulo_captacion);
+        //estadistico=(Menu)findViewById(R.id.menu_modulo_estadisticos);
         //mantenimiento=(Menu)findViewById(R.id.menu_modulo_mantenimiento);
         mostrar_vistas() ;
         Toolbar_iniz();
@@ -59,10 +62,9 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
             tipo.setText("No Disponible");
         }
 
-        usuario.setText(Usuario.SESION_ACTUAL.getUsuario());
-        tipo.setText("Administrador");
-        //String ruta="http://alianza2.esy.es/alianza/imagenes/"+ Usuario_Sesion.SESION.getFoto();
-        //Glide.with(this).load(ruta).into(foto);
+        tipo.setText(Usuario.SESION_ACTUAL.getPerfil().getNombre_Perfil());
+        String ruta=Usuario.SESION_ACTUAL.getFoto();
+        Glide.with(this).load(ruta).into(foto);
     }
     private void navigation_init() {
 

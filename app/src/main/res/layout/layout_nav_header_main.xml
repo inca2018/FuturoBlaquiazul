@@ -3,49 +3,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="190dp"
-    android:background="@drawable/fondo_alianza"
+    android:background="@color/color_login"
     android:orientation="vertical"
     >
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/profile_image"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:src="@drawable/foto_perfil"
-        app:border_color="#FF000000"
-        android:layout_marginLeft="24dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="24dp"
-        tools:ignore="RtlHardcoded" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Jesús Inca Cárdenas"
-        android:textSize="20sp"
-        android:textColor="@color/blanco"
-        android:textStyle="bold"
-        android:gravity="left"
-        android:paddingBottom="4dp"
-        android:id="@+id/username_principal"
-        android:layout_above="@+id/tipo_principal"
-        android:layout_alignLeft="@+id/profile_image"
-        android:layout_alignStart="@+id/profile_image"
-        tools:ignore="HardcodedText,RtlHardcoded" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/administrador"
-        android:id="@+id/tipo_principal"
-        android:gravity="left"
-        android:layout_marginBottom="8dp"
-        android:textSize="16sp"
-        android:textColor="@color/blanco"
-        android:textStyle="bold"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/username_principal"
-        android:layout_alignStart="@+id/username_principal"
-        tools:ignore="RtlHardcoded" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:layout_alignBottom="@+id/tipo_principal"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="22dp"
+            android:src="@drawable/portada_descripcion" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="22dp"
+            android:src="@drawable/user_default"
+
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/username_principal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/profile_image"
+            android:layout_below="@+id/profile_image"
+            android:layout_marginTop="8dp"
+            android:gravity="left"
+            android:text="Jesús Inca Cárdenas"
+            android:textAllCaps="true"
+            android:textColor="@color/fb"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText,RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/tipo_principal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/username_principal"
+            android:layout_below="@+id/username_principal"
+            android:layout_margin="8dp"
+            android:gravity="left"
+            android:text="@string/administrador"
+            android:textColor="@color/fb"
+            android:textSize="10sp"
+            android:textStyle="bold|italic"
+            tools:ignore="RtlHardcoded" />
+
+
+
+
 </RelativeLayout>

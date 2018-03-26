@@ -2,6 +2,7 @@ package org.futuroblanquiazul.futuroblaquiazul.Adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,8 +72,25 @@ public class AdapterPosiciones2 extends RecyclerView.Adapter<AdapterPosiciones2.
        holder.eliminar.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               Eliminar_Posicion(my_Data.get(position).getId(),context,position);
 
+               final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+               builder.setTitle("Posiciones:")
+                       .setMessage("¿Desea Eliminar Posicion? \n \n \n"+"- "+my_Data.get(position).getNombre_Posicione())
+                       .setPositiveButton("SI",
+                               new DialogInterface.OnClickListener() {
+                                   @Override
+                                   public void onClick(DialogInterface dialog, int which) {
+                                       Eliminar_Posicion(my_Data.get(position).getId(),context,position);
+                                   }
+                               })
+                       .setNegativeButton("NO",
+                               new DialogInterface.OnClickListener() {
+                                   @Override
+                                   public void onClick(DialogInterface dialog, int which) {
+                                       dialog.dismiss();
+                                   }
+                               });
+               builder.show();
            }
        });
     }

@@ -17,7 +17,7 @@ public class ActualizarOponentes extends StringRequest {
     private static final String LOGIN_REQUEST_URL = Conexion.RUTA_SERVICIO_MANTENIMIENTO;
     private Map<String, String> params;
 
-    public ActualizarOponentes(String nom, String apodo, String id_u, String foto, String estado,String id_opo, Response.Listener<String> listener) {
+    public ActualizarOponentes(String nom, String apodo, String id_u, String foto, String estado,String id_opo,String nom_foto,String nombre_foto_antiguo, Response.Listener<String> listener) {
         super(Method.POST, LOGIN_REQUEST_URL,listener, null);
         params = new HashMap<>();
         params.put("operacion","actualizar_Oponente");
@@ -27,6 +27,8 @@ public class ActualizarOponentes extends StringRequest {
         params.put("foto",foto);
         params.put("estado",estado);
         params.put("id_oponente",id_opo);
+        params.put("nombre_foto",nom_foto);
+        params.put("nombre_foto_antigua",nombre_foto_antiguo);
 
     }
 

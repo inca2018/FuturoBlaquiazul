@@ -33,6 +33,7 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterOponentes;
@@ -76,9 +77,7 @@ public class MantenimientoOponentesActivity extends AppCompatActivity {
     String nombre_creado="";
     String path;
     Bitmap bitmap;
-
     public static MantenimientoOponentesActivity OPONENTE_TEMP=new MantenimientoOponentesActivity();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +91,7 @@ public class MantenimientoOponentesActivity extends AppCompatActivity {
         apodo_oponente=findViewById(R.id.o_abreviado);
         Recursos_Mantenimientos.TEMP.setApodo(apodo_oponente);
         agregar_oponente=findViewById(R.id.o_accion_agregar);
+
         recyclerView=findViewById(R.id.recycler_oponente);
 
         Acciones_generales();
@@ -105,6 +105,7 @@ public class MantenimientoOponentesActivity extends AppCompatActivity {
         });
         recyclerView.setAdapter(Recursos_Mantenimientos.ADAPTER_OPONENTE );
         recyclerView.setLayoutManager(linearLayoutManager);
+        Recursos_Mantenimientos.OPONENTES.clear();
         Listar_Oponentes(context);
     }
 
@@ -112,17 +113,22 @@ public class MantenimientoOponentesActivity extends AppCompatActivity {
         if(Recursos_Mantenimientos.TEMP.getOponente_temporal()!=null){
             Recursos_Mantenimientos.TEMP.getNombre_oponente().setText(Recursos_Mantenimientos.TEMP.getOponente_temporal().getNombre_Oponente().toString());
             Recursos_Mantenimientos.TEMP.getApodo().setText(Recursos_Mantenimientos.TEMP.getOponente_temporal().getAbreviado().toString());
-            Glide.with(context).load(Recursos_Mantenimientos.TEMP.getOponente_temporal().getFoto()).into(Recursos_Mantenimientos.TEMP.getFoto_oponente());
+            Glide.with(context)
+                    .load(Recursos_Mantenimientos.TEMP.getOponente_temporal().getFoto())
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
+                    .into(Recursos_Mantenimientos.TEMP.getFoto_oponente());
+            debug("Recuperando Resultados");
+
+            Recursos_Mantenimientos.TEMP.setActualizar(true);
         }
     }
     private void Acciones_generales() {
-
         if(Validar_Permisos()){
             accion_foto.setEnabled(true);
         }else{
             accion_foto.setEnabled(false);
         }
-
 
         accion_foto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,55 +146,83 @@ public class MantenimientoOponentesActivity extends AppCompatActivity {
     }
     private void Recuperar_Resultados() {
 
-         if(nombre_oponente.getText().length()!=0){
-             if(apodo_oponente.getText().length()!=0){
-                 Oponente temp=new Oponente();
-                 temp.setNombre_Oponente(nombre_oponente.getText().toString());
-                 temp.setAbreviado(apodo_oponente.getText().toString());
-                 Usuario u=new Usuario();
-                 u.setId(Usuario.SESION_ACTUAL.getId());
-                 temp.setUsuario(u);
+        if(Recursos_Mantenimientos.TEMP.isActualizar()==true){
+            debug("Entro a actualizar");
+              if( Recursos_Mantenimientos.TEMP.getNombre_oponente().getText().length()!=0){
+                  if( Recursos_Mantenimientos.TEMP.getApodo().getText().length()!=0){
+                      Oponente temp=new Oponente();
+                      temp.setNombre_Oponente(Recursos_Mantenimientos.TEMP.getNombre_oponente().getText().toString());
+                      temp.setAbreviado(Recursos_Mantenimientos.TEMP.getApodo().getText().toString());
+                      Usuario u=new Usuario();
+                      u.setId(Usuario.SESION_ACTUAL.getId());
+                      temp.setUsuario(u);
+                      if(bitmap!=null){
+                          debug("CON FOTO DE CAMARA  O GALERIA");
+                          String nuevo=Minimizar(bitmap);
+                          temp.setFoto(nuevo);
+                      }else{
+                              debug("CON FOTO DE SERVIDOR");
+                              Recursos_Mantenimientos.TEMP.getFoto_oponente().buildDrawingCache();
+                              Bitmap bmap = Recursos_Mantenimientos.TEMP.getFoto_oponente().getDrawingCache();
+                              String no=convertirImgString(bmap);
+                              temp.setFoto(no);
+                              Recursos_Mantenimientos.TEMP.getFoto_oponente().destroyDrawingCache();
 
-                 if(bitmap!=null){
-                     String nuevo=Minimizar(bitmap);
-                     temp.setFoto(nuevo);
+                      }
+                          Actualizar_Oponente(Recursos_Mantenimientos.TEMP.getOponente_temporal(),temp,context);
 
-                     debug("CON FOTO ENVIO");
-                     debug("---------------------------------------------------------------------------------");
-                     debug(nuevo);
-                 }else{
-                       if(Recursos_Mantenimientos.OPONENTE!=null){
-                           temp.setFoto(Recursos_Mantenimientos.OPONENTE.getFoto());
-                       }else{
-                           Bitmap bitmap_actual = ((BitmapDrawable)foto_oponente.getDrawable()).getBitmap();
-                           String nuevo2=Minimizar(bitmap_actual);
-                           temp.setFoto(nuevo2);
+                  }else{
+                      Recursos_Mantenimientos.TEMP.getApodo().setError("Ingrese apodo de Oponente Ejm. 'Universidad Cesar Vallejo '(UCV)");
+                  }
 
-                           debug("SIN FOTO EN DEFAULT");
-                           debug("---------------------------------------------------------------------------------");
-                           debug(nuevo2);
-                       }
+              }else{
+                  Recursos_Mantenimientos.TEMP.getNombre_oponente().setError("Ingrese Nombre de Oponente");
+              }
+        }else{
+            debug("Entro a registrar");
+            if(nombre_oponente.getText().length()!=0){
+                if(apodo_oponente.getText().length()!=0){
+                    Oponente temp=new Oponente();
+                    temp.setNombre_Oponente(nombre_oponente.getText().toString());
+                    temp.setAbreviado(apodo_oponente.getText().toString());
+                    Usuario u=new Usuario();
+                    u.setId(Usuario.SESION_ACTUAL.getId());
+                    temp.setUsuario(u);
 
-                 }
+                    if(bitmap!=null){
+                        debug("BITMAP CON DATOS");
+                        String nuevo=Minimizar(bitmap);
+                        temp.setFoto(nuevo);
 
-                 if(Recursos_Mantenimientos.TEMP.getOponente_temporal()!=null){
-                     Actualizar_Oponente(Recursos_Mantenimientos.OPONENTE.getId(),temp,context);
-                 }else{
-                     Registrar_Oponente_Nuevo(temp,context);
-                 }
+                        debug("CON FOTO ENVIO");
+                        debug("---------------------------------------------------------------------------------");
+                        debug(nuevo);
+                    }else{
+                        debug("BITMAP VACIO");
 
+                            debug("OPONENTE VACIO");
+                            Bitmap bitmap_actual = ((BitmapDrawable)foto_oponente.getDrawable()).getBitmap();
+                            String nuevo2=Minimizar(bitmap_actual);
+                            temp.setFoto(nuevo2);
 
+                            debug("SIN FOTO EN DEFAULT");
+                            debug("---------------------------------------------------------------------------------");
+                            debug(nuevo2);
 
-             }else{
-                 apodo_oponente.setError("Ingrese apodo de Oponente Ejm. 'Universidad Cesar Vallejo '(UCV)");
-             }
-         }else{
-             nombre_oponente.setError("Ingrese Nombre de Oponente");
-         }
+                    }
+                      Registrar_Oponente_Nuevo(temp,context);
+                }else{
+                    apodo_oponente.setError("Ingrese apodo de Oponente Ejm. 'Universidad Cesar Vallejo '(UCV)");
+                }
+            }else{
+                nombre_oponente.setError("Ingrese Nombre de Oponente");
+            }
+        }
+
     }
-    private void Actualizar_Oponente(int id, final Oponente oponente, final Context context) {
+    private void Actualizar_Oponente(Oponente op_antiguo, final Oponente oponente, final Context context) {
 
-        debug("ACTUALIZAR OPONENTE");
+        debug("ACTUALIZAR OPONENTE VOLLEY");
 
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Oponente:");
@@ -201,13 +235,16 @@ public class MantenimientoOponentesActivity extends AppCompatActivity {
         String id_user=String.valueOf(oponente.getUsuario().getId());
         String foto=oponente.getFoto();
         String estado=String.valueOf(1);
-        String id_oponente=String.valueOf(id) ;
+        String id_oponente=String.valueOf(op_antiguo.getId()) ;
+
+        String nombre_foto=apodo+".jpg";
+        String nombre_foto_antiguo=op_antiguo.getAbreviado()+".jpg";
 
         debug("------------------------------------------------------------------");
         debug("NOMBRE ENVIADO:"+nom_oponente);
         debug("APODO: "+apodo);
         debug("ID USER:"+id_user);
-        debug("FOTO: "+foto);
+        //debug("FOTO: "+foto);
         debug("ID_OPONENTE:"+id_oponente);
 
         debug("------------------------------------------------------------------");
@@ -225,6 +262,11 @@ public class MantenimientoOponentesActivity extends AppCompatActivity {
                         apodo_oponente.setText("");
                         foto_oponente.setImageResource(R.drawable.no_disponible);
                         Recursos_Mantenimientos.TEMP.setOponente_temporal(null);
+                        Recursos_Mantenimientos.TEMP.setActualizar(false);
+                        Recursos_Mantenimientos.TEMP.getApodo().setText(null);
+                        Recursos_Mantenimientos.TEMP.getNombre_oponente().setText(null);
+                        Recursos_Mantenimientos.TEMP.getFoto_oponente().setImageResource(R.drawable.no_disponible);
+                        bitmap=null;
 
                         Actualizar_Oponentes(context);
                         // limpiar_Campos();
@@ -240,12 +282,11 @@ public class MantenimientoOponentesActivity extends AppCompatActivity {
             }
         };
 
-        ActualizarOponentes xx = new ActualizarOponentes(nom_oponente,apodo,id_user,foto,estado,id_oponente ,responseListener);
+        ActualizarOponentes xx = new ActualizarOponentes(nom_oponente,apodo,id_user,foto,estado,id_oponente,nombre_foto,nombre_foto_antiguo ,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
 
     }
-
     private void Registrar_Oponente_Nuevo(final Oponente temp,final Context context) {
 
         debug("REGISTRAR OPONENTE");
@@ -260,6 +301,7 @@ public class MantenimientoOponentesActivity extends AppCompatActivity {
         String id_user=String.valueOf(temp.getUsuario().getId());
         String foto=temp.getFoto();
         String estado=String.valueOf(1);
+        String nombre_foto=apodo+".jpg";
 
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
@@ -269,6 +311,16 @@ public class MantenimientoOponentesActivity extends AppCompatActivity {
                     boolean success = jsonResponse.getBoolean("success");
 
                     if (success) {
+                        nombre_oponente.setText("");
+                        apodo_oponente.setText("");
+                        foto_oponente.setImageResource(R.drawable.no_disponible);
+
+                        Recursos_Mantenimientos.TEMP.setActualizar(false);
+                        Recursos_Mantenimientos.TEMP.getApodo().setText(null);
+                        Recursos_Mantenimientos.TEMP.getNombre_oponente().setText(null);
+                        Recursos_Mantenimientos.TEMP.getFoto_oponente().setImageResource(R.drawable.no_disponible);
+                        bitmap=null;
+
                         progressDialog.dismiss();
                          Actualizar_Oponentes(context);
                         // limpiar_Campos();
@@ -284,7 +336,7 @@ public class MantenimientoOponentesActivity extends AppCompatActivity {
             }
         };
 
-        RegistrarOponentes xx = new RegistrarOponentes(nom_oponente,apodo,id_user,foto,estado ,responseListener);
+        RegistrarOponentes xx = new RegistrarOponentes(nom_oponente,apodo,id_user,foto,estado,nombre_foto ,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
 
@@ -500,7 +552,7 @@ public class MantenimientoOponentesActivity extends AppCompatActivity {
                             temp.setFecha_Registro(objeto.getString("FECHA_REGISTRO"));
                             temp.setFoto(objeto.getString("FOTO"));
                             temp.setEstado(objeto.getInt("ESTADO"));
-                            OPONENTES.add(temp);
+                            Recursos_Mantenimientos.OPONENTES.add(temp);
 
                         }
 
@@ -527,6 +579,9 @@ public class MantenimientoOponentesActivity extends AppCompatActivity {
     public void onBackPressed() {
         Recursos_Mantenimientos.OPONENTES.clear();
         Recursos_Mantenimientos.ADAPTER_OPONENTE=null;
+        Recursos_Mantenimientos.TEMP.setOponente_temporal(null);
+        Recursos_Mantenimientos.TEMP.setActualizar(false);
+
         Intent intent=new Intent(MantenimientoOponentesActivity.this,PrincipalActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra("o","o5");
