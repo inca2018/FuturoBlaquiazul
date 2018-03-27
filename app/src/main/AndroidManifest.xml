@@ -24,8 +24,7 @@
         <activity
             android:name=".Activities.Captacion.RegistroPostulantesActivity"
             android:configChanges="screenSize|orientation" />
-        <activity
-            android:name=".Activities.Inicio.LoginActivity">
+        <activity android:name=".Activities.Inicio.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -153,9 +152,9 @@
         <activity
             android:name=".Activities.Mantenimientos.MantenimientoPosicionesActivity"
             android:configChanges="screenSize|orientation" />
-        <activity
-            android:name=".Activities.Mantenimientos.MantenimientoOponentesActivity" />
-        <activity android:name=".Activities.Mantenimientos.MantenimientoPersonaActivity"></activity>
+        <activity android:name=".Activities.Mantenimientos.MantenimientoOponentesActivity" />
+        <activity android:name=".Activities.Mantenimientos.MantenimientoPersonaActivity" />
+        <activity android:name=".Activities.Mantenimientos.EdicionPersonaActivity"></activity>
     </application>
 
 </manifest>

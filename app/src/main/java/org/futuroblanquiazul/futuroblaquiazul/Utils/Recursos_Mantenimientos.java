@@ -8,7 +8,9 @@ import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterOponentes;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterPosiciones;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterPosiciones2;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Oponente;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Posicion;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.Unidad_Territorial;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +28,11 @@ public class Recursos_Mantenimientos {
     Button  accion_guardar;
     boolean actualizar;
     boolean actualizar_usuarios;
+
+    Unidad_Territorial departamento;
+    Unidad_Territorial provincia;
+    Unidad_Territorial distrito;
+    Persona persona_temporal;
 
     public static final  List<Posicion> Posiciones1=new ArrayList<>();
     public static final  List<Posicion> Posiciones2=new ArrayList<>();
@@ -46,6 +53,38 @@ public class Recursos_Mantenimientos {
 
     }
 
+
+    public Persona getPersona_temporal() {
+        return persona_temporal;
+    }
+
+    public void setPersona_temporal(Persona persona_temporal) {
+        this.persona_temporal = persona_temporal;
+    }
+
+    public Unidad_Territorial getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(Unidad_Territorial departamento) {
+        this.departamento = departamento;
+    }
+
+    public Unidad_Territorial getProvincia() {
+        return provincia;
+    }
+
+    public void setProvincia(Unidad_Territorial provincia) {
+        this.provincia = provincia;
+    }
+
+    public Unidad_Territorial getDistrito() {
+        return distrito;
+    }
+
+    public void setDistrito(Unidad_Territorial distrito) {
+        this.distrito = distrito;
+    }
 
     public boolean isActualizar_usuarios() {
         return actualizar_usuarios;

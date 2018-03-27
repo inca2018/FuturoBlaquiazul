@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos.MantenimientoOponentesActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos.MantenimientoPersonaActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos.MantenimientoPosicionesActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos.MantenimientoUsuarioActivity;
 import org.futuroblanquiazul.futuroblaquiazul.R;
@@ -53,7 +54,8 @@ public class MantenimientoFragment extends Fragment {
           accion3.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
-
+                  Intent intent= new Intent(context, MantenimientoPersonaActivity.class);
+                  startActivity(intent);
               }
           });
 

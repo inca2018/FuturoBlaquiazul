@@ -186,6 +186,7 @@ public class UbigeoActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
+
     }
     private void activar_accion_update1() {
         card_guardar.setOnClickListener(new View.OnClickListener() {
@@ -230,7 +231,6 @@ public class UbigeoActivity extends AppCompatActivity {
             }
         });
     }
-
     private void activar_accion_update4() {
         card_guardar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -292,7 +292,6 @@ public class UbigeoActivity extends AppCompatActivity {
             }
         });
     }
-
     private void activar_accion_nuevo4() {
 
         card_guardar.setOnClickListener(new View.OnClickListener() {
@@ -308,7 +307,6 @@ public class UbigeoActivity extends AppCompatActivity {
             }
         });
     }
-
     private void Actualizar_Datos_Ubigeo(final int codigo_modulo,final int id_userr,final GestionUbigeo ubigeoTemp,final Context context) {
            String id_departamento=String.valueOf(ubigeoTemp.getDepartamento().getCodigo());
            String id_provincia=String.valueOf(ubigeoTemp.getProvincia().getCodigo());
@@ -452,7 +450,6 @@ public class UbigeoActivity extends AppCompatActivity {
 
 
                         departamento.setSelection(pos_depa);
-
 
                         //RECUPERANDO PROVINCIAS
 
@@ -605,7 +602,6 @@ public class UbigeoActivity extends AppCompatActivity {
         RecuperarDistritos recuperarDist = new RecuperarDistritos(id_prov,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(recuperarDist);
-
     }
     private void Listar_Departamentos(final Context context){
 
@@ -744,5 +740,4 @@ public class UbigeoActivity extends AppCompatActivity {
         queue.add(recuperarDist);
 
     }
-
 }
