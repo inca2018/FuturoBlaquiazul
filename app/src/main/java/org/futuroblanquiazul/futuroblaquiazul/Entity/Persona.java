@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 public class Persona {
-
+    int num;
     int id;
     int estado;
     String estado_segmento;
@@ -23,6 +23,10 @@ public class Persona {
     String club_actual;
     String liga_actual;
     int telefono;
+    int telefono_fijo;
+    String Fecha_registro;
+    String Fecha_actualizacion;
+
     int dni;
     String correo;
     String Nombre_Apoderado;
@@ -70,10 +74,127 @@ public class Persona {
 
     List<Posicion> Lista_Posiciones;
 
+    Unidad_Territorial departamento;
+    Unidad_Territorial provincia;
+    Unidad_Territorial distrito;
+
+    int bautizo;
+    int comunion;
+    int confirmacion;
+
+    int ano_nacimiento;
+    int mes_nacimiento;
+    int dia_nacimiento;
+
 
 
     public Persona(){
 
+    }
+
+
+    public String getFecha_registro() {
+        return Fecha_registro;
+    }
+
+    public void setFecha_registro(String fecha_registro) {
+        Fecha_registro = fecha_registro;
+    }
+
+    public String getFecha_actualizacion() {
+        return Fecha_actualizacion;
+    }
+
+    public void setFecha_actualizacion(String fecha_actualizacion) {
+        Fecha_actualizacion = fecha_actualizacion;
+    }
+
+    public int getAno_nacimiento() {
+        return ano_nacimiento;
+    }
+
+    public void setAno_nacimiento(int ano_nacimiento) {
+        this.ano_nacimiento = ano_nacimiento;
+    }
+
+    public int getMes_nacimiento() {
+        return mes_nacimiento;
+    }
+
+    public void setMes_nacimiento(int mes_nacimiento) {
+        this.mes_nacimiento = mes_nacimiento;
+    }
+
+    public int getDia_nacimiento() {
+        return dia_nacimiento;
+    }
+
+    public void setDia_nacimiento(int dia_nacimiento) {
+        this.dia_nacimiento = dia_nacimiento;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    public int getTelefono_fijo() {
+        return telefono_fijo;
+    }
+
+    public void setTelefono_fijo(int telefono_fijo) {
+        this.telefono_fijo = telefono_fijo;
+    }
+
+    public Unidad_Territorial getDepartamento() {
+        return departamento;
+    }
+
+    public void setDepartamento(Unidad_Territorial departamento) {
+        this.departamento = departamento;
+    }
+
+    public Unidad_Territorial getProvincia() {
+        return provincia;
+    }
+
+    public void setProvincia(Unidad_Territorial provincia) {
+        this.provincia = provincia;
+    }
+
+    public Unidad_Territorial getDistrito() {
+        return distrito;
+    }
+
+    public void setDistrito(Unidad_Territorial distrito) {
+        this.distrito = distrito;
+    }
+
+    public int getBautizo() {
+        return bautizo;
+    }
+
+    public void setBautizo(int bautizo) {
+        this.bautizo = bautizo;
+    }
+
+    public int getComunion() {
+        return comunion;
+    }
+
+    public void setComunion(int comunion) {
+        this.comunion = comunion;
+    }
+
+    public int getConfirmacion() {
+        return confirmacion;
+    }
+
+    public void setConfirmacion(int confirmacion) {
+        this.confirmacion = confirmacion;
     }
 
     public int getPosicion_posicion() {

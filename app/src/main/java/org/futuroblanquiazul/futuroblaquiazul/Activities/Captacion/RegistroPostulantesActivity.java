@@ -41,7 +41,6 @@ public class RegistroPostulantesActivity extends AppCompatActivity {
                for(int i = 0; i< Recursos_Registro_Postulante.LISTA_REGISTRO.size(); i++){
                     EditText temp=findViewById(Recursos_Registro_Postulante.LISTA_REGISTRO.get(i).getRecurso());
                     Recursos_Registro_Postulante.LISTA_REGISTRO.get(i).setCampoEditText(temp);
-
                }
     }
     private void updateDate(){
@@ -93,8 +92,6 @@ public class RegistroPostulantesActivity extends AppCompatActivity {
                 }
             }
         }
-
-
 
     }
     private String Armar_Mensaje() {

@@ -9,6 +9,15 @@ import android.content.Intent;
 
 public class COMPONENTES {
 
+      int ESTADO_DIAGNOSTICO=1;
+      int ESTADO_DIAGNOSTICO_MASIVO=2;
+      int ESTADO_BARRIO_INTIMO=3;
+      int METODOLOGIA=4;
+      int ESTADO_PRUEBA=5;
+
+      int ESTADO_CREADO_NUEVO=6;
+      int ESTADO_NO_DISPONIBLE=10;
+
       // CUERPO DE RECYCLER
     /*      linearLayoutManager=new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
 
@@ -126,4 +135,18 @@ public class COMPONENTES {
         * */
 
 
+      public COMPONENTES(int ESTADO_DIAGNOSTICO, int ESTADO_DIAGNOSTICO_MASIVO, int ESTADO_BARRIO_INTIMO, int METODOLOGIA, int ESTADO_PRUEBA, int ESTADO_CREADO_NUEVO, int ESTADO_NO_DISPONIBLE, int ARMADO_DE_SPINNER, int VERIFICACION, int CUERPO_DE_PETICION, int PROGRESS, int REGRESO_BACK) {
+            this.ESTADO_DIAGNOSTICO = ESTADO_DIAGNOSTICO;
+            this.ESTADO_DIAGNOSTICO_MASIVO = ESTADO_DIAGNOSTICO_MASIVO;
+            this.ESTADO_BARRIO_INTIMO = ESTADO_BARRIO_INTIMO;
+            this.METODOLOGIA = METODOLOGIA;
+            this.ESTADO_PRUEBA = ESTADO_PRUEBA;
+            this.ESTADO_CREADO_NUEVO = ESTADO_CREADO_NUEVO;
+            this.ESTADO_NO_DISPONIBLE = ESTADO_NO_DISPONIBLE;
+            this.ARMADO_DE_SPINNER = ARMADO_DE_SPINNER;
+            this.VERIFICACION = VERIFICACION;
+            this.CUERPO_DE_PETICION = CUERPO_DE_PETICION;
+            this.PROGRESS = PROGRESS;
+            this.REGRESO_BACK = REGRESO_BACK;
+      }
 }
