@@ -327,7 +327,12 @@ public class EdicionPersonaActivity extends AppCompatActivity {
 
           Recursos_Mantenimientos.TEMP.getPersona_temporal().setNombre_Persona(nombre_persona.getText().toString());
           Recursos_Mantenimientos.TEMP.getPersona_temporal().setApellidos_Persona(apellido_persona.getText().toString());
-          Recursos_Mantenimientos.TEMP.getPersona_temporal().setFecha_Nacimiento(fecha_nacimiento_temporal);
+
+          if(fecha_nacimiento_temporal!=null){
+              Recursos_Mantenimientos.TEMP.getPersona_temporal().setFecha_Nacimiento(fecha_nacimiento_temporal);
+          }else{
+
+          }
 
           if(actualizar_accion){
               dni_antiguo=Recursos_Mantenimientos.TEMP.getPersona_temporal().getDni();
@@ -463,6 +468,31 @@ public class EdicionPersonaActivity extends AppCompatActivity {
         progressDialog.setMessage("Actualizando Jugador...");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
+
+        debug(" ------------------------------------------DATOS RECUPERADOS -----------------------------------------------");
+        debug("Nombre_persona: "+persona_temporal.getNombre_Persona());
+        debug("Apellidos: "+persona_temporal.getApellidos_Persona());
+        debug("Fecha nacimiento: "+persona_temporal.getFecha_Nacimiento());
+        debug("Nacionalidad: "+persona_temporal.getNacionalidad());
+        debug("Residencia: "+persona_temporal.getLugar_Residencia());
+        debug("Departamento: "+persona_temporal.getDepartamento().getDescripcion());
+        debug("Provincia: "+persona_temporal.getProvincia().getDescripcion());
+        debug("Distrito: "+persona_temporal.getDistrito().getDescripcion());
+        debug("Club: "+persona_temporal.getClub_actual());
+        debug("Liga: "+persona_temporal.getLiga_actual());
+        debug("Telefono: "+persona_temporal.getTelefono());
+        debug("Fijo: "+persona_temporal.getTelefono_fijo());
+        debug("Bautizo: "+persona_temporal.getBautizo());
+        debug("Confirmacion: "+persona_temporal.getConfirmacion());
+        debug("Comunion: "+persona_temporal.getComunion());
+        debug("Dni: "+persona_temporal.getDni());
+        debug("Correo: "+persona_temporal.getCorreo());
+        debug("Apoderado: "+persona_temporal.getNombre_Apoderado());
+        debug("Telefono apoderado: "+persona_temporal.getTelefono_apoderado());
+        debug("Categoria: "+persona_temporal.getCategoria_Actual());
+        debug("ID persona: "+persona_temporal.getId());
+
+
 
         String nom=persona_temporal.getNombre_Persona();
         String ape=persona_temporal.getApellidos_Persona();

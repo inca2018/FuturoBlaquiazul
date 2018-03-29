@@ -10,7 +10,7 @@
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="false"
-        android:icon="@mipmap/icono_oficial2"
+        android:icon="@mipmap/logo"
         android:label="Futuro Blanquiazul"
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -24,7 +24,9 @@
         <activity
             android:name=".Activities.Captacion.RegistroPostulantesActivity"
             android:configChanges="screenSize|orientation" />
-        <activity android:name=".Activities.Inicio.LoginActivity">
+        <activity
+            android:name=".Activities.Inicio.LoginActivity"
+            android:configChanges="screenSize|orientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -152,9 +154,16 @@
         <activity
             android:name=".Activities.Mantenimientos.MantenimientoPosicionesActivity"
             android:configChanges="screenSize|orientation" />
-        <activity android:name=".Activities.Mantenimientos.MantenimientoOponentesActivity" />
-        <activity android:name=".Activities.Mantenimientos.MantenimientoPersonaActivity" />
-        <activity android:name=".Activities.Mantenimientos.EdicionPersonaActivity"></activity>
+        <activity
+            android:name=".Activities.Mantenimientos.MantenimientoOponentesActivity"
+            android:configChanges="screenSize|orientation" />
+
+        <activity
+            android:name=".Activities.Mantenimientos.MantenimientoPersonaActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity
+            android:name=".Activities.Mantenimientos.EdicionPersonaActivity"
+            android:configChanges="screenSize|orientation" />
     </application>
 
 </manifest>
