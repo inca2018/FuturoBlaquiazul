@@ -520,6 +520,11 @@ public class EdicionPersonaActivity extends AppCompatActivity {
         String foto_nom=persona_temporal.getDni()+".jpg";
         String foto_nom_antigua=dni_an+".jpg";
 
+        debug("FOTO NOM :"+foto_nom);
+        debug("FOTO NOM_ANTIGUA:"+foto_nom_antigua);
+        debug("-----------------------------------------------------------------------------------------------");
+        debug("FOTO: "+foto);
+
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -541,12 +546,12 @@ public class EdicionPersonaActivity extends AppCompatActivity {
 
                     } else {
 
-                        Toast.makeText(context, "Error de al Actualizar Usuario", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Error de al Actualizar Jugador", Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    System.out.println("Inca  : Error de conexion al Actualizar Usuario :"+e);
+                    System.out.println("Inca  : Error de conexion al Actualizar Jugador :"+e);
                 }
             }
         };
@@ -605,7 +610,14 @@ public class EdicionPersonaActivity extends AppCompatActivity {
                         fecha_nacimiento_temporal="";
                         Toast.makeText(context, "Jugador Nuevo Guardado Exitosamente", Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(context, "Error de conexion al Registrar Jugador", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                        String error=jsonResponse.getString("validar");
+                        if(error.length()!=0){
+                            Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(context, "No se pudo registrar Jugador,consulte con el administrador del sistema", Toast.LENGTH_SHORT).show(); 
+                        }
+                        
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -1308,15 +1320,29 @@ public class EdicionPersonaActivity extends AppCompatActivity {
          boolean d=false;
          edad_actual=año_actual-anoo;
 
-        if(mes_actual<=mes){
 
-        }else{
-            if(dia_actual<=dia){
+            if(mes==mes_actual){
+                if (dia <= dia_actual) {
+                    d=true;
+                    debug("DIA MENOR O IGUAL");
+                }else{
 
-            }else{
-                d=true;
+                }
+
+                debug("MES ==");
+            }else if(mes<mes_actual){
+                debug("MES MENOR");
+            }else if(mes>dia_actual){
+                if (dia == dia_actual) {
+                    debug("DIA IGUAL ");
+                }else if(dia<dia_actual){
+                    d=true;
+                    debug("DIA MENOR ");
+                }else if(dia>dia_actual){
+                    debug("DIA MAYOR");
+                }
+                debug("MES MAYOR");
             }
-        }
 
         edad_persona.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         if(d){
@@ -1324,9 +1350,6 @@ public class EdicionPersonaActivity extends AppCompatActivity {
         }else{
             edad_persona.setText(String.valueOf(edad_actual)+" Años");
         }
-
-
-
 
     }
     public void debug(String d){

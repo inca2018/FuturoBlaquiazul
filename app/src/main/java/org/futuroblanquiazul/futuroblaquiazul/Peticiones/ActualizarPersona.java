@@ -43,11 +43,11 @@ public class ActualizarPersona extends StringRequest {
         params.put("categoria",categoria);
 
         params.put("foto",foto);
-        params.put("foto_nom",foto_nom);
+        params.put("nombre_foto",foto_nom);
 
         params.put("foto_nom_antigua",foto_nom_antigua);
 
-        params.put("id_personas",id_persona);
+        params.put("id_persona",id_persona);
     }
 
     @Override

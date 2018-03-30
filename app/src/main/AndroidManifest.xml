@@ -162,8 +162,7 @@
             android:name=".Activities.Mantenimientos.MantenimientoPersonaActivity"
             android:configChanges="screenSize|orientation" />
         <activity
-            android:name=".Activities.Mantenimientos.EdicionPersonaActivity"
-            android:configChanges="screenSize|orientation" />
+            android:name=".Activities.Mantenimientos.EdicionPersonaActivity"/>
     </application>
 
 </manifest>
