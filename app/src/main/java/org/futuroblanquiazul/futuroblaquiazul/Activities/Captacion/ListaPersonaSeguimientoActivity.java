@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -38,6 +39,7 @@ public class ListaPersonaSeguimientoActivity extends AppCompatActivity {
     private List<Persona> lista_seguimiento_persona;
     Context context;
     ProgressDialog progressDialog;
+    RelativeLayout lista_vacia;
 
 
     @Override
@@ -46,13 +48,10 @@ public class ListaPersonaSeguimientoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_persona_seguimiento);
         lista_seguimiento_persona=new ArrayList<>();
         recyclerView=findViewById(R.id.Recycler_Persona_seg);
+        lista_vacia=findViewById(R.id.lista_vacia_seguimiento);
         context=this;
         linearLayout = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-        if(Usuario.SESION_ACTUAL!=null){
-            lista_Personas_Seguimientos(Usuario.SESION_ACTUAL.getId(),context);
-        }else{
-            Toast.makeText(context, "Existe Problema de Conexion al recuperar Postulantes", Toast.LENGTH_SHORT).show();
-        }
+
 
 
         adapter = new AdapterSeguimientoPersona(this, lista_seguimiento_persona, new RecyclerViewOnItemClickListener() {
@@ -61,8 +60,29 @@ public class ListaPersonaSeguimientoActivity extends AppCompatActivity {
             }
         });
 
+        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+
+                if(adapter.getItemCount()==0){
+                     lista_vacia.setVisibility(View.VISIBLE);
+                     recyclerView.setVisibility(View.GONE);
+                }else{
+                    lista_vacia.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(linearLayout);
+
+        if(Usuario.SESION_ACTUAL!=null){
+            lista_Personas_Seguimientos(Usuario.SESION_ACTUAL.getId(),context);
+        }else{
+            Toast.makeText(context, "Existe Problema de Conexion al recuperar Postulantes", Toast.LENGTH_SHORT).show();
+        }
     }
     private void lista_Personas_Seguimientos(int id_us, final Context context) {
 
@@ -91,6 +111,7 @@ public class ListaPersonaSeguimientoActivity extends AppCompatActivity {
                             temp.setFecha_registro_Captacion(objeto.getString("FECHA_RE"));
                             temp.setTotales_seguimientos(objeto.getInt("TOTAL_SEGUIMIENTO"));
                             temp.setUbigeo(objeto.getString("UBIGEO"));
+                            temp.setFoto(objeto.getString("FOTO"));
 
                             lista_seguimiento_persona.add(temp);
                         }
@@ -98,8 +119,9 @@ public class ListaPersonaSeguimientoActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                         System.out.println("LISTADO COMPLETO DE PERSONAS");
                     } else {
+                        adapter.notifyDataSetChanged();
                         progressDialog.dismiss();
-                        Toast.makeText(context, "Listado de Personas Vacio", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(context, "Listado de Personas Vacio", Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (JSONException e) {

@@ -34,7 +34,7 @@
                 style="@style/titulo2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:gravity="center"
                 android:text="Postulante:" />
 
@@ -44,7 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="center|start"
                 android:textAlignment="center"
                 android:textStyle="italic"
                 tools:text="  " />
@@ -62,7 +62,7 @@
                 style="@style/titulo2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:gravity="center"
                 android:text="Scout:" />
 
@@ -72,7 +72,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="center|start"
                 android:textAlignment="center"
                 android:textStyle="italic"
                 tools:text="  " />
@@ -90,7 +90,7 @@
                 style="@style/titulo2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_weight="2"
                 android:gravity="center"
                 android:text="Ubigeo:" />
 
@@ -100,7 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="center|start"
                 android:textAlignment="center"
                 android:textStyle="italic"
                 tools:text="  " />
@@ -118,7 +118,7 @@
                 style="@style/titulo2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:gravity="center"
                 android:text="Competencia:" />
 
@@ -128,7 +128,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="center|start"
                 android:textAlignment="center"
                 android:textStyle="italic"
                 tools:text="  " />
@@ -146,7 +146,7 @@
                 style="@style/titulo2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:gravity="center"
                 android:text="Rival:" />
 
@@ -156,7 +156,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="center|start"
                 android:textAlignment="center"
                 android:textStyle="italic"
                 tools:text="  " />
@@ -174,7 +174,7 @@
                 style="@style/titulo2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:gravity="center"
                 android:text="Minutos Jugados:" />
 
@@ -184,7 +184,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="center|start"
                 android:textAlignment="center"
                 android:textStyle="italic"
                 tools:text="  " />
@@ -202,7 +202,7 @@
                 style="@style/titulo2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:gravity="center"
                 android:text="Fecha de Registro:" />
 
@@ -212,7 +212,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="center|start"
                 android:textAlignment="center"
                 android:textStyle="italic"
                 tools:text="  " />
@@ -394,7 +394,7 @@
                     android:layout_weight="2"
                     android:text="60 Ptos"
                     android:textColor="@color/blue"
-                    android:textSize="25sp"
+                    android:textSize="30sp"
                     android:textStyle="bold" />
 
 

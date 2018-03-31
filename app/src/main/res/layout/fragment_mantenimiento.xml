@@ -184,7 +184,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:background="@android:color/transparent"
-                                    android:text="Ir a Eventos"
+                                    android:text="INGRESAR"
                                     android:textColor="@color/colorWhite" />
                             </android.support.v7.widget.CardView>
 
@@ -244,7 +244,68 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:background="@android:color/transparent"
-                                    android:text="Ir a Eventos"
+                                    android:text="INGRESAR"
+                                    android:textColor="@color/colorWhite" />
+                            </android.support.v7.widget.CardView>
+
+
+
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="5dp"
+                    android:layout_margin="8dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="8dp">
+
+                            <TextView
+                                style="@style/titulo1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Evento Barrio Intimo" />
+
+                            <TextView
+                                style="@style/titulo2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Mantenimiento Barrio Intimo" />
+
+                            <android.support.v7.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                app:cardElevation="5dp"
+                                app:cardCornerRadius="10dp"
+                                app:cardBackgroundColor="@color/red"
+                                android:layout_margin="8dp">
+
+                                <Button
+                                    android:id="@+id/accion_5_mantenimiento"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@android:color/transparent"
+                                    android:text="INGRESAR"
                                     android:textColor="@color/colorWhite" />
                             </android.support.v7.widget.CardView>
 

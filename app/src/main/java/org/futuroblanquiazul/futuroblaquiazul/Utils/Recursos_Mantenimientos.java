@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterOponentes;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterPosiciones;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterPosiciones2;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.BarrioIntimo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Oponente;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Posicion;
@@ -33,6 +34,7 @@ public class Recursos_Mantenimientos {
     Unidad_Territorial provincia;
     Unidad_Territorial distrito;
     Persona persona_temporal;
+    BarrioIntimo evento_temporal;
 
     public static final  List<Posicion> Posiciones1=new ArrayList<>();
     public static final  List<Posicion> Posiciones2=new ArrayList<>();
@@ -60,6 +62,14 @@ public class Recursos_Mantenimientos {
 
     public void setPersona_temporal(Persona persona_temporal) {
         this.persona_temporal = persona_temporal;
+    }
+
+    public BarrioIntimo getEvento_temporal() {
+        return evento_temporal;
+    }
+
+    public void setEvento_temporal(BarrioIntimo evento_temporal) {
+        this.evento_temporal = evento_temporal;
     }
 
     public Unidad_Territorial getDepartamento() {

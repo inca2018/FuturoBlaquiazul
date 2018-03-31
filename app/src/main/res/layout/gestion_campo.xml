@@ -1,16 +1,59 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
     android:background="@color/blanco"
 
-    >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="4dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center|start"
+            android:text="Seleccion Opcion:"
+            android:textColor="@color/blue"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/opcion_vaciar_dato"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Eliminar Campo"
+                android:textAllCaps="true"
+                android:textColor="@color/blue"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:src="@mipmap/icon_delete_vacio" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="2dp"
         android:background="@android:color/transparent"
         android:orientation="horizontal">
@@ -32,14 +75,14 @@
                 android:id="@+id/op1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
-
                 android:padding="10dp"
                 android:text="P"
                 android:textAlignment="center"
                 android:textColor="@color/blanco"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:drawableTop="@mipmap/icon_opcion_balones_perdidos"
+                android:drawableTint="@color/blanco"/>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -63,7 +106,9 @@
                 android:textAlignment="center"
                 android:textColor="@color/blanco"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:drawableTop="@mipmap/icon_opcion_remate"
+                android:drawableTint="@color/blanco"/>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -87,7 +132,9 @@
                 android:textAlignment="center"
                 android:textColor="@color/blanco"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:drawableTop="@mipmap/icon_opcion_pase_gol"
+                android:drawableTint="@color/blanco"/>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -111,7 +158,9 @@
                 android:textAlignment="center"
                 android:textColor="@color/blanco"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:drawableTop="@mipmap/icon_opcion_dribbling"
+                android:drawableTint="@color/blanco"/>
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
@@ -121,9 +170,9 @@
             android:layout_margin="2dp"
             android:layout_weight="1"
             android:background="@color/verde_bajo"
-            android:backgroundTint="@color/verde_bajo"
+            android:backgroundTint="@color/card"
             android:elevation="5dp"
-            app:cardBackgroundColor="@color/verde_bajo"
+            app:cardBackgroundColor="@color/card"
             app:cardCornerRadius="10dp">
 
             <TextView
@@ -135,7 +184,9 @@
                 android:textAlignment="center"
                 android:textColor="@color/blanco"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:drawableTop="@mipmap/icon_opcion_gol"
+                android:drawableTint="@color/blanco"/>
         </android.support.v7.widget.CardView>
 
 

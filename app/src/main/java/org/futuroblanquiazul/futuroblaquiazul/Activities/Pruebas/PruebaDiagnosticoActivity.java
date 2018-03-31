@@ -3,7 +3,6 @@ package org.futuroblanquiazul.futuroblaquiazul.Activities.Pruebas;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
@@ -26,7 +25,7 @@ import com.android.volley.toolbox.Volley;
 
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.BarrioIntimoPersonaActivity;
-import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaPersonaMasivoActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.CaptacionMasiva.ListaPersonaMasivoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.RegistroPostulantesActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ValidarDiagnosticoIndividualActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
@@ -107,6 +106,7 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
                             ubicacion_texto.setText("Ubicación no disponible");
                         }
                     }else{
+                        //MODULO CAPTACION DIAGNOSTICO INDIVIDUAL
                         if(GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion().length()!=0){
                             ubicacion_texto.setText("Ubicación de Diagnostico: "+GestionUbigeo.CAPTACION_UBIGEO.getUbigeo_descripcion());
                         }else{
@@ -528,6 +528,30 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
             }
         }
     }
+
+    private void Limpiar_Listas() {
+
+
+        for(int i=0;i<Recursos_Diagnostico.LISTA_FISICO.size();i++){
+            Recursos_Diagnostico.LISTA_FISICO.get(i).setResultado(0);
+        }
+        for(int i=0;i<Recursos_Diagnostico.LISTA_SOCIAL.size();i++){
+            Recursos_Diagnostico.LISTA_SOCIAL.get(i).setResultado(0);
+        }
+        for(int i=0;i<Recursos_Diagnostico.LISTA_TECNICO.size();i++){
+            Recursos_Diagnostico.LISTA_TECNICO.get(i).setResultado(0);
+        }
+        for(int i=0;i<Recursos_Diagnostico.LISTA_PSICO.size();i++){
+            Recursos_Diagnostico.LISTA_PSICO.get(i).setResultado(0);
+        }
+
+        for(int i=0;i<Recursos_Diagnostico.LISTA_CAPACIDAD.size();i++){
+            Recursos_Diagnostico.LISTA_CAPACIDAD.get(i).setResultado(0);
+        }
+
+
+
+    }
     public void onBackPressed() {
 
 
@@ -539,6 +563,7 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                Limpiar_Listas();
                                 Intent intent = new Intent(PruebaDiagnosticoActivity.this,GestionPersonaFasePruebaActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 PruebaDiagnosticoActivity.this.startActivity(intent);
@@ -564,6 +589,7 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    Limpiar_Listas();
                                     Intent intent = new Intent(PruebaDiagnosticoActivity.this,ListaPersonasGrupoPruebasActivity.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     PruebaDiagnosticoActivity.this.startActivity(intent);
@@ -581,6 +607,8 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
 
         }else{
             if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
+
+                Limpiar_Listas();
                 Intent intent = new Intent(PruebaDiagnosticoActivity.this,BarrioIntimoPersonaActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 PruebaDiagnosticoActivity.this.startActivity(intent);
@@ -594,6 +622,7 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
                                     new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
+                                            Limpiar_Listas();
                                             Desactivar_Persona(Persona.PERSONA_TEMP.getId());
                                             Intent intent = new Intent(PruebaDiagnosticoActivity.this,ListaPersonaMasivoActivity.class);
                                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -612,11 +641,32 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
                     builder.show();
                 }else{
 
-                    Intent intent = new Intent(PruebaDiagnosticoActivity.this,PrincipalActivity.class);
-                    intent.putExtra("o","o1");
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    PruebaDiagnosticoActivity.this.startActivity(intent);
-                    finish();
+                    final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+                    builder.setTitle("Captacion")
+                            .setMessage("¿Desea salir de la Evaluaciòn?")
+                            .setPositiveButton("SI",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            Limpiar_Listas();
+                                            Intent intent = new Intent(PruebaDiagnosticoActivity.this,PrincipalActivity.class);
+                                            intent.putExtra("o","o1");
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                            PruebaDiagnosticoActivity.this.startActivity(intent);
+                                            finish();
+                                        }
+                                    })
+                            .setNegativeButton("NO",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            dialog.dismiss();
+                                        }
+                                    });
+
+                    builder.show();
+
+
 
                 }
             }

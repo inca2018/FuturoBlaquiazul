@@ -17,13 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".Activities.Inicio.MainActivity" />
-        <activity
-            android:name=".Activities.Pruebas.PruebaDiagnosticoActivity"
-            android:configChanges="screenSize|orientation" />
+        <activity android:name=".Activities.Pruebas.PruebaDiagnosticoActivity" />
         <activity android:name=".Activities.Captacion.PruebaAnimacionActivity" />
-        <activity
-            android:name=".Activities.Captacion.RegistroPostulantesActivity"
-            android:configChanges="screenSize|orientation" />
+        <activity android:name=".Activities.Captacion.RegistroPostulantesActivity" />
         <activity
             android:name=".Activities.Inicio.LoginActivity"
             android:configChanges="screenSize|orientation">
@@ -49,14 +45,12 @@
             android:name=".Activities.CaptacionMasiva.MasivoNuevoActivity"
             android:configChanges="screenSize|orientation" />
         <activity
-            android:name=".Activities.Captacion.ListaPersonaMasivoActivity"
+            android:name=".Activities.CaptacionMasiva.ListaPersonaMasivoActivity"
             android:configChanges="screenSize|orientation" />
         <activity
             android:name=".Activities.CaptacionMasiva.PersonaNuevoMasivoActivity"
             android:configChanges="screenSize|orientation" />
-        <activity
-            android:name=".Activities.CaptacionMasiva.MasivoResultadosActivity"
-            android:configChanges="screenSize|orientation" />
+        <activity android:name=".Activities.CaptacionMasiva.MasivoResultadosActivity" />
         <activity
             android:name=".Activities.Captacion.ListaPersonaSeguimientoActivity"
             android:configChanges="screenSize|orientation" />
@@ -157,12 +151,12 @@
         <activity
             android:name=".Activities.Mantenimientos.MantenimientoOponentesActivity"
             android:configChanges="screenSize|orientation" />
-
         <activity
             android:name=".Activities.Mantenimientos.MantenimientoPersonaActivity"
             android:configChanges="screenSize|orientation" />
-        <activity
-            android:name=".Activities.Mantenimientos.EdicionPersonaActivity"/>
+        <activity android:name=".Activities.Mantenimientos.EdicionPersonaActivity" />
+        <activity android:name=".Activities.Mantenimientos.MantenimientoBarrioIntimoActivity" />
+        <activity android:name=".Activities.Mantenimientos.EdicionBarrioIntimoActivity"></activity>
     </application>
 
 </manifest>

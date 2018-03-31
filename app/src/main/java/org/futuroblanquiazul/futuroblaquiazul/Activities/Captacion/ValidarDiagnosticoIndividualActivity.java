@@ -16,6 +16,7 @@ import com.android.volley.toolbox.Volley;
 
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.BarrioIntimoPersonaActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.CaptacionMasiva.ListaPersonaMasivoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Metodologia.ListaPersonasGrupoPruebasActivity;
@@ -87,6 +88,7 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
             }else{
                 if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
 
+
                     if(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getUbigeo_descripcion().length()!=0){
                         ubigeo.setText(String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getUbigeo_descripcion()));
                     }else{
@@ -128,20 +130,11 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
             }
         }
 
-
-
-
-
-
-
         if(Diagnostico_Otros.OTROS.getTotal_puntaje()!=0){
             total.setText(Diagnostico_Otros.OTROS.getTotal_puntaje()+" Puntos");
         }else{
             total.setText("Total no encontrado");
         }
-
-
-
 
         verificar_resultados=findViewById(R.id.confirmacion_resultados);
         verificar_resultados.setOnClickListener(new View.OnClickListener() {
@@ -223,6 +216,10 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
         String Estado=String.valueOf(1);
         String Estado_Capta=String.valueOf(1);
 
+        String id_depa= String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getDepartamento().getCodigo());
+        String id_prov= String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getProvincia().getCodigo());
+        String id_dis= String.valueOf(GestionUbigeo.CAPTACION_UBIGEO.getDistrito().getCodigo());
+
 
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Registro");
@@ -247,11 +244,8 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
                             progressDialog.dismiss();
                             Toast.makeText(context, "Problema de Conexión al Recuperar Codigo Persona", Toast.LENGTH_SHORT).show();
                         }else{
-
                             Registrar_Resultados(context,id_persona,ResultadosDiagnostico);
-
                             debug("PASO REGISTRO DE PERSONA");
-
                         }
 
                     } else {
@@ -266,7 +260,7 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
             }
         };
 
-        RegistrarPersonaRecuperarCodigo xx = new RegistrarPersonaRecuperarCodigo(Nombres, Apellidos,Nacionalidad,Club, Liga,Categoria,Dni,FechaNacimiento,LugarResidencia,Telefonos,Correo,Apoderado,TelefonoApoderado,Estado,Estado_Capta,responseListener);
+        RegistrarPersonaRecuperarCodigo xx = new RegistrarPersonaRecuperarCodigo(Nombres, Apellidos,Nacionalidad,Club, Liga,Categoria,Dni,FechaNacimiento,LugarResidencia,Telefonos,Correo,Apoderado,TelefonoApoderado,Estado,Estado_Capta,id_depa,id_prov,id_dis,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
     }

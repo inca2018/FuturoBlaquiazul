@@ -68,8 +68,6 @@ public class Usuario {
     Area_Usuario area_usuario;
 
     String FechaModificado;
-
-
     Usuario usuario_mantenimiento;
 
 

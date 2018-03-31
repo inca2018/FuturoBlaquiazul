@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
-import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaPersonaMasivoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterMasivo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Masivo;
@@ -66,21 +65,15 @@ public class ListaMasivosActivity extends AppCompatActivity {
 
         recycler_masivo.setAdapter(adapter);
         recycler_masivo.setLayoutManager(linearLayout);
-
-
-
-
         nuevo_masivo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ListaMasivosActivity.this, MasivoNuevoActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 ListaMasivosActivity.this.startActivity(intent);
-
             }
         });
     }
-
     private void Listar_Masivos(final Context context) {
 
 
@@ -149,8 +142,6 @@ public class ListaMasivosActivity extends AppCompatActivity {
 
 
     }
-
-
     public void onBackPressed() {
 
         Intent intent = new Intent(ListaMasivosActivity.this,PrincipalActivity.class);

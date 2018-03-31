@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos.MantenimientoBarrioIntimoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos.MantenimientoOponentesActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos.MantenimientoPersonaActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos.MantenimientoPosicionesActivity;
@@ -16,7 +17,7 @@ import org.futuroblanquiazul.futuroblaquiazul.R;
 
 public class MantenimientoFragment extends Fragment {
 
-    Button accion1,accion2,accion3,accion4;
+    Button accion1,accion2,accion3,accion4,accion5;
     Context context;
     public MantenimientoFragment() {
     }
@@ -32,6 +33,7 @@ public class MantenimientoFragment extends Fragment {
           accion2=v.findViewById(R.id.accion_2_mantenimiento);
           accion3=v.findViewById(R.id.accion_3_mantenimiento);
           accion4=v.findViewById(R.id.accion_4_mantenimiento);
+          accion5=v.findViewById(R.id.accion_5_mantenimiento);
 
           accion1.setOnClickListener(new View.OnClickListener() {
               @Override
@@ -63,6 +65,13 @@ public class MantenimientoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(context, MantenimientoOponentesActivity.class);
+                startActivity(intent);
+            }
+        });
+        accion5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(context, MantenimientoBarrioIntimoActivity.class);
                 startActivity(intent);
             }
         });

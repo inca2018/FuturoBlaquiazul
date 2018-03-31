@@ -2,6 +2,7 @@ package org.futuroblanquiazul.futuroblaquiazul.Adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Layout;
@@ -9,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -39,11 +41,14 @@ public class AdapterCampo extends RecyclerView.Adapter<AdapterCampo.ViewHolder> 
 
         Button btn;
 
+        FrameLayout base;
+
         public ViewHolder(View itemView) {
             super(itemView);
 
             itemView.setOnClickListener(this);
                   btn=itemView.findViewById(R.id.card_campos_boton);
+                  base=itemView.findViewById(R.id.base_frame);
 
         }
         @Override
@@ -58,6 +63,27 @@ public class AdapterCampo extends RecyclerView.Adapter<AdapterCampo.ViewHolder> 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
+         switch (my_Data.get(position).getDato()){
+             case "P":
+                 holder.base.setBackgroundColor(context.getResources().getColor(R.color.red));
+                 break;
+             case "R":
+                 holder.base.setBackgroundColor(context.getResources().getColor(R.color.blue));
+                 break;
+             case "PG":
+                 holder.base.setBackgroundColor(context.getResources().getColor(R.color.morado_bajo));
+                 break;
+             case "DR":
+                 holder.base.setBackgroundColor(context.getResources().getColor(R.color.deep_naranja400));
+                 break;
+             case "G":
+                 holder.base.setBackgroundColor(context.getResources().getColor(R.color.card));
+                 break;
+                 default:
+                     holder.base.setBackgroundColor(Color.TRANSPARENT);
+
+         }
+
          holder.btn.getLayoutParams().height=my_Data.get(position).getAltura();
 
          holder.btn.setHeight(my_Data.get(position).getAltura());
@@ -71,6 +97,8 @@ public class AdapterCampo extends RecyclerView.Adapter<AdapterCampo.ViewHolder> 
             public void onClick(View v) {
                 final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
                 final View dialoglayout4 = inflater.inflate(R.layout.gestion_campo, null);
+
+                final LinearLayout linear=dialoglayout4.findViewById(R.id.opcion_vaciar_dato);
 
                 final TextView fab1= dialoglayout4.findViewById(R.id.op1);
                 final TextView fab2= dialoglayout4.findViewById(R.id.op2);
@@ -140,6 +168,17 @@ public class AdapterCampo extends RecyclerView.Adapter<AdapterCampo.ViewHolder> 
 
                         my_Data.get(position).setDato("G");
                         my_Data.get(position).setCant(3);
+                        notifyDataSetChanged();
+                        da.dismiss();
+                        System.out.println("Total:"+Puntostotal);
+                    }
+                });
+
+                linear.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        my_Data.get(position).setDato("");
+                        my_Data.get(position).setCant(0);
                         notifyDataSetChanged();
                         da.dismiss();
                         System.out.println("Total:"+Puntostotal);

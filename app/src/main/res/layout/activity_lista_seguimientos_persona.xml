@@ -169,6 +169,49 @@
 
             </android.support.v7.widget.RecyclerView>
 
+            <RelativeLayout
+                android:id="@+id/lista_vacia_seguimiento2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="8dp"
+                            android:src="@mipmap/ic_alerta"
+                            android:tint="@color/n" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_margin="8dp"
+                        android:text="Sin Resultados"
+                        android:textColor="@color/n"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
         </LinearLayout>
 
 

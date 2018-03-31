@@ -202,7 +202,7 @@ public class EdicionPersonaActivity extends AppCompatActivity {
                     debug("ENTRO A LISTAR PROVINCIAS");
                     ProvinciasLista.clear();
                     DistritoLista.clear();
-                    Listar_Provincias(Recursos_Mantenimientos.TEMP.getDepartamento().getCodigo(),context);
+                    Listar_Provincias(Recursos_Mantenimientos.TEMP.getPersona_temporal().getDepartamento().getCodigo(),context);
 
                 }
 
@@ -231,7 +231,7 @@ public class EdicionPersonaActivity extends AppCompatActivity {
                 }else{
                     debug("ENTRO A LISTAR DISTRITOS");
                     DistritoLista.clear();
-                    Listar_Distritos(Recursos_Mantenimientos.TEMP.getProvincia().getCodigo(),context);
+                    Listar_Distritos(Recursos_Mantenimientos.TEMP.getPersona_temporal().getProvincia().getCodigo(),context);
 
                 }
 

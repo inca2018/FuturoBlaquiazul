@@ -19,7 +19,7 @@ import com.android.volley.toolbox.Volley;
 
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Pruebas.PruebaDiagnosticoActivity;
-import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaPersonaMasivoActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.CaptacionMasiva.ListaPersonaMasivoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.CaptacionMasiva.MasivoResultadosActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;

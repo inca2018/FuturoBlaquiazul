@@ -12,7 +12,7 @@ public class RegistrarPersonaRecuperarCodigo extends StringRequest {
     private static final String LOGIN_REQUEST_URL = Conexion.RUTA_SERVICIO_CAPTACION;
     private Map<String, String> params;
 
-    public RegistrarPersonaRecuperarCodigo(String Nombres,String Apellidos,String Nacionalidad,String Club,String Liga,String Categoria,String Dni,String FechaNacimiento,String LugarResidencia,String Telefonos,String Correo,String Apoderado,String TelefonoApoderado,String estado,String estado_capta, Response.Listener<String> listener) {
+    public RegistrarPersonaRecuperarCodigo(String Nombres,String Apellidos,String Nacionalidad,String Club,String Liga,String Categoria,String Dni,String FechaNacimiento,String LugarResidencia,String Telefonos,String Correo,String Apoderado,String TelefonoApoderado,String estado,String estado_capta,String depa,String prov,String dis, Response.Listener<String> listener) {
         super(Method.POST, LOGIN_REQUEST_URL,listener, null);
         params = new HashMap<>();
         params.put("operacion","registrar_persona");
@@ -31,6 +31,11 @@ public class RegistrarPersonaRecuperarCodigo extends StringRequest {
         params.put("contacto_apoderado", TelefonoApoderado);
         params.put("estado", estado);
         params.put("estado_capta",estado_capta);
+        params.put("departamento",depa);
+        params.put("provincia",prov);
+        params.put("distrito",dis);
+
+
     }
 
     @Override

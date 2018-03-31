@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +49,7 @@ public class ListaSeguimientosActivity extends AppCompatActivity {
     CardView nuevo_seguimiento;
     TextView seg_nombre,seg_ubigeo,seg_prom;
     TextView opcion_migrar_fase;
+    RelativeLayout lista_vacia;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +61,7 @@ public class ListaSeguimientosActivity extends AppCompatActivity {
         seg_ubigeo=findViewById(R.id.info_seguimiento_ubigeo);
         seg_prom=findViewById(R.id.info_seguimiento_promedio);
         opcion_migrar_fase=findViewById(R.id.opcion_migrar_fase);
+        lista_vacia=findViewById(R.id.lista_vacia_seguimiento2);
         context=this;
 
         SpannableString mitextoU = new SpannableString("Migrar a Fase de Pruebas");
@@ -103,16 +106,25 @@ public class ListaSeguimientosActivity extends AppCompatActivity {
             @Override
             public void onChanged() {
                 super.onChanged();
+                if(adapter.getItemCount()==0){
+                    lista_vacia.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.GONE);
+                }else{
+                    lista_vacia.setVisibility(View.GONE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                }
 
                 if(adapter.getItemCount()!=0){
-
+  
                     double prom=adapter.getPromedio();
-
-                    seg_prom.setText(prom+" Ptos");
+                    double roundOff = (double) Math.round(prom * 100) / 100;
+                    seg_prom.setText(roundOff+" Ptos");
 
                 }
             }
         });
+
+
 
         opcion_migrar_fase.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -237,7 +249,8 @@ public class ListaSeguimientosActivity extends AppCompatActivity {
                         System.out.println("LISTADO COMPLETO DE MASIVOS");
                     } else {
                         progressDialog.dismiss();
-                        Toast.makeText(context, "Listado Vacio", Toast.LENGTH_SHORT).show();
+                        adapter.notifyDataSetChanged();
+                        //Toast.makeText(context, "Listado Vacio", Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (JSONException e) {

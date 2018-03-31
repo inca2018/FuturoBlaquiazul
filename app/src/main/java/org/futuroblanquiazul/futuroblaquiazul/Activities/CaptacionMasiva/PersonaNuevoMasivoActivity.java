@@ -19,12 +19,12 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 
 
-import org.futuroblanquiazul.futuroblaquiazul.Activities.Captacion.ListaPersonaMasivoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.AgregarPersonaEnMasivo;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RegistrarPersonaRecuperarCodigo;
 import org.futuroblanquiazul.futuroblaquiazul.R;
+import org.futuroblanquiazul.futuroblaquiazul.Utils.GestionUbigeo;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Registro_Postulante_Masivo;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -105,6 +105,10 @@ public class PersonaNuevoMasivoActivity extends AppCompatActivity {
         String Estado=String.valueOf(2);
         String estado_capta=String.valueOf(1);
 
+        String id_depa=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getDepartamento().getCodigo());
+        String id_prov=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getProvincia().getCodigo());
+        String id_dist=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_MASIVO.getDistrito().getCodigo());
+
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Registro");
         progressDialog.setMessage("Enviando Información...");
@@ -128,11 +132,8 @@ public class PersonaNuevoMasivoActivity extends AppCompatActivity {
                             progressDialog.dismiss();
                             Toast.makeText(context, "Problema de Conexión al Recuperar Codigo Persona", Toast.LENGTH_SHORT).show();
                         }else{
-
                             Registrar_Masivo_Persona(context);
-
                             debug("PASO REGISTRO DE PERSONA");
-
                         }
 
                     } else {
@@ -147,7 +148,7 @@ public class PersonaNuevoMasivoActivity extends AppCompatActivity {
             }
         };
 
-        RegistrarPersonaRecuperarCodigo xx = new RegistrarPersonaRecuperarCodigo(Nombres, Apellidos,Nacionalidad,Club, Liga,Categoria,Dni,FechaNacimiento,LugarResidencia,Telefonos,Correo,Apoderado,TelefonoApoderado,Estado,estado_capta,responseListener);
+        RegistrarPersonaRecuperarCodigo xx = new RegistrarPersonaRecuperarCodigo(Nombres, Apellidos,Nacionalidad,Club, Liga,Categoria,Dni,FechaNacimiento,LugarResidencia,Telefonos,Correo,Apoderado,TelefonoApoderado,Estado,estado_capta,id_depa,id_prov,id_dist,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
 

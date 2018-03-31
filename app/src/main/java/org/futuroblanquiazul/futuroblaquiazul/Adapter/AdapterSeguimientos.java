@@ -78,7 +78,7 @@ public class AdapterSeguimientos extends RecyclerView.Adapter<AdapterSeguimiento
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-              holder.nombre_competencia.setText(my_Data.get(position).getNombre_Competencia());
+              holder.nombre_competencia.setText(my_Data.get(position).getNombre_Competencia().toUpperCase());
               holder.total.setText(String.valueOf(my_Data.get(position).getTotal_Puntaje()));
               holder.codigo_seguimiento.setText(my_Data.get(position).getCodigo_Seguimiento());
 
@@ -119,7 +119,7 @@ public class AdapterSeguimientos extends RecyclerView.Adapter<AdapterSeguimiento
 
 
                                   p_nombre.setText(Usuario.SESION_ACTUAL.getPersona_seguimiento().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_seguimiento().getApellidos_Persona());
-                                  p_creador.setText(my_Data.get(position).getUsuario().getNombres());
+                                  p_creador.setText(my_Data.get(position).getUsuario().getNombres()+" "+my_Data.get(position).getUsuario().getApellidos());
                                   p_ubigeo.setText(Usuario.SESION_ACTUAL.getPersona_seguimiento().getUbigeo());
                                   p_competencia.setText(my_Data.get(position).getNombre_Competencia());
                                   p_rival.setText(my_Data.get(position).getNombre_Rival());

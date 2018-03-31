@@ -83,8 +83,14 @@ public class RecuperarActivity extends AppCompatActivity {
 
 
                     }else {
+                        String error=jsonResponse.getString("error");
                         progressDialog.dismiss();
-                        Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
+                        if(error.length()!=0){
+                            Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
 
                 } catch (JSONException e) {

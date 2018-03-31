@@ -1,4 +1,4 @@
-package org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo;
+package org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -8,13 +8,18 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
+import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.BarrioIntimoActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.BarrioIntimo.BarrioIntimoPersonaActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterBarrio;
+import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterBarrio2;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.BarrioIntimo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Unidad_Territorial;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
@@ -28,48 +33,73 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BarrioIntimoActivity extends AppCompatActivity {
+public class MantenimientoBarrioIntimoActivity extends AppCompatActivity {
 
     private RecyclerView recycler_barrio;
     private LinearLayoutManager linearLayout;
-    private AdapterBarrio adapter;
+    private AdapterBarrio2 adapter;
     private List<BarrioIntimo> lista_barrio_intimo;
+
     Context context;
     ProgressDialog progressDialog;
+
+    RelativeLayout lista_vacia;
+    Button mant_barrio_nuevo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_barrio_intimo);
-        recycler_barrio=findViewById(R.id.recycler_barrio_intimo);
+        setContentView(R.layout.activity_mantenimiento_barrio_intimo);
         context=this;
-
-
+        recycler_barrio=findViewById(R.id.recycler_mant_barrio);
+        lista_vacia=findViewById(R.id.lista_vacia_barrio_intimo);
         lista_barrio_intimo=new ArrayList<>();
+        mant_barrio_nuevo=findViewById(R.id.mant_barrio_nuevo);
         linearLayout = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-
-        Listar_barrio_intimo(context);
-
-        adapter = new AdapterBarrio(this, lista_barrio_intimo, new RecyclerViewOnItemClickListener() {
+        adapter = new AdapterBarrio2(this, lista_barrio_intimo, new RecyclerViewOnItemClickListener() {
             public void onClick(View v, int position) {
-                Usuario.SESION_ACTUAL.setId_barrio_intimo(lista_barrio_intimo.get(position).getId());
+               /* Usuario.SESION_ACTUAL.setId_barrio_intimo(lista_barrio_intimo.get(position).getId());
                 Usuario.SESION_ACTUAL.setBarrio_datos(lista_barrio_intimo.get(position));
 
-                Intent intent=new Intent(BarrioIntimoActivity.this,BarrioIntimoPersonaActivity.class);
+                Intent intent=new Intent(MantenimientoBarrioIntimoActivity.this,BarrioIntimoPersonaActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                BarrioIntimoActivity.this.startActivity(intent);
+                MantenimientoBarrioIntimoActivity.this.startActivity(intent);*/
             }
         });
 
         recycler_barrio.setAdapter(adapter);
         recycler_barrio.setLayoutManager(linearLayout);
 
+        Listar_barrio_intimo(context);
+
+        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+
+                if(adapter.getItemCount()==0){
+                    lista_vacia.setVisibility(View.VISIBLE);
+                    recycler_barrio.setVisibility(View.GONE);
+                }else{
+                    lista_vacia.setVisibility(View.GONE);
+                    recycler_barrio.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+        mant_barrio_nuevo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(context,EdicionBarrioIntimoActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                context.startActivity(intent);
+            }
+        });
     }
 
     private void Listar_barrio_intimo(final Context context) {
-
-
         progressDialog = new ProgressDialog(context);
-        progressDialog.setTitle("Barrio Intimo:");
+        progressDialog.setTitle("Mantenimiento Barrio Intimo:");
         progressDialog.setMessage("Listando...");
         progressDialog.show();
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
@@ -111,10 +141,8 @@ public class BarrioIntimoActivity extends AppCompatActivity {
                             user.setUsuario(objeto.getString("CREADO_NOM"));
                             temp.setUsuario(user);
 
-
                             temp.setEstado(objeto.getInt("ESTADO"));
                             temp.setDescripcion(objeto.getString("DESCRIPCION"));
-
 
                             temp.setCantidad_Postulantes(objeto.getInt("TOTAL"));
                             temp.setAno(objeto.getInt("ANO"));
@@ -122,7 +150,6 @@ public class BarrioIntimoActivity extends AppCompatActivity {
                             temp.setDia(objeto.getInt("DIA"));
 
                             lista_barrio_intimo.add(temp);
-
 
                         }
 
@@ -132,7 +159,8 @@ public class BarrioIntimoActivity extends AppCompatActivity {
                         System.out.println("LISTADO COMPLETO DE BARRIO");
                     } else {
                         progressDialog.dismiss();
-                        Toast.makeText(context, "Listado Vacio", Toast.LENGTH_SHORT).show();
+                        adapter.notifyDataSetChanged();
+                        //Toast.makeText(context, "Listado Vacio", Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (JSONException e) {
@@ -148,12 +176,12 @@ public class BarrioIntimoActivity extends AppCompatActivity {
 
     }
 
-
     public void onBackPressed() {
-        Intent intent=new Intent(BarrioIntimoActivity.this,PrincipalActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        intent.putExtra("o","o1");
-        BarrioIntimoActivity.this.startActivity(intent);
-    }
 
+        Intent intent=new Intent(MantenimientoBarrioIntimoActivity.this,PrincipalActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.putExtra("o","o5");
+        MantenimientoBarrioIntimoActivity.this.startActivity(intent);
+
+    }
 }

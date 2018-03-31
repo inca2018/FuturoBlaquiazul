@@ -17,6 +17,9 @@ public class BarrioIntimo {
     int Estado;
     int cantidad_Postulantes;
     String Descripcion_ubigeo;
+    int ano;
+    int mes;
+    int dia;
 
 
     public BarrioIntimo(){
@@ -30,6 +33,33 @@ public class BarrioIntimo {
 
     public void setDescripcion_ubigeo(String descripcion_ubigeo) {
         Descripcion_ubigeo = descripcion_ubigeo;
+    }
+
+
+
+
+    public int getAno() {
+        return ano;
+    }
+
+    public void setAno(int ano) {
+        this.ano = ano;
+    }
+
+    public int getMes() {
+        return mes;
+    }
+
+    public void setMes(int mes) {
+        this.mes = mes;
+    }
+
+    public int getDia() {
+        return dia;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
     }
 
     public int getId() {
