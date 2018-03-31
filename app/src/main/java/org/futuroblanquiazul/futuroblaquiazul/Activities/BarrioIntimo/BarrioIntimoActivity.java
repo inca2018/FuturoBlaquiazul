@@ -108,7 +108,8 @@ public class BarrioIntimoActivity extends AppCompatActivity {
 
                             Usuario user=new Usuario();
                             user.setId(objeto.getInt("ID_USER"));
-                            user.setUsuario(objeto.getString("CREADO_NOM"));
+                            user.setNombres(objeto.getString("CREADO_NOM"));
+                            user.setApellidos(objeto.getString("APELLIDOS"));
                             temp.setUsuario(user);
 
 

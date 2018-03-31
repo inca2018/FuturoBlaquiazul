@@ -39,13 +39,10 @@ public class MantenimientoBarrioIntimoActivity extends AppCompatActivity {
     private LinearLayoutManager linearLayout;
     private AdapterBarrio2 adapter;
     private List<BarrioIntimo> lista_barrio_intimo;
-
     Context context;
     ProgressDialog progressDialog;
-
     RelativeLayout lista_vacia;
     Button mant_barrio_nuevo;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +63,6 @@ public class MantenimientoBarrioIntimoActivity extends AppCompatActivity {
                 MantenimientoBarrioIntimoActivity.this.startActivity(intent);*/
             }
         });
-
         recycler_barrio.setAdapter(adapter);
         recycler_barrio.setLayoutManager(linearLayout);
 
@@ -138,7 +134,8 @@ public class MantenimientoBarrioIntimoActivity extends AppCompatActivity {
 
                             Usuario user=new Usuario();
                             user.setId(objeto.getInt("ID_USER"));
-                            user.setUsuario(objeto.getString("CREADO_NOM"));
+                            user.setNombres(objeto.getString("CREADO_NOM"));
+                            user.setApellidos(objeto.getString("APELLIDOS"));
                             temp.setUsuario(user);
 
                             temp.setEstado(objeto.getInt("ESTADO"));

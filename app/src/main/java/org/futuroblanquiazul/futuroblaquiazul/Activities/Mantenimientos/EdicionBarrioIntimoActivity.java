@@ -23,6 +23,7 @@ import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivit
 import org.futuroblanquiazul.futuroblaquiazul.Entity.BarrioIntimo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Unidad_Territorial;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActualizarEventoBarrio;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarDepartamentos;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarDistritos;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarProvincias;
@@ -60,8 +61,6 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
     int pos_dis;
     String fecha_realizar_temporal;
     ProgressDialog progressDialog;
-
-
     int ano,mes,dia;
     Calendar dateTime = Calendar.getInstance();
     @Override
@@ -81,12 +80,9 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
         ProvinciasLista=new ArrayList<>();
         DistritoLista=new ArrayList<>();
 
-
-
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                  Validar_Datos();
             }
         });
@@ -198,10 +194,19 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
         }
 
     }
-
     private void Recuperar_Datos() {
 
            if(Recursos_Mantenimientos.TEMP.getEvento_temporal()!=null){
+
+               BarrioIntimo temp=new BarrioIntimo();
+               temp.setNombreEvento(nom_evento.getText().toString());
+               temp.setDescripcion(desc_evento.getText().toString());
+               temp.setDepartamento(Recursos_Mantenimientos.TEMP.getDepartamento());
+               temp.setProvincia(Recursos_Mantenimientos.TEMP.getProvincia());
+               temp.setDistrito(Recursos_Mantenimientos.TEMP.getDistrito());
+               temp.setFechaRealizacion(fecha_realizar_temporal);
+
+               Actualizar_Evento(Recursos_Mantenimientos.TEMP.getEvento_temporal().getId(),temp,context);
 
            }else{
                BarrioIntimo temp=new BarrioIntimo();
@@ -212,12 +217,64 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
                temp.setDistrito(Recursos_Mantenimientos.TEMP.getDistrito());
 
                temp.setFechaRealizacion(fecha_realizar_temporal);
-
                Registrar_Nuevo_Evento(Usuario.SESION_ACTUAL.getId(),temp,context);
            }
+    }
+    private void Actualizar_Evento(int id_eve, BarrioIntimo temp, final Context context) {
+
+        debug("ENTRO A REGISTRAR NUEVO EVENTO");
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("Barrio Intimo:");
+        progressDialog.setMessage("Registrando Evento...");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+
+        String id_evento=String.valueOf(id_eve);
+
+        String nom_evento=temp.getNombreEvento();
+        String desc_evento=temp.getDescripcion();
+        String id_depa=String.valueOf(temp.getDepartamento().getCodigo());
+        String id_prov=String.valueOf(temp.getProvincia().getCodigo());
+        String id_dis=String.valueOf(temp.getDistrito().getCodigo());
+        String f_realizar=temp.getFechaRealizacion();
+
+        com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+                        Intent intent=new Intent(context,MantenimientoBarrioIntimoActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        context.startActivity(intent);
+                        fecha_realizar_temporal="";
+                        Recursos_Mantenimientos.TEMP.setDepartamento(null);
+                        Recursos_Mantenimientos.TEMP.setProvincia(null);
+                        Recursos_Mantenimientos.TEMP.setDistrito(null);
+                        actualizar_accion=false;
+                        Toast.makeText(context, "Evento Actualizado Exitosamente", Toast.LENGTH_SHORT).show();
+
+                    } else {
+                        progressDialog.dismiss();
+
+                        Toast.makeText(context, "No se pudo registrar Evento,consulte con el administrador del sistema", Toast.LENGTH_SHORT).show();
+
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error de conexion al registrar Jugador :"+e);
+                }
+            }
+        };
+
+        ActualizarEventoBarrio xx = new ActualizarEventoBarrio(id_evento,nom_evento,desc_evento,id_depa,id_prov,id_dis,f_realizar ,responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
 
     }
-
     private void Registrar_Nuevo_Evento(int id_u, BarrioIntimo temp,final Context context) {
 
         debug("ENTRO A REGISTRAR NUEVO EVENTO");
@@ -236,10 +293,6 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
         String f_realizar=temp.getFechaRealizacion();
         String estado=String.valueOf(1);
 
-
-
-
-
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -251,6 +304,9 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         context.startActivity(intent);
                         fecha_realizar_temporal="";
+                        Recursos_Mantenimientos.TEMP.setDepartamento(null);
+                        Recursos_Mantenimientos.TEMP.setProvincia(null);
+                        Recursos_Mantenimientos.TEMP.setDistrito(null);
                         Toast.makeText(context, "Evento Nuevo Guardado Exitosamente", Toast.LENGTH_SHORT).show();
 
                     } else {
@@ -273,8 +329,6 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
 
 
     }
-
-
     private void Listar_Distritos(int codigo,final Context context) {
 
         String id_prov=String.valueOf(codigo);
@@ -413,7 +467,6 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
 
 
     }
-
     private void Listar_DepartamentosUpdate(final Context context) {
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
@@ -634,7 +687,6 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(recuperarDist);
     }
-
     private void Mostrar_Informacion() {
         nom_evento.setText(Recursos_Mantenimientos.TEMP.getEvento_temporal().getNombreEvento());
         desc_evento.setText(Recursos_Mantenimientos.TEMP.getEvento_temporal().getDescripcion());
