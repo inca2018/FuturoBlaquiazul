@@ -19,25 +19,12 @@
                 android:title="Gestión Captación"
                 android:checkable="true"
                 android:iconTint="@color/blue"/>
-            <item android:id="@+id/nav_3" android:icon="@mipmap/icon_informacion"
-                android:title="Información Captación"
-                android:checkable="true"/>
+
 
         </menu>
     </item>
 
-    <!--
-    <item android:title="MODULO FORMACIÓN:"
-        android:id="@+id/menu_modulo_formacion">
-        <menu>
-            <item android:id="@+id/nav_4" android:icon="@mipmap/icon_formacion"
-                android:title="Gestión Formación"
-                android:checkable="true"/>
-            <item android:id="@+id/nav_5" android:icon="@mipmap/icon_informacion"
-                android:title="Información Formación"
-                android:checkable="true"/>
-        </menu>
-    </item>  -->
+
 
     <item android:title="MODULO METODOLOGIA:"
         android:id="@+id/menu_modulo_metodologia">
@@ -45,9 +32,7 @@
             <item android:id="@+id/nav_6" android:icon="@mipmap/icon_metodologia"
                 android:title="Gestión Metodologia"
                 android:checkable="true"/>
-            <item android:id="@+id/nav_7" android:icon="@mipmap/icon_informacion"
-                android:title="Información Metodologia"
-                android:checkable="true"/>
+
         </menu>
     </item>
 
@@ -57,9 +42,7 @@
             <item android:id="@+id/nav_8" android:icon="@mipmap/icon_estadistico"
                 android:title="Gestión Estadisticos"
                 android:checkable="true"/>
-            <item android:id="@+id/nav_9" android:icon="@mipmap/icon_informacion"
-                android:title="Información Estadisiticos"
-                android:checkable="true"/>
+
         </menu>
     </item>
 
@@ -71,6 +54,18 @@
         android:id="@+id/menu_modulo_mantenimiento">
         <menu>
             <item android:id="@+id/mant_generales" android:icon="@mipmap/icon_mantenimiento"
+                android:title="Generales"
+                android:checkable="true"
+                />
+
+        </menu>
+    </item>
+
+
+    <item android:title="INFORMACIÓN GENERAL:"
+        android:id="@+id/menu_modulo_informacion">
+        <menu>
+            <item android:id="@+id/info_general" android:icon="@mipmap/icon_informacion"
                 android:title="Generales"
                 android:checkable="true"
                 />

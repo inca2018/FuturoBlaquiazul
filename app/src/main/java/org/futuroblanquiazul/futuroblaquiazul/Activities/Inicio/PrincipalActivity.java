@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Fragments.CaptacionFragment;
 import org.futuroblanquiazul.futuroblaquiazul.Fragments.EstadisticoFragment;
+import org.futuroblanquiazul.futuroblaquiazul.Fragments.InformacionFragment;
 import org.futuroblanquiazul.futuroblaquiazul.Fragments.MainFragment;
 import org.futuroblanquiazul.futuroblaquiazul.Fragments.MantenimientoFragment;
 import org.futuroblanquiazul.futuroblaquiazul.Fragments.MetodologiaFragment;
@@ -95,6 +96,10 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
             displayView(5);
         }
 
+        else if(getIntent().getStringExtra("o").equalsIgnoreCase("o6")){
+            displayView(6);
+        }
+
 
     }
     private void Toolbar_iniz() {
@@ -155,6 +160,10 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
             displayView(5);
             toolbar.setTitle("Mantenimiento General");
         }
+        else if (id == R.id.info_general) {
+            displayView(6);
+            toolbar.setTitle("Información General");
+        }
 
 
 
@@ -209,6 +218,10 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
 
             case 5:
                 fragment = new MantenimientoFragment();
+                break;
+
+            case 6:
+                fragment = new InformacionFragment();
                 break;
 
 
