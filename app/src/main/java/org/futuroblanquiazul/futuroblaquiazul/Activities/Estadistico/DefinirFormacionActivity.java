@@ -74,7 +74,6 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
     private LinearLayoutManager linearLayout,linearLayout2;
 
     private AdapterPlantelEdicionFormacion2 adapter2;
-
     List<Persona> Lista_JugadoresEdicion;
     ProgressDialog progressDialog;
     AlertDialog da,da2;
@@ -128,8 +127,8 @@ public class DefinirFormacionActivity extends AppCompatActivity implements View.
         recyclerView.setLayoutManager(linearLayout);
 
         if(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal()!=null){
-            equipo.setText(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getPlantel().getNombre_categoria());
-            Listar_Personas_Plantel(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getPlantel().getId(), context);
+            equipo.setText(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getEquipo().getNombre_equipo());
+            Listar_Personas_Plantel(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getEquipo().getId(), context);
         }else{
             equipo.setText("No Disponible");
         }

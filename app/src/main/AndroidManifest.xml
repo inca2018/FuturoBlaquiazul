@@ -156,7 +156,18 @@
             android:configChanges="screenSize|orientation" />
         <activity android:name=".Activities.Mantenimientos.EdicionPersonaActivity" />
         <activity android:name=".Activities.Mantenimientos.MantenimientoBarrioIntimoActivity" />
-        <activity android:name=".Activities.Mantenimientos.EdicionBarrioIntimoActivity"></activity>
+        <activity android:name=".Activities.Mantenimientos.EdicionBarrioIntimoActivity" />
+        <activity
+            android:name=".Activities.Mantenimientos.BarrioIntimoJugadoresActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".Activities.Mantenimientos.MantenimientoCategoriasActivity" />
+        <activity android:name=".Activities.Mantenimientos.EdicionCategoriactivity" />
+        <activity
+            android:name=".Activities.Mantenimientos.CategoriasJugadoresActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".Activities.Mantenimientos.MantenimientoEquipoActivity" />
+        <activity android:name=".Activities.Mantenimientos.EdicionEquipoActivity" />
+        <activity android:name=".Activities.Mantenimientos.EquipoJugadoresActivity"></activity>
     </application>
 
 </manifest>

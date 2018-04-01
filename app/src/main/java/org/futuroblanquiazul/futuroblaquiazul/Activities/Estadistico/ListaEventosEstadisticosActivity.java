@@ -16,6 +16,7 @@ import com.android.volley.toolbox.Volley;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterEventosEstadisticos;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.Equipo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.EventoEstadistico;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Plantel;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Unidad_Territorial;
@@ -109,14 +110,14 @@ public class ListaEventosEstadisticosActivity extends AppCompatActivity {
                             u.setUsuario(objeto.getString("USUARIO"));
                             u.setNombres(objeto.getString("NOMBRES"));
                             u.setApellidos(objeto.getString("APELLIDOS"));
-                            Plantel pla=new Plantel();
-                            pla.setId(objeto.getInt("ID_PLANTEL"));
-                            pla.setNombre_categoria(objeto.getString("NOMBRE_CATEGORIA"));
+                            Equipo pla=new Equipo();
+                            pla.setId(objeto.getInt("ID_EQUIPO"));
+                            pla.setNombre_equipo(objeto.getString("NOMBRE_SUB"));
                             temp.setDepartamento(depar);
                             temp.setProvincia(prov);
                             temp.setDistrito(dis);
                             temp.setUsuario(u);
-                            temp.setPlantel(pla);
+                            temp.setEquipo(pla);
                             temp.setFecha_Registro(objeto.getString("FECHA_REGISTRO"));
                             temp.setFoto(objeto.getString("IMAGEN"));
                             temp.setEstado(objeto.getInt("ESTADO"));

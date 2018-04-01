@@ -176,7 +176,6 @@ public class NuevaFechaEstadisticoActivity extends AppCompatActivity {
             }
         });
     }
-
     private void CrearFechaNuevo(FechaEstadistico fechaEstadisticoCreacion,final Context context) {
 
 
@@ -231,12 +230,10 @@ public class NuevaFechaEstadisticoActivity extends AppCompatActivity {
 
 
     }
-
     private void limpiar_Variable() {
 
         observaciones.setText("");
     }
-
     private void Listar_Oponentes(final Context context) {
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
@@ -346,7 +343,6 @@ public class NuevaFechaEstadisticoActivity extends AppCompatActivity {
         FechaEstadistico.FECHA_ESTADISTICO_CREACION.setFecha_Realizacion(fecha_inicio);
         texto_Fecha_Realizar.setText(diao+"/"+meso+"/"+anoo);
     }
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();

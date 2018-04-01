@@ -26,6 +26,7 @@ import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarBarrios;
 import org.futuroblanquiazul.futuroblaquiazul.R;
+import org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Mantenimientos;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -55,12 +56,11 @@ public class MantenimientoBarrioIntimoActivity extends AppCompatActivity {
         linearLayout = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         adapter = new AdapterBarrio2(this, lista_barrio_intimo, new RecyclerViewOnItemClickListener() {
             public void onClick(View v, int position) {
-               /* Usuario.SESION_ACTUAL.setId_barrio_intimo(lista_barrio_intimo.get(position).getId());
-                Usuario.SESION_ACTUAL.setBarrio_datos(lista_barrio_intimo.get(position));
 
-                Intent intent=new Intent(MantenimientoBarrioIntimoActivity.this,BarrioIntimoPersonaActivity.class);
+                Recursos_Mantenimientos.TEMP.setEvento_temporal(lista_barrio_intimo.get(position));
+                Intent intent=new Intent(MantenimientoBarrioIntimoActivity.this,BarrioIntimoJugadoresActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                MantenimientoBarrioIntimoActivity.this.startActivity(intent);*/
+                MantenimientoBarrioIntimoActivity.this.startActivity(intent);
             }
         });
         recycler_barrio.setAdapter(adapter);
@@ -82,7 +82,6 @@ public class MantenimientoBarrioIntimoActivity extends AppCompatActivity {
                 }
             }
         });
-
         mant_barrio_nuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +91,6 @@ public class MantenimientoBarrioIntimoActivity extends AppCompatActivity {
             }
         });
     }
-
     private void Listar_barrio_intimo(final Context context) {
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Mantenimiento Barrio Intimo:");
@@ -174,7 +172,6 @@ public class MantenimientoBarrioIntimoActivity extends AppCompatActivity {
     }
 
     public void onBackPressed() {
-
         Intent intent=new Intent(MantenimientoBarrioIntimoActivity.this,PrincipalActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra("o","o5");

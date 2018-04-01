@@ -15,10 +15,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.BarrioIntimo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Unidad_Territorial;
@@ -38,7 +36,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
 public class EdicionBarrioIntimoActivity extends AppCompatActivity {
     EditText nom_evento;
     EditText desc_evento;
@@ -51,7 +48,6 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
     Context context;
     String[] spinner_departamentos,spinner_provincias,spinner_distritos;
     List<Unidad_Territorial> DepartamentosLista,ProvinciasLista,DistritoLista;
-
     boolean departamento_accion=false;
     boolean provincia_accion=false;
     boolean distrito_accion=false;
@@ -180,7 +176,6 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
         });
 
     }
-
     private void Validar_Datos() {
         if(nom_evento.getText().toString().length()!=0){
             if(text_fecha.getText().toString().length()!=0){
@@ -276,14 +271,12 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
 
     }
     private void Registrar_Nuevo_Evento(int id_u, BarrioIntimo temp,final Context context) {
-
         debug("ENTRO A REGISTRAR NUEVO EVENTO");
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Barrio Intimo:");
         progressDialog.setMessage("Registrando Evento...");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
-
         String id_user=String.valueOf(id_u);
         String nom_evento=temp.getNombreEvento();
         String desc_evento=temp.getDescripcion();
@@ -308,13 +301,9 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
                         Recursos_Mantenimientos.TEMP.setProvincia(null);
                         Recursos_Mantenimientos.TEMP.setDistrito(null);
                         Toast.makeText(context, "Evento Nuevo Guardado Exitosamente", Toast.LENGTH_SHORT).show();
-
                     } else {
                         progressDialog.dismiss();
-
                         Toast.makeText(context, "No se pudo registrar Evento,consulte con el administrador del sistema", Toast.LENGTH_SHORT).show();
-
-
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -322,25 +311,18 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
                 }
             }
         };
-
         RegistrarEventoBarrio xx = new RegistrarEventoBarrio(id_user,nom_evento,desc_evento,id_depa,id_prov,id_dis,f_realizar,estado ,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
-
-
     }
     private void Listar_Distritos(int codigo,final Context context) {
-
         String id_prov=String.valueOf(codigo);
-
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
                 try {
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
-
                     if (success) {
                         JSONArray xx=jsonResponse.getJSONArray("distrito");
                         for(int i=0;i<xx.length();i++){
@@ -357,34 +339,27 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
                         ArrayAdapter<String> adapter_arr=new ArrayAdapter<String>(context,android.R.layout.simple_spinner_dropdown_item,spinner_distritos);
                         distritos.setAdapter(adapter_arr);
                         System.out.println("DISTRITOS NEW");
-
                     } else {
-
                         Toast.makeText(context, "Error de conexion distritos", Toast.LENGTH_SHORT).show();
                     }
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                     System.out.println("Inca  : Error de conexion al recuperar distritos :"+e);
                 }
             }
         };
-
         RecuperarDistritos recuperarDist = new RecuperarDistritos(id_prov,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(recuperarDist);
     }
     private void Listar_Provincias(int codigo,final Context context) {
         String id_depa=String.valueOf(codigo);
-
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
                 try {
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
-
                     if (success) {
                         JSONArray xx=jsonResponse.getJSONArray("provincia");
                         for(int i=0;i<xx.length();i++){
@@ -403,33 +378,26 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
 
                         System.out.println("PROVINCIAS NEW");
                     } else {
-
                         Toast.makeText(context, "Error de conexion provincias", Toast.LENGTH_SHORT).show();
                     }
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                     System.out.println("Inca  : Error de conexion al recuperar provincias :"+e);
                 }
             }
         };
-
         RecuperarProvincias recuperarProv = new RecuperarProvincias(id_depa,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(recuperarProv);
-
     }
     private void Listar_Departamentos(final Context context) {
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
                 try {
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
-
                     if (success) {
-
                         JSONArray xx=jsonResponse.getJSONArray("departamento");
                         for(int i=0;i<xx.length();i++){
                             JSONObject objeto= xx.getJSONObject(i);
@@ -439,39 +407,30 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
                             DepartamentosLista.add(temp);
                             System.out.println("id_Depa="+temp.getCodigo()+"  Descripcion_depa="+temp.getDescripcion());
                         }
-
-
                         spinner_departamentos=new String[DepartamentosLista.size()];
                         for(int i=0;i<DepartamentosLista.size();i++){
                             spinner_departamentos[i]=DepartamentosLista.get(i).getDescripcion();
                         }
                         ArrayAdapter<String> adapter_arr=new ArrayAdapter<String>(context,android.R.layout.simple_spinner_dropdown_item,spinner_departamentos);
                         departamento.setAdapter(adapter_arr);
-
                         System.out.println("DEPARTAMENTOS NEW");
                     } else {
-
                         Toast.makeText(context, "Error de conexion departamento ", Toast.LENGTH_SHORT).show();
                     }
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                     System.out.println("Inca  : Error de conexion al recuperar departamentos :"+e);
                 }
             }
         };
-
         RecuperarDepartamentos recuperarDepa = new RecuperarDepartamentos(responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(recuperarDepa);
-
-
     }
     private void Listar_DepartamentosUpdate(final Context context) {
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
                 try {
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
@@ -487,72 +446,52 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
                             DepartamentosLista.add(temp);
                             debug("Departamento : "+temp.getDescripcion());
                         }
-
-
                         spinner_departamentos=new String[DepartamentosLista.size()];
                         for(int i=0;i<DepartamentosLista.size();i++){
                             spinner_departamentos[i]=DepartamentosLista.get(i).getDescripcion();
                         }
                         ArrayAdapter<String> adapter_arr=new ArrayAdapter<String>(context,android.R.layout.simple_spinner_dropdown_item,spinner_departamentos);
                         departamento.setAdapter(adapter_arr);
-
-
                         if(actualizar_accion){
                             for(int i=0;i<spinner_departamentos.length;i++){
                                 if(spinner_departamentos[i].equalsIgnoreCase(Recursos_Mantenimientos.TEMP.getEvento_temporal().getDepartamento().getDescripcion())){
                                     pos_depa=i;
                                 }
                             }
-
                             departamento.setSelection(pos_depa);
                             Listar_ProvinciasUpdate(Recursos_Mantenimientos.TEMP.getEvento_temporal().getDepartamento().getCodigo(),context);
-
                         }else{
                             for(int i=0;i<spinner_departamentos.length;i++){
                                 if(spinner_departamentos[i].equalsIgnoreCase("LIMA")){
                                     pos_depa=i;
                                 }
                             }
-
-
                             departamento.setSelection(pos_depa);
-
                             Listar_ProvinciasUpdate(15,context);
                         }
-
-
                     } else {
-
                         Toast.makeText(context, "Error de conexion Departamento Update", Toast.LENGTH_SHORT).show();
                     }
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                     System.out.println("Inca  : Error de conexion al recuperar departamentos Update :"+e);
                 }
             }
         };
-
         RecuperarDepartamentos recuperarDepa = new RecuperarDepartamentos(responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(recuperarDepa);
-
-
     }
     private void Listar_ProvinciasUpdate(int codigo,final Context context) {
         String id_depa=String.valueOf(codigo);
-
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
                 try {
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
-
                     if (success) {
                         provincia_accion=true;
-
                         JSONArray xx=jsonResponse.getJSONArray("provincia");
                         debug("LISTANDO PROVINCIAS--------------------------");
                         for(int i=0;i<xx.length();i++){
@@ -571,8 +510,6 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
                         ArrayAdapter<String> adapter_arr=new ArrayAdapter<String>(context,android.R.layout.simple_spinner_dropdown_item,spinner_provincias);
                         provincias.setAdapter(adapter_arr);
 
-
-
                         if(actualizar_accion){
                             for(int i=0;i<spinner_provincias.length;i++){
                                 if(spinner_provincias[i].equalsIgnoreCase(Recursos_Mantenimientos.TEMP.getEvento_temporal().getProvincia().getDescripcion())){
@@ -581,41 +518,30 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
                             }
                             provincias.setSelection(pos_prov);
                             Listar_DistritosUpdate(Recursos_Mantenimientos.TEMP.getEvento_temporal().getProvincia().getCodigo(),context);
-
                         }else{
                             for(int i=0;i<spinner_provincias.length;i++){
                                 if(spinner_provincias[i].equalsIgnoreCase("LIMA")){
                                     pos_prov=i;
                                 }
                             }
-
                             provincias.setSelection(pos_prov);
                             Listar_DistritosUpdate(127,context);
-
                         }
-
-
                     } else {
-
                         Toast.makeText(context, "Error de conexion Provincia Update", Toast.LENGTH_SHORT).show();
                     }
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                     System.out.println("Inca  : Error de conexion al recuperar provincias Update :"+e);
                 }
             }
         };
-
         RecuperarProvincias recuperarProv = new RecuperarProvincias(id_depa,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(recuperarProv);
-
     }
     private void Listar_DistritosUpdate(int codigo,final Context context) {
-
         String id_prov=String.valueOf(codigo);
-
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -623,7 +549,6 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
                 try {
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
-
                     if (success) {
                         distrito_accion=true;
                         JSONArray xx=jsonResponse.getJSONArray("distrito");
@@ -642,15 +567,12 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
                         }
                         ArrayAdapter<String> adapter_arr=new ArrayAdapter<String>(context,android.R.layout.simple_spinner_dropdown_item,spinner_distritos);
                         distritos.setAdapter(adapter_arr);
-
-
                         if(actualizar_accion){
                             for(int i=0;i<spinner_distritos.length;i++){
                                 if(spinner_distritos[i].equalsIgnoreCase( Recursos_Mantenimientos.TEMP.getEvento_temporal().getDistrito().getDescripcion())){
                                     pos_dis=i;
                                 }
                             }
-
                             distritos.setSelection(pos_dis);
                         }else{
                             for(int i=0;i<spinner_distritos.length;i++){
@@ -658,31 +580,24 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
                                     pos_dis=i;
                                 }
                             }
-
                             distritos.setSelection(pos_dis);
                         }
-
                         departamento_accion=false;
                         provincia_accion=false;
                         distrito_accion=false;
-
-
                         if(actualizar_accion){
                             Mostrar_Informacion();
                         }
-
                     } else {
 
                         Toast.makeText(context, "Error de conexion Distrito Update", Toast.LENGTH_SHORT).show();
                     }
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                     System.out.println("Inca  : Error de conexion al recuperar distritos Update :"+e);
                 }
             }
         };
-
         RecuperarDistritos recuperarDist = new RecuperarDistritos(id_prov,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(recuperarDist);
@@ -694,9 +609,7 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
         ano=Recursos_Mantenimientos.TEMP.getEvento_temporal().getAno();
         mes=Recursos_Mantenimientos.TEMP.getEvento_temporal().getMes();
         dia=Recursos_Mantenimientos.TEMP.getEvento_temporal().getDia();
-
     }
-
     DatePickerDialog.OnDateSetListener d1 = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -709,7 +622,6 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
     private void updateDate(){
         new DatePickerDialog(this, d1,ano,mes,dia).show();
     }
-
     private void updateTextLabel1(){
         String meso="";
         String diao="";
@@ -730,13 +642,9 @@ public class EdicionBarrioIntimoActivity extends AppCompatActivity {
         text_fecha.setText(fecha_realizar_temporal);
 
         }
-
-
-
     public void debug(String d){
         System.out.println(d);
     }
-
     public void onBackPressed() {
 
         Recursos_Mantenimientos.TEMP.setEvento_temporal(null);

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos.EdicionEquipoActivity">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            style="@style/titulo1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Mantenimiento Categoria"
+            android:textAlignment="center"
+            android:textColor="@color/blue" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/titulo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre de Equipo:"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/eq_nom"
+                style="@style/input_texto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/titulo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Estado:"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/eq_estados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp"
+                app:cardBackgroundColor="@color/blue"
+                android:layout_margin="8dp"
+                android:layout_centerHorizontal="true"
+                android:layout_alignParentBottom="true">
+
+                <Button
+                    android:id="@+id/eq_guardar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:text="guardar"
+                    android:textColor="@color/blanco" />
+            </android.support.v7.widget.CardView>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>

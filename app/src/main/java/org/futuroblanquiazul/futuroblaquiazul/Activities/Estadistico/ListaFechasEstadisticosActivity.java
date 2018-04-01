@@ -81,7 +81,7 @@ public class ListaFechasEstadisticosActivity extends AppCompatActivity {
 
         if(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal()!=null){
             nombre_Evento.setText(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getDescripcion_Nombre_evento());
-            categoria_evento.setText(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getPlantel().getNombre_categoria());
+            categoria_evento.setText(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getEquipo().getNombre_equipo());
             ubigeo_evento.setText(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getDepartamento().getDescripcion()+"/"+EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getProvincia().getDescripcion()+"/"+EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getDistrito().getDescripcion());
         }
 

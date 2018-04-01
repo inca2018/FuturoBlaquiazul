@@ -5,19 +5,35 @@ package org.futuroblanquiazul.futuroblaquiazul.Entity;
  */
 
 public class Plantel {
-
+      int num;
     int id;
     Grupo rango;
     String nombre_categoria;
     String fecha_registro;
     Usuario usuario;
     int estado;
+    int total;
 
 
     public Plantel(){
 
     }
 
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
 
     public int getId() {
         return id;

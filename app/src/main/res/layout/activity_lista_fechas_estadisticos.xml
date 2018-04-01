@@ -110,7 +110,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="2"
                                 android:gravity="center|start"
-                                android:text="Categoria:"
+                                android:text="Equipo:"
                                 android:textStyle="bold" />
 
                             <TextView

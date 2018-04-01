@@ -17,7 +17,7 @@ public class RegistrarEventoNuevo extends StringRequest {
     private static final String LOGIN_REQUEST_URL = Conexion.RUTA_SERVICIO_ESTADISTICO;
     private Map<String, String> params;
 
-    public RegistrarEventoNuevo(String nombre,String detalle,String id_depa,String id_pro,String id_dis ,String id_user,String plantel,String foto,String estado,String estado2 ,String f_inicio,String f_fin,Response.Listener<String> listener) {
+    public RegistrarEventoNuevo(String nombre,String detalle,String id_depa,String id_pro,String id_dis ,String id_user,String plantel,String foto,String estado,String estado2 ,String f_inicio,String f_fin,String foto_nom,Response.Listener<String> listener) {
         super(Method.POST, LOGIN_REQUEST_URL,listener, null);
         params = new HashMap<>();
         params.put("operacion","registrar_nuevo_Evento");
@@ -33,6 +33,7 @@ public class RegistrarEventoNuevo extends StringRequest {
         params.put("estado2",estado2);
         params.put("fecha_inicio",f_inicio);
         params.put("fecha_fin",f_fin);
+        params.put("foto_nom",foto_nom);
 
 
     }

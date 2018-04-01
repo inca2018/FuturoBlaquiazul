@@ -86,7 +86,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.ViewHo
         holder.usuario_usuario.setText("Perfil: "+my_Data.get(position).getPerfil().getNombre_Perfil());
         holder.nombres_usuario.setText(my_Data.get(position).getNombres()+" "+my_Data.get(position).getApellidos());
 
-        Glide.with(context).load(my_Data.get(position).getFoto())
+        Glide.with(context).load(my_Data.get(position).getFoto()).error(R.drawable.user_default)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
                 .into(holder.foto_usuario);

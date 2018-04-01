@@ -13,6 +13,9 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.DefinirFormacionActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.DefinirPosicionesEventoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.ListaFechasEstadisticosActivity;
@@ -46,6 +49,7 @@ public class AdapterEventosEstadisticos extends RecyclerView.Adapter<AdapterEven
         TextView ubigeo_evento;
         TextView categoria_evento;
         ImageView acciones;
+        ImageView foto;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -54,6 +58,7 @@ public class AdapterEventosEstadisticos extends RecyclerView.Adapter<AdapterEven
             ubigeo_evento=itemView.findViewById(R.id.card_eventos_estadisticos_ubigeo);
             acciones=itemView.findViewById(R.id.eventos_estadisticos_acciones);
             categoria_evento=itemView.findViewById(R.id.card_eventos_estadisticos_categoria);
+            foto=itemView.findViewById(R.id.foto_eventos_estadisticos);
 
 
         }
@@ -78,8 +83,13 @@ public class AdapterEventosEstadisticos extends RecyclerView.Adapter<AdapterEven
         holder.nombre_evento.setText(my_Data.get(position).getDescripcion_Nombre_evento());
         holder.ubigeo_evento.setText("Ubicación: "+my_Data.get(position).getDepartamento().getDescripcion()+"/"+my_Data.get(position).getProvincia().getDescripcion()+"/"+my_Data.get(position).getDistrito().getDescripcion());
 
-        holder.categoria_evento.setText("Categoria: "+my_Data.get(position).getPlantel().getNombre_categoria());
+        holder.categoria_evento.setText("Equipo: "+my_Data.get(position).getEquipo().getNombre_equipo());
 
+
+        Glide.with(context).load(my_Data.get(position).getFoto()).error(R.drawable.no_disponible)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(holder.foto);
 
         holder.acciones.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,7 +153,7 @@ public class AdapterEventosEstadisticos extends RecyclerView.Adapter<AdapterEven
                                 estado_evento.setTextColor(context.getResources().getColor(R.color.red));
                             }
 
-                            categoria.setText(my_Data.get(position).getPlantel().getNombre_categoria());
+                            categoria.setText(my_Data.get(position).getEquipo().getNombre_equipo());
 
                         }else if(item.getTitle().toString().equalsIgnoreCase("Definir Posiciones de Jugadores")){
 

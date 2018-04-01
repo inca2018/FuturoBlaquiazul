@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Pruebas.PruebaDiagnosticoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Pruebas.PruebaFisicoActivity;
@@ -78,7 +79,11 @@ public class AdapterPlantelEdicionFormacion extends RecyclerView.Adapter<Adapter
     public void onBindViewHolder(final ViewHolder holder, final int position) {
                holder.nombre_jugador.setText(my_Data.get(position).getNombre_Persona()+" "+my_Data.get(position).getApellidos_Persona());
 
-               Glide.with(context).load(my_Data.get(position).getFoto()).into(holder.foto_jugador);
+               Glide.with(context)
+                       .load(my_Data.get(position).getFoto())
+                       .error(R.drawable.user_default)
+                       .diskCacheStrategy(DiskCacheStrategy.NONE)
+                       .into(holder.foto_jugador);
                if(my_Data.get(position).getEstado_edicion()==0){
                    holder.estado_texto.setText("SUPLENTE");
                    holder.color.setCardBackgroundColor(context.getResources().getColor(R.color.verde_bajo));

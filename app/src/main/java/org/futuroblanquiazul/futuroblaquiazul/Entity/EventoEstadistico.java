@@ -14,13 +14,15 @@ public class EventoEstadistico {
     Unidad_Territorial Distrito;
     Usuario usuario;
     Plantel plantel;
+    Equipo equipo;
     String Fecha_Registro;
-    String foto;
+
     int estado;
     int estado2;
     String Fecha_Inicio;
     String Fecha_Fin;
     EventoEstadistico Evento_Temporal;
+    String foto;
 
     int inicio_ano,inicio_mes,inicio_dia;
     int fin_ano,fin_mes,fin_dia;
@@ -37,6 +39,13 @@ public class EventoEstadistico {
 
     }
 
+    public Equipo getEquipo() {
+        return equipo;
+    }
+
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
+    }
 
     public EventoEstadistico getEvento_Temporal() {
         return Evento_Temporal;

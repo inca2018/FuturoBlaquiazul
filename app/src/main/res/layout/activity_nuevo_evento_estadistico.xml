@@ -211,10 +211,10 @@
                             android:layout_centerHorizontal="true"
                             android:layout_centerVertical="true"
                             android:layout_margin="16dp"
-                            android:src="@drawable/foto_perfil" />
+                            android:src="@drawable/no_disponible" />
 
                         <android.support.design.widget.FloatingActionButton
-                            android:id="@+id/floatingActionButton"
+                            android:id="@+id/accion_foto_estad"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignBottom="@+id/nuevo_evento_foto"

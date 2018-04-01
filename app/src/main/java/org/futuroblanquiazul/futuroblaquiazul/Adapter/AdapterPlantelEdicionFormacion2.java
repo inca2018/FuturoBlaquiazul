@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.DefinirFormacionActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
@@ -72,7 +73,11 @@ public class AdapterPlantelEdicionFormacion2 extends RecyclerView.Adapter<Adapte
     public void onBindViewHolder(final ViewHolder holder, final int position) {
                holder.nombre_jugador.setText(my_Data.get(position).getNombre_Persona().toString()+" "+my_Data.get(position).getApellidos_Persona().toString());
 
-               Glide.with(context).load(my_Data.get(position).getFoto()).into(holder.foto_jugador);
+               Glide.with(context)
+                       .load(my_Data.get(position).getFoto())
+                       .error(R.drawable.user_default)
+                       .diskCacheStrategy(DiskCacheStrategy.NONE)
+                       .into(holder.foto_jugador);
                holder.accion.setOnClickListener(new View.OnClickListener() {
                    @Override
                    public void onClick(View v) {

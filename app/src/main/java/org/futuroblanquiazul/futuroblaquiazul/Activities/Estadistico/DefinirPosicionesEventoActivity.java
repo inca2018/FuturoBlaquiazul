@@ -131,11 +131,11 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
         adapter3.notifyDataSetChanged();
 
         if(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal()!=null){
-            equipo.setText(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getPlantel().getNombre_categoria());
+            equipo.setText(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getEquipo().getNombre_equipo());
             evento.setText(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getDescripcion_Nombre_evento());
             //Listar_Personas_Plantel_Posicion(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getPlantel().getId(), context);
             Listar_Posiciones(context);
-        }else{
+        }else{  
             equipo.setText("No Disponible");
         }
 
