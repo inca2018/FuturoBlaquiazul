@@ -120,6 +120,7 @@ public class AdapterEventosEstadisticos extends RecyclerView.Adapter<AdapterEven
                             final View dialoglayout = inflater.inflate(R.layout.area_informacion_evento_estadistico, null);
 
                             TextView nom_evento,desc_evento,usuario_evento,ubigeo_evento,fecha_evento,estado_evento,categoria,inicio,fin;
+                            ImageView foto_evento_d;
 
                             nom_evento=dialoglayout.findViewById(R.id.info_evento_es_nombre);
                             desc_evento=dialoglayout.findViewById(R.id.info_evento_es_detalle);
@@ -130,10 +131,17 @@ public class AdapterEventosEstadisticos extends RecyclerView.Adapter<AdapterEven
                             categoria=dialoglayout.findViewById(R.id.info_evento_es_categoria);
                             inicio=dialoglayout.findViewById(R.id.info_evento_es_fecha_inicio);
                             fin=dialoglayout.findViewById(R.id.info_evento_es_fecha_fin);
+                            foto_evento_d=dialoglayout.findViewById(R.id.foto_evento_d);
 
                             final AlertDialog.Builder builder4 = new AlertDialog.Builder(context);
                             builder4.setView(dialoglayout);
                             da=builder4.show();
+
+                            Glide.with(context).load(my_Data.get(position).getFoto())
+                                    .error(R.drawable.no_disponible)
+                                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                    .skipMemoryCache(true)
+                                    .into(foto_evento_d);
 
 
                             nom_evento.setText(my_Data.get(position).getDescripcion_Nombre_evento());

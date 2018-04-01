@@ -7,6 +7,7 @@ import android.graphics.Path;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -48,6 +49,7 @@ public class ListaFechasEstadisticosActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     private AdapterFechasEstadisticos adapter;
     List<FechaEstadistico> Lista_Fechas;
+    CardView card_nueva_fecha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +62,12 @@ public class ListaFechasEstadisticosActivity extends AppCompatActivity {
         agregar_Fecha=findViewById(R.id.boton_nueva_fecha);
         recyclerView=findViewById(R.id.fecha_recycler);
         Lista_Fechas=new ArrayList<>();
+        card_nueva_fecha=findViewById(R.id.card_nueva_fecha);
         context=this;
+
+        if(Usuario.SESION_ACTUAL.getPerfil().getId()==1 || Usuario.SESION_ACTUAL.getPerfil().getId()==2 || Usuario.SESION_ACTUAL.getPerfil().getId()==3){
+            card_nueva_fecha.setVisibility(View.VISIBLE);
+        }
 
 
         linearLayoutManager=new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);

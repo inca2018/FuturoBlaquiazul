@@ -73,7 +73,7 @@ public class Recursos_Mantenimientos {
 
 
     public static AdapterJugadorDisponible3 ADAPTER_JUGADOR_DISPONIBLE3=null;
-    public static final List<Persona> LISTA_DISPONIBLE3=new ArrayList<>();
+    public static  List<Persona> LISTA_DISPONIBLE3=new ArrayList<>();
 
     public static AdapterJugadorEquipo ADAPTER_EQUIPO=null;
     public static final List<Persona> LISTA_EQUIPO=new ArrayList<>();

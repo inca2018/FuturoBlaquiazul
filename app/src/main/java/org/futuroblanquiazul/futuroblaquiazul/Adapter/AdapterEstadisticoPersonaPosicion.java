@@ -28,7 +28,6 @@ import java.util.List;
 public class AdapterEstadisticoPersonaPosicion extends RecyclerView.Adapter<AdapterEstadisticoPersonaPosicion.ViewHolder>{
     public Context context;
     private List<Persona> my_Data;
-    ProgressDialog progressDialog;
     private Boolean spinnerTouched = false;
     private RecyclerViewOnItemClickListener recyclerViewOnItemClickListener;
 
@@ -100,39 +99,46 @@ public class AdapterEstadisticoPersonaPosicion extends RecyclerView.Adapter<Adap
                           my_Data.get(position).setEstado_posicion(0);
                           my_Data.get(position).setCodigo_posicion(0);
                           my_Data.get(position).setPosicion_posicion(0);
+                          notifyDataSetChanged();
+                          debug(" SELECCION 0");
+
                     }else{
                           my_Data.get(position).setEstado_posicion(1);
                           my_Data.get(position).setCodigo_posicion(my_Data.get(position).getLista_Posiciones().get(pos).getId());
                           my_Data.get(position).setPosicion_posicion(pos);
+                        notifyDataSetChanged();
+
+
+                        debug(" SELECCION POSICION");
                     }
 
                 }
+
                 spinnerTouched=false;
 
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
-
     }
-
     private void Listar_Posiciones(Spinner spinner_numero, int position) {
-        String [] lista_bases_numeros=new String[my_Data.get(position).getLista_Posiciones().size()+1];
+
+
+        String [] lista_bases_numeros=new String[my_Data.get(position).getLista_Posiciones().size()];
 
         for(int i=0;i<my_Data.get(position).getLista_Posiciones().size();i++){
-            lista_bases_numeros[i]=String.valueOf(my_Data.get(position).getLista_Posiciones().get(i).getNombre_Posicione()).trim();
+            lista_bases_numeros[i]=String.valueOf(my_Data.get(position).getLista_Posiciones().get(i).getNombre_Posicione().toString()).trim();
+
         }
 
         ArrayAdapter<String> adapter_arr=new ArrayAdapter<String>(context,android.R.layout.simple_spinner_dropdown_item,lista_bases_numeros);
         spinner_numero.setAdapter(adapter_arr);
 
+
+
     }
-
-
     @Override
     public int getItemCount() {
         return my_Data.size();

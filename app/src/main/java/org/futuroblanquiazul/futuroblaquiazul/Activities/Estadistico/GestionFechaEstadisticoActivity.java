@@ -128,7 +128,7 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
 
                       for(int i=0;i<Estadistico_Gestion.LISTA_PERSONAS_INFO.size();i++){
                           int ta=adapterCampo.RecuperarTA(Estadistico_Gestion.LISTA_PERSONAS_INFO.get(i).getPersona());
-                          Estadistico_Gestion.LISTA_PERSONAS_INFO.get(i).getPuntosPrimerTiempo().setTarjetasAmarillas(ta);
+                         // Estadistico_Gestion.LISTA_PERSONAS_INFO.get(i).getPuntosPrimerTiempo().setTarjetasAmarillas(ta);
                       }
 
                       adapterInfoEquipo.notifyDataSetChanged();
@@ -292,8 +292,9 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
                             pru2.setPaseGol(0);
                             pru2.setRemate(0);
 
-                            temp.setPuntosPrimerTiempo(pru1);
-                            temp.setPuntosSegundoTiempo(pru2);
+
+                            //temp.setPuntosPrimerTiempo(pru1);
+                            //temp.setPuntosSegundoTiempo(pru2);
                             temp.setEstado(1);
 
                             temp.setNum(i+1);

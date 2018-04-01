@@ -151,8 +151,8 @@ public class MantenimientoOponentesActivity extends AppCompatActivity {
               if( Recursos_Mantenimientos.TEMP.getNombre_oponente().getText().length()!=0){
                   if( Recursos_Mantenimientos.TEMP.getApodo().getText().length()!=0){
                       Oponente temp=new Oponente();
-                      temp.setNombre_Oponente(Recursos_Mantenimientos.TEMP.getNombre_oponente().getText().toString());
-                      temp.setAbreviado(Recursos_Mantenimientos.TEMP.getApodo().getText().toString());
+                      temp.setNombre_Oponente(Recursos_Mantenimientos.TEMP.getNombre_oponente().getText().toString().toUpperCase());
+                      temp.setAbreviado(Recursos_Mantenimientos.TEMP.getApodo().getText().toString().toUpperCase());
                       Usuario u=new Usuario();
                       u.setId(Usuario.SESION_ACTUAL.getId());
                       temp.setUsuario(u);

@@ -147,6 +147,7 @@ public class EdicionPersonaActivity extends AppCompatActivity {
         DepartamentosLista=new ArrayList<>();
         ProvinciasLista=new ArrayList<>();
         DistritoLista=new ArrayList<>();
+        nombre_persona.requestFocus();
 
         if(Recursos_Mantenimientos.TEMP.getPersona_temporal()!=null){
             // INGRESO A ACTUALIZAR
@@ -1357,5 +1358,14 @@ public class EdicionPersonaActivity extends AppCompatActivity {
     }
 
 
+    public void onBackPressed() {
 
+        Recursos_Mantenimientos.TEMP.setPersona_temporal(null);
+
+
+        Intent intent=new Intent(EdicionPersonaActivity.this,MantenimientoPersonaActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        EdicionPersonaActivity.this.startActivity(intent);
+
+    }
 }

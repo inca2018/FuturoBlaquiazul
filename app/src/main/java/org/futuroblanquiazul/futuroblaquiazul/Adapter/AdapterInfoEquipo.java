@@ -77,7 +77,7 @@ public class AdapterInfoEquipo extends RecyclerView.Adapter<AdapterInfoEquipo.Vi
 
 
        // if(Estadistico_Gestion.TEMP.getTiempo_actual()==1){
-            holder.o5.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getPaseGol()));
+           /* holder.o5.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getPaseGol()));
             holder.o6.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getDribling()));
             holder.o7.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getOpcionGol()));
             holder.o8.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getRemate()));

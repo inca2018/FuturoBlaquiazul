@@ -67,12 +67,13 @@
                 android:textAllCaps="true" />
 
             <EditText
-                android:layout_weight="1"
                 android:id="@+id/o_nom_oponente"
                 style="@style/input_texto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                 />
+                android:layout_weight="1"
+                android:inputType="text"
+                android:maxLength="50"/>
 
         </LinearLayout>
 
@@ -95,7 +96,11 @@
                 style="@style/input_texto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:inputType="text"
+                android:maxLength="5"
+                android:hint="AAA"
+                android:textAllCaps="true"/>
         </LinearLayout>
 
         <LinearLayout

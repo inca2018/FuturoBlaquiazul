@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -33,7 +34,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListaEventosEstadisticosActivity extends AppCompatActivity {
-
     Button nuevo_evento;
     RecyclerView recyclerView;
     private AdapterEventosEstadisticos adapter;
@@ -41,7 +41,7 @@ public class ListaEventosEstadisticosActivity extends AppCompatActivity {
     LinearLayoutManager linearLayoutManager;
     Context context;
     ProgressDialog progressDialog;
-
+    CardView card_nuevo_Evento;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +49,10 @@ public class ListaEventosEstadisticosActivity extends AppCompatActivity {
         nuevo_evento=findViewById(R.id.boton_nuevo_evento_estadistico);
         recyclerView=findViewById(R.id.recycler_eventos_estadisticos);
         Lista_Eventos_Estadisticos=new ArrayList<>();
+        card_nuevo_Evento=findViewById(R.id.card_nuevo_Evento);
+        if(Usuario.SESION_ACTUAL.getPerfil().getId()==1 || Usuario.SESION_ACTUAL.getPerfil().getId()==2 || Usuario.SESION_ACTUAL.getPerfil().getId()==3){
+            card_nuevo_Evento.setVisibility(View.VISIBLE);
+        }
         context=this;
 
         linearLayoutManager=new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
@@ -74,7 +78,6 @@ public class ListaEventosEstadisticosActivity extends AppCompatActivity {
         });
 
     }
-
     private void Listar_Eventos_Estadisticos(final Context context) {
         progressDialog = new ProgressDialog(context);
         progressDialog.setTitle("Modulo Estadistico:");
@@ -158,8 +161,6 @@ public class ListaEventosEstadisticosActivity extends AppCompatActivity {
 
 
     }
-
-
     @Override
     public void onBackPressed() {
         super.onBackPressed();

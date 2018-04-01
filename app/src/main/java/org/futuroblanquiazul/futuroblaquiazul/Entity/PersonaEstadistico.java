@@ -5,15 +5,13 @@ package org.futuroblanquiazul.futuroblaquiazul.Entity;
  */
 
 public class PersonaEstadistico {
-
     int num;
     Persona persona;
     int tipo_alineacion;
     Posicion posicion_persona;
     int camiseta_persona;
     int titular;
-    PuntosEstadisticos PuntosPrimerTiempo;
-    PuntosEstadisticos PuntosSegundoTiempo;
+    PuntosEstadisticos Puntos;
     int estado;
 
     public PersonaEstadistico(){
@@ -69,20 +67,12 @@ public class PersonaEstadistico {
         this.titular = titular;
     }
 
-    public PuntosEstadisticos getPuntosPrimerTiempo() {
-        return PuntosPrimerTiempo;
+    public PuntosEstadisticos getPuntos() {
+        return Puntos;
     }
 
-    public void setPuntosPrimerTiempo(PuntosEstadisticos puntosPrimerTiempo) {
-        PuntosPrimerTiempo = puntosPrimerTiempo;
-    }
-
-    public PuntosEstadisticos getPuntosSegundoTiempo() {
-        return PuntosSegundoTiempo;
-    }
-
-    public void setPuntosSegundoTiempo(PuntosEstadisticos puntosSegundoTiempo) {
-        PuntosSegundoTiempo = puntosSegundoTiempo;
+    public void setPuntos(PuntosEstadisticos puntos) {
+        Puntos = puntos;
     }
 
     public int getEstado() {

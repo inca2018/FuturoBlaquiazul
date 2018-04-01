@@ -30,6 +30,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EquipoJugadoresActivity extends AppCompatActivity {
 
     Context context;
@@ -146,7 +149,7 @@ public class EquipoJugadoresActivity extends AppCompatActivity {
 
                         }
 
-                        Recursos_Mantenimientos.ADAPTER_EQUIPO.notifyDataSetChanged();
+                       // Recursos_Mantenimientos.ADAPTER_EQUIPO.notifyDataSetChanged();
 
                         Listar_Personas_Disponibles(context);
                         System.out.println("LISTADO COMPLETO DEEVENTO");
@@ -192,9 +195,11 @@ public class EquipoJugadoresActivity extends AppCompatActivity {
 
                             Recursos_Mantenimientos.LISTA_DISPONIBLE3.add(temp);
                         }
-
-                        Recursos_Mantenimientos.ADAPTER_JUGADOR_DISPONIBLE3.notifyDataSetChanged();
+                        Verificar_Repetidos();
+                        //Recursos_Mantenimientos.ADAPTER_JUGADOR_DISPONIBLE3.notifyDataSetChanged();
                         progressDialog.dismiss();
+
+
 
                         System.out.println("LISTADO COMPLETO DISPONIBLES");
                     } else {
@@ -214,6 +219,38 @@ public class EquipoJugadoresActivity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
 
+    }
+
+    private void Verificar_Repetidos() {
+         List<Persona> TEMP=new ArrayList<>();
+
+         for(int i=0;i<Recursos_Mantenimientos.LISTA_DISPONIBLE3.size();i++){
+             if(Encontro(Recursos_Mantenimientos.LISTA_DISPONIBLE3.get(i))==true){
+             }else{
+                TEMP.add(Recursos_Mantenimientos.LISTA_DISPONIBLE3.get(i));
+             }
+         }
+         Recursos_Mantenimientos.LISTA_DISPONIBLE3.clear();
+
+         for(int i=0;i<TEMP.size();i++){
+             Recursos_Mantenimientos.LISTA_DISPONIBLE3.add(TEMP.get(i));
+         }
+
+
+         Recursos_Mantenimientos.ADAPTER_JUGADOR_DISPONIBLE3.notifyDataSetChanged();
+         Recursos_Mantenimientos.ADAPTER_EQUIPO.notifyDataSetChanged();
+
+    }
+
+    private boolean Encontro(Persona persona) {
+        boolean d=false;
+        for(int i=0;i<Recursos_Mantenimientos.LISTA_EQUIPO.size();i++){
+            if(Recursos_Mantenimientos.LISTA_EQUIPO.get(i).getId()==persona.getId()){
+                d=true;
+                System.out.println("ENCONTRO");
+            }
+        }
+        return  d;
     }
 
 

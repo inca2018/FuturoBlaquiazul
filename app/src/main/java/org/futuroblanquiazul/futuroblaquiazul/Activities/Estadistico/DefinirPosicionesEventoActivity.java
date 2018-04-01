@@ -133,7 +133,7 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
         if(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal()!=null){
             equipo.setText(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getEquipo().getNombre_equipo());
             evento.setText(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getDescripcion_Nombre_evento());
-            //Listar_Personas_Plantel_Posicion(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getPlantel().getId(), context);
+
             Listar_Posiciones(context);
         }else{  
             equipo.setText("No Disponible");
@@ -421,21 +421,7 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
       }
       return ff;
     }
-    private boolean Encontro(int d) {
-      boolean ff=false;
 
-      for(int i=0;i<Lista_Numeros_No_Disponibles.size();i++){
-          if(Lista_Numeros_No_Disponibles.get(i)==d){
-              ff=true;
-          }
-      }
-
-      return ff;
-    }
-    private void Ordenar(List<Integer> numeros_disponibles) {
-        Collections.sort(numeros_disponibles);
-
-    }
     private void Armar_Lista() {
         Lista_Numero=new ArrayList<>();
         for(int i=1;i<=25;i++){
@@ -448,6 +434,7 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
         }
 
     }
+
     private void Listar_Personas_Plantel_Posicion(final int id,final Context context) {
 
         String id_plantel=String.valueOf(id);
@@ -481,7 +468,7 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
                         adapter1.notifyDataSetChanged();
 
                         System.out.println("LISTADO COMPLETO DE JUGADORES POSICION");
-                        Listar_Personas_Plantel_Numero(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getPlantel().getId(), context);
+                        Listar_Personas_Plantel_Numero(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getEquipo().getId(), context);
                     } else {
                         progressDialog.dismiss();
                         Toast.makeText(context, "Listado Vacio", Toast.LENGTH_SHORT).show();
@@ -536,12 +523,15 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
 
                             //Recursos_Estadistico.LISTA_PERSONA_GENERAL.add(temp);
 
+
                         }
 
                         adapter2.notifyDataSetChanged();
 
                         progressDialog.dismiss();
                         System.out.println("LISTADO COMPLETO DE JUGADORES Numero");
+
+                        Mostrar();
                     } else {
                         progressDialog.dismiss();
                         Toast.makeText(context, "Listado Vacio", Toast.LENGTH_SHORT).show();
@@ -559,6 +549,14 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
         queue.add(xx);
 
     }
+
+    private void Mostrar() {
+
+        for(int i=0;i<ListaPosiciones.size();i++){
+             debug(" POSICON: "+ListaPosiciones.get(i).getNombre_Posicione());
+        }
+    }
+
     private void Listar_Posiciones(final Context context) {
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
@@ -586,7 +584,7 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
                         }
 
                         System.out.println("LISTA DE POSICIONES OK");
-                        Listar_Personas_Plantel_Posicion(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getPlantel().getId(), context);
+                        Listar_Personas_Plantel_Posicion(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getEquipo().getId(), context);
 
                     } else {
 
@@ -603,6 +601,10 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
         RecuperarPosiciones2 xx = new RecuperarPosiciones2(responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
+    }
+
+    public void debug(String f){
+        System.out.println(f);
     }
     public void onBackPressed() {
 

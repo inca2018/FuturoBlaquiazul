@@ -26,12 +26,14 @@
             android:textStyle="bold" />
 
         <android.support.v7.widget.CardView
+            android:id="@+id/card_nuevo_Evento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             app:cardBackgroundColor="@color/blanco"
             app:cardCornerRadius="10dp"
-            app:cardElevation="2dp">
+            app:cardElevation="2dp"
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
