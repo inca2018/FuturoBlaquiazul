@@ -263,7 +263,7 @@ public class LoginActivity extends AppCompatActivity {
                             Intent intent = new Intent(LoginActivity.this, PrincipalActivity.class);
                             LoginActivity.this.startActivity(intent);
                             //Muestra mensaje
-                            Toast.makeText(context, "Ingreso Correctamente", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Bienvenido: "+Usuario.SESION_ACTUAL.getNombres()+" "+Usuario.SESION_ACTUAL.getApellidos(), Toast.LENGTH_SHORT).show();
                         }
 
                     } else {

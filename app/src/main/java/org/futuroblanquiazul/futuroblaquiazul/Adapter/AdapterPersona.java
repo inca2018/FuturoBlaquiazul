@@ -83,6 +83,7 @@ public class AdapterPersona extends RecyclerView.Adapter<AdapterPersona.ViewHold
 
         Glide.with(context)
                 .load(my_Data.get(position).getFoto())
+                .error(R.drawable.user_default)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .skipMemoryCache(true)
                 .into(holder.foto_persona);

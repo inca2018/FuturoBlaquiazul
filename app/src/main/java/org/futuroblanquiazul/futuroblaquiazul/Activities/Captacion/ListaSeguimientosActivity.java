@@ -227,7 +227,9 @@ public class ListaSeguimientosActivity extends AppCompatActivity {
                             temp.setId(objeto.getInt("ID"));
                             temp.setCodigo_Seguimiento(objeto.getString("CODIGO_SEGUIMIENTO"));
                             Usuario u=new Usuario();
+                            u.setId(objeto.getInt("ID_USER"));
                             u.setNombres(objeto.getString("NOMBRES"));
+                            u.setApellidos(objeto.getString("APELLIDOS"));
                             temp.setUsuario(u);
                             temp.setFecha_Registro(objeto.getString("FECHA_REGISTRO"));
                             temp.setTotal_Puntaje(objeto.getInt("TOTAL_PUNTAJE"));

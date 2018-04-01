@@ -398,6 +398,7 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
                     boolean success = jsonResponse.getBoolean("success");
 
                     if (success) {
+                        progressDialog.dismiss();
 
                         Intent intent=new Intent(context,MantenimientoUsuarioActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -408,8 +409,15 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
 
 
                     } else {
+                        progressDialog.dismiss();
+                        String error=jsonResponse.getString("validar");
+                        if(error.length()!=0){
+                            Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(context, "Error de conexion al Recuperar Usuario", Toast.LENGTH_SHORT).show();
+                        }
 
-                        Toast.makeText(context, "Error de conexion al Recuperar Usuario", Toast.LENGTH_SHORT).show();
+
                     }
 
                 } catch (JSONException e) {

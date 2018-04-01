@@ -39,15 +39,11 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
     String Perfil;
     TextView usuario,tipo;
     ImageView foto;
-    Menu captacion,estadistico,mantenimiento;
+    Menu captacion,estadistico,mantenimiento,metodologia,informacion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
-
-        // captacion=(Menu)findViewById(R.id.menu_modulo_captacion);
-        //estadistico=(Menu)findViewById(R.id.menu_modulo_estadisticos);
-        //mantenimiento=(Menu)findViewById(R.id.menu_modulo_mantenimiento);
         mostrar_vistas() ;
         Toolbar_iniz();
         MetodoDrawer();
@@ -63,6 +59,50 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
             tipo.setText("No Disponible");
         }
 
+        if(Usuario.SESION_ACTUAL.getPerfil().getId()==1){
+            navigationView.getMenu().findItem(R.id.menu_modulo_solicitud).setVisible(true);
+            navigationView.getMenu().findItem(R.id.menu_modulo_captacion).setVisible(true);
+            navigationView.getMenu().findItem(R.id.menu_modulo_metodologia).setVisible(true);
+            navigationView.getMenu().findItem(R.id.menu_modulo_informacion).setVisible(true);
+            navigationView.getMenu().findItem(R.id.menu_modulo_estadisticos).setVisible(true);
+            navigationView.getMenu().findItem(R.id.menu_modulo_mantenimiento).setVisible(true);
+        }else if(Usuario.SESION_ACTUAL.getPerfil().getId()==2){
+            navigationView.getMenu().findItem(R.id.menu_modulo_solicitud).setVisible(true);
+            navigationView.getMenu().findItem(R.id.menu_modulo_captacion).setVisible(true);
+            navigationView.getMenu().findItem(R.id.menu_modulo_metodologia).setVisible(true);
+            navigationView.getMenu().findItem(R.id.menu_modulo_informacion).setVisible(true);
+            navigationView.getMenu().findItem(R.id.menu_modulo_estadisticos).setVisible(true);
+            navigationView.getMenu().findItem(R.id.menu_modulo_mantenimiento).setVisible(false);
+        }else if(Usuario.SESION_ACTUAL.getPerfil().getId()==3){
+            navigationView.getMenu().findItem(R.id.menu_modulo_solicitud).setVisible(false);
+            navigationView.getMenu().findItem(R.id.menu_modulo_captacion).setVisible(true);
+            navigationView.getMenu().findItem(R.id.menu_modulo_metodologia).setVisible(true);
+            navigationView.getMenu().findItem(R.id.menu_modulo_informacion).setVisible(false);
+            navigationView.getMenu().findItem(R.id.menu_modulo_estadisticos).setVisible(true);
+            navigationView.getMenu().findItem(R.id.menu_modulo_mantenimiento).setVisible(false);
+        }else if(Usuario.SESION_ACTUAL.getPerfil().getId()==4){
+            navigationView.getMenu().findItem(R.id.menu_modulo_solicitud).setVisible(false);
+            navigationView.getMenu().findItem(R.id.menu_modulo_captacion).setVisible(true);
+            navigationView.getMenu().findItem(R.id.menu_modulo_metodologia).setVisible(true);
+            navigationView.getMenu().findItem(R.id.menu_modulo_informacion).setVisible(false);
+            navigationView.getMenu().findItem(R.id.menu_modulo_estadisticos).setVisible(false);
+            navigationView.getMenu().findItem(R.id.menu_modulo_mantenimiento).setVisible(false);
+
+        }else if(Usuario.SESION_ACTUAL.getPerfil().getId()==5){
+            navigationView.getMenu().findItem(R.id.menu_modulo_solicitud).setVisible(false);
+            navigationView.getMenu().findItem(R.id.menu_modulo_captacion).setVisible(false);
+            navigationView.getMenu().findItem(R.id.menu_modulo_metodologia).setVisible(true);
+            navigationView.getMenu().findItem(R.id.menu_modulo_informacion).setVisible(false);
+            navigationView.getMenu().findItem(R.id.menu_modulo_estadisticos).setVisible(false);
+            navigationView.getMenu().findItem(R.id.menu_modulo_mantenimiento).setVisible(false);
+        }else if(Usuario.SESION_ACTUAL.getPerfil().getId()==6){
+            navigationView.getMenu().findItem(R.id.menu_modulo_solicitud).setVisible(false);
+            navigationView.getMenu().findItem(R.id.menu_modulo_captacion).setVisible(false);
+            navigationView.getMenu().findItem(R.id.menu_modulo_metodologia).setVisible(true);
+            navigationView.getMenu().findItem(R.id.menu_modulo_informacion).setVisible(false);
+            navigationView.getMenu().findItem(R.id.menu_modulo_estadisticos).setVisible(false);
+            navigationView.getMenu().findItem(R.id.menu_modulo_mantenimiento).setVisible(false);
+        }
         tipo.setText(Usuario.SESION_ACTUAL.getPerfil().getNombre_Perfil());
         String ruta=Usuario.SESION_ACTUAL.getFoto();
         Glide.with(this).load(ruta).into(foto);
@@ -146,7 +186,7 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
 
         }
 
-        else if (id == R.id.nav_10) {
+        else if (id == R.id.menu_modulo_solicitud) {
             displayView(3);
             toolbar.setTitle("Solicitudes de Usuarios");
         }
@@ -223,8 +263,6 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
             case 6:
                 fragment = new InformacionFragment();
                 break;
-
-
             default:
                 break;
         }

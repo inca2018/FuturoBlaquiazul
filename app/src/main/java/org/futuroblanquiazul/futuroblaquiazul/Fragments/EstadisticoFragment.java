@@ -81,9 +81,14 @@ public class EstadisticoFragment extends Fragment {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(mContext,ListaEventosEstadisticosActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+                if(GestionUbigeo.ESTADISTICO_UBIGEO.isEstado()==true){
+                    Intent intent= new Intent(mContext,ListaEventosEstadisticosActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(mContext, "Seleccione Ubicación de Trabajo", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
