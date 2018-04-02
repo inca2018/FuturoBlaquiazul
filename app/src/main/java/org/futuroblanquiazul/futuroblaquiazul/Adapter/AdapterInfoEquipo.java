@@ -76,40 +76,38 @@ public class AdapterInfoEquipo extends RecyclerView.Adapter<AdapterInfoEquipo.Vi
         holder.o4.setText(String.valueOf(my_Data.get(position).getPosicion_persona().getNombre_Posicione()));
 
 
-       // if(Estadistico_Gestion.TEMP.getTiempo_actual()==1){
-           /* holder.o5.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getPaseGol()));
-            holder.o6.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getDribling()));
-            holder.o7.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getOpcionGol()));
-            holder.o8.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getRemate()));
-            holder.o9.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getGoles()));
-            holder.o10.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getOfSide()));
-            holder.o11.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getBalonPerdido()));
-            holder.o12.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getBalonRecuperado()));
-            holder.o13.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getFaltas()));
-            holder.o14.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getTarjetasAmarillas()));
-            holder.o15.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getTarjetasRojas()));
-            holder.o16.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getAtajadas()));
-            holder.o17.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getTiempo_Jugados()));
-            holder.o18.setText(String.valueOf(my_Data.get(position).getPuntosPrimerTiempo().getPuntajes()));
-       /* }else{
-            holder.o5.setText(String.valueOf(my_Data.get(position).getPuntosSegundoTiempo().getPaseGol()));
-            holder.o6.setText(String.valueOf(my_Data.get(position).getPuntosSegundoTiempo().getDribling()));
-            holder.o7.setText(String.valueOf(my_Data.get(position).getPuntosSegundoTiempo().getOpcionGol()));
-            holder.o8.setText(String.valueOf(my_Data.get(position).getPuntosSegundoTiempo().getRemate()));
-            holder.o9.setText(String.valueOf(my_Data.get(position).getPuntosSegundoTiempo().getGoles()));
-            holder.o10.setText(String.valueOf(my_Data.get(position).getPuntosSegundoTiempo().getOfSide()));
-            holder.o11.setText(String.valueOf(my_Data.get(position).getPuntosSegundoTiempo().getBalonPerdido()));
-            holder.o12.setText(String.valueOf(my_Data.get(position).getPuntosSegundoTiempo().getBalonRecuperado()));
-            holder.o13.setText(String.valueOf(my_Data.get(position).getPuntosSegundoTiempo().getFaltas()));
-            holder.o14.setText(String.valueOf(my_Data.get(position).getPuntosSegundoTiempo().getTarjetasAmarillas()));
-            holder.o15.setText(String.valueOf(my_Data.get(position).getPuntosSegundoTiempo().getTarjetasRojas()));
-            holder.o16.setText(String.valueOf(my_Data.get(position).getPuntosSegundoTiempo().getAtajadas()));
-            holder.o17.setText(String.valueOf(my_Data.get(position).getPuntosSegundoTiempo().getTiempo_Jugados()));
-            holder.o18.setText(String.valueOf(my_Data.get(position).getPuntosSegundoTiempo().getPuntajes()));
-        }*/
-
+       if(Estadistico_Gestion.TEMP.getTiempo_actual()==1){
+            holder.o5.setText(String.valueOf(my_Data.get(position).getPrimerTiempo().getPaseGol()));
+            holder.o6.setText(String.valueOf(my_Data.get(position).getPrimerTiempo().getDribling()));
+            holder.o7.setText(String.valueOf(my_Data.get(position).getPrimerTiempo().getOpcionGol()));
+            holder.o8.setText(String.valueOf(my_Data.get(position).getPrimerTiempo().getRemate()));
+            holder.o9.setText(String.valueOf(my_Data.get(position).getPrimerTiempo().getGoles()));
+            holder.o10.setText(String.valueOf(my_Data.get(position).getPrimerTiempo().getOfSide()));
+            holder.o11.setText(String.valueOf(my_Data.get(position).getPrimerTiempo().getBalonPerdido()));
+            holder.o12.setText(String.valueOf(my_Data.get(position).getPrimerTiempo().getBalonRecuperado()));
+            holder.o13.setText(String.valueOf(my_Data.get(position).getPrimerTiempo().getFaltas()));
+            holder.o14.setText(String.valueOf(my_Data.get(position).getPrimerTiempo().getTarjetasAmarillas()));
+            holder.o15.setText(String.valueOf(my_Data.get(position).getPrimerTiempo().getTarjetasRojas()));
+            holder.o16.setText(String.valueOf(my_Data.get(position).getPrimerTiempo().getAtajadas()));
+            holder.o17.setText(String.valueOf(my_Data.get(position).getPrimerTiempo().getTiempo_Jugados()));
+            holder.o18.setText(String.valueOf(my_Data.get(position).getPrimerTiempo().getPuntajes()));
+       }else if(Estadistico_Gestion.TEMP.getTiempo_actual()==2){
+            holder.o5.setText(String.valueOf(my_Data.get(position).getSegundoTiempo().getPaseGol()));
+            holder.o6.setText(String.valueOf(my_Data.get(position).getSegundoTiempo().getDribling()));
+            holder.o7.setText(String.valueOf(my_Data.get(position).getSegundoTiempo().getOpcionGol()));
+            holder.o8.setText(String.valueOf(my_Data.get(position).getSegundoTiempo().getRemate()));
+            holder.o9.setText(String.valueOf(my_Data.get(position).getSegundoTiempo().getGoles()));
+            holder.o10.setText(String.valueOf(my_Data.get(position).getSegundoTiempo().getOfSide()));
+            holder.o11.setText(String.valueOf(my_Data.get(position).getSegundoTiempo().getBalonPerdido()));
+            holder.o12.setText(String.valueOf(my_Data.get(position).getSegundoTiempo().getBalonRecuperado()));
+            holder.o13.setText(String.valueOf(my_Data.get(position).getSegundoTiempo().getFaltas()));
+            holder.o14.setText(String.valueOf(my_Data.get(position).getSegundoTiempo().getTarjetasAmarillas()));
+            holder.o15.setText(String.valueOf(my_Data.get(position).getSegundoTiempo().getTarjetasRojas()));
+            holder.o16.setText(String.valueOf(my_Data.get(position).getSegundoTiempo().getAtajadas()));
+            holder.o17.setText(String.valueOf(my_Data.get(position).getSegundoTiempo().getTiempo_Jugados()));
+            holder.o18.setText(String.valueOf(my_Data.get(position).getSegundoTiempo().getPuntajes()));
+        }
     }
-
 
     @Override
     public int getItemCount() {

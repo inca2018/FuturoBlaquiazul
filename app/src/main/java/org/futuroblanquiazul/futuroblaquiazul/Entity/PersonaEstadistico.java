@@ -11,7 +11,7 @@ public class PersonaEstadistico {
     Posicion posicion_persona;
     int camiseta_persona;
     int titular;
-    PuntosEstadisticos Puntos;
+    PuntosEstadisticos PrimerTiempo,SegundoTiempo;
     int estado;
 
     public PersonaEstadistico(){
@@ -50,6 +50,21 @@ public class PersonaEstadistico {
         this.posicion_persona = posicion_persona;
     }
 
+    public PuntosEstadisticos getPrimerTiempo() {
+        return PrimerTiempo;
+    }
+
+    public void setPrimerTiempo(PuntosEstadisticos primerTiempo) {
+        PrimerTiempo = primerTiempo;
+    }
+
+    public PuntosEstadisticos getSegundoTiempo() {
+        return SegundoTiempo;
+    }
+
+    public void setSegundoTiempo(PuntosEstadisticos segundoTiempo) {
+        SegundoTiempo = segundoTiempo;
+    }
 
     public int getCamiseta_persona() {
         return camiseta_persona;
@@ -67,13 +82,7 @@ public class PersonaEstadistico {
         this.titular = titular;
     }
 
-    public PuntosEstadisticos getPuntos() {
-        return Puntos;
-    }
 
-    public void setPuntos(PuntosEstadisticos puntos) {
-        Puntos = puntos;
-    }
 
     public int getEstado() {
         return estado;

@@ -43,6 +43,7 @@ import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarPosiciones;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarPosiciones2;
 import org.futuroblanquiazul.futuroblaquiazul.R;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Estadistico;
+import org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Mantenimientos;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -98,10 +99,12 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
         linearlayout3=new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false);
 
 
-        adapter1 = new AdapterEstadisticoPersonaPosicion(this, Lista_Persona_Posiciones, new RecyclerViewOnItemClickListener() {
+        Recursos_Estadistico.ADAPTER_POS = new AdapterEstadisticoPersonaPosicion(this, Lista_Persona_Posiciones, new RecyclerViewOnItemClickListener() {
             public void onClick(View v, int position) {
             }
         });
+
+
         adapter2 = new AdapterEstadisticoPersonaNumero(this,Extras.LISTA_EXTRAS, new RecyclerViewOnItemClickListener() {
             public void onClick(View v, int position) {
             }
@@ -113,7 +116,7 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
         });
 
 
-        recyclerView1.setAdapter(adapter1);
+        recyclerView1.setAdapter(Recursos_Estadistico.ADAPTER_POS );
         recyclerView1.setLayoutManager(linearLayout);
 
         recyclerView2.setAdapter(adapter2);
@@ -409,7 +412,7 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
             Lista_Persona_Posiciones.get(i).setPosicion_posicion(0);
         }
 
-        adapter1.notifyDataSetChanged();
+        Recursos_Estadistico.ADAPTER_POS .notifyDataSetChanged();
     }
 
     private boolean Encontrado_en_Disponible(NumeroDisponible numeroDisponible) {
@@ -462,10 +465,11 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
                             temp.setLista_Posiciones(ListaPosiciones);
                             temp.setCodigo_posicion(0);
                             temp.setEstado_posicion(0);
+                            temp.setPosicion_posicion(0);
                             Lista_Persona_Posiciones.add(temp);
                             //Recursos_Estadistico.LISTA_PERSONA_GENERAL.add(temp);
                         }
-                        adapter1.notifyDataSetChanged();
+                        Recursos_Estadistico.ADAPTER_POS .notifyDataSetChanged();
 
                         System.out.println("LISTADO COMPLETO DE JUGADORES POSICION");
                         Listar_Personas_Plantel_Numero(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getEquipo().getId(), context);

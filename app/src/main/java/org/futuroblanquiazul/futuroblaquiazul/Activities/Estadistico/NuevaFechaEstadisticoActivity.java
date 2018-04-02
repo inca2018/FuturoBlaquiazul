@@ -204,7 +204,7 @@ public class NuevaFechaEstadisticoActivity extends AppCompatActivity {
 
                     if (success) {
 
-                        Intent intent=new Intent(context,ListaEventosEstadisticosActivity.class);
+                        Intent intent=new Intent(context,ListaFechasEstadisticosActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         context.startActivity(intent);
 

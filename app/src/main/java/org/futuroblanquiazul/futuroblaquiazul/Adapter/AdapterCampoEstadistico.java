@@ -226,4 +226,179 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
 
         return contador;
     }
+    public int RecuperarTR(Persona persona){
+        int contador=0;
+        for(int i=0;i<my_Data.size();i++){
+            if(my_Data.get(i).getPersona()!=null){
+                if(my_Data.get(i).getPersona().getId()==persona.getId()){
+                    if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("TR")){
+                        contador=contador+1;
+                    }
+                }
+            }
+
+        }
+
+        return contador;
+    }
+
+    public int RecuperarPG(Persona persona){
+        int contador=0;
+        for(int i=0;i<my_Data.size();i++){
+            if(my_Data.get(i).getPersona()!=null){
+                if(my_Data.get(i).getPersona().getId()==persona.getId()){
+                    if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("PG")){
+                        contador=contador+1;
+                    }
+                }
+            }
+
+        }
+
+        return contador;
+    }
+
+    public int RecuperarDR(Persona persona){
+        int contador=0;
+        for(int i=0;i<my_Data.size();i++){
+            if(my_Data.get(i).getPersona()!=null){
+                if(my_Data.get(i).getPersona().getId()==persona.getId()){
+                    if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("DR")){
+                        contador=contador+1;
+                    }
+                }
+            }
+
+        }
+
+        return contador;
+    }
+
+    public int RecuperarOG(Persona persona){
+        int contador=0;
+        for(int i=0;i<my_Data.size();i++){
+            if(my_Data.get(i).getPersona()!=null){
+                if(my_Data.get(i).getPersona().getId()==persona.getId()){
+                    if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("OG")){
+                        contador=contador+1;
+                    }
+                }
+            }
+
+        }
+
+        return contador;
+    }
+
+    public int RecuperarR(Persona persona){
+        int contador=0;
+        for(int i=0;i<my_Data.size();i++){
+            if(my_Data.get(i).getPersona()!=null){
+                if(my_Data.get(i).getPersona().getId()==persona.getId()){
+                    if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("R")){
+                        contador=contador+1;
+                    }
+                }
+            }
+
+        }
+
+        return contador;
+    }
+
+    public int RecuperarG(Persona persona){
+        int contador=0;
+        for(int i=0;i<my_Data.size();i++){
+            if(my_Data.get(i).getPersona()!=null){
+                if(my_Data.get(i).getPersona().getId()==persona.getId()){
+                    if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("G")){
+                        contador=contador+1;
+                    }
+                }
+            }
+
+        }
+
+        return contador;
+    }
+
+    public int RecuperarOF(Persona persona){
+        int contador=0;
+        for(int i=0;i<my_Data.size();i++){
+            if(my_Data.get(i).getPersona()!=null){
+                if(my_Data.get(i).getPersona().getId()==persona.getId()){
+                    if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("OF")){
+                        contador=contador+1;
+                    }
+                }
+            }
+
+        }
+
+        return contador;
+    }
+
+    public int RecuperarBP(Persona persona){
+        int contador=0;
+        for(int i=0;i<my_Data.size();i++){
+            if(my_Data.get(i).getPersona()!=null){
+                if(my_Data.get(i).getPersona().getId()==persona.getId()){
+                    if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("BP")){
+                        contador=contador+1;
+                    }
+                }
+            }
+
+        }
+
+        return contador;
+    }
+
+    public int RecuperarBR(Persona persona){
+        int contador=0;
+        for(int i=0;i<my_Data.size();i++){
+            if(my_Data.get(i).getPersona()!=null){
+                if(my_Data.get(i).getPersona().getId()==persona.getId()){
+                    if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("BR")){
+                        contador=contador+1;
+                    }
+                }
+            }
+
+        }
+
+        return contador;
+    }
+
+    public int RecuperarF(Persona persona){
+        int contador=0;
+        for(int i=0;i<my_Data.size();i++){
+            if(my_Data.get(i).getPersona()!=null){
+                if(my_Data.get(i).getPersona().getId()==persona.getId()){
+                    if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("F")){
+                        contador=contador+1;
+                    }
+                }
+            }
+
+        }
+
+        return contador;
+    }
+
+    public int RecuperarATJ(Persona persona){
+        int contador=0;
+        for(int i=0;i<my_Data.size();i++){
+            if(my_Data.get(i).getPersona()!=null){
+                if(my_Data.get(i).getPersona().getId()==persona.getId()){
+                    if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("ATJ")){
+                        contador=contador+1;
+                    }
+                }
+            }
+
+        }
+
+        return contador;
+    }
 }

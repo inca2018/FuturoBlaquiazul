@@ -2,6 +2,8 @@ package org.futuroblanquiazul.futuroblaquiazul.Utils;
 
 import android.app.AlertDialog;
 
+import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterEstadisticoPersonaNumero;
+import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterEstadisticoPersonaPosicion;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.R;
 
@@ -27,6 +29,8 @@ public class Recursos_Estadistico {
 
     public static final List<Integer> LISTA_NUMEROS_SELECCIONADOS=new ArrayList<>();
     public static final List<Integer> LISTA_COMPLETA=new ArrayList<>();
+
+    public static AdapterEstadisticoPersonaPosicion ADAPTER_POS=null;
 
 
 

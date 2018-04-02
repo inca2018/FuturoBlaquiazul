@@ -11,6 +11,8 @@ public class GestionEstadistico {
     Fase PrimerTiempo;
     Fase SegundoTiempo;
     public static GestionEstadistico GESTOR=new GestionEstadistico();
+
+
     public GestionEstadistico(){
 
     }

@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;
 import org.futuroblanquiazul.futuroblaquiazul.R;
+import org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Estadistico;
 
 import java.util.List;
 
@@ -68,9 +69,8 @@ public class AdapterEstadisticoPersonaPosicion extends RecyclerView.Adapter<Adap
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        if(my_Data.get(position).getEstado_posicion()==1){
-            holder.spinner_numero.setSelection(my_Data.get(position).getPosicion_posicion());
-        }
+
+
 
         holder.persona.setText(my_Data.get(position).getNombre_Persona()+" "+my_Data.get(position).getApellidos_Persona());
         Glide.with(context).load(my_Data.get(position).getFoto()).into(holder.foto);
@@ -79,11 +79,9 @@ public class AdapterEstadisticoPersonaPosicion extends RecyclerView.Adapter<Adap
         Listar_Posiciones(holder.spinner_numero,position);
 
 
-
         holder.spinner_numero.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                System.out.println("Check Toco.");
                 spinnerTouched = true;
                 return false;
             }
@@ -99,17 +97,17 @@ public class AdapterEstadisticoPersonaPosicion extends RecyclerView.Adapter<Adap
                           my_Data.get(position).setEstado_posicion(0);
                           my_Data.get(position).setCodigo_posicion(0);
                           my_Data.get(position).setPosicion_posicion(0);
-                          notifyDataSetChanged();
-                          debug(" SELECCION 0");
+
+                          Recursos_Estadistico.ADAPTER_POS.notifyDataSetChanged();
+
 
                     }else{
                           my_Data.get(position).setEstado_posicion(1);
                           my_Data.get(position).setCodigo_posicion(my_Data.get(position).getLista_Posiciones().get(pos).getId());
                           my_Data.get(position).setPosicion_posicion(pos);
-                        notifyDataSetChanged();
 
+                          Recursos_Estadistico.ADAPTER_POS.notifyDataSetChanged();
 
-                        debug(" SELECCION POSICION");
                     }
 
                 }
@@ -121,6 +119,10 @@ public class AdapterEstadisticoPersonaPosicion extends RecyclerView.Adapter<Adap
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+        if(my_Data.get(position).getEstado_posicion()==1){
+            holder.spinner_numero.setSelection(my_Data.get(position).getPosicion_posicion());
+        }
 
     }
     private void Listar_Posiciones(Spinner spinner_numero, int position) {

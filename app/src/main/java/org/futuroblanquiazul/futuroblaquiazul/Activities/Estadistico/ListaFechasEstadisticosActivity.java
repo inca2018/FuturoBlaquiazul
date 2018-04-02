@@ -126,6 +126,7 @@ public class ListaFechasEstadisticosActivity extends AppCompatActivity {
                         for(int i=0;i<departamentos.length();i++){
                             JSONObject objeto= departamentos.getJSONObject(i);
                             FechaEstadistico temp=new FechaEstadistico();
+                            temp.setNum(i+1);
                             temp.setId(objeto.getInt("ID"));
                             EventoEstadistico ev=new EventoEstadistico();
                             ev.setId(objeto.getInt("ID_EVENTO"));

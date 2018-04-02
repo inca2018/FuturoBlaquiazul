@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.EventLog;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.DefinirTiemposActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.GestionFechaEstadisticoActivity;
@@ -75,7 +77,7 @@ public class AdapterFechasEstadisticos extends RecyclerView.Adapter<AdapterFecha
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-        holder.numero.setText("FECHA Nº "+(my_Data.get(position).getNum()+1));
+        holder.numero.setText("FECHA Nº "+(my_Data.get(position).getNum()));
         holder.oponente.setText("RIVAL : "+my_Data.get(position).getOponente().getNombre_Oponente());
 
            holder.fecha.setText("FECHA : "+my_Data.get(position).getFecha_Realizacion());
@@ -95,11 +97,22 @@ public class AdapterFechasEstadisticos extends RecyclerView.Adapter<AdapterFecha
                     public boolean onMenuItemClick(MenuItem item) {
 
                         if(item.getTitle().toString().equalsIgnoreCase("Gestión de Fecha")){
+                             if(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal()!=null){
+                                 if(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getEstado_formacion()==2){
+                                     if(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getEstado_posiciones()==2){
 
-                          FechaEstadistico.FECHA_ESTADISTICO_TEMP.setFecha_actual(my_Data.get(position));
-                            Intent intent = new Intent(context, DefinirTiemposActivity.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            context.startActivity(intent);
+                                         FechaEstadistico.FECHA_ESTADISTICO_TEMP.setFecha_actual(my_Data.get(position));
+                                         Intent intent = new Intent(context, DefinirTiemposActivity.class);
+                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                         context.startActivity(intent);
+                                     }else{
+                                         Toast.makeText(context, "Complete Información de Posiciones y Camisetas!", Toast.LENGTH_SHORT).show();
+                                     }
+                                 }else{
+                                     Toast.makeText(context, "Complete Formación!", Toast.LENGTH_SHORT).show();
+                                 }
+                             }
+
 
                         }else if(item.getTitle().toString().equalsIgnoreCase("Información de Fecha")){
 
