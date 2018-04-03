@@ -162,7 +162,7 @@ public class MantenimientoUsuarioActivity extends AppCompatActivity implements S
 
         List<Usuario> filteredValues = new ArrayList<Usuario>(Lista_Usuarios);
         for (Usuario value : Lista_Usuarios) {
-            if (!(value.getNombres().toLowerCase()+value.getApellidos().toLowerCase()).contains(newText.toLowerCase())) {
+            if (!(value.getNombres().toLowerCase()+" "+value.getApellidos().toLowerCase()).contains(newText.toLowerCase())) {
                 filteredValues.remove(value);
             }
         }
@@ -192,6 +192,8 @@ public class MantenimientoUsuarioActivity extends AppCompatActivity implements S
 
         //Opciones();
     }
+
+
     public void onBackPressed() {
         Intent intent= new Intent(context,PrincipalActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

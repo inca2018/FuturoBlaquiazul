@@ -7,11 +7,16 @@ import java.util.List;
 public class Estadistico_Gestion {
 
     int cantidad_tiempos;
+
     int minutos_x_tiempo;
     int primer_aviso;
     int segundo_aviso;
-    int Tiempo_Adicional1;
-    int Tiempo_Adicional2;
+
+    int Tiempo_Adicional;
+    int Tiempo_Total;
+
+    int Tiempo_Jugado;
+
 
     int posesion_1erTiempo;
     int getPosesion_2doTiempo;
@@ -49,21 +54,28 @@ public class Estadistico_Gestion {
     }
 
 
-
-    public int getTiempo_Adicional1() {
-        return Tiempo_Adicional1;
+    public int getTiempo_Adicional() {
+        return Tiempo_Adicional;
     }
 
-    public void setTiempo_Adicional1(int tiempo_Adicional1) {
-        Tiempo_Adicional1 = tiempo_Adicional1;
+    public void setTiempo_Adicional(int tiempo_Adicional) {
+        Tiempo_Adicional = tiempo_Adicional;
     }
 
-    public int getTiempo_Adicional2() {
-        return Tiempo_Adicional2;
+    public int getTiempo_Total() {
+        return Tiempo_Total;
     }
 
-    public void setTiempo_Adicional2(int tiempo_Adicional2) {
-        Tiempo_Adicional2 = tiempo_Adicional2;
+    public void setTiempo_Total(int tiempo_Total) {
+        Tiempo_Total = tiempo_Total;
+    }
+
+    public int getTiempo_Jugado() {
+        return Tiempo_Jugado;
+    }
+
+    public void setTiempo_Jugado(int tiempo_Jugado) {
+        Tiempo_Jugado = tiempo_Jugado;
     }
 
     public List<Persona> getNombres_Personas() {

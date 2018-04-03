@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -15,7 +16,9 @@ import com.android.volley.toolbox.Volley;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterBarrio;
+import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterSeguimientoPersona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.BarrioIntimo;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Unidad_Territorial;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;
@@ -28,7 +31,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BarrioIntimoActivity extends AppCompatActivity {
+public class BarrioIntimoActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
     private RecyclerView recycler_barrio;
     private LinearLayoutManager linearLayout;
@@ -36,11 +39,14 @@ public class BarrioIntimoActivity extends AppCompatActivity {
     private List<BarrioIntimo> lista_barrio_intimo;
     Context context;
     ProgressDialog progressDialog;
+    SearchView buscador_barrio;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barrio_intimo);
         recycler_barrio=findViewById(R.id.recycler_barrio_intimo);
+        buscador_barrio=findViewById(R.id.buscador_barrio);
+        buscador_barrio.setOnQueryTextListener(this);
         context=this;
 
 
@@ -148,6 +154,56 @@ public class BarrioIntimoActivity extends AppCompatActivity {
         queue.add(xx);
 
     }
+
+
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+
+
+        return false;
+    }
+    @Override
+    public boolean onQueryTextChange(String newText) {
+
+        if (newText == null || newText.trim().isEmpty()) {
+            resetSearch();
+            return false;
+        }
+
+        List<BarrioIntimo> filteredValues = new ArrayList<BarrioIntimo>(lista_barrio_intimo);
+        for (BarrioIntimo value : lista_barrio_intimo) {
+            if (!(value.getNombreEvento().toLowerCase()).contains(newText.toLowerCase())) {
+                filteredValues.remove(value);
+            }
+        }
+
+        linearLayout = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false);
+        adapter = new AdapterBarrio(context,filteredValues, new RecyclerViewOnItemClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+            }
+        });
+        recycler_barrio.setAdapter(adapter);
+        recycler_barrio.setLayoutManager(linearLayout);
+
+        //Opciones();
+        return false;
+    }
+    public void resetSearch() {
+        linearLayout = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false);
+        adapter = new AdapterBarrio(context,lista_barrio_intimo, new RecyclerViewOnItemClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+
+            }
+        });
+        recycler_barrio.setAdapter(adapter);
+        recycler_barrio.setLayoutManager(linearLayout);
+
+        //Opciones();
+    }
+
 
 
     public void onBackPressed() {

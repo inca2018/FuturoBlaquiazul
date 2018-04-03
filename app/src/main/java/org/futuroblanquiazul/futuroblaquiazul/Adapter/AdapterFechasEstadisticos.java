@@ -14,6 +14,9 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.DefinirTiemposActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.GestionFechaEstadisticoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.ListaFechasEstadisticosActivity;
@@ -49,13 +52,28 @@ public class AdapterFechasEstadisticos extends RecyclerView.Adapter<AdapterFecha
         TextView fecha;
         ImageView acciones;
 
+        TextView gol_local;
+        TextView gol_rival;
+        TextView estado;
+        TextView equipo_local;
+        ImageView escudo_oponente;
+
+
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
             numero=itemView.findViewById(R.id.card_fecha_numero);
             oponente=itemView.findViewById(R.id.card_fecha_oponente);
             acciones=itemView.findViewById(R.id.fecha_acciones);
-            fecha=itemView.findViewById(R.id.card_fecha_fecha);
+            fecha=itemView.findViewById(R.id.card_fecha_numero);
+
+            gol_local=itemView.findViewById(R.id.card_fecha_resu_local);
+            gol_rival=itemView.findViewById(R.id.card_fecha_resu_rival);
+            estado=itemView.findViewById(R.id.card_fecha_estado);
+            equipo_local=itemView.findViewById(R.id.card_fecha_equipo);
+            escudo_oponente=itemView.findViewById(R.id.card_fecha_escudo_oponente);
+
+
 
 
         }
@@ -78,11 +96,34 @@ public class AdapterFechasEstadisticos extends RecyclerView.Adapter<AdapterFecha
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
         holder.numero.setText("FECHA Nº "+(my_Data.get(position).getNum()));
-        holder.oponente.setText("RIVAL : "+my_Data.get(position).getOponente().getNombre_Oponente());
+        holder.oponente.setText(my_Data.get(position).getOponente().getNombre_Oponente().toUpperCase());
 
-           holder.fecha.setText("FECHA : "+my_Data.get(position).getFecha_Realizacion());
+        if(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal()!=null){
+            holder.equipo_local.setText(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getEquipo().getNombre_equipo().toUpperCase());
+        }else{
+            holder.equipo_local.setText("Equipo no Disponible");
+        }
+
+        holder.gol_local.setText(String.valueOf(my_Data.get(position).getGoles_local()));
+        holder.gol_rival.setText(String.valueOf(my_Data.get(position).getGoles_rival()));
+        holder.fecha.setText("FECHA Nº"+my_Data.get(position).getNum());
+
+        if(my_Data.get(position).getEstado()==1){
+            holder.estado.setText("PENDIENTE");
+            holder.estado.setTextColor(context.getResources().getColor(R.color.verde));
+        }else if(my_Data.get(position).getEstado()==2){
+            holder.estado.setText("FINALIZADO");
+            holder.estado.setTextColor(context.getResources().getColor(R.color.red));
+        }else if(my_Data.get(position).getEstado()==3){
+            holder.estado.setText("W.O");
+            holder.estado.setTextColor(context.getResources().getColor(R.color.morado_bajo));
+        }
 
 
+        Glide.with(context).load(my_Data.get(position).getOponente().getFoto()).error(R.drawable.no_disponible)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(holder.escudo_oponente);
         holder.acciones.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,10 +142,18 @@ public class AdapterFechasEstadisticos extends RecyclerView.Adapter<AdapterFecha
                                  if(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getEstado_formacion()==2){
                                      if(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getEstado_posiciones()==2){
 
-                                         FechaEstadistico.FECHA_ESTADISTICO_TEMP.setFecha_actual(my_Data.get(position));
-                                         Intent intent = new Intent(context, DefinirTiemposActivity.class);
-                                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                         context.startActivity(intent);
+                                         if(my_Data.get(position).getEstado()==1){
+                                             FechaEstadistico.FECHA_ESTADISTICO_TEMP.setFecha_actual(my_Data.get(position));
+                                             Intent intent = new Intent(context, DefinirTiemposActivity.class);
+                                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                             context.startActivity(intent);
+                                         }else if(my_Data.get(position).getEstado()==2){
+                                             Toast.makeText(context, "Fecha ya Realizada!", Toast.LENGTH_SHORT).show();
+                                         }else if(my_Data.get(position).getEstado()==3){
+                                             Toast.makeText(context, "Fecha Registrada como WALKOVER (W.O)", Toast.LENGTH_SHORT).show();
+                                         }
+
+
                                      }else{
                                          Toast.makeText(context, "Complete Información de Posiciones y Camisetas!", Toast.LENGTH_SHORT).show();
                                      }
@@ -115,7 +164,13 @@ public class AdapterFechasEstadisticos extends RecyclerView.Adapter<AdapterFecha
 
 
                         }else if(item.getTitle().toString().equalsIgnoreCase("Información de Fecha")){
+                            if(my_Data.get(position).getEstado()==1){
+                                Toast.makeText(context, "Fecha sin Información para mostrar", Toast.LENGTH_SHORT).show();
+                            }else if(my_Data.get(position).getEstado()==2){
 
+                            }else if(my_Data.get(position).getEstado()==3){
+                                Toast.makeText(context, "Fecha Registrada como WALKOVER (W.O)", Toast.LENGTH_SHORT).show();
+                            }
                         }
 
                         return true;

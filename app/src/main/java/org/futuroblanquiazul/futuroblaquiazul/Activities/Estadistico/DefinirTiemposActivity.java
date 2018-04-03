@@ -39,14 +39,17 @@ public class DefinirTiemposActivity extends AppCompatActivity {
                           if(num>45){
                               Toast.makeText(DefinirTiemposActivity.this, "El tiempo Maximo por Fase es de 45 Minutos", Toast.LENGTH_SHORT).show();
                           }else{
-                              Estadistico_Gestion.TEMP.setMinutos_x_tiempo(num);
 
-                              int Aviso1=num-5;
+                              Estadistico_Gestion.TEMP.setMinutos_x_tiempo(num);
+                              Estadistico_Gestion.TEMP.setTiempo_Total(num*2);
+
+                              int Aviso1=Estadistico_Gestion.TEMP.getTiempo_Total()-2;
                               Estadistico_Gestion.TEMP.setPrimer_aviso(Aviso1);
-                              int Aviso2=num-1;
+                              int Aviso2=Estadistico_Gestion.TEMP.getTiempo_Total()-1;
                               Estadistico_Gestion.TEMP.setSegundo_aviso(Aviso2);
-                              Estadistico_Gestion.TEMP.setTiempo_Adicional1(0);
-                              Estadistico_Gestion.TEMP.setTiempo_Adicional2(0);
+
+                              Estadistico_Gestion.TEMP.setTiempo_Adicional(0);
+                              Estadistico_Gestion.TEMP.setTiempo_actual(0);
 
                               Intent intent = new Intent(context, GestionFechaEstadisticoActivity.class);
                               intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

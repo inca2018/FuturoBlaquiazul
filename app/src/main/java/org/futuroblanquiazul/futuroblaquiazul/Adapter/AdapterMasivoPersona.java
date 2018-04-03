@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Pruebas.PruebaDiagnosticoActivity;
@@ -56,6 +58,7 @@ public class AdapterMasivoPersona extends RecyclerView.Adapter<AdapterMasivoPers
         public TextView titulo_masivo;
         public ImageView acciones;
         public TextView texto_disponible;
+        public ImageView foto;
 
 
         public ViewHolder(View itemView) {
@@ -64,6 +67,7 @@ public class AdapterMasivoPersona extends RecyclerView.Adapter<AdapterMasivoPers
             titulo_masivo=itemView.findViewById(R.id.card_masivo_titulo);
             acciones=itemView.findViewById(R.id.masivo_personas_acciones);
             texto_disponible=itemView.findViewById(R.id.texto_disponibilidad);
+            foto=itemView.findViewById(R.id.foto_masivo_p);
         }
         @Override
         public void onClick(View v) {
@@ -81,6 +85,11 @@ public class AdapterMasivoPersona extends RecyclerView.Adapter<AdapterMasivoPers
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
+
+        Glide.with(context).load(my_Data.get(position).getFoto()).error(R.drawable.user_default)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(holder.foto);
 
             holder.titulo_masivo.setText(my_Data.get(position).getNombre_Persona()+" "+my_Data.get(position).getApellidos_Persona());
             int disponibilidad=my_Data.get(position).getDisponible();

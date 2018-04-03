@@ -117,10 +117,10 @@ public class RegistroPostulantesActivity extends AppCompatActivity {
 
     private void Validar_Dni_Nuevo_Registro(int dni,final Context context) {
         String dni_buscado=String.valueOf(dni);
+        System.out.println("Dni Buscado:"+dni_buscado);
         Response.Listener<String> responseListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
                 try {
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
@@ -142,10 +142,6 @@ public class RegistroPostulantesActivity extends AppCompatActivity {
         ValidarDniRegistro xx = new ValidarDniRegistro(dni_buscado, responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
-
-
-
-
     }
 
     private String Armar_Mensaje() {

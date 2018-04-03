@@ -103,6 +103,7 @@ public class ListaPersonaMasivoActivity extends AppCompatActivity {
                             temp.setEstado(objeto.getInt("ESTADO"));
                             temp.setEstado_capta(objeto.getInt("ESTADO_DIAGNOSTICO"));
                             temp.setDisponible(objeto.getInt("DISPONIBLE"));
+                            temp.setFoto(objeto.getString("FOTO"));
 
                             lista_personas.add(temp);
 

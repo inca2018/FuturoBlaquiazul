@@ -18,6 +18,8 @@ import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterEventosEstadisticos;
@@ -88,8 +90,16 @@ public class ListaFechasEstadisticosActivity extends AppCompatActivity {
 
         if(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal()!=null){
             nombre_Evento.setText(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getDescripcion_Nombre_evento());
-            categoria_evento.setText(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getEquipo().getNombre_equipo());
+            categoria_evento.setText(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getEquipo().getNombre_equipo().toUpperCase());
             ubigeo_evento.setText(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getDepartamento().getDescripcion()+"/"+EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getProvincia().getDescripcion()+"/"+EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getDistrito().getDescripcion());
+
+
+                    Glide.with(context)
+                            .load( EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getFoto())
+                            .error(R.drawable.no_disponible)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                            .skipMemoryCache(true)
+                            .into(foto_evento);
         }
 
 
@@ -135,6 +145,7 @@ public class ListaFechasEstadisticosActivity extends AppCompatActivity {
                             Oponente opo=new Oponente();
                             opo.setId(objeto.getInt("ID_OPONENTE"));
                             opo.setNombre_Oponente(objeto.getString("NOMBRE_OPONENTE"));
+                            opo.setFoto(objeto.getString("FOTO"));
                             temp.setOponente(opo);
                             Usuario u=new Usuario();
                             u.setId(objeto.getInt("ID_USUARIO"));
@@ -144,6 +155,8 @@ public class ListaFechasEstadisticosActivity extends AppCompatActivity {
                             temp.setFecha_registro(objeto.getString("FECHA_REGISTRO"));
                             temp.setObservacion(objeto.getString("OBSER"));
                             temp.setEstado(objeto.getInt("ESTADO"));
+                            temp.setGoles_local(objeto.getInt("GOLES_LOCAL"));
+                            temp.setGoles_rival(objeto.getInt("GOLES_RIVAL"));
 
 
                             Lista_Fechas.add(temp);

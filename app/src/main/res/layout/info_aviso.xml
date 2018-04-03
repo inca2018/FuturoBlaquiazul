@@ -21,6 +21,37 @@
             android:text="El Tiempo Terminara en 5 Minutos!"
             android:textAlignment="center" />
 
+        <LinearLayout
+            android:id="@+id/linear_adicional"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/titulo2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Ingrese Tiempo Extra:"
+                android:textAlignment="center"
+                android:textStyle="italic" />
+
+            <EditText
+                android:id="@+id/tiempo_Extra"
+                style="@style/input_texto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:inputType="number"
+                android:maxLength="1"
+                android:text="0"/>
+        </LinearLayout>
+
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">

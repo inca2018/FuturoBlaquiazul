@@ -14,6 +14,8 @@ public class FechaEstadistico {
     String fecha_registro;
     String Observacion;
     int estado;
+    int goles_local;
+    int goles_rival;
 
 
     int cantidad_tiempos;
@@ -26,6 +28,22 @@ public class FechaEstadistico {
     public final static FechaEstadistico FECHA_ESTADISTICO_CREACION=new FechaEstadistico();
     public FechaEstadistico(){
 
+    }
+
+    public int getGoles_local() {
+        return goles_local;
+    }
+
+    public void setGoles_local(int goles_local) {
+        this.goles_local = goles_local;
+    }
+
+    public int getGoles_rival() {
+        return goles_rival;
+    }
+
+    public void setGoles_rival(int goles_rival) {
+        this.goles_rival = goles_rival;
     }
 
     public int getMinutos_x_tiempo() {

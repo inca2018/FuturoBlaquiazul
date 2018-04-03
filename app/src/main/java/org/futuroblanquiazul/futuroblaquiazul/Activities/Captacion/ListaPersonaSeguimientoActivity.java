@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -17,6 +18,7 @@ import com.android.volley.toolbox.Volley;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Inicio.PrincipalActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterMasivo;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterSeguimientoPersona;
+import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterUsuarios;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Masivo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
@@ -32,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ListaPersonaSeguimientoActivity extends AppCompatActivity {
+public class ListaPersonaSeguimientoActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     RecyclerView  recyclerView;
     private LinearLayoutManager linearLayout;
     private AdapterSeguimientoPersona adapter;
@@ -40,6 +42,7 @@ public class ListaPersonaSeguimientoActivity extends AppCompatActivity {
     Context context;
     ProgressDialog progressDialog;
     RelativeLayout lista_vacia;
+    SearchView buscador_diganostico;
 
 
     @Override
@@ -47,6 +50,8 @@ public class ListaPersonaSeguimientoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_persona_seguimiento);
         lista_seguimiento_persona=new ArrayList<>();
+        buscador_diganostico=findViewById(R.id.buscador_jugadores);
+        buscador_diganostico.setOnQueryTextListener(this);
         recyclerView=findViewById(R.id.Recycler_Persona_seg);
         lista_vacia=findViewById(R.id.lista_vacia_seguimiento);
         context=this;
@@ -137,7 +142,57 @@ public class ListaPersonaSeguimientoActivity extends AppCompatActivity {
         queue.add(xx);
 
     }
-       public void onBackPressed() {
+
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+
+
+        return false;
+    }
+    @Override
+    public boolean onQueryTextChange(String newText) {
+
+        if (newText == null || newText.trim().isEmpty()) {
+            resetSearch();
+            return false;
+        }
+
+        List<Persona> filteredValues = new ArrayList<Persona>(lista_seguimiento_persona);
+        for (Persona value : lista_seguimiento_persona) {
+            if (!(value.getNombre_Persona().toLowerCase()+" "+value.getNombre_Persona().toLowerCase()).contains(newText.toLowerCase())) {
+                filteredValues.remove(value);
+            }
+        }
+
+        linearLayout = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false);
+        adapter = new AdapterSeguimientoPersona(context,filteredValues, new RecyclerViewOnItemClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+            }
+        });
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(linearLayout);
+
+        //Opciones();
+        return false;
+    }
+    public void resetSearch() {
+        linearLayout = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false);
+        adapter = new AdapterSeguimientoPersona(context,lista_seguimiento_persona, new RecyclerViewOnItemClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+
+            }
+        });
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(linearLayout);
+
+        //Opciones();
+    }
+
+
+    public void onBackPressed() {
 
         Intent intent = new Intent(ListaPersonaSeguimientoActivity.this,PrincipalActivity.class);
         intent.putExtra("o","o1");
