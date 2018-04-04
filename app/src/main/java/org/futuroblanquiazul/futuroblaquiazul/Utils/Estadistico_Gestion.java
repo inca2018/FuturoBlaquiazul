@@ -16,12 +16,25 @@ public class Estadistico_Gestion {
     int Tiempo_Total;
 
     int Tiempo_Jugado;
+    int bloque_tiempo;
 
 
     int posesion_1erTiempo;
     int getPosesion_2doTiempo;
 
     int tiempo_actual;
+
+    int ZPG1;
+    int ZF1;
+    int ZR1;
+    int ZPG12;
+
+    int ZPG2;
+    int ZF2;
+    int ZR2;
+    int ZPG22;
+
+
 
     List<Persona> Nombres_Personas;
 
@@ -53,6 +66,77 @@ public class Estadistico_Gestion {
 
     }
 
+    public int getZPG1() {
+        return ZPG1;
+    }
+
+    public void setZPG1(int ZPG1) {
+        this.ZPG1 = ZPG1;
+    }
+
+    public int getZF1() {
+        return ZF1;
+    }
+
+    public void setZF1(int ZF1) {
+        this.ZF1 = ZF1;
+    }
+
+    public int getZR1() {
+        return ZR1;
+    }
+
+    public void setZR1(int ZR1) {
+        this.ZR1 = ZR1;
+    }
+
+    public int getZPG12() {
+        return ZPG12;
+    }
+
+    public void setZPG12(int ZPG12) {
+        this.ZPG12 = ZPG12;
+    }
+
+    public int getZPG2() {
+        return ZPG2;
+    }
+
+    public void setZPG2(int ZPG2) {
+        this.ZPG2 = ZPG2;
+    }
+
+    public int getZF2() {
+        return ZF2;
+    }
+
+    public void setZF2(int ZF2) {
+        this.ZF2 = ZF2;
+    }
+
+    public int getZR2() {
+        return ZR2;
+    }
+
+    public void setZR2(int ZR2) {
+        this.ZR2 = ZR2;
+    }
+
+    public int getZPG22() {
+        return ZPG22;
+    }
+
+    public void setZPG22(int ZPG22) {
+        this.ZPG22 = ZPG22;
+    }
+
+    public int getBloque_tiempo() {
+        return bloque_tiempo;
+    }
+
+    public void setBloque_tiempo(int bloque_tiempo) {
+        this.bloque_tiempo = bloque_tiempo;
+    }
 
     public int getTiempo_Adicional() {
         return Tiempo_Adicional;

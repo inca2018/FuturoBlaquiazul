@@ -1,18 +1,22 @@
 package org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.SystemClock;
+import android.provider.SyncStateContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -61,22 +65,26 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
     GridLayoutManager grid;
     LinearLayoutManager linearLayoutManager,linearLayoutManager2;
     AdapterCampoEstadistico adapterCampo;
-    AlertDialog da,primerT;
+    AlertDialog da,da2,da3,da4;
     AdapterInfoEquipo adapterInfoEquipo;
     Button opcion_Defenza_zona,opcion_zona_juego,opcion_informacion,opcion_leyenda;
     int valor1=0,valor2=0,valor3=0,valor4=0;
     int tiempo_fin;
     String fin;
-
     ImageView foto_opo;
     TextView nom_opo;
     TextView num_fecha;
     TextView actual_equipo;
 
-    int contador=0;
-    boolean cerrado=false;
+    int estado_partido=1;
+    boolean start;
+    boolean pause=false;
+    CardView accion_partido;
+    Button boton_partido;
+    long timeWhenStopped = 0;
 
-
+    String aviso1,aviso2;
+    String tiempo_total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +104,10 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
         nom_opo=findViewById(R.id.opo_nombre);
         num_fecha=findViewById(R.id.actual_nom_fecha);
         actual_equipo=findViewById(R.id.actual_equipo);
+
+        accion_partido=findViewById(R.id.accion_start);
+        boton_partido=findViewById(R.id.accion_button_start);
+
 
         if(FechaEstadistico.FECHA_ESTADISTICO_TEMP.getFecha_actual()!=null){
             Glide.with(context)
@@ -121,15 +133,34 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
          });
 
         Listar_Persona_Estadistico(context);
-        Gestion_Cronometro();
-
         Opcion_Leyenda();
         Opcion_Zona_de_Juego();
         Opcion_Informacion();
+        boton_partido.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                      switch (estado_partido){
+                          case 1:
+                              Partido_Start();
+                              break;
+                          case 2:
+                              if(pause){
+                                  Reanudar();
+                              }else{
+                                  Partido_Pause();
+                              }
+                              break;
+                          case 3:
+                               Continuar_Segundo_Tiempo();
+                              break;
+                          case 4:
+                              Toast.makeText(context, "Partido Finalizado!", Toast.LENGTH_SHORT).show();
+                              break;
+                      }
+            }
+        });
+
     }
-
-
-
     private void Generar_Listas_Campos() {
         List<Persona> TEMP_NOMBRES=new ArrayList<>();
 
@@ -228,6 +259,8 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
                                Estadistico_Gestion.LISTA_PERSONAS_INFO.get(i).getSegundoTiempo().setOpcionGol(og);
                                Estadistico_Gestion.LISTA_PERSONAS_INFO.get(i).getSegundoTiempo().setFaltas(f);
 
+
+
                            }
                        }
 
@@ -235,7 +268,6 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
             }
         });
     }
-
     private void Gestion_Cronometro() {
 
             Estadistico_Gestion.TEMP.setTiempo_actual(1);
@@ -245,27 +277,176 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
             cronometro.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
                 @Override
                 public void onChronometerTick(Chronometer chronometer) {
-                    tiempo_fin=Estadistico_Gestion.TEMP.getMinutos_x_tiempo();
+                    tiempo_fin=Estadistico_Gestion.TEMP.getBloque_tiempo();
                     if(tiempo_fin<10){
                         fin="0"+tiempo_fin;
                     }
                     long tiempoActual=SystemClock.elapsedRealtime()-cronometro.getBase();
                     int hours = (int) (tiempoActual / 3600000);
                     int minutes = (int) (tiempoActual - hours * 3600000) / 60000;
-                    Estadistico_Gestion.TEMP.setTiempo_actual(minutes);
+                    Estadistico_Gestion.TEMP.setTiempo_Jugado(minutes);
                     debug("TIEMPO ACTUAL: "+Estadistico_Gestion.TEMP.getTiempo_actual());
+                    debug("TIEMPO JUGADO  : "+Estadistico_Gestion.TEMP.getTiempo_Jugado());
+                    debug(" TIEMPO TOTAL : "+Estadistico_Gestion.TEMP.getTiempo_Total());
 
+                    //Primer Tiempo Finalizado
                     if(chronometer.getText().toString().trim().equalsIgnoreCase(fin.trim()+":00")){
                         cronometro.stop();
-                        Mostrar_Dialog();
+                        Mostrar_Dialog_Finalizado_Primer_Tiempo();
                     }
+
+                    //RECUPERAR TIEMPO DE AVISOS
+                    String primer_Aviso=String.valueOf(Estadistico_Gestion.TEMP.getPrimer_aviso());
+                    if(Estadistico_Gestion.TEMP.getPrimer_aviso()<10){
+                        aviso1="0"+primer_Aviso;
+                        debug("PRIMER AVISO IGUAL:"+aviso1);
+                    }else{
+                        aviso1=primer_Aviso;
+                        debug("PRIMER AVISO IGUAL:"+aviso1);
+                    }
+
+                    String segundo_Aviso=String.valueOf(Estadistico_Gestion.TEMP.getTiempo_Total()-1);
+                    Estadistico_Gestion.TEMP.setSegundo_aviso(Estadistico_Gestion.TEMP.getTiempo_Total()-1);
+                    if(Estadistico_Gestion.TEMP.getSegundo_aviso()<10){
+                        aviso2="0"+segundo_Aviso;
+                        debug("SEGUNDO AVISO IGUAL:"+aviso2);
+                    }else{
+                        aviso2=segundo_Aviso;
+                        debug("SEGUNDO AVISO IGUAL:"+aviso2);
+                    }
+                      //PRIMER AVISO
+                    if(chronometer.getText().toString().trim().equalsIgnoreCase(aviso1.trim()+":00")) {
+                        debug("PRIMER AVISO");
+                       Mostrar_Primer_Aviso();
+                    }
+                    //SEGUNDO AVISO
+                    if(chronometer.getText().toString().trim().equalsIgnoreCase(aviso2.trim()+":00")){
+                        debug("SEGUNDO AVISO");
+                        Mostrar_Segundo_Aviso();
+                    }
+
+                    //TIEMPO FINALIZADO
+                    int tt=Estadistico_Gestion.TEMP.getTiempo_Total();
+                    if(tt<10){
+                        tiempo_total="0"+tt;
+                    }else{
+                        tiempo_total=String.valueOf(tt);
+                    }
+
+                    if(chronometer.getText().toString().trim().equalsIgnoreCase(tiempo_total.trim()+":00")){
+                        cronometro.stop();
+                        if(da2!=null){
+                            da2.dismiss();
+                        }
+
+                        if(da3!=null){
+                            da3.dismiss();
+                        }
+
+                        final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+                        final View dialoglayout2 = inflater.inflate(R.layout.info_aviso, null);
+                        final android.app.AlertDialog.Builder builder4 = new android.app.AlertDialog.Builder(context);
+
+                        final TextView text=dialoglayout2.findViewById(R.id.texto_alerta);
+                        final Button bo=dialoglayout2.findViewById(R.id.boton_ok);
+                        final LinearLayout linear=dialoglayout2.findViewById(R.id.linear_adicional);
+
+                        builder4.setView(dialoglayout2);
+                        da4=builder4.show();
+
+                        linear.setVisibility(View.GONE);
+
+                        text.setText("Termino el Partido");
+                        bo.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Finalizar_Partido();
+                                da4.dismiss();
+                            }
+                        });
+                    }
+
+
                 }
             });
+    }
+    private void Mostrar_Segundo_Aviso() {
+        debug("ABRIR SEGUNDO AVISO");
+        if(da2!=null){
+            da2.dismiss();
+        }
+        final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+        final View dialoglayout2 = inflater.inflate(R.layout.info_aviso, null);
+        final android.app.AlertDialog.Builder builder4 = new android.app.AlertDialog.Builder(context);
 
+        final TextView text=dialoglayout2.findViewById(R.id.texto_alerta);
+        final Button bo=dialoglayout2.findViewById(R.id.boton_ok);
+        final TextView text_extra=dialoglayout2.findViewById(R.id.tiempo_Extra);
+        final LinearLayout linear=dialoglayout2.findViewById(R.id.linear_adicional);
+
+        builder4.setView(dialoglayout2);
+        builder4.setCancelable(false);
+        da3=builder4.show();
+
+        if(Estadistico_Gestion.TEMP.getTiempo_Adicional()!=0){
+            linear.setVisibility(View.GONE);
+        }else{
+            linear.setVisibility(View.VISIBLE);
+        }
+
+        text.setText("El Tiempo Terminara en 1 minuto");
+
+        bo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int tiempo_adicional=Integer.parseInt(text_extra.getText().toString());
+                Estadistico_Gestion.TEMP.setTiempo_Adicional(tiempo_adicional);
+
+                int total_nuevo=Estadistico_Gestion.TEMP.getTiempo_Total()+tiempo_adicional;
+                debug(" Total_Nuevo : "+total_nuevo);
+                Estadistico_Gestion.TEMP.setTiempo_Total(total_nuevo);
+
+                debug("CERRAR SEGUNDO AVISO");
+                da3.dismiss();
+            }
+        });
 
     }
+    private void Mostrar_Primer_Aviso() {
+        debug("ABRIR PRIMER AVISO");
+        final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+        final View dialoglayout2 = inflater.inflate(R.layout.info_aviso, null);
+        final android.app.AlertDialog.Builder builder4 = new android.app.AlertDialog.Builder(context);
 
-    private void Mostrar_Dialog() {
+        final TextView text=dialoglayout2.findViewById(R.id.texto_alerta);
+        final TextView text_extra=dialoglayout2.findViewById(R.id.tiempo_Extra);
+        final Button bo=dialoglayout2.findViewById(R.id.boton_ok);
+        final LinearLayout linear=dialoglayout2.findViewById(R.id.linear_adicional);
+
+        builder4.setView(dialoglayout2);
+        builder4.setCancelable(false);
+        da2=builder4.show();
+
+        text.setText("El Tiempo Terminara en 3 minutos");
+
+        bo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int  tiempo_Adicional=Integer.parseInt(text_extra.getText().toString());
+                Estadistico_Gestion.TEMP.setTiempo_Adicional(tiempo_Adicional);
+
+                int total_nuevo=Estadistico_Gestion.TEMP.getTiempo_Total()+tiempo_Adicional;
+                debug("TOTAL NUEVO PRIMER: "+total_nuevo);
+
+                Estadistico_Gestion.TEMP.setTiempo_Total(total_nuevo);
+
+
+                debug("CERRAR PRIMER AVISO");
+                da2.dismiss();
+            }
+        });
+    }
+    private void Mostrar_Dialog_Finalizado_Primer_Tiempo() {
 
         final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
         final View dialoglayout = inflater.inflate(R.layout.info_aviso, null);
@@ -277,175 +458,108 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
         final LinearLayout linear=dialoglayout.findViewById(R.id.linear_adicional);
 
         builder.setView(dialoglayout);
+        builder.setCancelable(false);
         da=builder.show();
         linear.setVisibility(View.GONE);
         text.setText("Termino el Primer Tiempo del Partido");
-        bo.setText("Continuar");
+        bo.setText("OK");
 
         bo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Estadistico_Gestion.TEMP.setMinutos_x_tiempo(0);
+                Partido_Stop();
                 da.dismiss();
-                CambiarSegundoTiempo();
             }
         });
     }
-
-    private void CambiarSegundoTiempo() {
-
-        debug("ENTRO A SEGUNDO TIEMPO");
-        Estadistico_Gestion.TEMP.setTiempo_actual(2);
-        long millis = Estadistico_Gestion.TEMP.getMinutos_x_tiempo()*60* 1000;
-        cronometro.setBase(SystemClock.elapsedRealtime()-millis);
-        cronometro.start();
-
-
-        long tiempoActual=SystemClock.elapsedRealtime()-cronometro.getBase();
-        int hours = (int) (tiempoActual / 3600000);
-        int minutes = (int) (tiempoActual - hours * 3600000) / 60000;
-        Estadistico_Gestion.TEMP.setTiempo_actual(minutes);
-
-        cronometro.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
-            @Override
-            public void onChronometerTick(Chronometer chronometer) {
-                String a1="";
-                String primer_Aviso=String.valueOf(Estadistico_Gestion.TEMP.getPrimer_aviso());
-
-                if(Estadistico_Gestion.TEMP.getPrimer_aviso()<10){
-                    a1="0"+primer_Aviso;
-                }else{
-                    a1=primer_Aviso;
-                }
-
-                String a2="";
-                String segundo_Aviso=String.valueOf(Estadistico_Gestion.TEMP.getSegundo_aviso());
-
-                if(Estadistico_Gestion.TEMP.getSegundo_aviso()<10){
-                    a1="0"+segundo_Aviso;
-                }else{
-                    a1=segundo_Aviso;
-                }
-
-
-                if(chronometer.getText().toString().trim().equalsIgnoreCase(a1.trim()+":00")) {
-
-                    debug("PRIMER AVISO");
-
-                    final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-                    final View dialoglayout2 = inflater.inflate(R.layout.info_aviso, null);
-                    final android.app.AlertDialog.Builder builder4 = new android.app.AlertDialog.Builder(context);
-
-                    final TextView text=dialoglayout2.findViewById(R.id.texto_alerta);
-                    final TextView text_extra=dialoglayout2.findViewById(R.id.tiempo_Extra);
-                    final Button bo=dialoglayout2.findViewById(R.id.boton_ok);
-                    final LinearLayout linear=dialoglayout2.findViewById(R.id.linear_adicional);
-
-                    builder4.setView(dialoglayout2);
-                    da=builder4.show();
-
-                    text.setText("El Tiempo Terminara en 3 minutos");
-
-                    Estadistico_Gestion.TEMP.setTiempo_Adicional(Integer.parseInt(text_extra.getText().toString()));
-                    int total_nuevo=Estadistico_Gestion.TEMP.getTiempo_Total()+Estadistico_Gestion.TEMP.getTiempo_Adicional();
-                    Estadistico_Gestion.TEMP.setTiempo_Total(total_nuevo);
-
-
-                    bo.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            da.dismiss();
-                        }
-                    });
-                }
-
-                if(chronometer.getText().toString().trim().equalsIgnoreCase(a2.trim()+":00")){
-                    //cronometro.stop();
-                    debug("SEGUNDO AVISO");
-
-                        final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-                        final View dialoglayout2 = inflater.inflate(R.layout.info_aviso, null);
-                        final android.app.AlertDialog.Builder builder4 = new android.app.AlertDialog.Builder(context);
-
-                        final TextView text=dialoglayout2.findViewById(R.id.texto_alerta);
-                        final Button bo=dialoglayout2.findViewById(R.id.boton_ok);
-                        final TextView text_extra=dialoglayout2.findViewById(R.id.tiempo_Extra);
-                        final LinearLayout linear=dialoglayout2.findViewById(R.id.linear_adicional);
-
-                        builder4.setView(dialoglayout2);
-                        da=builder4.show();
-
-                        if(Estadistico_Gestion.TEMP.getTiempo_Adicional()!=0){
-                             linear.setVisibility(View.GONE);
-                        }else{
-                            linear.setVisibility(View.VISIBLE);
-                            Estadistico_Gestion.TEMP.setTiempo_Adicional(Integer.parseInt(text_extra.getText().toString()));
-                            int total_nuevo=Estadistico_Gestion.TEMP.getTiempo_Total()+Estadistico_Gestion.TEMP.getTiempo_Adicional();
-                            Estadistico_Gestion.TEMP.setTiempo_Total(total_nuevo);
-                        }
-
-                        text.setText("El Tiempo Terminara en 1 minuto");
-
-                        bo.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-
-                                da.dismiss();
-                            }
-                        });
-
-                }
-
-                String tiempototal=String.valueOf(Estadistico_Gestion.TEMP.getTiempo_Total());
-                if(chronometer.getText().toString().trim().equalsIgnoreCase(tiempototal.trim()+":00")){
-                    cronometro.stop();
-
-
-                    final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-                    final View dialoglayout2 = inflater.inflate(R.layout.info_aviso, null);
-                    final android.app.AlertDialog.Builder builder4 = new android.app.AlertDialog.Builder(context);
-
-                    final TextView text=dialoglayout2.findViewById(R.id.texto_alerta);
-                    final Button bo=dialoglayout2.findViewById(R.id.boton_ok);
-
-                    builder4.setView(dialoglayout2);
-                    da=builder4.show();
-
-                    text.setText("Termino el Partido");
-                    bo.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            da.dismiss();
-                        }
-                    });
-                }
-
-            }
-        });
-    }
-
     private void Opcion_Informacion() {
     opcion_informacion.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 
-            final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-            final View dialoglayout2 = inflater.inflate(R.layout.opcion_informacion_estadistico, null);
-            final android.app.AlertDialog.Builder builder4 = new android.app.AlertDialog.Builder(context);
+            if(Estadistico_Gestion.TEMP.getTiempo_actual()==0){
+                Toast.makeText(context, "Inicia Partido!", Toast.LENGTH_SHORT).show();
+            }else{
 
-            RecyclerView recyclerView=dialoglayout2.findViewById(R.id.recycler_info_equipo);
-            builder4.setView(dialoglayout2);
-            da=builder4.show();
+                final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+                final View dialoglayout2 = inflater.inflate(R.layout.opcion_informacion_estadistico, null);
+                final android.app.AlertDialog.Builder builder4 = new android.app.AlertDialog.Builder(context);
+
+                RecyclerView recyclerView=dialoglayout2.findViewById(R.id.recycler_info_equipo);
+                builder4.setView(dialoglayout2);
+                da=builder4.show();
 
 
                 recyclerView.setAdapter(adapterInfoEquipo);
                 LinearLayoutManager xx=new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
                 recyclerView.setLayoutManager(xx);
 
+                Actualizar_Tiempo_Jugado(Estadistico_Gestion.TEMP.getTiempo_actual());
+
                 adapterInfoEquipo.notifyDataSetChanged();
-
-
+            }
         }
     });
+
+    }
+    private void Actualizar_Tiempo_Jugado(int d) {
+
+        if(d==1){
+            debug("ACTUALIZANDO TIEMPO JUEGADO DE PRIMER TIEMPO");
+            for(int i=0;i<Estadistico_Gestion.LISTA_PERSONAS_INFO.size();i++){
+                Estadistico_Gestion.LISTA_PERSONAS_INFO.get(i).getPrimerTiempo().setTiempo_Jugados(Estadistico_Gestion.TEMP.getTiempo_Jugado());
+                Calcular_Total(Estadistico_Gestion.LISTA_PERSONAS_INFO.get(i));
+            }
+
+            debug("TIEMPO JUGADO:" +Estadistico_Gestion.TEMP.getTiempo_Jugado());
+        }else if(d==2){
+            debug("ACTUALIZANDO TIEMPO JUEGADO DE PRIMER TIEMPO");
+            for(int i=0;i<Estadistico_Gestion.LISTA_PERSONAS_INFO.size();i++){
+                Estadistico_Gestion.LISTA_PERSONAS_INFO.get(i).getSegundoTiempo().setTiempo_Jugados(Estadistico_Gestion.TEMP.getTiempo_Jugado());
+                Calcular_Total2(Estadistico_Gestion.LISTA_PERSONAS_INFO.get(i));
+
+            }
+            debug("TIEMPO JUGADO:" +Estadistico_Gestion.TEMP.getTiempo_Jugado());
+        }
+
+
+    }
+    private void Calcular_Total2(PersonaEstadistico personaEstadistico) {
+
+        if(personaEstadistico.getSegundoTiempo().getTiempo_Jugados()==0){
+            personaEstadistico.getSegundoTiempo().setPuntajes(0);
+        }else{
+            //(5+(((ATJ+BR+G+OG+R+DR+PG)/7)-((OF+BP+OF+TA+TR)/5))+G)
+            int total=0;
+            int goles=personaEstadistico.getSegundoTiempo().getGoles();
+
+
+            int prom1=(personaEstadistico.getSegundoTiempo().getAtajadas()+personaEstadistico.getSegundoTiempo().getBalonRecuperado()+personaEstadistico.getSegundoTiempo().getGoles()+personaEstadistico.getSegundoTiempo().getRemate()+personaEstadistico.getSegundoTiempo().getDribling()+personaEstadistico.getSegundoTiempo().getPaseGol()/7);
+
+            int prom2=(personaEstadistico.getSegundoTiempo().getOfSide()+personaEstadistico.getSegundoTiempo().getBalonPerdido()+personaEstadistico.getSegundoTiempo().getFaltas()+personaEstadistico.getSegundoTiempo().getTarjetasAmarillas()+personaEstadistico.getSegundoTiempo().getTarjetasRojas())/5;
+            total=5+((prom1)-(prom2)) +goles;
+            personaEstadistico.getSegundoTiempo().setPuntajes(total);
+        }
+
+
+    }
+    private void Calcular_Total(PersonaEstadistico personaEstadistico) {
+
+        if(personaEstadistico.getPrimerTiempo().getTiempo_Jugados()==0){
+            personaEstadistico.getPrimerTiempo().setPuntajes(0);
+        }else{
+            int total=0;
+            int goles=personaEstadistico.getPrimerTiempo().getGoles();
+
+
+            int prom1=(personaEstadistico.getPrimerTiempo().getAtajadas()+personaEstadistico.getPrimerTiempo().getBalonRecuperado()+personaEstadistico.getPrimerTiempo().getGoles()+personaEstadistico.getPrimerTiempo().getRemate()+personaEstadistico.getPrimerTiempo().getDribling()+personaEstadistico.getPrimerTiempo().getPaseGol()/7);
+
+            int prom2=(personaEstadistico.getPrimerTiempo().getOfSide()+personaEstadistico.getPrimerTiempo().getBalonPerdido()+personaEstadistico.getPrimerTiempo().getFaltas()+personaEstadistico.getPrimerTiempo().getTarjetasAmarillas()+personaEstadistico.getPrimerTiempo().getTarjetasRojas())/5;
+            total=5+((prom1)-(prom2)) +goles;
+            personaEstadistico.getPrimerTiempo().setPuntajes(total);
+        }
+
     }
     private void Listar_Persona_Estadistico(final Context context) {
 
@@ -554,6 +668,12 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
        @Override
        public void onClick(View v) {
 
+           if(Estadistico_Gestion.TEMP.getTiempo_actual()==0){
+               Toast.makeText(context, "Inicie Partido para Mostrar!", Toast.LENGTH_SHORT).show();
+           }else{
+
+
+
            final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
            final View dialoglayout2 = inflater.inflate(R.layout.opcion_zona_juego, null);
            final android.app.AlertDialog.Builder builder4 = new android.app.AlertDialog.Builder(context);
@@ -578,6 +698,20 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
            opcion3_valor=dialoglayout2.findViewById(R.id.opcion3_valor);
            opcion4_valor=dialoglayout2.findViewById(R.id.opcion4_valor);
 
+           if(Estadistico_Gestion.TEMP.getTiempo_actual()==1){
+               opcion1_valor.setText(String.valueOf(Estadistico_Gestion.TEMP.getZPG1()));
+               opcion2_valor.setText(String.valueOf(Estadistico_Gestion.TEMP.getZF1()));
+               opcion3_valor.setText(String.valueOf(Estadistico_Gestion.TEMP.getZR1()));
+               opcion4_valor.setText(String.valueOf(Estadistico_Gestion.TEMP.getZPG1()));
+
+           }else if(Estadistico_Gestion.TEMP.getTiempo_actual()==2){
+               opcion1_valor.setText(String.valueOf(Estadistico_Gestion.TEMP.getZPG2()));
+               opcion2_valor.setText(String.valueOf(Estadistico_Gestion.TEMP.getZF2()));
+               opcion3_valor.setText(String.valueOf(Estadistico_Gestion.TEMP.getZR2()));
+               opcion4_valor.setText(String.valueOf(Estadistico_Gestion.TEMP.getZPG2()));
+           }
+
+
            opcion1_menos.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
@@ -585,6 +719,12 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
                    }else{
                        valor1=valor1-1;
                        opcion1_valor.setText(String.valueOf(valor1));
+
+                       if(Estadistico_Gestion.TEMP.getTiempo_actual()==1){
+                           Estadistico_Gestion.TEMP.setZPG1(valor1);
+                       }else{
+                           Estadistico_Gestion.TEMP.setZPG2(valor1);
+                       }
                    }
                }
            });
@@ -594,6 +734,12 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
                public void onClick(View v) {
                       valor1=valor1+1;
                      opcion1_valor.setText(String.valueOf(valor1));
+
+                   if(Estadistico_Gestion.TEMP.getTiempo_actual()==1){
+                       Estadistico_Gestion.TEMP.setZPG1(valor1);
+                   }else{
+                       Estadistico_Gestion.TEMP.setZPG2(valor1);
+                   }
                }
            });
 
@@ -605,6 +751,12 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
                    }else{
                        valor2=valor2-1;
                        opcion2_valor.setText(String.valueOf(valor2));
+
+                       if(Estadistico_Gestion.TEMP.getTiempo_actual()==1){
+                           Estadistico_Gestion.TEMP.setZF1(valor2);
+                       }else{
+                           Estadistico_Gestion.TEMP.setZF2(valor2);
+                       }
                    }
                }
            });
@@ -613,6 +765,12 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
                public void onClick(View v) {
                    valor2=valor2+1;
                    opcion2_valor.setText(String.valueOf(valor2));
+
+                   if(Estadistico_Gestion.TEMP.getTiempo_actual()==1){
+                       Estadistico_Gestion.TEMP.setZF1(valor2);
+                   }else{
+                       Estadistico_Gestion.TEMP.setZF2(valor2);
+                   }
                }
            });
 
@@ -624,6 +782,12 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
                    }else{
                        valor3=valor3-1;
                        opcion3_valor.setText(String.valueOf(valor3));
+
+                       if(Estadistico_Gestion.TEMP.getTiempo_actual()==1){
+                           Estadistico_Gestion.TEMP.setZR1(valor3);
+                       }else{
+                           Estadistico_Gestion.TEMP.setZR2(valor3);
+                       }
                    }
                }
            });
@@ -632,6 +796,12 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
                public void onClick(View v) {
                    valor3=valor3+1;
                    opcion3_valor.setText(String.valueOf(valor3));
+
+                   if(Estadistico_Gestion.TEMP.getTiempo_actual()==1){
+                       Estadistico_Gestion.TEMP.setZR1(valor3);
+                   }else{
+                       Estadistico_Gestion.TEMP.setZR2(valor3);
+                   }
                }
            });
 
@@ -643,6 +813,12 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
                    }else{
                        valor4=valor4-1;
                        opcion4_valor.setText(String.valueOf(valor4));
+
+                       if(Estadistico_Gestion.TEMP.getTiempo_actual()==1){
+                           Estadistico_Gestion.TEMP.setZPG12(valor4);
+                       }else{
+                           Estadistico_Gestion.TEMP.setZPG22(valor4);
+                       }
                    }
                }
            });
@@ -651,11 +827,17 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
                public void onClick(View v) {
                    valor4=valor4+1;
                    opcion4_valor.setText(String.valueOf(valor4));
+
+                   if(Estadistico_Gestion.TEMP.getTiempo_actual()==1){
+                       Estadistico_Gestion.TEMP.setZPG12(valor4);
+                   }else{
+                       Estadistico_Gestion.TEMP.setZPG22(valor4);
+                   }
                }
            });
 
 
-
+           }
        }
    });
 
@@ -677,8 +859,6 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
         }
     });
     }
-
-
     private void recyclercampoooo() {
 
         grid = new GridLayoutManager(this,24);
@@ -765,11 +945,66 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
         CampoEstadistico temp =new CampoEstadistico(estado,null,null,1,alt2,anc2,R.drawable.layout_border,"");
         CampoEstadistico.LISTACAMPOESTADISTICO.add(temp);
     }
-
     public void debug(String sm){
         System.out.println(sm);
     }
+    public void Partido_Start(){
+        accion_partido.setCardBackgroundColor(getResources().getColor(R.color.deep_naranja400));
+        boton_partido.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_pause, 0, 0, 0);
+        boton_partido.setText("PAUSE");
+        estado_partido=2;
+        start=true;
+        Gestion_Cronometro();
+    }
+    public void Partido_Pause(){
+        debug("PAUSAR");
+        accion_partido.setCardBackgroundColor(getResources().getColor(R.color.deep_naranja400));
+        boton_partido.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_stop, 0, 0, 0);
+        boton_partido.setText("REANUDAR");
 
+        timeWhenStopped = cronometro.getBase() - SystemClock.elapsedRealtime();
+        cronometro.stop();
+        pause=true;
+    }
+    private void Reanudar() {
+        debug("REANUDAR");
+        accion_partido.setCardBackgroundColor(getResources().getColor(R.color.deep_naranja400));
+        boton_partido.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_pause, 0, 0, 0);
+        boton_partido.setText("PAUSE");
+
+        cronometro.setBase(SystemClock.elapsedRealtime() + timeWhenStopped);
+        cronometro.start();
+        timeWhenStopped = 0;
+        pause=false;
+    }
+    public void Partido_Stop(){
+        accion_partido.setCardBackgroundColor(getResources().getColor(R.color.red));
+        boton_partido.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_stop, 0, 0, 0);
+        boton_partido.setText("STOP");
+        estado_partido=3;
+        timeWhenStopped = cronometro.getBase() - SystemClock.elapsedRealtime();
+        cronometro.stop();
+    }
+    private void Continuar_Segundo_Tiempo() {
+        Estadistico_Gestion.TEMP.setTiempo_actual(2);
+        Estadistico_Gestion.TEMP.setBloque_tiempo(0);
+        estado_partido=2;
+
+        accion_partido.setCardBackgroundColor(getResources().getColor(R.color.deep_naranja400));
+        boton_partido.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_pause, 0, 0, 0);
+        boton_partido.setText("PAUSE");
+
+        cronometro.setBase(SystemClock.elapsedRealtime() + timeWhenStopped);
+        cronometro.start();
+        timeWhenStopped = 0;
+
+    }
+    private void Finalizar_Partido() {
+        accion_partido.setCardBackgroundColor(getResources().getColor(R.color.red));
+        boton_partido.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_stop, 0, 0, 0);
+        estado_partido=4;
+
+    }
     public void onBackPressed() {
 
         final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);

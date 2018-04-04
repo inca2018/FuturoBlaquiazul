@@ -125,7 +125,9 @@
         <activity
             android:name=".Activities.Estadistico.DefinirFormacionActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".Activities.Estadistico.GestionFechaEstadisticoActivity" />
+        <activity
+            android:name=".Activities.Estadistico.GestionFechaEstadisticoActivity"
+            android:screenOrientation="landscape" />
         <activity android:name=".Activities.Estadistico.DefinirTiemposActivity" />
         <activity android:name=".Activities.Mantenimientos.MantenimientoUsuarioActivity" />
         <activity
@@ -167,7 +169,8 @@
             android:screenOrientation="landscape" />
         <activity android:name=".Activities.Mantenimientos.MantenimientoEquipoActivity" />
         <activity android:name=".Activities.Mantenimientos.EdicionEquipoActivity" />
-        <activity android:name=".Activities.Mantenimientos.EquipoJugadoresActivity"></activity>
+        <activity android:name=".Activities.Mantenimientos.EquipoJugadoresActivity" />
+        <activity android:name=".Activities.Estadistico.InformacionFechaActivity"></activity>
     </application>
 
 </manifest>

@@ -41,6 +41,7 @@ public class DefinirTiemposActivity extends AppCompatActivity {
                           }else{
 
                               Estadistico_Gestion.TEMP.setMinutos_x_tiempo(num);
+                              Estadistico_Gestion.TEMP.setBloque_tiempo(num);
                               Estadistico_Gestion.TEMP.setTiempo_Total(num*2);
 
                               int Aviso1=Estadistico_Gestion.TEMP.getTiempo_Total()-2;
@@ -50,6 +51,17 @@ public class DefinirTiemposActivity extends AppCompatActivity {
 
                               Estadistico_Gestion.TEMP.setTiempo_Adicional(0);
                               Estadistico_Gestion.TEMP.setTiempo_actual(0);
+                              Estadistico_Gestion.TEMP.setTiempo_Jugado(0);
+
+                              Estadistico_Gestion.TEMP.setZPG1(0);
+                              Estadistico_Gestion.TEMP.setZF1(0);
+                              Estadistico_Gestion.TEMP.setZR1(0);
+                              Estadistico_Gestion.TEMP.setZPG12(0);
+
+                              Estadistico_Gestion.TEMP.setZPG2(0);
+                              Estadistico_Gestion.TEMP.setZF2(0);
+                              Estadistico_Gestion.TEMP.setZR2(0);
+                              Estadistico_Gestion.TEMP.setZPG22(0);
 
                               Intent intent = new Intent(context, GestionFechaEstadisticoActivity.class);
                               intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

@@ -1,0 +1,849 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.InformacionFechaActivity">
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/panel_detalle_fecha"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:elevation="5dp"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="4dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="ESTADISTICA DEL PARTIDO"
+                        android:textColor="@color/blue"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:src="@mipmap/logo" />
+
+                        <TextView
+                            android:id="@+id/score"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="0 - 0"
+
+                            android:textColor="@color/negro"
+                            android:textSize="40dp" />
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:src="@mipmap/logo" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="2dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="Evento:"
+                                android:textColor="@color/negro"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/nombre_evento"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text=""
+                                android:textColor="@color/negro"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="2dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="Equipo:"
+                                android:textColor="@color/negro"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/nombre_equipo"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text=""
+                                android:textColor="@color/negro"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="2dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text="Rival:"
+                                android:textColor="@color/negro"
+                                android:textSize="10sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/nombre_Rival"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:text=""
+                                android:textColor="@color/negro"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:elevation="5dp"
+                    app:cardBackgroundColor="@color/blanco"
+                    app:cardCornerRadius="10sp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginBottom="2dp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginTop="8dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/rect_text"
+                                android:gravity="center"
+                                android:text="Jugadores"
+                                android:textSize="8sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4"
+                                android:background="@drawable/rect_text"
+                                android:gravity="center"
+                                android:text="Puntos"
+                                android:textSize="10dp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <android.support.v7.widget.RecyclerView
+                            android:id="@+id/recycler_detalle_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="4dp">
+
+                        </android.support.v7.widget.RecyclerView>
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="1"
+                    android:elevation="5dp"
+                    app:cardBackgroundColor="@color/blanco"
+                    app:cardCornerRadius="10sp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="2dp"
+                            android:gravity="center"
+                            android:text="DETALLES:"
+                            android:textColor="@color/negro"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4"
+                                android:gravity="center"
+                                android:text="%Posicion Efectiva"
+                                android:textColor="@color/negro"
+                                android:textSize="10sp" />
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:layout_weight="8"
+                                android:src="@mipmap/icon_info" />
+
+                            <TextView
+                                android:id="@+id/resu1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="8"
+                                android:gravity="center"
+                                android:text="0"
+                                android:textColor="@color/negro"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4"
+                                android:gravity="center"
+                                android:text="# Goles"
+                                android:textColor="@color/negro"
+                                android:textSize="10sp" />
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:layout_weight="8"
+                                android:src="@mipmap/icon_info" />
+
+                            <TextView
+                                android:id="@+id/resu2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="8"
+                                android:gravity="center"
+                                android:text="0"
+                                android:textColor="@color/negro"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4"
+                                android:gravity="center"
+                                android:text="Opciones de Gol"
+                                android:textColor="@color/negro"
+                                android:textSize="10sp" />
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:layout_weight="8"
+                                android:src="@mipmap/icon_info" />
+
+                            <TextView
+                                android:id="@+id/resu3"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="8"
+                                android:gravity="center"
+                                android:text="0"
+                                android:textColor="@color/negro"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4"
+                                android:gravity="center"
+                                android:text="Remates al Arco"
+                                android:textColor="@color/negro"
+                                android:textSize="10sp" />
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:layout_weight="8"
+                                android:src="@mipmap/icon_info" />
+
+                            <TextView
+                                android:id="@+id/resu4"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="8"
+                                android:gravity="center"
+                                android:text="0"
+                                android:textColor="@color/negro"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4"
+                                android:gravity="center"
+                                android:text="Efectividad Ofensiva"
+                                android:textColor="@color/negro"
+                                android:textSize="10sp" />
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:layout_weight="8"
+                                android:src="@mipmap/icon_info" />
+
+                            <TextView
+                                android:id="@+id/resu5"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="8"
+                                android:gravity="center"
+                                android:text="0"
+                                android:textColor="@color/negro"
+                                android:textSize="10sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4"
+                                android:gravity="center"
+                                android:text="# OFF SIDES"
+                                android:textColor="@color/negro"
+                                android:textSize="10sp" />
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:layout_weight="8"
+                                android:src="@mipmap/icon_info" />
+
+                            <TextView
+                                android:id="@+id/resu6"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="8"
+                                android:gravity="center"
+                                android:text="0"
+                                android:textColor="@color/negro"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4"
+                                android:gravity="center"
+                                android:text="Faltas Cometidas"
+                                android:textColor="@color/negro"
+                                android:textSize="10sp" />
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:layout_weight="8"
+                                android:src="@mipmap/icon_info" />
+
+                            <TextView
+                                android:id="@+id/resu7"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="8"
+                                android:gravity="center"
+                                android:text="0"
+                                android:textColor="@color/negro"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4"
+                                android:gravity="center"
+                                android:text="Tarjetas Amarillas"
+                                android:textColor="@color/negro"
+                                android:textSize="10sp" />
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:layout_weight="8"
+                                android:src="@mipmap/icon_info" />
+
+                            <TextView
+                                android:id="@+id/resu8"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="8"
+                                android:gravity="center"
+                                android:text="0"
+                                android:textColor="@color/negro"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4"
+                                android:gravity="center"
+                                android:text="Tarjetas Rojas"
+                                android:textColor="@color/negro"
+                                android:textSize="10sp" />
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="1dp"
+                                android:layout_weight="8"
+                                android:src="@mipmap/icon_info" />
+
+                            <TextView
+                                android:id="@+id/resu9"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="8"
+                                android:gravity="center"
+                                android:text="0"
+                                android:textColor="@color/negro"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:text="DEFENSAS ZONALES (LADO DÉBIL)"/>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/campo_borde">
+                    <TextView
+                        android:id="@+id/v1"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:text="0"
+                        android:gravity="center"
+
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/v2"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="0"
+                            android:background="@drawable/campo_borde"/>
+                        <TextView
+                            android:id="@+id/v3"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="0"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text=""
+                            />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/v4"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:text="0"
+                        android:gravity="center"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/campo_borde">
+                    <TextView
+                        android:id="@+id/vv1"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:text="0"
+                        android:gravity="center"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:id="@+id/vv2"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="0"
+                            android:background="@drawable/campo_borde"/>
+                        <TextView
+                            android:id="@+id/vv3"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="0"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text=""
+                            />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/vv4"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:text="0"
+                        android:gravity="center"
+                        />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textColor="@color/negro"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:text="1 ER TIEMPO"
+                    android:textSize="20sp"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_margin="10dp"
+                    android:textColor="@color/negro"
+                    android:textStyle="bold"
+                    android:text="2 DO TIEMPO"
+                    android:textSize="20sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text=" A mayor y/o oscuridad de color  representa  las zonas débiles o las zonas donde el rival progreso"
+                    android:textColor="@color/negro"
+                    android:textStyle="italic"
+                    android:layout_margin="10dp"/>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:text="PROFUNDIDAD (LADO FUERTE)"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/campo_borde">
+                    <TextView
+                        android:id="@+id/mm1"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:text="0"
+                        android:gravity="center"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text=""
+                            />
+                        <TextView
+                            android:id="@+id/mm3"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="0"
+                            />
+                        <TextView
+                            android:id="@+id/mm2"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="0"
+                            android:background="@drawable/campo_borde"
+                            />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/mm4"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:text="0"
+                        android:gravity="center"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_margin="8dp"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:text=" A mayor y/o oscuridad de color  representa  las zonas débiles o las zonas donde el rival progreso"
+                        android:textColor="@color/negro"
+                        android:textStyle="italic"
+                        android:layout_margin="10dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

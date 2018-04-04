@@ -246,25 +246,27 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                android:visibility="gone">
 
                                 <TextView
                                     android:id="@+id/texto_ubigeo_barrio"
+                                    style="@style/titulo2"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    style="@style/titulo2"
-                                    android:text=""
-                                    android:textSize="12dp"
                                     android:layout_weight="1"
                                     android:gravity="center"
-                                    android:textStyle="italic"/>
+                                    android:text=""
+                                    android:textSize="12dp"
+                                    android:textStyle="italic" />
+
                                 <ImageView
                                     android:id="@+id/icon_ubigeo_barrio"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="3"
                                     android:src="@mipmap/icon_next"
-                                    android:tint="@color/blue"/>
+                                    android:tint="@color/blue" />
 
 
                             </LinearLayout>
