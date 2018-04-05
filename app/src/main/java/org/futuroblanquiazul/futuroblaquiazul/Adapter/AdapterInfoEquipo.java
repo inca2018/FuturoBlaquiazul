@@ -88,8 +88,8 @@ public class AdapterInfoEquipo extends RecyclerView.Adapter<AdapterInfoEquipo.Vi
             holder.o14.setText(String.valueOf(my_Data.get(position).getPrimerTiempo().getTarjetasAmarillas()+my_Data.get(position).getSegundoTiempo().getTarjetasAmarillas()));
             holder.o15.setText(String.valueOf(my_Data.get(position).getPrimerTiempo().getTarjetasRojas()+my_Data.get(position).getSegundoTiempo().getTarjetasRojas()));
             holder.o16.setText(String.valueOf(my_Data.get(position).getPrimerTiempo().getAtajadas()+my_Data.get(position).getSegundoTiempo().getAtajadas()));
-            holder.o17.setText(String.valueOf(my_Data.get(position).getPrimerTiempo().getTiempo_Jugados()+my_Data.get(position).getSegundoTiempo().getTiempo_Jugados()));
-            holder.o18.setText(String.valueOf(my_Data.get(position).getPrimerTiempo().getPuntajes()+my_Data.get(position).getSegundoTiempo().getPuntajes()));
+            holder.o17.setText(String.valueOf(my_Data.get(position).getTiempo_jugado()));
+            holder.o18.setText(String.valueOf(my_Data.get(position).getTotal_Puntos()));
     }
 
     @Override

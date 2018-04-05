@@ -6,6 +6,7 @@ import java.util.List;
 
 public class CampoEstadistico {
     int cod;
+    int sector;
     OpcionEstadistico Opcion;
     Persona persona;
     int estado;
@@ -15,8 +16,9 @@ public class CampoEstadistico {
     String Dato;
 
     public static final List<CampoEstadistico> LISTACAMPOESTADISTICO=new ArrayList<CampoEstadistico>();
-    public CampoEstadistico(int cod, OpcionEstadistico opcion, Persona persona, int estado, int altura, int ancho, int drawable, String dato) {
+    public CampoEstadistico(int cod,int sector, OpcionEstadistico opcion, Persona persona, int estado, int altura, int ancho, int drawable, String dato) {
         this.cod = cod;
+        this.sector=sector;
         Opcion = opcion;
         this.persona = persona;
         this.estado = estado;
@@ -26,6 +28,15 @@ public class CampoEstadistico {
         Dato = dato;
 
     }
+
+    public int getSector() {
+        return sector;
+    }
+
+    public void setSector(int sector) {
+        this.sector = sector;
+    }
+
     public int getDrawable() {
         return Drawable;
     }

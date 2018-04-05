@@ -1,4 +1,6 @@
 package org.futuroblanquiazul.futuroblaquiazul.Utils;
+import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterPersonaCambio;
+import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterPersonaCambio2;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.PersonaEstadistico;
 import org.futuroblanquiazul.futuroblaquiazul.R;
@@ -35,13 +37,32 @@ public class Estadistico_Gestion {
     int ZPG22;
 
 
+    int minutos_jugados;
+    int segundos_jugados;
+    int estado_partido;
+
+
+
+    PersonaEstadistico Titular_Cambio;
+    PersonaEstadistico Suplente_Cambio;
+
+
 
     List<Persona> Nombres_Personas;
+
 
     public static final List<RecursoEstadisticoRadioButton> RADIOS =new ArrayList<>();
 
 
-    public static final List<PersonaEstadistico> LISTA_PERSONAS_INFO=new ArrayList<>();
+    public static final List<PersonaEstadistico> LISTA_PERSONAS_TODO =new ArrayList<>();
+    public static final List<PersonaEstadistico> LISTA_PERSONAS_SUPLENTES=new ArrayList<>();
+    public static final List<PersonaEstadistico> LISTA_PERSONAS_TITULARES=new ArrayList<>();
+    public static AdapterPersonaCambio ADAPTER_TITULARES=null;
+    public static AdapterPersonaCambio2 ADAPTER_SUPLENTES=null;
+
+    public static final List<String> LISTA_LINEA_TIEMPO=new ArrayList<>();
+
+
 
 
     public static final Estadistico_Gestion TEMP=new Estadistico_Gestion();
@@ -64,6 +85,47 @@ public class Estadistico_Gestion {
     }
     public Estadistico_Gestion(){
 
+    }
+
+
+    public int getEstado_partido() {
+        return estado_partido;
+    }
+
+    public void setEstado_partido(int estado_partido) {
+        this.estado_partido = estado_partido;
+    }
+
+    public int getMinutos_jugados() {
+        return minutos_jugados;
+    }
+
+    public void setMinutos_jugados(int minutos_jugados) {
+        this.minutos_jugados = minutos_jugados;
+    }
+
+    public int getSegundos_jugados() {
+        return segundos_jugados;
+    }
+
+    public void setSegundos_jugados(int segundos_jugados) {
+        this.segundos_jugados = segundos_jugados;
+    }
+
+    public PersonaEstadistico getTitular_Cambio() {
+        return Titular_Cambio;
+    }
+
+    public void setTitular_Cambio(PersonaEstadistico titular_Cambio) {
+        Titular_Cambio = titular_Cambio;
+    }
+
+    public PersonaEstadistico getSuplente_Cambio() {
+        return Suplente_Cambio;
+    }
+
+    public void setSuplente_Cambio(PersonaEstadistico suplente_Cambio) {
+        Suplente_Cambio = suplente_Cambio;
     }
 
     public int getZPG1() {

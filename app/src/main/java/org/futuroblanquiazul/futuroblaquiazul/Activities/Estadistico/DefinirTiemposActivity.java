@@ -63,6 +63,8 @@ public class DefinirTiemposActivity extends AppCompatActivity {
                               Estadistico_Gestion.TEMP.setZR2(0);
                               Estadistico_Gestion.TEMP.setZPG22(0);
 
+                              Estadistico_Gestion.TEMP.setEstado_partido(1);
+
                               Intent intent = new Intent(context, GestionFechaEstadisticoActivity.class);
                               intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                               context.startActivity(intent);

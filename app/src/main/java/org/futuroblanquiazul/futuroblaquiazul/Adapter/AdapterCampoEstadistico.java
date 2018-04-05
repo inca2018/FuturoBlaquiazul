@@ -2,6 +2,7 @@ package org.futuroblanquiazul.futuroblaquiazul.Adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Debug;
 import android.provider.MediaStore;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -59,12 +61,14 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
 
     public  class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         Button btn;
+        FrameLayout base;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             itemView.setOnClickListener(this);
-                  btn=itemView.findViewById(R.id.card_campos_boton_estadistico);
+            btn=itemView.findViewById(R.id.card_campos_boton_estadistico);
+            base=itemView.findViewById(R.id.base_frame2);
 
 
         }
@@ -86,70 +90,140 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
          if(my_Data.get(position).getOpcion()!=null){
              holder.btn.setText(my_Data.get(position).getOpcion().getOpcion());
              holder.btn.setTextColor(context.getResources().getColor(R.color.blanco));
+
+
+             switch (my_Data.get(position).getOpcion().getOpcion()){
+                 case "PG":
+                     holder.base.setBackgroundColor(context.getResources().getColor(R.color.deep_naranja400));
+                     break;
+                 case "DR":
+                     holder.base.setBackgroundColor(context.getResources().getColor(R.color.deep_naranja400));
+                     break;
+                 case "OG":
+                     holder.base.setBackgroundColor(context.getResources().getColor(R.color.deep_naranja400));
+                     break;
+                 case "R":
+                     holder.base.setBackgroundColor(context.getResources().getColor(R.color.deep_naranja400));
+                     break;
+                 case "G":
+                     holder.base.setBackgroundColor(context.getResources().getColor(R.color.deep_naranja400));
+                     break;
+                 case "OF":
+                     holder.base.setBackgroundColor(context.getResources().getColor(R.color.deep_naranja400));
+                     break;
+                 case "BP":
+                     holder.base.setBackgroundColor(context.getResources().getColor(R.color.deep_naranja400));
+                     break;
+                 case "BR":
+                     holder.base.setBackgroundColor(context.getResources().getColor(R.color.card));
+                     break;
+                 case "F":
+                     holder.base.setBackgroundColor(context.getResources().getColor(R.color.card));
+                     break;
+                 case "TA":
+                     holder.base.setBackgroundColor(context.getResources().getColor(R.color.amarillo));
+                     break;
+                 case "TR":
+                     holder.base.setBackgroundColor(context.getResources().getColor(R.color.red));
+                     break;
+                 case "ATJ":
+                     holder.base.setBackgroundColor(context.getResources().getColor(R.color.card));
+                     break;
+
+                 default:
+                     holder.base.setBackgroundColor(Color.TRANSPARENT);
+
+             }
          }
          holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-                final View dialoglayout4 = inflater.inflate(R.layout.gestion_campo_estadistico, null);
 
-                final Spinner spinner_personas= dialoglayout4.findViewById(R.id.card_campoesta_personas);
-                final Button boton_guardar= dialoglayout4.findViewById(R.id.card_campoesta_boton);
+                if(Estadistico_Gestion.TEMP.getEstado_partido()==4){
+                    Toast.makeText(context, "Partido Finalizado", Toast.LENGTH_SHORT).show();
+                }else{
+                    if(Estadistico_Gestion.TEMP.getTiempo_actual()==0){
+                        Toast.makeText(context, "Iniciar Partido", Toast.LENGTH_SHORT).show();
+                    }else{
+                        final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+                        final View dialoglayout4 = inflater.inflate(R.layout.gestion_campo_estadistico, null);
 
-                Recuperar_Radios(dialoglayout4);
+                        final Spinner spinner_personas= dialoglayout4.findViewById(R.id.card_campoesta_personas);
+                        final Button boton_guardar= dialoglayout4.findViewById(R.id.card_campoesta_boton);
 
-                final AlertDialog.Builder builder4 = new AlertDialog.Builder(context);
-                builder4.setView(dialoglayout4);
-                da=builder4.show();
+                        Recuperar_Radios(dialoglayout4);
+
+                        final AlertDialog.Builder builder4 = new AlertDialog.Builder(context);
+                        builder4.setView(dialoglayout4);
+                        da=builder4.show();
 
 
-                Listar_Nombres_Jugador(spinner_personas,position);
+                        Listar_Nombres_Jugador(spinner_personas,position);
 
-                boton_guardar.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
+                        boton_guardar.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
 
-                            if(spinner_personas.getSelectedItemPosition()==0){
-                                Toast.makeText(context,"Seleccione un Jugador",Toast.LENGTH_SHORT).show();
-                            }else{
-                                 if(Buscar_Seleccion()){
-                                     Persona persona=Encontrar_Persona(spinner_personas.getSelectedItem());
-                                     if(persona!=null){
-                                         my_Data.get(position).setPersona(persona);
-                                         System.out.println("Persona Seleccionada:"+ persona.getId());
+                                if(spinner_personas.getSelectedItemPosition()==0){
 
-                                         RecursoEstadisticoRadioButton campo=Encontrar_Opcion();
-                                         if(campo!=null){
-                                             OpcionEstadistico O=new OpcionEstadistico();
-                                             O.setCodigo(campo.getEstado());
-                                             O.setOpcion(campo.getDesc());
-                                             my_Data.get(position).setOpcion(O);
+                                    Toast.makeText(context,"Seleccione un Jugador",Toast.LENGTH_SHORT).show();
+                                }else{
+                                    if(Buscar_Seleccion()){
+                                        Persona persona=Encontrar_Persona(spinner_personas.getSelectedItem());
+                                        if(persona!=null){
+                                            my_Data.get(position).setPersona(persona);
+                                            System.out.println("Persona Seleccionada:"+ persona.getId());
 
-                                             System.out.println("Opcion Seleccionada CODIGO:"+ O.getCodigo()+" OPCION:"+O.getOpcion());
+                                            RecursoEstadisticoRadioButton campo=Encontrar_Opcion();
+                                            if(campo!=null){
+                                                OpcionEstadistico O=new OpcionEstadistico();
+                                                O.setCodigo(campo.getEstado());
+                                                O.setOpcion(campo.getDesc());
+                                                my_Data.get(position).setOpcion(O);
 
-                                             notifyDataSetChanged();
-                                             da.dismiss();
+                                                System.out.println("Opcion Seleccionada CODIGO:"+ O.getCodigo()+" OPCION:"+O.getOpcion());
 
-                                         }else{
-                                             Toast.makeText(context, "Error al Recuperar Opcion", Toast.LENGTH_SHORT).show();
-                                         }
-                                     }else{
-                                         Toast.makeText(context, "Error al Recuperar Jugador", Toast.LENGTH_SHORT).show();
-                                     }
+                                                notifyDataSetChanged();
 
-                                 }else{
-                                     Toast.makeText(context, "Seleccione una Opcion", Toast.LENGTH_SHORT).show();
-                                 }
+                                                Limpiar_Check();
+
+                                                da.dismiss();
+
+                                            }else{
+                                                Toast.makeText(context, "Error al Recuperar Opcion", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else{
+                                            Toast.makeText(context, "Error al Recuperar Jugador", Toast.LENGTH_SHORT).show();
+                                        }
+
+                                    }else{
+                                        Toast.makeText(context, "Seleccione una Opcion", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
                             }
+                        });
+
+
+                        Evento_click_Radios();
+
                     }
-                });
+                }
 
 
-                Evento_click_Radios();
 
             }
         });
     }
+
+    private void Limpiar_Check() {
+
+        for(int i=0;i<Estadistico_Gestion.RADIOS.size();i++){
+                Estadistico_Gestion.RADIOS.get(i).setEstado(1);
+                Estadistico_Gestion.RADIOS.get(i).getRadioButton().setChecked(false);
+        }
+
+    }
+
     private Persona Encontrar_Persona(Object selectedItem) {
        Persona p=null;
        String persona_sele=String.valueOf(selectedItem);
@@ -161,6 +235,7 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
             }
         }
        return  p;
+
     }
     private RecursoEstadisticoRadioButton Encontrar_Opcion() {
         RecursoEstadisticoRadioButton d=null;
@@ -172,6 +247,7 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
 
         return  d;
     }
+
     private void Listar_Nombres_Jugador(Spinner spinner_personas, int position) {
         String [] lista_bases_jugadores=new String[Estadistico_Gestion.TEMP.getNombres_Personas().size()+1];
         lista_bases_jugadores[0]="-- SELECCIONE --";
@@ -181,6 +257,7 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
         }
         ArrayAdapter<String> adapter_arr=new ArrayAdapter<String>(context,android.R.layout.simple_spinner_dropdown_item,lista_bases_jugadores);
         spinner_personas.setAdapter(adapter_arr);
+
     }
     private boolean Buscar_Seleccion() {
       boolean t=false;

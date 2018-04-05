@@ -86,12 +86,30 @@ public class Persona {
     int mes_nacimiento;
     int dia_nacimiento;
 
+    boolean activo;
+    int titular;
+
 
 
     public Persona(){
 
     }
 
+    public int getTitular() {
+        return titular;
+    }
+
+    public void setTitular(int titular) {
+        this.titular = titular;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
 
     public String getFecha_registro() {
         return Fecha_registro;
