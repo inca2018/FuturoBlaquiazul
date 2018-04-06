@@ -39,15 +39,26 @@ public class DefinirTiemposActivity extends AppCompatActivity {
                           if(num>45){
                               Toast.makeText(DefinirTiemposActivity.this, "El tiempo Maximo por Fase es de 45 Minutos", Toast.LENGTH_SHORT).show();
                           }else{
+                              Estadistico_Gestion.TEMP.setTotal_primer_tiempo(num);
+                              Estadistico_Gestion.TEMP.setTotal_segundo_tiempo(num*2);
 
                               Estadistico_Gestion.TEMP.setMinutos_x_tiempo(num);
                               Estadistico_Gestion.TEMP.setBloque_tiempo(num);
-                              Estadistico_Gestion.TEMP.setTiempo_Total(num*2);
+                              Estadistico_Gestion.TEMP.setTiempo_Total(num);
+                              Estadistico_Gestion.TEMP.setTiempo_Total2(num);
 
-                              int Aviso1=Estadistico_Gestion.TEMP.getTiempo_Total()-2;
+                              int Aviso1=Estadistico_Gestion.TEMP.getTotal_primer_tiempo()-3;
                               Estadistico_Gestion.TEMP.setPrimer_aviso(Aviso1);
-                              int Aviso2=Estadistico_Gestion.TEMP.getTiempo_Total()-1;
+                              int Aviso2=Estadistico_Gestion.TEMP.getTotal_primer_tiempo()-1;
                               Estadistico_Gestion.TEMP.setSegundo_aviso(Aviso2);
+
+
+                              int Aviso3=Estadistico_Gestion.TEMP.getTotal_segundo_tiempo()-3;
+                              Estadistico_Gestion.TEMP.setTercer_aviso(Aviso3);
+                              int Aviso4=Estadistico_Gestion.TEMP.getTotal_segundo_tiempo()-1;
+                              Estadistico_Gestion.TEMP.setCuarto_aviso(Aviso4);
+
+
 
                               Estadistico_Gestion.TEMP.setTiempo_Adicional(0);
                               Estadistico_Gestion.TEMP.setTiempo_actual(0);

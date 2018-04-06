@@ -13,9 +13,15 @@ public class Estadistico_Gestion {
     int minutos_x_tiempo;
     int primer_aviso;
     int segundo_aviso;
+    int tercer_aviso;
+    int cuarto_aviso;
 
     int Tiempo_Adicional;
+    int Tiempo_Adicional2;
     int Tiempo_Total;
+    int Tiempo_Total2;
+    int total_primer_tiempo;
+    int total_segundo_tiempo;
 
     int Tiempo_Jugado;
     int bloque_tiempo;
@@ -41,6 +47,25 @@ public class Estadistico_Gestion {
     int segundos_jugados;
     int estado_partido;
 
+
+
+    int OF_IZQ_DR;
+    int OF_IZQ_PG;
+    int OF_CEN_OG;
+    int OF_CEN_R;
+    int OF_ZF_OG;
+    int OF_ZF_R;
+    int OF_DER_DR;
+    int OF_DER_PG;
+
+    int OF_IZQ_DR2;
+    int OF_IZQ_PG2;
+    int OF_CEN_OG2;
+    int OF_CEN_R2;
+    int OF_ZF_OG2;
+    int OF_ZF_R2;
+    int OF_DER_DR2;
+    int OF_DER_PG2;
 
 
     PersonaEstadistico Titular_Cambio;
@@ -81,12 +106,188 @@ public class Estadistico_Gestion {
         RADIOS.add(new RecursoEstadisticoRadioButton(10, R.id.gestion_campo_tarjeta_amarilla,null,1,2,"TA"));
         RADIOS.add(new RecursoEstadisticoRadioButton(11, R.id.gestion_campo_tarjeta_roja,null,1,2,"TR"));
         RADIOS.add(new RecursoEstadisticoRadioButton(12, R.id.gestion_campo_atajadas,null,1,2,"ATJ"));
+        RADIOS.add(new RecursoEstadisticoRadioButton(13, R.id.gestion_campo_gol_oponente,null,1,3,"GO"));
 
     }
     public Estadistico_Gestion(){
 
     }
 
+    public int getTiempo_Total2() {
+        return Tiempo_Total2;
+    }
+
+    public void setTiempo_Total2(int tiempo_Total2) {
+        Tiempo_Total2 = tiempo_Total2;
+    }
+
+    public int getTiempo_Adicional2() {
+        return Tiempo_Adicional2;
+    }
+
+    public void setTiempo_Adicional2(int tiempo_Adicional2) {
+        Tiempo_Adicional2 = tiempo_Adicional2;
+    }
+
+    public int getTotal_primer_tiempo() {
+        return total_primer_tiempo;
+    }
+
+    public void setTotal_primer_tiempo(int total_primer_tiempo) {
+        this.total_primer_tiempo = total_primer_tiempo;
+    }
+
+    public int getTotal_segundo_tiempo() {
+        return total_segundo_tiempo;
+    }
+
+    public void setTotal_segundo_tiempo(int total_segundo_tiempo) {
+        this.total_segundo_tiempo = total_segundo_tiempo;
+    }
+
+    public int getTercer_aviso() {
+        return tercer_aviso;
+    }
+
+    public void setTercer_aviso(int tercer_aviso) {
+        this.tercer_aviso = tercer_aviso;
+    }
+
+    public int getCuarto_aviso() {
+        return cuarto_aviso;
+    }
+
+    public void setCuarto_aviso(int cuarto_aviso) {
+        this.cuarto_aviso = cuarto_aviso;
+    }
+
+    public int getOF_IZQ_DR() {
+        return OF_IZQ_DR;
+    }
+
+    public void setOF_IZQ_DR(int OF_IZQ_DR) {
+        this.OF_IZQ_DR = OF_IZQ_DR;
+    }
+
+    public int getOF_IZQ_PG() {
+        return OF_IZQ_PG;
+    }
+
+    public void setOF_IZQ_PG(int OF_IZQ_PG) {
+        this.OF_IZQ_PG = OF_IZQ_PG;
+    }
+
+    public int getOF_CEN_OG() {
+        return OF_CEN_OG;
+    }
+
+    public void setOF_CEN_OG(int OF_CEN_OG) {
+        this.OF_CEN_OG = OF_CEN_OG;
+    }
+
+    public int getOF_CEN_R() {
+        return OF_CEN_R;
+    }
+
+    public void setOF_CEN_R(int OF_CEN_R) {
+        this.OF_CEN_R = OF_CEN_R;
+    }
+
+    public int getOF_ZF_OG() {
+        return OF_ZF_OG;
+    }
+
+    public void setOF_ZF_OG(int OF_ZF_OG) {
+        this.OF_ZF_OG = OF_ZF_OG;
+    }
+
+    public int getOF_ZF_R() {
+        return OF_ZF_R;
+    }
+
+    public void setOF_ZF_R(int OF_ZF_R) {
+        this.OF_ZF_R = OF_ZF_R;
+    }
+
+    public int getOF_DER_DR() {
+        return OF_DER_DR;
+    }
+
+    public void setOF_DER_DR(int OF_DER_DR) {
+        this.OF_DER_DR = OF_DER_DR;
+    }
+
+    public int getOF_DER_PG() {
+        return OF_DER_PG;
+    }
+
+    public void setOF_DER_PG(int OF_DER_PG) {
+        this.OF_DER_PG = OF_DER_PG;
+    }
+
+    public int getOF_IZQ_DR2() {
+        return OF_IZQ_DR2;
+    }
+
+    public void setOF_IZQ_DR2(int OF_IZQ_DR2) {
+        this.OF_IZQ_DR2 = OF_IZQ_DR2;
+    }
+
+    public int getOF_IZQ_PG2() {
+        return OF_IZQ_PG2;
+    }
+
+    public void setOF_IZQ_PG2(int OF_IZQ_PG2) {
+        this.OF_IZQ_PG2 = OF_IZQ_PG2;
+    }
+
+    public int getOF_CEN_OG2() {
+        return OF_CEN_OG2;
+    }
+
+    public void setOF_CEN_OG2(int OF_CEN_OG2) {
+        this.OF_CEN_OG2 = OF_CEN_OG2;
+    }
+
+    public int getOF_CEN_R2() {
+        return OF_CEN_R2;
+    }
+
+    public void setOF_CEN_R2(int OF_CEN_R2) {
+        this.OF_CEN_R2 = OF_CEN_R2;
+    }
+
+    public int getOF_ZF_OG2() {
+        return OF_ZF_OG2;
+    }
+
+    public void setOF_ZF_OG2(int OF_ZF_OG2) {
+        this.OF_ZF_OG2 = OF_ZF_OG2;
+    }
+
+    public int getOF_ZF_R2() {
+        return OF_ZF_R2;
+    }
+
+    public void setOF_ZF_R2(int OF_ZF_R2) {
+        this.OF_ZF_R2 = OF_ZF_R2;
+    }
+
+    public int getOF_DER_DR2() {
+        return OF_DER_DR2;
+    }
+
+    public void setOF_DER_DR2(int OF_DER_DR2) {
+        this.OF_DER_DR2 = OF_DER_DR2;
+    }
+
+    public int getOF_DER_PG2() {
+        return OF_DER_PG2;
+    }
+
+    public void setOF_DER_PG2(int OF_DER_PG2) {
+        this.OF_DER_PG2 = OF_DER_PG2;
+    }
 
     public int getEstado_partido() {
         return estado_partido;

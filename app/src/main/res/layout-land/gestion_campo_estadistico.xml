@@ -44,12 +44,30 @@
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
-                        <TextView
+                        <LinearLayout
                             style="@style/titulo1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="3"
-                            android:textAlignment="center" />
+                            android:textAlignment="center">
+
+                            <TextView
+                                style="@style/titulo2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center|end"
+                                android:text="Limpiar Opcion:"
+                                android:textAlignment="textEnd" />
+
+                            <ImageView
+                                android:id="@+id/limpiar_opcion"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4"
+                                android:src="@mipmap/icon_delete_vacio" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -286,16 +304,16 @@
                                             android:textAllCaps="true" />
 
                                         <android.support.v7.widget.AppCompatRadioButton
+                                            android:id="@+id/gestion_campo_gol_oponente"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_margin="2dp"
-                                            android:buttonTint="@color/blue"
-                                            android:drawableLeft="@mipmap/icon_camiseta"
+                                            android:buttonTint="@color/titulos"
+                                            android:drawableLeft="@mipmap/icon_opcion_gol"
                                             android:drawablePadding="10dp"
-                                            android:drawableTint="@color/blue"
-
-                                            android:textAllCaps="true"
-                                            android:visibility="invisible" />
+                                            android:drawableTint="@color/titulos"
+                                            android:text="Gol Oponente (GO)"
+                                            android:textAllCaps="true"/>
 
                                         <android.support.v7.widget.AppCompatRadioButton
                                             android:layout_width="wrap_content"

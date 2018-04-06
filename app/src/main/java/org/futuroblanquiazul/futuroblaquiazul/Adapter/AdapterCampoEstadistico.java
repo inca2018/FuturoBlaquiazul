@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Debug;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -29,6 +31,7 @@ import org.futuroblanquiazul.futuroblaquiazul.Utils.Estadistico_Gestion;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.RecursoEstadisticoRadioButton;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Estadistico;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEstadistico.ViewHolder> implements View.OnClickListener{
@@ -130,6 +133,10 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
                      holder.base.setBackgroundColor(context.getResources().getColor(R.color.card));
                      break;
 
+                 case "GO":
+                     holder.base.setBackgroundColor(context.getResources().getColor(R.color.red));
+                     break;
+
                  default:
                      holder.base.setBackgroundColor(Color.TRANSPARENT);
 
@@ -150,6 +157,7 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
 
                         final Spinner spinner_personas= dialoglayout4.findViewById(R.id.card_campoesta_personas);
                         final Button boton_guardar= dialoglayout4.findViewById(R.id.card_campoesta_boton);
+                        final ImageView vaciar=dialoglayout4.findViewById(R.id.limpiar_opcion);
 
                         Recuperar_Radios(dialoglayout4);
 
@@ -160,61 +168,203 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
 
                         Listar_Nombres_Jugador(spinner_personas,position);
 
+                        vaciar.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                my_Data.get(position).setOpcion(null);
+                                notifyDataSetChanged();
+                                da.dismiss();
+                            }
+                        });
+
                         boton_guardar.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
 
-                                if(spinner_personas.getSelectedItemPosition()==0){
 
-                                    Toast.makeText(context,"Seleccione un Jugador",Toast.LENGTH_SHORT).show();
-                                }else{
-                                    if(Buscar_Seleccion()){
-                                        Persona persona=Encontrar_Persona(spinner_personas.getSelectedItem());
-                                        if(persona!=null){
-                                            my_Data.get(position).setPersona(persona);
-                                            System.out.println("Persona Seleccionada:"+ persona.getId());
+                                if(Buscar_GolOponente()){
+                                    System.out.println("ENTRO A BUSCAR GOL OPONENTE");
+                                    RecursoEstadisticoRadioButton campo=Encontrar_Opcion();
+                                    if(campo!=null){
+                                        OpcionEstadistico O=new OpcionEstadistico();
+                                        O.setCodigo(campo.getEstado());
+                                        O.setOpcion(campo.getDesc());
+                                        my_Data.get(position).setOpcion(O);
 
-                                            RecursoEstadisticoRadioButton campo=Encontrar_Opcion();
-                                            if(campo!=null){
-                                                OpcionEstadistico O=new OpcionEstadistico();
-                                                O.setCodigo(campo.getEstado());
-                                                O.setOpcion(campo.getDesc());
-                                                my_Data.get(position).setOpcion(O);
 
-                                                System.out.println("Opcion Seleccionada CODIGO:"+ O.getCodigo()+" OPCION:"+O.getOpcion());
 
-                                                notifyDataSetChanged();
+                                        System.out.println("Opcion Seleccionada CODIGO:"+ O.getCodigo()+" OPCION:"+O.getOpcion());
 
-                                                Limpiar_Check();
+                                        String dd="GOL OPONENTE ->"+Estadistico_Gestion.TEMP.getMinutos_jugados()+"´ "+Estadistico_Gestion.TEMP.getSegundos_jugados()+"´´";
+                                        Estadistico_Gestion.LISTA_LINEA_TIEMPO.add(dd);
 
-                                                da.dismiss();
+                                        notifyDataSetChanged();
 
-                                            }else{
-                                                Toast.makeText(context, "Error al Recuperar Opcion", Toast.LENGTH_SHORT).show();
-                                            }
-                                        }else{
-                                            Toast.makeText(context, "Error al Recuperar Jugador", Toast.LENGTH_SHORT).show();
-                                        }
+                                        Limpiar_Check();
+
+                                        da.dismiss();
 
                                     }else{
-                                        Toast.makeText(context, "Seleccione una Opcion", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(context, "Error al Recuperar Opcion", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                }else{
+                                    if(spinner_personas.getSelectedItemPosition()==0){
+                                        Toast.makeText(context,"Seleccione un Jugador",Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        if(Buscar_Seleccion()){
+                                            System.out.println("NO ENTRO A BUSCAR GOL OPONENTE");
+                                            Persona persona=Encontrar_Persona(spinner_personas.getSelectedItem());
+                                            if(persona!=null){
+                                                my_Data.get(position).setPersona(persona);
+                                                System.out.println("Persona Seleccionada:"+ persona.getId());
+
+                                                RecursoEstadisticoRadioButton campo=Encontrar_Opcion();
+                                                if(campo!=null){
+                                                    OpcionEstadistico O=new OpcionEstadistico();
+                                                    O.setCodigo(campo.getEstado());
+                                                    O.setOpcion(campo.getDesc());
+
+
+                                                    if(O.getOpcion().equalsIgnoreCase("TA")){
+                                                        boolean si=Buscar_Jugador(persona);
+                                                        if(si){
+                                                            Expulsar_Jugador(persona);
+                                                            Toast.makeText(context, "Jugador "+persona.getNombre_Persona()+" "+persona.getApellidos_Persona() +" Expulsado por acumular  2 Amarillas", Toast.LENGTH_SHORT).show();
+
+                                                            String d="Expulsión -> "+"Jugador "+persona.getNombre_Persona()+" "+persona.getApellidos_Persona()+" - "+Estadistico_Gestion.TEMP.getMinutos_jugados()+"´"+Estadistico_Gestion.TEMP.getSegundos_jugados()+"´´" ;
+                                                            Estadistico_Gestion.LISTA_LINEA_TIEMPO.add(d);
+
+                                                            my_Data.get(position).setOpcion(O);
+                                                        }else{
+                                                            my_Data.get(position).setOpcion(O);
+                                                        }
+                                                    }
+
+
+                                                    Capturar_Tiempo(O,persona);
+                                                    if(O.getOpcion().equalsIgnoreCase("TR")){
+                                                        Expulsar_Jugador(persona);
+                                                        Toast.makeText(context, "Jugador "+persona.getNombre_Persona()+" "+persona.getApellidos_Persona()+" Expulsado", Toast.LENGTH_SHORT).show();
+                                                        String d="Expulsión -> "+"Jugador "+persona.getNombre_Persona()+" "+persona.getApellidos_Persona()+" - "+Estadistico_Gestion.TEMP.getMinutos_jugados()+"´"+Estadistico_Gestion.TEMP.getSegundos_jugados()+"´´" ;
+                                                        Estadistico_Gestion.LISTA_LINEA_TIEMPO.add(d);
+                                                    }
+
+
+                                                    System.out.println("Opcion Seleccionada CODIGO:"+ O.getCodigo()+" OPCION:"+O.getOpcion());
+                                                    notifyDataSetChanged();
+                                                    Limpiar_Check();
+                                                    da.dismiss();
+
+                                                }else{
+                                                    Toast.makeText(context, "Error al Recuperar Opcion", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }else{
+                                                Toast.makeText(context, "Error al Recuperar Jugador", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }else{
+                                            Toast.makeText(context, "Seleccione una Opcion", Toast.LENGTH_SHORT).show();
+                                        }
                                     }
                                 }
                             }
                         });
-
-
                         Evento_click_Radios();
-
                     }
                 }
-
-
-
             }
         });
     }
 
+    private boolean Buscar_Jugador(Persona persona) {
+        boolean tiene=false;
+
+       for(int i=0;i<my_Data.size();i++){
+           if(my_Data.get(i).getPersona()!=null){
+               if(my_Data.get(i).getPersona().getId()==persona.getId()){
+                   if(my_Data.get(i).getOpcion()!=null){
+                       if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("TA")){
+                           tiene=true;
+                           System.out.println("ENCONTRO DOBLE AMARILLA");
+                       }else{
+                           System.out.println("NO ENCONTRO DOBLE AMARILLA");
+                           tiene=false;
+                       }
+                   }
+               }
+           }
+
+       }
+
+       return  tiene;
+
+    }
+
+
+    private void Expulsar_Jugador(Persona persona) {
+         for(int i=0;i<Estadistico_Gestion.LISTA_PERSONAS_TITULARES.size();i++){
+             if(persona.getId()==Estadistico_Gestion.LISTA_PERSONAS_TITULARES.get(i).getPersona().getId()){
+                 Estadistico_Gestion.LISTA_PERSONAS_TITULARES.get(i).setExpulsado(true);
+             }
+         }
+         Estadistico_Gestion.ADAPTER_TITULARES.notifyDataSetChanged();
+
+
+
+        Estadistico_Gestion.TEMP.setNombres_Personas(null);
+        List<Persona> TEMP_NOMBRES=new ArrayList<>();
+        for(int i=0;i<Estadistico_Gestion.LISTA_PERSONAS_TITULARES.size();i++){
+            if(Estadistico_Gestion.LISTA_PERSONAS_TITULARES.get(i).isExpulsado()){
+
+            }else {
+                TEMP_NOMBRES.add(Estadistico_Gestion.LISTA_PERSONAS_TITULARES.get(i).getPersona());
+            }
+
+        }
+
+        Estadistico_Gestion.TEMP.setNombres_Personas(TEMP_NOMBRES);
+
+    }
+
+    private void Capturar_Tiempo(OpcionEstadistico o, Persona persona) {
+        if(o.getOpcion().equalsIgnoreCase("TA")){
+            String dd="TARJETA AMARILLA -> "+persona.getApellidos_Persona()+" "+Estadistico_Gestion.TEMP.getMinutos_jugados()+"´"+Estadistico_Gestion.TEMP.getSegundos_jugados()+"´´";
+            Estadistico_Gestion.LISTA_LINEA_TIEMPO.add(dd);
+        }
+
+        if(o.getOpcion().equalsIgnoreCase("TR")){
+            String dd="TARJETA ROJA -> "+persona.getApellidos_Persona()+" "+Estadistico_Gestion.TEMP.getMinutos_jugados()+"´"+Estadistico_Gestion.TEMP.getSegundos_jugados()+"´´";
+            Estadistico_Gestion.LISTA_LINEA_TIEMPO.add(dd);
+        }
+
+        if(o.getOpcion().equalsIgnoreCase("G")){
+            String dd="GOL -> "+persona.getApellidos_Persona()+" "+Estadistico_Gestion.TEMP.getMinutos_jugados()+"´"+Estadistico_Gestion.TEMP.getSegundos_jugados()+"´´";
+            Estadistico_Gestion.LISTA_LINEA_TIEMPO.add(dd);
+        }
+
+        if(o.getOpcion().equalsIgnoreCase("OF")){
+            String dd="OFF SIDES -> "+persona.getApellidos_Persona()+" "+Estadistico_Gestion.TEMP.getMinutos_jugados()+"´"+Estadistico_Gestion.TEMP.getSegundos_jugados()+"´´";
+            Estadistico_Gestion.LISTA_LINEA_TIEMPO.add(dd);
+        }
+    }
+
+
+    private boolean Buscar_GolOponente() {
+        boolean t=false;
+        System.out.println("---------------------BUSQUEDA OPONENTE GOL----------------");
+        for(int i=0;i<Estadistico_Gestion.RADIOS.size();i++){
+            if(Estadistico_Gestion.RADIOS.get(i).getEstado()==2){
+                if(Estadistico_Gestion.RADIOS.get(i).getTipo()==3){
+                    t=true;
+                    System.out.println("Gol oponente encontrado!!!!!!!!");
+                }else{
+                    System.out.println("Gol oponente NO encontrado!!!!!!!!");
+                }
+            }
+        }
+        return  t;
+
+    }
     private void Limpiar_Check() {
 
         for(int i=0;i<Estadistico_Gestion.RADIOS.size();i++){
@@ -223,7 +373,6 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
         }
 
     }
-
     private Persona Encontrar_Persona(Object selectedItem) {
        Persona p=null;
        String persona_sele=String.valueOf(selectedItem);
@@ -247,7 +396,6 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
 
         return  d;
     }
-
     private void Listar_Nombres_Jugador(Spinner spinner_personas, int position) {
         String [] lista_bases_jugadores=new String[Estadistico_Gestion.TEMP.getNombres_Personas().size()+1];
         lista_bases_jugadores[0]="-- SELECCIONE --";
@@ -263,9 +411,11 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
       boolean t=false;
 
       for(int i=0;i<Estadistico_Gestion.RADIOS.size();i++){
-          if(Estadistico_Gestion.RADIOS.get(i).getEstado()==2){
-              t=true;
-          }
+
+              if(Estadistico_Gestion.RADIOS.get(i).getEstado()==2){
+                      t=true;
+              }
+
       }
 
       return  t;
@@ -287,15 +437,17 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
     public int getItemCount() {
         return my_Data.size();
     }
-
     public int RecuperarTA(Persona persona){
         int contador=0;
         for(int i=0;i<my_Data.size();i++){
             if(my_Data.get(i).getPersona()!=null){
                 if(my_Data.get(i).getPersona().getId()==persona.getId()){
-                    if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("TA")){
-                        contador=contador+1;
+                    if(my_Data.get(i).getOpcion()!=null){
+                        if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("TA")){
+                            contador=contador+1;
+                        }
                     }
+
                 }
             }
 
@@ -308,9 +460,12 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
         for(int i=0;i<my_Data.size();i++){
             if(my_Data.get(i).getPersona()!=null){
                 if(my_Data.get(i).getPersona().getId()==persona.getId()){
-                    if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("TR")){
-                        contador=contador+1;
+                    if(my_Data.get(i).getOpcion()!=null){
+                        if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("TR")){
+                            contador=contador+1;
+                        }
                     }
+
                 }
             }
 
@@ -318,15 +473,17 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
 
         return contador;
     }
-
     public int RecuperarPG(Persona persona){
         int contador=0;
         for(int i=0;i<my_Data.size();i++){
             if(my_Data.get(i).getPersona()!=null){
                 if(my_Data.get(i).getPersona().getId()==persona.getId()){
-                    if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("PG")){
-                        contador=contador+1;
+                    if(my_Data.get(i).getOpcion()!=null){
+                        if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("PG")){
+                            contador=contador+1;
+                        }
                     }
+
                 }
             }
 
@@ -334,15 +491,17 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
 
         return contador;
     }
-
     public int RecuperarDR(Persona persona){
         int contador=0;
         for(int i=0;i<my_Data.size();i++){
             if(my_Data.get(i).getPersona()!=null){
                 if(my_Data.get(i).getPersona().getId()==persona.getId()){
-                    if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("DR")){
-                        contador=contador+1;
+                    if(my_Data.get(i).getOpcion()!=null){
+                        if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("DR")){
+                            contador=contador+1;
+                        }
                     }
+
                 }
             }
 
@@ -350,15 +509,17 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
 
         return contador;
     }
-
     public int RecuperarOG(Persona persona){
         int contador=0;
         for(int i=0;i<my_Data.size();i++){
             if(my_Data.get(i).getPersona()!=null){
                 if(my_Data.get(i).getPersona().getId()==persona.getId()){
-                    if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("OG")){
-                        contador=contador+1;
+                    if(my_Data.get(i).getOpcion()!=null){
+                        if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("OG")){
+                            contador=contador+1;
+                        }
                     }
+
                 }
             }
 
@@ -366,15 +527,17 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
 
         return contador;
     }
-
     public int RecuperarR(Persona persona){
         int contador=0;
         for(int i=0;i<my_Data.size();i++){
             if(my_Data.get(i).getPersona()!=null){
                 if(my_Data.get(i).getPersona().getId()==persona.getId()){
-                    if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("R")){
-                        contador=contador+1;
+                    if(my_Data.get(i).getOpcion()!=null){
+                        if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("R")){
+                            contador=contador+1;
+                        }
                     }
+
                 }
             }
 
@@ -382,15 +545,17 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
 
         return contador;
     }
-
     public int RecuperarG(Persona persona){
         int contador=0;
         for(int i=0;i<my_Data.size();i++){
             if(my_Data.get(i).getPersona()!=null){
                 if(my_Data.get(i).getPersona().getId()==persona.getId()){
-                    if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("G")){
-                        contador=contador+1;
+                    if(my_Data.get(i).getOpcion()!=null){
+                        if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("G")){
+                            contador=contador+1;
+                        }
                     }
+
                 }
             }
 
@@ -398,15 +563,17 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
 
         return contador;
     }
-
     public int RecuperarOF(Persona persona){
         int contador=0;
         for(int i=0;i<my_Data.size();i++){
             if(my_Data.get(i).getPersona()!=null){
                 if(my_Data.get(i).getPersona().getId()==persona.getId()){
-                    if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("OF")){
-                        contador=contador+1;
+                    if(my_Data.get(i).getOpcion()!=null){
+                        if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("OF")){
+                            contador=contador+1;
+                        }
                     }
+
                 }
             }
 
@@ -414,15 +581,17 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
 
         return contador;
     }
-
     public int RecuperarBP(Persona persona){
         int contador=0;
         for(int i=0;i<my_Data.size();i++){
             if(my_Data.get(i).getPersona()!=null){
                 if(my_Data.get(i).getPersona().getId()==persona.getId()){
-                    if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("BP")){
-                        contador=contador+1;
+                    if(my_Data.get(i).getOpcion()!=null){
+                        if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("BP")){
+                            contador=contador+1;
+                        }
                     }
+
                 }
             }
 
@@ -430,15 +599,17 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
 
         return contador;
     }
-
     public int RecuperarBR(Persona persona){
         int contador=0;
         for(int i=0;i<my_Data.size();i++){
             if(my_Data.get(i).getPersona()!=null){
                 if(my_Data.get(i).getPersona().getId()==persona.getId()){
-                    if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("BR")){
-                        contador=contador+1;
+                    if(my_Data.get(i).getOpcion()!=null){
+                        if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("BR")){
+                            contador=contador+1;
+                        }
                     }
+
                 }
             }
 
@@ -446,15 +617,17 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
 
         return contador;
     }
-
     public int RecuperarF(Persona persona){
         int contador=0;
         for(int i=0;i<my_Data.size();i++){
             if(my_Data.get(i).getPersona()!=null){
                 if(my_Data.get(i).getPersona().getId()==persona.getId()){
-                    if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("F")){
-                        contador=contador+1;
+                    if(my_Data.get(i).getOpcion()!=null){
+                        if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("F")){
+                            contador=contador+1;
+                        }
                     }
+
                 }
             }
 
@@ -462,20 +635,45 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
 
         return contador;
     }
-
     public int RecuperarATJ(Persona persona){
         int contador=0;
         for(int i=0;i<my_Data.size();i++){
             if(my_Data.get(i).getPersona()!=null){
                 if(my_Data.get(i).getPersona().getId()==persona.getId()){
-                    if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("ATJ")){
-                        contador=contador+1;
+                    if(my_Data.get(i).getOpcion()!=null){
+                        if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("ATJ")){
+                            contador=contador+1;
+                        }
                     }
+
                 }
             }
 
         }
 
         return contador;
+    }
+    public int RecuperarGolesLocal(){
+        int d=0;
+        for(int i=0;i<my_Data.size();i++){
+            if(my_Data.get(i).getOpcion()!=null){
+
+                if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("G")){
+                    d=d+1;
+                }
+            }
+        }
+        return d;
+    }
+    public int RecuperarGolesOponente(){
+        int d=0;
+        for(int i=0;i<my_Data.size();i++){
+            if(my_Data.get(i).getOpcion()!=null){
+                if(my_Data.get(i).getOpcion().getOpcion().equalsIgnoreCase("GO")){
+                    d=d+1;
+                }
+            }
+        }
+        return d;
     }
 }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -81,6 +82,10 @@ public class AdapterPersonaCambio2 extends RecyclerView.Adapter<AdapterPersonaCa
             holder.nom_persona.setTextColor(context.getResources().getColor(R.color.titulos));
         }
 
+        if(my_Data.get(position).isCambiado()==true){
+            holder.cardView_Seleccion.setCardBackgroundColor(context.getResources().getColor(R.color.titulos));
+            holder.nom_persona.setTextColor(context.getResources().getColor(R.color.blanco));
+        }
 
         Glide.with(context)
                 .load(my_Data.get(position).getPersona().getFoto())
@@ -95,9 +100,14 @@ public class AdapterPersonaCambio2 extends RecyclerView.Adapter<AdapterPersonaCa
         holder.cardView_Seleccion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                my_Data.get(position).setActivo(true);
-                Estadistico_Gestion.TEMP.setSuplente_Cambio(my_Data.get(position));
-                limpiar_seleccion(my_Data.get(position).getPersona());
+                if(my_Data.get(position).isCambiado()){
+                    Toast.makeText(context, "Jugador no Disponible", Toast.LENGTH_SHORT).show();
+                }else{
+                    my_Data.get(position).setActivo(true);
+                    Estadistico_Gestion.TEMP.setSuplente_Cambio(my_Data.get(position));
+                    limpiar_seleccion(my_Data.get(position).getPersona());
+                }
+
             }
         });
 

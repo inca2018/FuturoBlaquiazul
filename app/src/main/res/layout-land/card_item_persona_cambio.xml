@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:layout_weight="3">
+                android:layout_weight="2">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
                 android:text="JESUS INCA CARDENAS"
                 android:textAllCaps="true"
                 android:textColor="@color/titulos"
-                android:textSize="18sp"
+                android:textSize="12sp"
                 android:textStyle="bold" />
 
 

@@ -19,15 +19,34 @@ public class PersonaEstadistico {
     int total_Puntos;
     int tiempo_jugado;
 
-
     int entrante;
     int saliente;
     int Minuto_Cambio;
+
+    boolean cambiado;
+
+    boolean expulsado;
 
     public PersonaEstadistico(){
 
     }
 
+
+    public boolean isCambiado() {
+        return cambiado;
+    }
+
+    public boolean isExpulsado() {
+        return expulsado;
+    }
+
+    public void setExpulsado(boolean expulsado) {
+        this.expulsado = expulsado;
+    }
+
+    public void setCambiado(boolean cambiado) {
+        this.cambiado = cambiado;
+    }
 
     public int getEntrante() {
         return entrante;

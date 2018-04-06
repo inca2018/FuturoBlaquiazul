@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -77,7 +78,6 @@ public class AdapterPersonaCambio extends RecyclerView.Adapter<AdapterPersonaCam
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-
         if(my_Data.get(position).isActivo()==true){
             holder.cardView_Seleccion.setCardBackgroundColor(context.getResources().getColor(R.color.blue));
             holder.nom_persona.setTextColor(context.getResources().getColor(R.color.blanco));
@@ -86,6 +86,10 @@ public class AdapterPersonaCambio extends RecyclerView.Adapter<AdapterPersonaCam
             holder.nom_persona.setTextColor(context.getResources().getColor(R.color.titulos));
         }
 
+        if(my_Data.get(position).isExpulsado()==true){
+            holder.cardView_Seleccion.setCardBackgroundColor(context.getResources().getColor(R.color.red));
+            holder.nom_persona.setTextColor(context.getResources().getColor(R.color.blanco));
+        }
 
         Glide.with(context)
                 .load(my_Data.get(position).getPersona().getFoto())
@@ -100,10 +104,15 @@ public class AdapterPersonaCambio extends RecyclerView.Adapter<AdapterPersonaCam
         holder.cardView_Seleccion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                my_Data.get(position).setActivo(true);
-                Estadistico_Gestion.TEMP.setTitular_Cambio(my_Data.get(position));
-                limpiar_seleccion(my_Data.get(position).getPersona());
+                if(my_Data.get(position).isExpulsado()){
+                    Toast.makeText(context, "Jugador Expulsado", Toast.LENGTH_SHORT).show();
+                }else{
+                    my_Data.get(position).setActivo(true);
+                    Estadistico_Gestion.TEMP.setTitular_Cambio(my_Data.get(position));
+                    limpiar_seleccion(my_Data.get(position).getPersona());
+                }
             }
+
         });
 
     }
