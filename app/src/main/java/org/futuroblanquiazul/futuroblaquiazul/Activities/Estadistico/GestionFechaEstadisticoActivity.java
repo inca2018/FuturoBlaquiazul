@@ -12,11 +12,14 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -31,6 +34,7 @@ import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterCampoEstadistico;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterInfoEquipo;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterPersonaCambio;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterPersonaCambio2;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.Campo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.CampoEstadistico;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.EventoEstadistico;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.FechaEstadistico;
@@ -71,7 +75,6 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
     TextView nom_opo;
     TextView num_fecha;
     TextView actual_equipo;
-
     boolean start;
     boolean pause=false;
     CardView accion_partido;
@@ -81,14 +84,13 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
     String tiempo_total;
     Button opcion_cambios;
     Button opcion_grabar;
-
     TextView adicional_tiempo;
     TextView goles_local;
     TextView goles_oponentes;
-
     boolean validador=false;
-
     int prof1=0,prof2=0,prof3=0,prof4=0,prof5=0,prof6=0,prof7=0,prof8=0;
+
+    EditText pos1,pos2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,6 +105,153 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
         Opcion_Cambios();
         Opcion_Grabar();
         Opcion_Profundidad();
+
+        pos1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                   if(s.toString().length()!=0){
+                       Estadistico_Gestion.TEMP.setPosesion1(Integer.parseInt(s.toString()));
+                   }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        pos2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().length()!=0){
+                    Estadistico_Gestion.TEMP.setPosesion2(Integer.parseInt(s.toString()));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+    private void Listar_Persona_Estadistico(final Context context) {
+
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("Equipo Estadistico:");
+        progressDialog.setMessage("Recuperando Información de Equipo...");
+        progressDialog.show();
+
+        String id_evento=String.valueOf(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getId());
+        //String id_evento=String.valueOf(4);
+
+        com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+
+                    if (success) {
+                        JSONArray xx=jsonResponse.getJSONArray("personas_estadistico");
+                        for(int i=0;i<xx.length();i++){
+                            JSONObject objeto= xx.getJSONObject(i);
+                            PersonaEstadistico temp=new PersonaEstadistico();
+
+                            Persona p=new Persona();
+                            p.setId(objeto.getInt("ID_PERSONAS"));
+                            p.setNombre_Persona(objeto.getString("NOMBRES"));
+                            p.setApellidos_Persona(objeto.getString("APELLIDOS"));
+                            p.setFoto(objeto.getString("FOTO"));
+                            p.setTitular(objeto.getInt("TITULAR"));
+
+                            p.setActivo(false);
+
+                            Posicion pos=new Posicion();
+                            pos.setId(objeto.getInt("ID_POSICION"));
+                            pos.setNombre_Posicione(objeto.getString("NOMBRE_POSICION"));
+                            temp.setCamiseta_persona(objeto.getInt("NUM_CAMISETA"));
+                            temp.setPersona(p);
+                            temp.setPosicion_persona(pos);
+
+                            PuntosEstadisticos pru1=new PuntosEstadisticos();
+                            PuntosEstadisticos pru2=new PuntosEstadisticos();
+
+                            pru1.setAtajadas(0);
+                            pru1.setBalonPerdido(0);
+                            pru1.setBalonRecuperado(0);
+                            pru1.setDribling(0);
+                            pru1.setFaltas(0);
+                            pru1.setGoles(0);
+                            pru1.setOfSide(0);
+                            pru1.setOpcionGol(0);
+                            pru1.setPuntajes(0);
+                            pru1.setTarjetasAmarillas(0);
+                            pru1.setTarjetasRojas(0);
+                            pru1.setOfSide(0);
+                            pru1.setPaseGol(0);
+                            pru1.setRemate(0);
+
+                            pru2.setAtajadas(0);
+                            pru2.setBalonPerdido(0);
+                            pru2.setBalonRecuperado(0);
+                            pru2.setDribling(0);
+                            pru2.setFaltas(0);
+                            pru2.setGoles(0);
+                            pru2.setOfSide(0);
+                            pru2.setOpcionGol(0);
+                            pru2.setPuntajes(0);
+                            pru2.setTarjetasAmarillas(0);
+                            pru2.setTarjetasRojas(0);
+                            pru2.setOfSide(0);
+                            pru2.setPaseGol(0);
+                            pru2.setRemate(0);
+
+
+                            temp.setPrimerTiempo(pru1);
+                            temp.setSegundoTiempo(pru2);
+                            temp.setEstado(1);
+
+                            temp.setNum(i+1);
+                            temp.setEntrante(0);
+                            temp.setSaliente(0);
+
+
+                            temp.setTitular(objeto.getInt("TITULAR"));
+                            Estadistico_Gestion.LISTA_PERSONAS_TODO.add(temp);
+
+                        }
+
+                        //adapterInfoEquipo.notifyDataSetChanged();
+                        progressDialog.dismiss();
+                        System.out.println("LISTADO COMPLETO DE PERSONAS ESTADISTICOS");
+                        Generar_Listas_Campos();
+                        Gestion_Campo_Estadistico();
+
+                    } else {
+                        progressDialog.dismiss();
+                        Toast.makeText(context, "Listado Vacio de Personas Estadisticos", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error de conexion al recuperar personas Estadisticos :"+e);
+                }
+            }
+        };
+        RecuperarPersonasEstadisticos xx = new RecuperarPersonasEstadisticos(id_evento,responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
     }
     private void Opcion_Profundidad() {
 
@@ -128,41 +277,58 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
                         daprofundidad=builder4.show();
 
                         op1_menos=dialoglayout2.findViewById(R.id.op1_menos);
+                        op1_menos.setEnabled(false);
                         op1_mas=dialoglayout2.findViewById(R.id.op1_mas);
+                        op1_mas.setEnabled(false);
                         op1_valor=dialoglayout2.findViewById(R.id.op1_valor);
 
                         op2_menos=dialoglayout2.findViewById(R.id.op2_menos);
+                        op2_menos.setEnabled(false);
                         op2_mas=dialoglayout2.findViewById(R.id.op2_mas);
+                        op2_mas.setEnabled(false);
                         op2_valor=dialoglayout2.findViewById(R.id.op2_valor);
 
                         op3_menos=dialoglayout2.findViewById(R.id.op3_menos);
+                        op3_menos.setEnabled(false);
                         op3_mas=dialoglayout2.findViewById(R.id.op3_mas);
+                        op3_mas.setEnabled(false);
                         op3_valor=dialoglayout2.findViewById(R.id.op3_valor);
 
                         op4_menos=dialoglayout2.findViewById(R.id.op4_menos);
+                        op4_menos.setEnabled(false);
                         op4_mas=dialoglayout2.findViewById(R.id.op4_mas);
+                        op4_mas.setEnabled(false);
                         op4_valor=dialoglayout2.findViewById(R.id.op4_valor);
 
                         op5_menos=dialoglayout2.findViewById(R.id.op5_menos);
+                        op5_menos.setEnabled(false);
                         op5_mas=dialoglayout2.findViewById(R.id.op5_mas);
+                        op5_mas.setEnabled(false);
                         op5_valor=dialoglayout2.findViewById(R.id.op5_valor);
 
 
                         op6_menos=dialoglayout2.findViewById(R.id.op6_menos);
+                        op6_menos.setEnabled(false);
                         op6_mas=dialoglayout2.findViewById(R.id.op6_mas);
+                        op6_mas.setEnabled(false);
                         op6_valor=dialoglayout2.findViewById(R.id.op6_valor);
 
 
                         op7_menos=dialoglayout2.findViewById(R.id.op7_menos);
+                        op7_menos.setEnabled(false);
                         op7_mas=dialoglayout2.findViewById(R.id.op7_mas);
+                        op7_mas.setEnabled(false);
                         op7_valor=dialoglayout2.findViewById(R.id.op7_valor);
 
                         op8_menos=dialoglayout2.findViewById(R.id.op8_menos);
+                        op8_menos.setEnabled(false);
                         op8_mas=dialoglayout2.findViewById(R.id.op8_mas);
+                        op8_mas.setEnabled(false);
                         op8_valor=dialoglayout2.findViewById(R.id.op8_valor);
 
 
                         if(Estadistico_Gestion.TEMP.getTiempo_actual()==1){
+                            BUSCAR_PROFUNDIDAD_PRIMER_TIEMPO();
                             op1_valor.setText(String.valueOf(Estadistico_Gestion.TEMP.getOF_IZQ_DR()));
                             op2_valor.setText(String.valueOf(Estadistico_Gestion.TEMP.getOF_IZQ_PG()));
                             op3_valor.setText(String.valueOf(Estadistico_Gestion.TEMP.getOF_CEN_OG()));
@@ -174,6 +340,7 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
 
 
                         }else if(Estadistico_Gestion.TEMP.getTiempo_actual()==2){
+                            BUSCAR_PROFUNDIDAD_SEGUNDO_TIEMPO();
                             op1_valor.setText(String.valueOf(Estadistico_Gestion.TEMP.getOF_IZQ_DR2()));
                             op2_valor.setText(String.valueOf(Estadistico_Gestion.TEMP.getOF_IZQ_PG2()));
                             op3_valor.setText(String.valueOf(Estadistico_Gestion.TEMP.getOF_CEN_OG2()));
@@ -498,6 +665,9 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
         goles_oponentes=findViewById(R.id.goles_oponentes);
 
         adicional_tiempo=findViewById(R.id.adicional_tiempo);
+
+        pos1=findViewById(R.id.esta_posesion1);
+        pos2=findViewById(R.id.esta_posesion2);
     }
     private void Opcion_Inicio() {
         boton_partido.setOnClickListener(new View.OnClickListener() {
@@ -545,10 +715,18 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
 
                 if(Estadistico_Gestion.TEMP.getTiempo_actual()==0){
                     Toast.makeText(context, "Inicie el Partido!", Toast.LENGTH_SHORT).show();
-
                 }else{
                     if(Estadistico_Gestion.TEMP.getEstado_partido()==4){
-                        //GUARDA INFORMACION
+                        if(Estadistico_Gestion.TEMP.getPosesion1()!=0){
+                            if(Estadistico_Gestion.TEMP.getPosesion2()!=0){
+                                Recuperar_Informacion_General();
+                            }else{
+                                Toast.makeText(context, "Complete Posesión de Segundo Tiempo", Toast.LENGTH_SHORT).show();
+                            }
+
+                        }else{
+                            Toast.makeText(context, "Complete Posesión de Primer Tiempo", Toast.LENGTH_SHORT).show();
+                        }
 
 
                     }else{
@@ -558,6 +736,295 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
 
             }
         });
+    }
+    private void Recuperar_Informacion_General() {
+
+         int s1=0,s2=0,s3=0,s4=0,s5=0,s6=0,s7=0,s8=0,s9=0,s10=0,s11=0,s12=0,s13=0,s14=0,s15=0,s16=0,s17=0,s18=0,s19=0,s20=0,s21=0,s22=0,s23=0,s24=0,s25=0,s26=0,s27=0,s28=0,s29=0,s30=0;
+
+        int sb1=0,sb2=0,sb3=0,sb4=0,sb5=0,sb6=0,sb7=0,sb8=0,sb9=0,sb10=0,sb11=0,sb12=0,sb13=0,sb14=0,sb15=0,sb16=0,sb17=0,sb18=0,sb19=0,sb20=0,sb21=0,sb22=0,sb23=0,sb24=0,sb25=0,sb26=0,sb27=0,sb28=0,sb29=0,sb30=0;
+
+        for(int i=0;i<CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.size();i++){
+
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==1){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                    s1=s1+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==2){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s2=s2+1;
+                }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==3){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                    s3=s3+1;
+                }}
+
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==4){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s4=s4+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==5){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s5=s5+1;
+            } }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==6){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s6=s6+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==7){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s7=s7+1;
+            } }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==8){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s8=s8+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==9){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+
+                s9=s9+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==10){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s10=s10+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==11){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+
+                s11=s11+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==12){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s12=s12+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==13){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s13=s13+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==14){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s14=s14+1;
+            } }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==15){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s15=s15+1;
+            } }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==16){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s16=s16+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==17){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s17=s17+1;
+            } }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==18){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s18=s18+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==19){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s19=s19+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==20){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s20=s20+1;
+            } }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==21){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s21=s21+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==22){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s22=s22+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==23){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s23=s23+1;
+            } }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==24){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s24=s24+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==25){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s25=s25+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==26){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s26=s26+1;
+            } }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==27){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s27=s27+1;
+                }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==28){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s28=s28+1;
+            } }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==29){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s29=s29+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getSector()==30){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().length()!=0){
+                s30=s30+1;
+            } }
+
+        }
+
+        for(int i=0;i<CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.size();i++){
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==1){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb1=sb1+1;
+            } }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==2){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb2=sb2+1;
+                }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==3){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb3=sb3+1;
+            }  }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==4){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb4=sb4+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==5){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb5=sb5+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==6){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb6=sb6+1;
+            }  }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==7){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb7=sb7+1;
+            } }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==8){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb8=sb8+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==9){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb9=sb9+1;
+            } }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==10){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb10=sb10+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==11){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb11=sb11+1;
+            } }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==12){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb12=sb12+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==13){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb13=sb13+1;
+            } }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==14){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb14=sb14+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==15){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb15=sb15+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==16){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb16=sb16+1;
+            }  }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==17){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb17=sb17+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==18){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb18=sb18+1;
+            } }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==19){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb19=sb19+1;
+                } }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==20){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb20=sb20+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==21){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb21=sb21+1;
+            } }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==22){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb22=sb22+1;
+            } }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==23){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb23=sb23+1;
+            } }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==24){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb24=sb24+1;
+            }}
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==25){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb25=sb25+1;
+            } }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==26){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb26=sb26+1;
+            } }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==27){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb27=sb27+1;
+            } }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==28){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb28=sb28+1;
+            } }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==29){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb29=sb29+1;
+                } }
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getSector()==30){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().length()!=0){
+                sb30=sb30+1;
+            }}
+        }
+
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(1).setTotal(s1+sb1);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(2).setTotal(s2+sb2);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(3).setTotal(s3+sb3);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(4).setTotal(s4+sb4);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(5).setTotal(s5+sb5);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(6).setTotal(s6+sb6);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(7).setTotal(s7+sb7);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(8).setTotal(s8+sb8);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(9).setTotal(s9+sb9);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(10).setTotal(s10+sb10);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(11).setTotal(s11+sb11);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(12).setTotal(s12+sb12);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(13).setTotal(s13+sb13);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(14).setTotal(s14+sb14);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(15).setTotal(s15+sb15);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(16).setTotal(s16+sb16);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(17).setTotal(s17+sb17);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(18).setTotal(s18+sb18);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(19).setTotal(s19+sb19);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(20).setTotal(s20+sb20);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(21).setTotal(s21+sb21);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(22).setTotal(s22+sb22);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(23).setTotal(s23+sb23);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(24).setTotal(s24+sb24);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(25).setTotal(s25+sb25);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(26).setTotal(s26+sb26);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(27).setTotal(s27+sb27);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(28).setTotal(s28+sb28);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(29).setTotal(s29+sb29);
+        Estadistico_Gestion.TOTAL_SEGMENTOS.get(30).setTotal(s30+sb30);
+
     }
     private void Opcion_Cambios() {
 
@@ -694,7 +1161,8 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
                 Estadistico_Gestion.LISTA_PERSONAS_TODO.get(i).getPersona().setTitular(1);
                 Estadistico_Gestion.LISTA_PERSONAS_TODO.get(i).setTitular(1);
                 Estadistico_Gestion.LISTA_PERSONAS_TODO.get(i).setEntrante(1);
-                Estadistico_Gestion.LISTA_PERSONAS_TODO.get(i).setMinuto_Cambio(Estadistico_Gestion.TEMP.getMinutos_jugados());
+                int minuto_cambio=Estadistico_Gestion.TEMP.getContador()/60;
+                Estadistico_Gestion.LISTA_PERSONAS_TODO.get(i).setMinuto_Cambio(minuto_cambio);
             }
         }
 
@@ -704,7 +1172,12 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
         Estadistico_Gestion.TEMP.setNombres_Personas(null);
         List<Persona> TEMP_NOMBRES=new ArrayList<>();
         for(int i=0;i<Estadistico_Gestion.LISTA_PERSONAS_TITULARES.size();i++){
-            TEMP_NOMBRES.add(Estadistico_Gestion.LISTA_PERSONAS_TITULARES.get(i).getPersona());
+            if(Estadistico_Gestion.LISTA_PERSONAS_TITULARES.get(i).isExpulsado()){
+
+            }else{
+                TEMP_NOMBRES.add(Estadistico_Gestion.LISTA_PERSONAS_TITULARES.get(i).getPersona());
+            }
+
         }
 
         Estadistico_Gestion.TEMP.setNombres_Personas(TEMP_NOMBRES);
@@ -755,10 +1228,11 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
         Usuario.SESION_ACTUAL.setAltura(height); //600
         Usuario.SESION_ACTUAL.setAncho(width); //1024
         recyclercampoooo();
-        if(CampoEstadistico.LISTACAMPOESTADISTICO.size()==0){
+
+        if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.size()==0){
             listar_card();
         }else{
-            CampoEstadistico.LISTACAMPOESTADISTICO.clear();
+            CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.clear();
             listar_card();
         }
 
@@ -841,12 +1315,19 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
 
             Estadistico_Gestion.TEMP.setTiempo_actual(1);
 
+
+
             cronometro.setBase(SystemClock.elapsedRealtime());
             cronometro.start();
             cronometro.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
                 @Override
                 public void onChronometerTick(Chronometer chronometer) {
 
+
+                    int prueba=Estadistico_Gestion.TEMP.getContador()+1;
+                    debug("Prueba : "+prueba);
+
+                    Estadistico_Gestion.TEMP.setContador(prueba);
 
                     primer_tiempo_fin=Estadistico_Gestion.TEMP.getTiempo_Total();
                     if(chronometer.getText().toString().length()==4){
@@ -881,6 +1362,8 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
                     debug("SEGUNDO AVISO:"+Estadistico_Gestion.TEMP.getSegundo_aviso());
                     debug("TERCER AVISO:"+Estadistico_Gestion.TEMP.getTercer_aviso());
                     debug("CUARTO AVISO:"+Estadistico_Gestion.TEMP.getCuarto_aviso());
+
+                    debug("MINUTOS CONTADOR: "+(Estadistico_Gestion.TEMP.getContador()/60));
 
                     debug("----------------------------------------------");
 
@@ -1054,18 +1537,19 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
         });
     }
     private void Actualizar_Tiempos_Partido() {
-
+        int min_transcurridos=Estadistico_Gestion.TEMP.getContador()/60;
+        debug("Minutos Transcurridos -----> "+min_transcurridos);
         for(int i = 0; i<Estadistico_Gestion.LISTA_PERSONAS_TODO.size(); i++){
-
             if(Estadistico_Gestion.LISTA_PERSONAS_TODO.get(i).getTitular()==1){
                 if(Estadistico_Gestion.LISTA_PERSONAS_TODO.get(i).getSaliente()==1){
                 }else{
-                    Estadistico_Gestion.LISTA_PERSONAS_TODO.get(i).setTiempo_jugado(Estadistico_Gestion.TEMP.getTiempo_Jugado());
+                    if(Estadistico_Gestion.LISTA_PERSONAS_TODO.get(i).isExpulsado()==false){
+                        Estadistico_Gestion.LISTA_PERSONAS_TODO.get(i).setTiempo_jugado(min_transcurridos);
 
-                    if(Estadistico_Gestion.LISTA_PERSONAS_TODO.get(i).getEntrante()==1){
-                        int d=Estadistico_Gestion.TEMP.getTiempo_Jugado()-Estadistico_Gestion.LISTA_PERSONAS_TODO.get(i).getMinuto_Cambio();                    Estadistico_Gestion.LISTA_PERSONAS_TODO.get(i).setTiempo_jugado(d);
+                        if(Estadistico_Gestion.LISTA_PERSONAS_TODO.get(i).getEntrante()==1){
+                            int d=Estadistico_Gestion.TEMP.getTiempo_Jugado()-Estadistico_Gestion.LISTA_PERSONAS_TODO.get(i).getMinuto_Cambio();                                              Estadistico_Gestion.LISTA_PERSONAS_TODO.get(i).setTiempo_jugado(d);
+                        }
                     }
-
                 }
 
             }
@@ -1311,8 +1795,6 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
                 Toast.makeText(context, "Inicia Partido!", Toast.LENGTH_SHORT).show();
             }else{
 
-
-
                 final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
                 final View dialoglayout2 = inflater.inflate(R.layout.opcion_informacion_estadistico, null);
                 final android.app.AlertDialog.Builder builder4 = new android.app.AlertDialog.Builder(context);
@@ -1381,116 +1863,6 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
             total=5+((prom1)-(prom2))+goles;
             personaEstadistico.setTotal_Puntos(total);
         }
-
-    }
-    private void Listar_Persona_Estadistico(final Context context) {
-
-        progressDialog = new ProgressDialog(context);
-        progressDialog.setTitle("Equipo Estadistico:");
-        progressDialog.setMessage("Recuperando Información de Equipo...");
-        progressDialog.show();
-
-         String id_evento=String.valueOf(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getId());
-        //String id_evento=String.valueOf(4);
-
-        com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-
-                try {
-                    JSONObject jsonResponse = new JSONObject(response);
-                    boolean success = jsonResponse.getBoolean("success");
-
-                    if (success) {
-                        JSONArray xx=jsonResponse.getJSONArray("personas_estadistico");
-                        for(int i=0;i<xx.length();i++){
-                            JSONObject objeto= xx.getJSONObject(i);
-                            PersonaEstadistico temp=new PersonaEstadistico();
-
-                            Persona p=new Persona();
-                            p.setId(objeto.getInt("ID_PERSONAS"));
-                            p.setNombre_Persona(objeto.getString("NOMBRES"));
-                            p.setApellidos_Persona(objeto.getString("APELLIDOS"));
-                            p.setFoto(objeto.getString("FOTO"));
-                            p.setTitular(objeto.getInt("TITULAR"));
-
-                            p.setActivo(false);
-
-                            Posicion pos=new Posicion();
-                            pos.setId(objeto.getInt("ID_POSICION"));
-                            pos.setNombre_Posicione(objeto.getString("NOMBRE_POSICION"));
-                            temp.setCamiseta_persona(objeto.getInt("NUM_CAMISETA"));
-                            temp.setPersona(p);
-                            temp.setPosicion_persona(pos);
-
-                            PuntosEstadisticos pru1=new PuntosEstadisticos();
-                            PuntosEstadisticos pru2=new PuntosEstadisticos();
-
-                            pru1.setAtajadas(0);
-                            pru1.setBalonPerdido(0);
-                            pru1.setBalonRecuperado(0);
-                            pru1.setDribling(0);
-                            pru1.setFaltas(0);
-                            pru1.setGoles(0);
-                            pru1.setOfSide(0);
-                            pru1.setOpcionGol(0);
-                            pru1.setPuntajes(0);
-                            pru1.setTarjetasAmarillas(0);
-                            pru1.setTarjetasRojas(0);
-                            pru1.setOfSide(0);
-                            pru1.setPaseGol(0);
-                            pru1.setRemate(0);
-
-                            pru2.setAtajadas(0);
-                            pru2.setBalonPerdido(0);
-                            pru2.setBalonRecuperado(0);
-                            pru2.setDribling(0);
-                            pru2.setFaltas(0);
-                            pru2.setGoles(0);
-                            pru2.setOfSide(0);
-                            pru2.setOpcionGol(0);
-                            pru2.setPuntajes(0);
-                            pru2.setTarjetasAmarillas(0);
-                            pru2.setTarjetasRojas(0);
-                            pru2.setOfSide(0);
-                            pru2.setPaseGol(0);
-                            pru2.setRemate(0);
-
-
-                            temp.setPrimerTiempo(pru1);
-                            temp.setSegundoTiempo(pru2);
-                            temp.setEstado(1);
-
-                            temp.setNum(i+1);
-                            temp.setEntrante(0);
-                            temp.setSaliente(0);
-
-
-                            temp.setTitular(objeto.getInt("TITULAR"));
-                            Estadistico_Gestion.LISTA_PERSONAS_TODO.add(temp);
-
-                        }
-
-                        //adapterInfoEquipo.notifyDataSetChanged();
-                        progressDialog.dismiss();
-                        System.out.println("LISTADO COMPLETO DE PERSONAS ESTADISTICOS");
-                        Generar_Listas_Campos();
-                        Gestion_Campo_Estadistico();
-
-                    } else {
-                        progressDialog.dismiss();
-                        Toast.makeText(context, "Listado Vacio de Personas Estadisticos", Toast.LENGTH_SHORT).show();
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    System.out.println("Inca  : Error de conexion al recuperar personas Estadisticos :"+e);
-                }
-            }
-        };
-        RecuperarPersonasEstadisticos xx = new RecuperarPersonasEstadisticos(id_evento,responseListener);
-        RequestQueue queue = Volley.newRequestQueue(context);
-        queue.add(xx);
 
     }
     private void Opcion_Zona_de_Juego() {
@@ -1696,7 +2068,19 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
     private void recyclercampoooo() {
 
         grid = new GridLayoutManager(this,24);
-        adapterCampo = new AdapterCampoEstadistico(this,CampoEstadistico.LISTACAMPOESTADISTICO, new RecyclerViewOnItemClickListener(){
+        adapterCampo = new AdapterCampoEstadistico(this,CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1, new RecyclerViewOnItemClickListener(){
+            @Override
+            public void onClick(View v, int position) {
+            }
+        });
+
+        recyclerView.setAdapter(adapterCampo);
+        recyclerView.setLayoutManager(grid);
+    }
+    private void recyclercampoooo2() {
+
+        grid = new GridLayoutManager(this,24);
+        adapterCampo = new AdapterCampoEstadistico(this,CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2, new RecyclerViewOnItemClickListener(){
             @Override
             public void onClick(View v, int position) {
             }
@@ -1741,6 +2125,42 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
         System.out.println("Altura Card:"+alt2);
         System.out.println("ANcho Card:"+anc2);
     }
+    private void listar_card2() {
+
+        if(ancho>1500){
+            int alt=altura;
+            int anc=ancho;
+            alt2=alt/18;
+            anc2=anc/24;
+            altura2.getLayoutParams().height=(alt-65);
+            System.out.println("PANTALLA XX GRANDE");
+            Agregado_Campos2();
+            adapterCampo.notifyDataSetChanged();
+        }else if(ancho>800 && ancho<1200){
+
+            int alt=altura;
+            int anc=ancho;
+            alt2=alt/18;
+            anc2=anc/24;
+            altura2.getLayoutParams().height=(alt-25);
+            System.out.println("PANTALLA GRANDE");
+            Agregado_Campos2();
+            adapterCampo.notifyDataSetChanged();
+        }else{
+            int alt=altura;
+            int anc=ancho;
+            alt2=alt/13;
+            anc2=anc/24;
+            altura2.getLayoutParams().height=(alt-30);
+            System.out.println("PANTALLA PEKE");
+            Agregado_Campos2();
+            adapterCampo.notifyDataSetChanged();
+        }
+        System.out.println("Altura BASE:"+(altura-20));
+        System.out.println("ANcho BASE:"+(ancho-20));
+        System.out.println("Altura Card:"+alt2);
+        System.out.println("ANcho Card:"+anc2);
+    }
     private void Agregado_Campos() {
 
         for(int i=1;i<=408;i++){
@@ -1748,13 +2168,13 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
 
 
                 if(i<=4  || i>24 && i<=28 || i>48 && i<=52  ){
-                    Crear_Campo(1,1);
+                    Crear_Campo(i,1,1);
                 }
                 if(i>4 && i<=8  || i>28 && i<=32 || i>52 && i<=56   ){
-                    Crear_Campo(2,1);
+                    Crear_Campo(i,2,1);
                 }
                 if(i>8 && i<=12  || i>32 && i<=36 || i>56 && i<=60  ){
-                    Crear_Campo(3,1);
+                    Crear_Campo(i,3,1);
                 }
             }
 
@@ -1762,13 +2182,13 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
             if(i>12 && i<=24 || i>36 && i<=48 || i>60 && i<=72){
 
                 if(i>12 && i<=16 || i>36 && i<=40 || i>60 && i<=64 ){
-                    Crear_Campo(4,2);
+                    Crear_Campo(i,4,2);
                 }
                 if(i>16 && i<=20 || i>40 && i<=44 || i>64 && i<=68   ){
-                    Crear_Campo(5,2);
+                    Crear_Campo(i,5,2);
                 }
                 if(i>20 && i<=24 || i>44 && i<=48 || i>68 && i<=72   ){
-                    Crear_Campo(6,2);
+                    Crear_Campo(i,6,2);
                 }
 
             }
@@ -1778,17 +2198,17 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
 
 
                 if(i>72 && i<=76 || i>96 && i<=100 || i>120 && i<=124){
-                    Crear_Campo(7,3);
+                    Crear_Campo(i,7,3);
                 }
                 //---------------------------------
                 if(i>144 && i<=148 || i>168 && i<=172 || i>192 && i<=196  || i>216 && i<=220 || i>240 && i<=244){
-                    Crear_Campo(13,3);
+                    Crear_Campo(i,13,3);
                 }
 
 
                 //---------------------------------
                 if(i>264 && i<=268 || i>288 && i<=292 || i>312 && i<=316){
-                    Crear_Campo(19,3);
+                    Crear_Campo(i,19,3);
                 }
 
 
@@ -1797,31 +2217,31 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
 
                      //Crear_Campo(0,4);
                 if(i>76 && i<=80 || i>100 && i<=104 || i>124 && i<=128){
-                    Crear_Campo(8,4);
+                    Crear_Campo(i,8,4);
                 }
 
                 if(i>80 && i<=84 || i>104 && i<=108 || i>128 && i<=132){
-                    Crear_Campo(9,4);
+                    Crear_Campo(i,9,4);
                 }
 
                 //---------------------------------
                 if(i>148 && i<=152 || i>172 && i<=176 || i>196 && i<=200 || i>220 && i<=224  || i>244 && i<=248){
-                    Crear_Campo(14,4);
+                    Crear_Campo(i,14,4);
                 }
 
                 if(i>152 && i<=156 || i>176 && i<=180 || i>200 && i<=204 || i>224 && i<=228 || i>248 && i<=252){
-                    Crear_Campo(15,4);
+                    Crear_Campo(i,15,4);
                 }
 
 
 
                 //---------------------------------
                 if(i>268 && i<=272   || i>292 && i<=296 || i>316 && i<=320){
-                    Crear_Campo(20,4);
+                    Crear_Campo(i,20,4);
                 }
 
                 if(i>272 && i<=276  || i>296 && i<=300 || i>320 && i<=324){
-                    Crear_Campo(21,4);
+                    Crear_Campo(i,21,4);
                 }
 
 
@@ -1833,32 +2253,32 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
                 //Crear_Campo(5);
 
                 if(i>84 && i<=88 || i>108 && i<=112 || i>132 && i<=136){
-                    Crear_Campo(10,5);
+                    Crear_Campo(i,10,5);
                 }
 
                 if(i>88 && i<=92 || i>112 && i<=116 || i>136 && i<=140){
-                    Crear_Campo(11,5);
+                    Crear_Campo(i,11,5);
                 }
 
 
                 //---------------------------------
                 if(i>156 && i<=160 || i>180 && i<=184 || i>204 && i<=208 || i>228 && i<=232 || i>252 && i<=256){
-                    Crear_Campo(16,5);
+                    Crear_Campo(i,16,5);
                 }
 
                 if(i>160 && i<=164 || i>184 && i<=188 || i>208 && i<=212 || i>232 && i<=236 || i>256 && i<=260){
-                    Crear_Campo(17,5);
+                    Crear_Campo(i,17,5);
                 }
 
 
 
                 //---------------------------------
                 if(i>276 && i<=280  || i>300 && i<=304 || i>324 && i<=328){
-                    Crear_Campo(22,5);
+                    Crear_Campo(i,22,5);
                 }
 
                 if(i>280 && i<=284 || i>304 && i<=308 || i>328 && i<=332){
-                    Crear_Campo(23,5);
+                    Crear_Campo(i,23,5);
                 }
 
             }
@@ -1866,15 +2286,15 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
                 //Crear_Campo(6);
 
                 if(i>92 && i<=96 || i>116 && i<=120 || i>140 && i<=144){
-                    Crear_Campo(12,6);
+                    Crear_Campo(i,12,6);
                 }
                 //---------------------------------
                 if(i>164 && i<=168 || i>188 && i<=192 || i>212 && i<=216 || i>236 && i<=240 || i>260 && i<=264){
-                    Crear_Campo(18,6);
+                    Crear_Campo(i,18,6);
                 }
                 //---------------------------------
                 if(i>284 && i<=288 || i>308 && i<=312  || i>332 && i<=336){
-                    Crear_Campo(24,6);
+                    Crear_Campo(i,24,6);
                 }
             }
 
@@ -1882,42 +2302,214 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
                 //Crear_Campo(7);
 
                 if(i>336 && i<=340 || i>360 && i<=364  || i>384 && i<=388){
-                    Crear_Campo(25,7);
+                    Crear_Campo(i,25,7);
                 }
 
                 if(i>340 && i<=344 || i>364 && i<=368 || i>388 && i<=392){
-                    Crear_Campo(26,7);
+                    Crear_Campo(i,26,7);
                 }
 
                 if(i>344 && i<=348 || i>368 && i<=372 || i>392 && i<=396){
-                    Crear_Campo(27,7);
+                    Crear_Campo(i,27,7);
                 }
 
             }
 
             if(i>348 && i<=360  || i>372  && i<=384 || i>396  && i<=408  ){
                 if(i>348 && i<=352 || i>372 && i<=376 || i>396 && i<=400){
-                    Crear_Campo(28,8);
+                    Crear_Campo(i,28,8);
                 }
 
                 if(i>352 && i<=356 || i>376 && i<=380 || i>400 && i<=404){
-                    Crear_Campo(29,8);
+                    Crear_Campo(i,29,8);
                 }
 
                 if(i>356 && i<=360 || i>380 && i<=384 || i>404 && i<=408){
-                    Crear_Campo(30,8);
+                    Crear_Campo(i,30,8);
                 }
 
             }
           }
         }
-    private void Crear_Campo(int segmento,int area) {
+    private void Agregado_Campos2() {
 
-        CampoEstadistico temp =new CampoEstadistico(area,segmento,null,null,1,alt2,anc2,R.drawable.layout_border, "");
-        CampoEstadistico.LISTACAMPOESTADISTICO.add(temp);
+        for(int i=1;i<=408;i++){
+            if(i<=12 ||  i>24 && i<=36 || i>48 && i<=60){
+
+
+                if(i<=4  || i>24 && i<=28 || i>48 && i<=52  ){
+                    Crear_Campo2(i,1,1);
+                }
+                if(i>4 && i<=8  || i>28 && i<=32 || i>52 && i<=56   ){
+                    Crear_Campo2(i,2,1);
+                }
+                if(i>8 && i<=12  || i>32 && i<=36 || i>56 && i<=60  ){
+                    Crear_Campo2(i,3,1);
+                }
+            }
+
+
+            if(i>12 && i<=24 || i>36 && i<=48 || i>60 && i<=72){
+
+                if(i>12 && i<=16 || i>36 && i<=40 || i>60 && i<=64 ){
+                    Crear_Campo2(i,4,2);
+                }
+                if(i>16 && i<=20 || i>40 && i<=44 || i>64 && i<=68   ){
+                    Crear_Campo2(i,5,2);
+                }
+                if(i>20 && i<=24 || i>44 && i<=48 || i>68 && i<=72   ){
+                    Crear_Campo2(i,6,2);
+                }
+
+            }
+
+
+            if(i>72 && i<=76 || i>96 && i<=100  || i>120 && i<=124 || i>144 && i<=148  || i>168  && i<=172  || i>192  && i<=196   || i>216  && i<=220   || i>240  && i<=244   || i>264  && i<=268  || i> 288 && i<=292  || i>312  && i<= 316){
+
+
+                if(i>72 && i<=76 || i>96 && i<=100 || i>120 && i<=124){
+                    Crear_Campo2(i,7,3);
+                }
+                //---------------------------------
+                if(i>144 && i<=148 || i>168 && i<=172 || i>192 && i<=196  || i>216 && i<=220 || i>240 && i<=244){
+                    Crear_Campo2(i,13,3);
+                }
+
+
+                //---------------------------------
+                if(i>264 && i<=268 || i>288 && i<=292 || i>312 && i<=316){
+                    Crear_Campo2(i,19,3);
+                }
+
+
+            }
+            if(i>76 && i<=84 || i>100 && i<=108 || i>124 && i<=132  || i>148 && i<= 156  || i>172  && i<=180 || i>196  && i<=204  || i>220 && i<=228  || i>244  && i<=252   || i> 268 && i<=276  || i>292  && i<=300  || i>316  && i<=324 ){
+
+                //Crear_Campo(0,4);
+                if(i>76 && i<=80 || i>100 && i<=104 || i>124 && i<=128){
+                    Crear_Campo2(i,8,4);
+                }
+
+                if(i>80 && i<=84 || i>104 && i<=108 || i>128 && i<=132){
+                    Crear_Campo2(i,9,4);
+                }
+
+                //---------------------------------
+                if(i>148 && i<=152 || i>172 && i<=176 || i>196 && i<=200 || i>220 && i<=224  || i>244 && i<=248){
+                    Crear_Campo2(i,14,4);
+                }
+
+                if(i>152 && i<=156 || i>176 && i<=180 || i>200 && i<=204 || i>224 && i<=228 || i>248 && i<=252){
+                    Crear_Campo2(i,15,4);
+                }
+
+
+
+                //---------------------------------
+                if(i>268 && i<=272   || i>292 && i<=296 || i>316 && i<=320){
+                    Crear_Campo2(i,20,4);
+                }
+
+                if(i>272 && i<=276  || i>296 && i<=300 || i>320 && i<=324){
+                    Crear_Campo2(i,21,4);
+                }
+
+
+
+
+            }
+
+            if(i>84 && i<=92 || i>108 && i<=116 || i> 132 && i<=140 || i>156 && i<= 164  || i>180  && i<=188  || i>204  && i<= 212 || i>228  && i<=236  || i>252  && i<=260  || i> 276 && i<=284  || i> 300 && i<= 308   || i> 324 && i<=332 ){
+                //Crear_Campo(5);
+
+                if(i>84 && i<=88 || i>108 && i<=112 || i>132 && i<=136){
+                    Crear_Campo2(i,10,5);
+                }
+
+                if(i>88 && i<=92 || i>112 && i<=116 || i>136 && i<=140){
+                    Crear_Campo2(i,11,5);
+                }
+
+
+                //---------------------------------
+                if(i>156 && i<=160 || i>180 && i<=184 || i>204 && i<=208 || i>228 && i<=232 || i>252 && i<=256){
+                    Crear_Campo2(i,16,5);
+                }
+
+                if(i>160 && i<=164 || i>184 && i<=188 || i>208 && i<=212 || i>232 && i<=236 || i>256 && i<=260){
+                    Crear_Campo2(i,17,5);
+                }
+
+
+
+                //---------------------------------
+                if(i>276 && i<=280  || i>300 && i<=304 || i>324 && i<=328){
+                    Crear_Campo2(i,22,5);
+                }
+
+                if(i>280 && i<=284 || i>304 && i<=308 || i>328 && i<=332){
+                    Crear_Campo2(i,23,5);
+                }
+
+            }
+            if(i>92 && i<=96 || i>116 && i<=120 || i>140  && i<=144  || i>164 && i<= 168  || i>188  && i<=192  || i>212  && i<=216 || i>236  && i<=240 || i>260  && i<=264  || i> 284 && i<=288  || i> 308 && i<=312  || i>332  && i<=336  ){
+                //Crear_Campo(6);
+
+                if(i>92 && i<=96 || i>116 && i<=120 || i>140 && i<=144){
+                    Crear_Campo2(i,12,6);
+                }
+                //---------------------------------
+                if(i>164 && i<=168 || i>188 && i<=192 || i>212 && i<=216 || i>236 && i<=240 || i>260 && i<=264){
+                    Crear_Campo2(i,18,6);
+                }
+                //---------------------------------
+                if(i>284 && i<=288 || i>308 && i<=312  || i>332 && i<=336){
+                    Crear_Campo2(i,24,6);
+                }
+            }
+
+            if(i>336 && i<=348  || i>360  && i<=372  || i>384  && i<=396  ){
+                //Crear_Campo(7);
+
+                if(i>336 && i<=340 || i>360 && i<=364  || i>384 && i<=388){
+                    Crear_Campo2(i,25,7);
+                }
+
+                if(i>340 && i<=344 || i>364 && i<=368 || i>388 && i<=392){
+                    Crear_Campo2(i,26,7);
+                }
+
+                if(i>344 && i<=348 || i>368 && i<=372 || i>392 && i<=396){
+                    Crear_Campo2(i,27,7);
+                }
+
+            }
+
+            if(i>348 && i<=360  || i>372  && i<=384 || i>396  && i<=408  ){
+                if(i>348 && i<=352 || i>372 && i<=376 || i>396 && i<=400){
+                    Crear_Campo2(i,28,8);
+                }
+
+                if(i>352 && i<=356 || i>376 && i<=380 || i>400 && i<=404){
+                    Crear_Campo2(i,29,8);
+                }
+
+                if(i>356 && i<=360 || i>380 && i<=384 || i>404 && i<=408){
+                    Crear_Campo2(i,30,8);
+                }
+
+            }
+        }
     }
-    public void debug(String sm){
-        System.out.println(sm);
+    private void Crear_Campo(int i,int segmento,int area) {
+
+        CampoEstadistico temp =new CampoEstadistico(i,area,segmento,null,null,1,alt2,anc2,R.drawable.layout_border, "");
+        CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.add(temp);
+    }
+    private void Crear_Campo2(int i,int segmento,int area) {
+
+        CampoEstadistico temp =new CampoEstadistico(i,area,segmento,null,null,1,alt2,anc2,R.drawable.layout_border, "");
+        CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.add(temp);
     }
     public void Partido_Start(){
         accion_partido.setCardBackgroundColor(getResources().getColor(R.color.deep_naranja400));
@@ -1956,6 +2548,8 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
         cronometro.stop();
     }
     private void Continuar_Segundo_Tiempo() {
+        Guardar_Informacion_Primer_Tiempo();
+
         Estadistico_Gestion.TEMP.setTiempo_actual(2);
         Estadistico_Gestion.TEMP.setTiempo_Total(0);
         Estadistico_Gestion.TEMP.setTiempo_Total2(0);
@@ -1972,6 +2566,7 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
         cronometro.setBase(SystemClock.elapsedRealtime()-m_corte);
         cronometro.start();
     }
+
     private void Finalizar_Partido() {
         accion_partido.setCardBackgroundColor(getResources().getColor(R.color.red));
         boton_partido.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_stop, 0, 0, 0);
@@ -2044,4 +2639,114 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
 
     }
 
+
+    private void Guardar_Informacion_Primer_Tiempo() {
+
+        adapterCampo=null;
+        recyclercampoooo2();
+        if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.size()==0){
+            listar_card2();
+        }else{
+            CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.clear();
+            listar_card2();
+        }
+
+    }
+    public void BUSCAR_PROFUNDIDAD_PRIMER_TIEMPO(){
+
+        for(int i=0;i<CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.size();i++){
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion()!=null){
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getCod()==2){
+
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().equalsIgnoreCase("DR")){
+                    Estadistico_Gestion.TEMP.setOF_IZQ_DR(Estadistico_Gestion.TEMP.getOF_IZQ_DR()+1);
+                }
+
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().equalsIgnoreCase("PG")){
+                    Estadistico_Gestion.TEMP.setOF_IZQ_PG(Estadistico_Gestion.TEMP.getOF_IZQ_PG()+1);
+                }
+
+
+            }
+
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getCod()==6){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().equalsIgnoreCase("OG")){
+                    Estadistico_Gestion.TEMP.setOF_ZF_OG(Estadistico_Gestion.TEMP.getOF_ZF_OG()+1);
+                }
+
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().equalsIgnoreCase("R")){
+                    Estadistico_Gestion.TEMP.setOF_ZF_R(Estadistico_Gestion.TEMP.getOF_ZF_R()+1);
+                }
+            }
+
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getCod()==5){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().equalsIgnoreCase("OG")){
+                    Estadistico_Gestion.TEMP.setOF_CEN_OG(Estadistico_Gestion.TEMP.getOF_CEN_OG()+1);
+                }
+
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().equalsIgnoreCase("R")){
+                    Estadistico_Gestion.TEMP.setOF_CEN_R(Estadistico_Gestion.TEMP.getOF_CEN_R()+1);
+                }
+            }
+
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getCod()==8){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().equalsIgnoreCase("DR")){
+                    Estadistico_Gestion.TEMP.setOF_DER_DR(Estadistico_Gestion.TEMP.getOF_DER_DR()+1);
+                }
+
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().equalsIgnoreCase("PG")){
+                    Estadistico_Gestion.TEMP.setOF_DER_PG(Estadistico_Gestion.TEMP.getOF_DER_PG()+1);
+                }
+            }
+            }
+        }
+    }
+    public void BUSCAR_PROFUNDIDAD_SEGUNDO_TIEMPO(){
+
+        for(int i=0;i<CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.size();i++){
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getCod()==2){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().equalsIgnoreCase("DR")){
+                    Estadistico_Gestion.TEMP.setOF_IZQ_DR2(Estadistico_Gestion.TEMP.getOF_IZQ_DR2()+1);
+                }
+
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().equalsIgnoreCase("PG")){
+                    Estadistico_Gestion.TEMP.setOF_IZQ_PG2(Estadistico_Gestion.TEMP.getOF_IZQ_PG2()+1);
+                }
+            }
+
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getCod()==6){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().equalsIgnoreCase("OG")){
+                    Estadistico_Gestion.TEMP.setOF_ZF_OG2(Estadistico_Gestion.TEMP.getOF_ZF_OG2()+1);
+                }
+
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().equalsIgnoreCase("R")){
+                    Estadistico_Gestion.TEMP.setOF_ZF_R2(Estadistico_Gestion.TEMP.getOF_ZF_R2()+1);
+                }
+            }
+
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getCod()==5){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().equalsIgnoreCase("OG")){
+                    Estadistico_Gestion.TEMP.setOF_CEN_OG2(Estadistico_Gestion.TEMP.getOF_CEN_OG2()+1);
+                }
+
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().equalsIgnoreCase("R")){
+                    Estadistico_Gestion.TEMP.setOF_CEN_R2(Estadistico_Gestion.TEMP.getOF_CEN_R2()+1);
+                }
+            }
+
+            if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getCod()==8){
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().equalsIgnoreCase("DR")){
+                    Estadistico_Gestion.TEMP.setOF_DER_DR2(Estadistico_Gestion.TEMP.getOF_DER_DR2()+1);
+                }
+
+                if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_2.get(i).getOpcion().getOpcion().equalsIgnoreCase("PG")){
+                    Estadistico_Gestion.TEMP.setOF_DER_PG2(Estadistico_Gestion.TEMP.getOF_DER_PG2()+1);
+                }
+            }
+        }
+    }
+
+    public void debug(String sm){
+        System.out.println(sm);
+    }
 }

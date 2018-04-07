@@ -3,6 +3,7 @@ import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterPersonaCambio;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterPersonaCambio2;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.PersonaEstadistico;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.Total_Segmento;
 import org.futuroblanquiazul.futuroblaquiazul.R;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +68,11 @@ public class Estadistico_Gestion {
     int OF_DER_DR2;
     int OF_DER_PG2;
 
+    int Contador;
+
+    int posesion1;
+    int posesion2;
+
 
     PersonaEstadistico Titular_Cambio;
     PersonaEstadistico Suplente_Cambio;
@@ -74,6 +80,9 @@ public class Estadistico_Gestion {
 
 
     List<Persona> Nombres_Personas;
+
+
+
 
 
     public static final List<RecursoEstadisticoRadioButton> RADIOS =new ArrayList<>();
@@ -85,8 +94,13 @@ public class Estadistico_Gestion {
     public static AdapterPersonaCambio ADAPTER_TITULARES=null;
     public static AdapterPersonaCambio2 ADAPTER_SUPLENTES=null;
 
-    public static final List<String> LISTA_LINEA_TIEMPO=new ArrayList<>();
 
+
+    public static final List<Total_Segmento> TOTAL_SEGMENTOS =new ArrayList<>();
+    public static final List<Total_Segmento> TOTAL_AREAS =new ArrayList<>();
+
+
+    public static final List<String> LISTA_LINEA_TIEMPO=new ArrayList<>();
 
 
 
@@ -108,9 +122,76 @@ public class Estadistico_Gestion {
         RADIOS.add(new RecursoEstadisticoRadioButton(12, R.id.gestion_campo_atajadas,null,1,2,"ATJ"));
         RADIOS.add(new RecursoEstadisticoRadioButton(13, R.id.gestion_campo_gol_oponente,null,1,3,"GO"));
 
+
+        TOTAL_AREAS.add(new Total_Segmento(1,0));
+        TOTAL_AREAS.add(new Total_Segmento(2,0));
+        TOTAL_AREAS.add(new Total_Segmento(3,0));
+        TOTAL_AREAS.add(new Total_Segmento(4,0));
+        TOTAL_AREAS.add(new Total_Segmento(5,0));
+        TOTAL_AREAS.add(new Total_Segmento(6,0));
+        TOTAL_AREAS.add(new Total_Segmento(7,0));
+        TOTAL_AREAS.add(new Total_Segmento(8,0));
+
+        TOTAL_SEGMENTOS.add(new Total_Segmento(1,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(2,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(3,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(4,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(5,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(6,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(7,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(8,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(9,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(10,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(11,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(12,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(13,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(14,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(15,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(16,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(17,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(18,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(19,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(20,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(21,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(22,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(23,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(24,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(25,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(26,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(27,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(28,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(29,0));
+        TOTAL_SEGMENTOS.add(new Total_Segmento(30,0));
+
+
     }
     public Estadistico_Gestion(){
 
+    }
+
+
+    public int getPosesion1() {
+        return posesion1;
+    }
+
+    public void setPosesion1(int posesion1) {
+        this.posesion1 = posesion1;
+    }
+
+    public int getPosesion2() {
+        return posesion2;
+    }
+
+    public void setPosesion2(int posesion2) {
+        this.posesion2 = posesion2;
+    }
+
+    public int getContador() {
+        return Contador;
+    }
+
+    public void setContador(int contador) {
+        Contador = contador;
     }
 
     public int getTiempo_Total2() {

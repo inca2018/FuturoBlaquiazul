@@ -16,9 +16,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.futuroblanquiazul.futuroblaquiazul.Entity.CampoEstadistico;
@@ -142,6 +144,107 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
 
              }
          }
+
+
+         holder.btn.setOnLongClickListener(new View.OnLongClickListener() {
+             @Override
+             public boolean onLongClick(View v) {
+                 if(my_Data.get(position).getOpcion()==null){
+                     Toast.makeText(context, "Area sin Información!", Toast.LENGTH_SHORT).show();
+                 }else{
+                     final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+                     final View dialoglayout = inflater.inflate(R.layout.gestion_campo_estadistico_info, null);
+
+                     LinearLayout area_jugador=dialoglayout.findViewById(R.id.in_area_jugador);
+                     ImageView icon_jugador=dialoglayout.findViewById(R.id.in_icono_jugador);
+                     ImageView icon_opcion=dialoglayout.findViewById(R.id.in_icono_opcion);
+                     TextView nom_jugador=dialoglayout.findViewById(R.id.in_nombre_jugador);
+                     TextView nom_opcion=dialoglayout.findViewById(R.id.in_nombre_opcion);
+
+                     final AlertDialog.Builder builder4 = new AlertDialog.Builder(context);
+                     builder4.setView(dialoglayout);
+                     da=builder4.show();
+
+                     if(my_Data.get(position).getPersona()==null){
+                         area_jugador.setVisibility(View.GONE);
+                         icon_opcion.setImageResource(R.mipmap.icon_opcion_gol);
+                         nom_opcion.setText("GOL DE OPONENTE");
+                     }else{
+                         area_jugador.setVisibility(View.VISIBLE);
+
+                         switch (my_Data.get(position).getOpcion().getOpcion()){
+                             case "PG":
+                                 icon_opcion.setImageResource(R.mipmap.icon_opcion_pase_gol);
+                                 nom_opcion.setText("PASE GOL");
+                                 nom_jugador.setText(my_Data.get(position).getPersona().getNombre_Persona()+" "+my_Data.get(position).getPersona().getApellidos_Persona());
+                                 break;
+                             case "DR":
+                                 icon_opcion.setImageResource(R.mipmap.icon_opcion_dribbling);
+                                 nom_opcion.setText("DRIBBLING");
+                                 nom_jugador.setText(my_Data.get(position).getPersona().getNombre_Persona()+" "+my_Data.get(position).getPersona().getApellidos_Persona());
+                                 break;
+                             case "OG":
+                                 icon_opcion.setImageResource(R.mipmap.icon_opcion_opcion_gol);
+                                 nom_opcion.setText("OPCION DE GOL");
+                                 nom_jugador.setText(my_Data.get(position).getPersona().getNombre_Persona()+" "+my_Data.get(position).getPersona().getApellidos_Persona());
+                                 break;
+                             case "R":
+                                 icon_opcion.setImageResource(R.mipmap.icon_opcion_remate);
+                                 nom_opcion.setText("REMATE");
+                                 nom_jugador.setText(my_Data.get(position).getPersona().getNombre_Persona()+" "+my_Data.get(position).getPersona().getApellidos_Persona());
+                                 break;
+                             case "G":
+                                 icon_opcion.setImageResource(R.mipmap.icon_opcion_gol);
+                                 nom_opcion.setText("GOL");
+                                 nom_jugador.setText(my_Data.get(position).getPersona().getNombre_Persona()+" "+my_Data.get(position).getPersona().getApellidos_Persona());
+                                 break;
+                             case "OF":
+                                 icon_opcion.setImageResource(R.mipmap.icon_opcion_off_sides);
+                                 nom_opcion.setText("OFF SIDE");
+                                 nom_jugador.setText(my_Data.get(position).getPersona().getNombre_Persona()+" "+my_Data.get(position).getPersona().getApellidos_Persona());
+                                 break;
+                             case "BP":
+                                 icon_opcion.setImageResource(R.mipmap.icon_opcion_balones_perdidos);
+                                 nom_opcion.setText("BALON PERDIDO");
+                                 nom_jugador.setText(my_Data.get(position).getPersona().getNombre_Persona()+" "+my_Data.get(position).getPersona().getApellidos_Persona());
+                                 break;
+                             case "BR":
+                                 icon_opcion.setImageResource(R.mipmap.icon_opcion_balones_recuperados);
+                                 nom_opcion.setText("BALON RECUPERADO");
+                                 nom_jugador.setText(my_Data.get(position).getPersona().getNombre_Persona()+" "+my_Data.get(position).getPersona().getApellidos_Persona());
+                                 break;
+                             case "F":
+                                 icon_opcion.setImageResource(R.mipmap.icon_opcion_faltas);
+                                 nom_opcion.setText("FALTA");
+                                 nom_jugador.setText(my_Data.get(position).getPersona().getNombre_Persona()+" "+my_Data.get(position).getPersona().getApellidos_Persona());
+                                 break;
+                             case "TA":
+                                 icon_opcion.setImageResource(R.mipmap.icon_opcion_tarjeta_amarilla);
+                                 nom_opcion.setText("TARJETA AMARILLA");
+                                 nom_jugador.setText(my_Data.get(position).getPersona().getNombre_Persona()+" "+my_Data.get(position).getPersona().getApellidos_Persona());
+                                 break;
+                             case "TR":
+                                 icon_opcion.setImageResource(R.mipmap.icon_opcion_tarjeta_roja);
+                                 nom_opcion.setText("TARJETA ROJA");
+                                 nom_jugador.setText(my_Data.get(position).getPersona().getNombre_Persona()+" "+my_Data.get(position).getPersona().getApellidos_Persona());
+                                 break;
+                             case "ATJ":
+                                 icon_opcion.setImageResource(R.mipmap.icon_opcion_atajada);
+                                 nom_opcion.setText("ATAJADA");
+                                 nom_jugador.setText(my_Data.get(position).getPersona().getNombre_Persona()+" "+my_Data.get(position).getPersona().getApellidos_Persona());
+                                 break;
+
+                         }
+
+                     }
+
+
+                 }
+
+
+                 return true;
+             }
+         });
          holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -226,30 +329,9 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
                                                     O.setOpcion(campo.getDesc());
 
 
-                                                    if(O.getOpcion().equalsIgnoreCase("TA")){
-                                                        boolean si=Buscar_Jugador(persona);
-                                                        if(si){
-                                                            Expulsar_Jugador(persona);
-                                                            Toast.makeText(context, "Jugador "+persona.getNombre_Persona()+" "+persona.getApellidos_Persona() +" Expulsado por acumular  2 Amarillas", Toast.LENGTH_SHORT).show();
+                                                    Tarjetas_Mensaje(O,persona,position);
 
-                                                            String d="Expulsión -> "+"Jugador "+persona.getNombre_Persona()+" "+persona.getApellidos_Persona()+" - "+Estadistico_Gestion.TEMP.getMinutos_jugados()+"´"+Estadistico_Gestion.TEMP.getSegundos_jugados()+"´´" ;
-                                                            Estadistico_Gestion.LISTA_LINEA_TIEMPO.add(d);
-
-                                                            my_Data.get(position).setOpcion(O);
-                                                        }else{
-                                                            my_Data.get(position).setOpcion(O);
-                                                        }
-                                                    }
-
-
-                                                    Capturar_Tiempo(O,persona);
-                                                    if(O.getOpcion().equalsIgnoreCase("TR")){
-                                                        Expulsar_Jugador(persona);
-                                                        Toast.makeText(context, "Jugador "+persona.getNombre_Persona()+" "+persona.getApellidos_Persona()+" Expulsado", Toast.LENGTH_SHORT).show();
-                                                        String d="Expulsión -> "+"Jugador "+persona.getNombre_Persona()+" "+persona.getApellidos_Persona()+" - "+Estadistico_Gestion.TEMP.getMinutos_jugados()+"´"+Estadistico_Gestion.TEMP.getSegundos_jugados()+"´´" ;
-                                                        Estadistico_Gestion.LISTA_LINEA_TIEMPO.add(d);
-                                                    }
-
+                                                    my_Data.get(position).setOpcion(O);
 
                                                     System.out.println("Opcion Seleccionada CODIGO:"+ O.getCodigo()+" OPCION:"+O.getOpcion());
                                                     notifyDataSetChanged();
@@ -276,6 +358,45 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
         });
     }
 
+    private void Tarjetas_Mensaje(OpcionEstadistico o, Persona persona, int position) {
+
+        if(o.getOpcion().equalsIgnoreCase("TA")){
+            boolean si=Buscar_Jugador(persona);
+            if(si){
+
+                String dd="TARJETA AMARILLA -> "+persona.getApellidos_Persona()+" "+Estadistico_Gestion.TEMP.getMinutos_jugados()+"´"+Estadistico_Gestion.TEMP.getSegundos_jugados()+"´´";
+                Estadistico_Gestion.LISTA_LINEA_TIEMPO.add(dd);
+
+                Expulsar_Jugador(persona);
+                my_Data.get(position).setOpcion(o);
+                Toast.makeText(context, "Jugador "+persona.getNombre_Persona()+" "+persona.getApellidos_Persona() +" Expulsado por acumular  2 Amarillas", Toast.LENGTH_SHORT).show();
+
+                String d="Expulsión -> "+"Jugador "+persona.getNombre_Persona()+" "+persona.getApellidos_Persona()+" - "+Estadistico_Gestion.TEMP.getMinutos_jugados()+"´"+Estadistico_Gestion.TEMP.getSegundos_jugados()+"´´" ;
+                Estadistico_Gestion.LISTA_LINEA_TIEMPO.add(d);
+
+
+            }else{
+                my_Data.get(position).setOpcion(o);
+                String dd="TARJETA AMARILLA -> "+persona.getApellidos_Persona()+" "+Estadistico_Gestion.TEMP.getMinutos_jugados()+"´"+Estadistico_Gestion.TEMP.getSegundos_jugados()+"´´";
+                Estadistico_Gestion.LISTA_LINEA_TIEMPO.add(dd);
+            }
+        }
+
+        Capturar_Tiempo(o,persona);
+
+        if(o.getOpcion().equalsIgnoreCase("TR")){
+
+            String dd="TARJETA ROJA -> "+persona.getApellidos_Persona()+" "+Estadistico_Gestion.TEMP.getMinutos_jugados()+"´"+Estadistico_Gestion.TEMP.getSegundos_jugados()+"´´";
+            Estadistico_Gestion.LISTA_LINEA_TIEMPO.add(dd);
+            Expulsar_Jugador(persona);
+            Toast.makeText(context, "Jugador "+persona.getNombre_Persona()+" "+persona.getApellidos_Persona()+" Expulsado", Toast.LENGTH_SHORT).show();
+            String d="Expulsión -> "+"Jugador "+persona.getNombre_Persona()+" "+persona.getApellidos_Persona()+" - "+Estadistico_Gestion.TEMP.getMinutos_jugados()+"´"+Estadistico_Gestion.TEMP.getSegundos_jugados()+"´´" ;
+            Estadistico_Gestion.LISTA_LINEA_TIEMPO.add(d);
+
+            my_Data.get(position).setOpcion(o);
+        }
+
+    }
     private boolean Buscar_Jugador(Persona persona) {
         boolean tiene=false;
 
@@ -296,11 +417,23 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
 
        }
 
+       for(int i=0;i< CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.size();i++){
+           if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getPersona()!=null){
+               if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getPersona().getId()==persona.getId()){
+                   if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion()!=null){
+                       if(CampoEstadistico.LISTACAMPOESTADISTICO_TIEMPO_1.get(i).getOpcion().getOpcion().equalsIgnoreCase("TA")){
+                           tiene=true;
+                       }else{
+                           tiene=false;
+                       }
+                   }
+               }
+           }
+       }
+
        return  tiene;
 
     }
-
-
     private void Expulsar_Jugador(Persona persona) {
          for(int i=0;i<Estadistico_Gestion.LISTA_PERSONAS_TITULARES.size();i++){
              if(persona.getId()==Estadistico_Gestion.LISTA_PERSONAS_TITULARES.get(i).getPersona().getId()){
@@ -325,17 +458,9 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
         Estadistico_Gestion.TEMP.setNombres_Personas(TEMP_NOMBRES);
 
     }
-
     private void Capturar_Tiempo(OpcionEstadistico o, Persona persona) {
-        if(o.getOpcion().equalsIgnoreCase("TA")){
-            String dd="TARJETA AMARILLA -> "+persona.getApellidos_Persona()+" "+Estadistico_Gestion.TEMP.getMinutos_jugados()+"´"+Estadistico_Gestion.TEMP.getSegundos_jugados()+"´´";
-            Estadistico_Gestion.LISTA_LINEA_TIEMPO.add(dd);
-        }
 
-        if(o.getOpcion().equalsIgnoreCase("TR")){
-            String dd="TARJETA ROJA -> "+persona.getApellidos_Persona()+" "+Estadistico_Gestion.TEMP.getMinutos_jugados()+"´"+Estadistico_Gestion.TEMP.getSegundos_jugados()+"´´";
-            Estadistico_Gestion.LISTA_LINEA_TIEMPO.add(dd);
-        }
+
 
         if(o.getOpcion().equalsIgnoreCase("G")){
             String dd="GOL -> "+persona.getApellidos_Persona()+" "+Estadistico_Gestion.TEMP.getMinutos_jugados()+"´"+Estadistico_Gestion.TEMP.getSegundos_jugados()+"´´";
@@ -347,8 +472,6 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
             Estadistico_Gestion.LISTA_LINEA_TIEMPO.add(dd);
         }
     }
-
-
     private boolean Buscar_GolOponente() {
         boolean t=false;
         System.out.println("---------------------BUSQUEDA OPONENTE GOL----------------");

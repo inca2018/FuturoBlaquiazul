@@ -39,6 +39,7 @@ public class DefinirTiemposActivity extends AppCompatActivity {
                           if(num>45){
                               Toast.makeText(DefinirTiemposActivity.this, "El tiempo Maximo por Fase es de 45 Minutos", Toast.LENGTH_SHORT).show();
                           }else{
+                              Estadistico_Gestion.TEMP.setContador(0);
                               Estadistico_Gestion.TEMP.setTotal_primer_tiempo(num);
                               Estadistico_Gestion.TEMP.setTotal_segundo_tiempo(num*2);
 
@@ -73,6 +74,29 @@ public class DefinirTiemposActivity extends AppCompatActivity {
                               Estadistico_Gestion.TEMP.setZF2(0);
                               Estadistico_Gestion.TEMP.setZR2(0);
                               Estadistico_Gestion.TEMP.setZPG22(0);
+
+
+                              Estadistico_Gestion.TEMP.setOF_IZQ_DR(0);
+                              Estadistico_Gestion.TEMP.setOF_IZQ_PG(0);
+                              Estadistico_Gestion.TEMP.setOF_CEN_OG(0);
+                              Estadistico_Gestion.TEMP.setOF_CEN_R(0);
+                              Estadistico_Gestion.TEMP.setOF_ZF_OG(0);
+                              Estadistico_Gestion.TEMP.setOF_ZF_R(0);
+                              Estadistico_Gestion.TEMP.setOF_DER_DR(0);
+                              Estadistico_Gestion.TEMP.setOF_DER_PG(0);
+
+
+                              Estadistico_Gestion.TEMP.setOF_IZQ_DR2(0);
+                              Estadistico_Gestion.TEMP.setOF_IZQ_PG2(0);
+                              Estadistico_Gestion.TEMP.setOF_CEN_OG2(0);
+                              Estadistico_Gestion.TEMP.setOF_CEN_R2(0);
+                              Estadistico_Gestion.TEMP.setOF_ZF_OG2(0);
+                              Estadistico_Gestion.TEMP.setOF_ZF_R2(0);
+                              Estadistico_Gestion.TEMP.setOF_DER_DR2(0);
+                              Estadistico_Gestion.TEMP.setOF_DER_PG2(0);
+
+
+
 
                               Estadistico_Gestion.TEMP.setEstado_partido(1);
 

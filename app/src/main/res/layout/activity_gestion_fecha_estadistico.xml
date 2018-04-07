@@ -310,6 +310,7 @@
                                                         android:textStyle="bold|italic" />
 
                                                     <EditText
+                                                        android:id="@+id/esta_posesion1"
                                                         style="@style/input_texto"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="match_parent"
@@ -340,6 +341,7 @@
                                                         android:textStyle="bold" />
 
                                                     <EditText
+                                                        android:id="@+id/esta_posesion2"
                                                         style="@style/input_texto"
                                                         android:layout_width="match_parent"
                                                         android:layout_height="match_parent"
