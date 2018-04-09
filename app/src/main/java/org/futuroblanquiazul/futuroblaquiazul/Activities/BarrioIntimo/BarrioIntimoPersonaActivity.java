@@ -87,12 +87,12 @@ public class BarrioIntimoPersonaActivity extends AppCompatActivity {
     private void listar_personas_barrio_intimo(final Context context) {
 
         progressDialog = new ProgressDialog(context);
-        progressDialog.setTitle("Postulantes Barrio Intimo:");
-        progressDialog.setMessage("Listando...");
+        progressDialog.setTitle("Barrio Intimo:");
+        progressDialog.setMessage("Listando Postulantes...");
         progressDialog.show();
 
         String id_barrio_intimo=String.valueOf(Usuario.SESION_ACTUAL.getId_barrio_intimo());
-        System.out.println("Id_ masivo :"+id_barrio_intimo);
+        System.out.println("Id_masivo :"+id_barrio_intimo);
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -117,6 +117,7 @@ public class BarrioIntimoPersonaActivity extends AppCompatActivity {
                             temp.setTotal_diagnostico(objeto.getInt("TOTAL_DIAG"));
                             temp.setTotal_fisica(objeto.getInt("TOTAL_FISICA"));
                             temp.setTotal_tecnica(objeto.getInt("TOTAL_TECNICA"));
+                            temp.setFoto(objeto.getString("FOTO"));
 
                             temp.setNum_Camiseta(0);
 

@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -42,6 +43,7 @@ public class ListaPersonasPlantelActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
 
     List<Persona> lista_personas;
+    TextView titulo_plantel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +51,7 @@ public class ListaPersonasPlantelActivity extends AppCompatActivity {
         context=this;
         recycler=findViewById(R.id.recycler_plantel_jugadores);
         lista_personas=new ArrayList<>();
+        titulo_plantel=findViewById(R.id.titulo_plantel);
         linearLayout = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
 
 
@@ -64,6 +67,7 @@ public class ListaPersonasPlantelActivity extends AppCompatActivity {
 
         if(Usuario.SESION_ACTUAL.getPlantel().getId()!=0){
             Lista_jugadores(Usuario.SESION_ACTUAL.getPlantel().getId(),context);
+            titulo_plantel.setText("Plantel : "+Usuario.SESION_ACTUAL.getPlantel().getNombre_categoria());
         }else{
             Toast.makeText(context, "Lista sin datos", Toast.LENGTH_SHORT).show();
         }

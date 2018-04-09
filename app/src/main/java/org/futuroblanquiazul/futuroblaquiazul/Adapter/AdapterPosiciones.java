@@ -70,7 +70,7 @@ public class AdapterPosiciones extends RecyclerView.Adapter<AdapterPosiciones.Vi
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
        holder.num.setText(String.valueOf(my_Data.get(position).getNum()));
-       holder.posicion.setText(my_Data.get(position).getNombre_Posicione());
+       holder.posicion.setText(my_Data.get(position).getNombre_Posicione().toUpperCase());
 
        holder.eliminar.setOnClickListener(new View.OnClickListener() {
            @Override

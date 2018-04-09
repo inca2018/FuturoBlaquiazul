@@ -1,5 +1,10 @@
 package org.futuroblanquiazul.futuroblaquiazul.Entity;
 
+import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterFechasEstadisticos;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Jesus Inca on 12/03/2018.
  */
@@ -33,6 +38,9 @@ public class EventoEstadistico {
 
     public static final EventoEstadistico EVENTO_TEMP=new EventoEstadistico();
     public static final EventoEstadistico EVENTO_CREACION=new EventoEstadistico();
+
+    public static final List<FechaEstadistico> LISTA_FECHAS=new ArrayList<>();
+    public static AdapterFechasEstadisticos Adapter_fecha=null;
 
 
     public EventoEstadistico(){

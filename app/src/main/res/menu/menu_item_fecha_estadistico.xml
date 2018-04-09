@@ -3,12 +3,17 @@
 
     <item
         android:id="@+id/opcion_1"
-        android:title="Gestión de Fecha">
+        android:title="Gestión de Partido">
     </item>
 
     <item
         android:id="@+id/opcion_3"
         android:title="Información de Fecha">
+    </item>
+
+    <item
+        android:id="@+id/opcion_4"
+        android:title="W.O">
     </item>
 
 </menu>

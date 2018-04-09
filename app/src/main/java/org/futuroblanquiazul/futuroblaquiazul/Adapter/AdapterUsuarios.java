@@ -118,12 +118,25 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.ViewHo
                             context.startActivity(intent);
 
                         }else if(item.getTitle().toString().equalsIgnoreCase("Desactivar")){
+                            if(my_Data.get(position).getEstado()==1){
+                                DesactivarUsuario(context,position);
+                            }else if(my_Data.get(position).getEstado()==2){
+                                Toast.makeText(context, "Usuario ya Desactivado", Toast.LENGTH_SHORT).show();
+                            }else if(my_Data.get(position).getEstado()==3){
+                                Toast.makeText(context, "Usuario Se encuentra Bloqueado", Toast.LENGTH_SHORT).show();
+                            }
 
-                            DesactivarUsuario(context,position);
+
 
                         }else if(item.getTitle().toString().equalsIgnoreCase("Bloquear")){
 
-                            BloquearUsuario(context,position);
+                            if(my_Data.get(position).getEstado()==1){
+                                BloquearUsuario(context,position);
+                            }else if(my_Data.get(position).getEstado()==2){
+                                Toast.makeText(context, "Usuario se Encuentra Desactivado", Toast.LENGTH_SHORT).show();
+                            }else if(my_Data.get(position).getEstado()==3){
+                                Toast.makeText(context, "Usuario ya esta Bloqueado", Toast.LENGTH_SHORT).show();
+                            }
 
 
                         }else if(item.getTitle().toString().equalsIgnoreCase("Información del Usuario")){
@@ -187,7 +200,7 @@ public class AdapterUsuarios extends RecyclerView.Adapter<AdapterUsuarios.ViewHo
     private void BloquearUsuario(final Context context, final int position) {
 
         final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
-        builder.setTitle("Desactivación")
+        builder.setTitle("Bloquear")
                 .setMessage("¿Desea Bloquear Usuario? \n \n \n"+
                             "Usuario:"+my_Data.get(position).getNombres()+" "+my_Data.get(position).getApellidos()+"  \n \n \n"+
                             "Detalle:  El Bloquea Inabilita al Usuario a realizar Operaciones en el Sistema.")

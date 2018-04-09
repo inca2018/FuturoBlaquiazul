@@ -2886,7 +2886,6 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
         cronometro.setBase(SystemClock.elapsedRealtime()-m_corte);
         cronometro.start();
     }
-
     private void Finalizar_Partido() {
         accion_partido.setCardBackgroundColor(getResources().getColor(R.color.red));
         boton_partido.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.icon_stop, 0, 0, 0);
@@ -2951,6 +2950,7 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
 
     }
     private void Limpiar_Variables_Globales() {
+         FechaEstadistico.FECHA_ESTADISTICO_TEMP.setFecha_actual(null);
          Estadistico_Gestion.LISTA_PERSONAS_TODO.clear();
          Estadistico_Gestion.LISTA_PERSONAS_TITULARES.clear();
          Estadistico_Gestion.LISTA_PERSONAS_SUPLENTES.clear();
@@ -2991,8 +2991,6 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
         Estadistico_Gestion.TEMP.setZR2(0);
 
     }
-
-
     private void Guardar_Informacion_Primer_Tiempo() {
 
         adapterCampo=null;
@@ -3078,7 +3076,6 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
         });
 
     }
-
     private int Buscar_Gol_Local() {
         int d=0;
 
@@ -3101,7 +3098,6 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
 
         return  d;
     }
-
     private int Buscar_Gol_Oponente() {
         int d=0;
 
@@ -3124,7 +3120,6 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
 
         return  d;
     }
-
     public void BUSCAR_PROFUNDIDAD_PRIMER_TIEMPO(){
 
         int z1=0,z2=0,z3=0,z4=0,z5=0,z6=0,z7=0,z8=0;
@@ -3244,7 +3239,6 @@ public class GestionFechaEstadisticoActivity extends AppCompatActivity {
         Estadistico_Gestion.TEMP.setOF_DER_DR2(z7);
         Estadistico_Gestion.TEMP.setOF_DER_PG2(z8);
     }
-
     public void debug(String sm){
         System.out.println(sm);
     }

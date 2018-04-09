@@ -94,8 +94,8 @@ public class PruebaTecnicaActivity extends AppCompatActivity {
             }else{
                 if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
                     persona_nombre.setText(Usuario.SESION_ACTUAL.getPersona_barrio().getNombre_Persona()+" "+Usuario.SESION_ACTUAL.getPersona_barrio().getApellidos_Persona());
-                    if(GestionUbigeo.CAPTACION_UBIGEO_BARRIO!=null){
-                        ubigeo.setText(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getUbigeo_descripcion());
+                    if(Usuario.SESION_ACTUAL.getBarrio_datos()!=null){
+                        ubigeo.setText(Usuario.SESION_ACTUAL.getBarrio_datos().getDepartamento().getDescripcion()+"/"+Usuario.SESION_ACTUAL.getBarrio_datos().getProvincia().getDescripcion()+"/"+Usuario.SESION_ACTUAL.getBarrio_datos().getDistrito());
                     }else{
                         ubigeo.setText("No Disponible");
                     }

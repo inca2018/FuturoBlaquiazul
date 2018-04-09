@@ -233,7 +233,13 @@ public class MantenimientoPosicionesActivity extends AppCompatActivity {
                         Actualizar_Pos1(context);
                     }else {
 
-                        Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                        String error=jsonResponse.getString("validar");
+                        if(error.length()!=0){
+                            Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(context, "Error de conexion al Recuperar Posicion", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                 } catch (JSONException e) {
@@ -265,8 +271,13 @@ public class MantenimientoPosicionesActivity extends AppCompatActivity {
                         Posicion2.setEnabled(true);
                          Actualizar_Pos2(context);
                     }else {
-
-                        Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                        String error=jsonResponse.getString("validar");
+                        if(error.length()!=0){
+                            Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(context, "Error de conexion al Registrar Posicion", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                 } catch (JSONException e) {

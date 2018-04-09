@@ -41,6 +41,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.futuroblanquiazul.futuroblaquiazul.Entity.EventoEstadistico.LISTA_FECHAS;
+
 public class ListaFechasEstadisticosActivity extends AppCompatActivity {
     TextView nombre_Evento,categoria_evento,ubigeo_evento;
     ImageView foto_evento;
@@ -49,9 +51,9 @@ public class ListaFechasEstadisticosActivity extends AppCompatActivity {
     Context context;
     LinearLayoutManager linearLayoutManager;
     ProgressDialog progressDialog;
-    private AdapterFechasEstadisticos adapter;
-    List<FechaEstadistico> Lista_Fechas;
+
     CardView card_nueva_fecha;
+    public static ListaFechasEstadisticosActivity GESTOR=new ListaFechasEstadisticosActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +65,7 @@ public class ListaFechasEstadisticosActivity extends AppCompatActivity {
         foto_evento=findViewById(R.id.fecha_evento_foto);
         agregar_Fecha=findViewById(R.id.boton_nueva_fecha);
         recyclerView=findViewById(R.id.fecha_recycler);
-        Lista_Fechas=new ArrayList<>();
+
         card_nueva_fecha=findViewById(R.id.card_nueva_fecha);
         context=this;
 
@@ -73,13 +75,13 @@ public class ListaFechasEstadisticosActivity extends AppCompatActivity {
 
 
         linearLayoutManager=new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
-        adapter = new AdapterFechasEstadisticos(this, Lista_Fechas, new RecyclerViewOnItemClickListener() {
+        EventoEstadistico.Adapter_fecha = new AdapterFechasEstadisticos(this, LISTA_FECHAS, new RecyclerViewOnItemClickListener() {
             public void onClick(View v, int position) {
 
             }
         });
 
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(EventoEstadistico.Adapter_fecha );
         recyclerView.setLayoutManager(linearLayoutManager);
 
         if(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal()!=null){
@@ -112,6 +114,7 @@ public class ListaFechasEstadisticosActivity extends AppCompatActivity {
 
             }
         });
+
 
     }
 
@@ -159,12 +162,12 @@ public class ListaFechasEstadisticosActivity extends AppCompatActivity {
                             temp.setGoles_rival(objeto.getInt("GOLES_RIVAL"));
 
 
-                            Lista_Fechas.add(temp);
+                            LISTA_FECHAS.add(temp);
 
 
                         }
 
-                        adapter.notifyDataSetChanged();
+                        EventoEstadistico.Adapter_fecha .notifyDataSetChanged();
                         progressDialog.dismiss();
 
                         System.out.println("LISTADO COMPLETO DE Fechas");
@@ -186,10 +189,16 @@ public class ListaFechasEstadisticosActivity extends AppCompatActivity {
 
     }
 
+    public void Actualizar_Lista(Context context){
+        LISTA_FECHAS.clear();
+        Listar_Fechas_Estadisticas(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getId(), context);
+    }
+
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        LISTA_FECHAS.clear();
         Intent intent=new Intent(context,ListaEventosEstadisticosActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);

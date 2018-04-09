@@ -470,31 +470,6 @@ public class EdicionPersonaActivity extends AppCompatActivity {
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 
-        debug(" ------------------------------------------DATOS RECUPERADOS -----------------------------------------------");
-        debug("Nombre_persona: "+persona_temporal.getNombre_Persona());
-        debug("Apellidos: "+persona_temporal.getApellidos_Persona());
-        debug("Fecha nacimiento: "+persona_temporal.getFecha_Nacimiento());
-        debug("Nacionalidad: "+persona_temporal.getNacionalidad());
-        debug("Residencia: "+persona_temporal.getLugar_Residencia());
-        debug("Departamento: "+persona_temporal.getDepartamento().getDescripcion());
-        debug("Provincia: "+persona_temporal.getProvincia().getDescripcion());
-        debug("Distrito: "+persona_temporal.getDistrito().getDescripcion());
-        debug("Club: "+persona_temporal.getClub_actual());
-        debug("Liga: "+persona_temporal.getLiga_actual());
-        debug("Telefono: "+persona_temporal.getTelefono());
-        debug("Fijo: "+persona_temporal.getTelefono_fijo());
-        debug("Bautizo: "+persona_temporal.getBautizo());
-        debug("Confirmacion: "+persona_temporal.getConfirmacion());
-        debug("Comunion: "+persona_temporal.getComunion());
-        debug("Dni: "+persona_temporal.getDni());
-        debug("Correo: "+persona_temporal.getCorreo());
-        debug("Apoderado: "+persona_temporal.getNombre_Apoderado());
-        debug("Telefono apoderado: "+persona_temporal.getTelefono_apoderado());
-        debug("Categoria: "+persona_temporal.getCategoria_Actual());
-        debug("ID persona: "+persona_temporal.getId());
-
-
-
         String nom=persona_temporal.getNombre_Persona();
         String ape=persona_temporal.getApellidos_Persona();
         String fech_naci=persona_temporal.getFecha_Nacimiento();
@@ -520,6 +495,7 @@ public class EdicionPersonaActivity extends AppCompatActivity {
 
         String foto_nom=persona_temporal.getDni()+".jpg";
         String foto_nom_antigua=dni_an+".jpg";
+        String dni_ant=String.valueOf(dni_an);
 
         debug("FOTO NOM :"+foto_nom);
         debug("FOTO NOM_ANTIGUA:"+foto_nom_antigua);
@@ -546,8 +522,13 @@ public class EdicionPersonaActivity extends AppCompatActivity {
                         progressDialog.dismiss();
 
                     } else {
-
-                        Toast.makeText(context, "Error de al Actualizar Jugador", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                        String error=jsonResponse.getString("validar");
+                        if(error.length()!=0){
+                            Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(context, "No se pudo registrar Jugador,consulte con el administrador del sistema", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                 } catch (JSONException e) {
@@ -557,7 +538,7 @@ public class EdicionPersonaActivity extends AppCompatActivity {
             }
         };
 
-        ActualizarPersona xx = new ActualizarPersona(nom,ape,fech_naci,nacionalidad,lugar_residencia,id_depa,id_prov,id_dis,club,liga,telefono,telefono_fijo,bautizo,comunion,confirmacion,dni,correo,apoderado,tele_apoderado,categoria,foto,foto_nom,foto_nom_antigua,id_persona,responseListener);
+        ActualizarPersona xx = new ActualizarPersona(nom,ape,fech_naci,nacionalidad,lugar_residencia,id_depa,id_prov,id_dis,club,liga,telefono,telefono_fijo,bautizo,comunion,confirmacion,dni,correo,apoderado,tele_apoderado,categoria,foto,foto_nom,foto_nom_antigua,id_persona,dni_ant,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
 

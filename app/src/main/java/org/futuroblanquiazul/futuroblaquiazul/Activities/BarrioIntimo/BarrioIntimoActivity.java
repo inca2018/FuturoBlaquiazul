@@ -207,6 +207,7 @@ public class BarrioIntimoActivity extends AppCompatActivity implements SearchVie
 
 
     public void onBackPressed() {
+        Usuario.SESION_ACTUAL.setBarrio_datos(null);
         Intent intent=new Intent(BarrioIntimoActivity.this,PrincipalActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra("o","o1");

@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -34,8 +35,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MantenimientoPersonaActivity extends AppCompatActivity {
-
+public class MantenimientoPersonaActivity extends AppCompatActivity implements SearchView.OnQueryTextListener  {
+    SearchView buscador_personas;
     Button p_boton_nuevo_persona;
     RecyclerView recyclerView;
     AdapterPersona adapterPersona;
@@ -50,6 +51,8 @@ public class MantenimientoPersonaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_mantenimiento_persona);
         p_boton_nuevo_persona=findViewById(R.id.p_boton_nuevo_persona);
         recyclerView=findViewById(R.id.p_lista_personas);
+        buscador_personas=findViewById(R.id.buscador_personas);
+        buscador_personas.setOnQueryTextListener(this);
         context=this;
         Lista_Persona=new ArrayList<>();
 
@@ -167,6 +170,53 @@ public class MantenimientoPersonaActivity extends AppCompatActivity {
 
     }
 
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+
+
+        return false;
+    }
+    @Override
+    public boolean onQueryTextChange(String newText) {
+
+        if (newText == null || newText.trim().isEmpty()) {
+            resetSearch();
+            return false;
+        }
+
+        List<Persona> filteredValues = new ArrayList<Persona>(Lista_Persona);
+        for (Persona value : Lista_Persona) {
+            if (!(value.getNombre_Persona().toLowerCase()+" "+value.getApellidos_Persona().toLowerCase()).contains(newText.toLowerCase())) {
+                filteredValues.remove(value);
+            }
+        }
+
+        linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false);
+        adapterPersona = new AdapterPersona(context,filteredValues, new RecyclerViewOnItemClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+            }
+        });
+        recyclerView.setAdapter(adapterPersona);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        //Opciones();
+        return false;
+    }
+    public void resetSearch() {
+        linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL,false);
+        adapterPersona = new AdapterPersona(context,Lista_Persona, new RecyclerViewOnItemClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+
+            }
+        });
+        recyclerView.setAdapter(adapterPersona);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        //Opciones();
+    }
     public void onBackPressed() {
 
         Intent intent=new Intent(MantenimientoPersonaActivity.this,PrincipalActivity.class);

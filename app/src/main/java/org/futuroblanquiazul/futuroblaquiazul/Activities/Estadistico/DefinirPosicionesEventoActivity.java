@@ -19,6 +19,8 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterEstadisticoPersonaNumero;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterEstadisticoPersonaPosicion;
@@ -70,6 +72,7 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
     Button guardar;
     List<PosicionEstadistico> Lista_Resultados;
     boolean posiciones_pase=false,numeros_pase=false;
+    ImageView defi_pos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,7 +92,7 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
         borrar_2=findViewById(R.id.borrar_camisetas);
         guardar=findViewById(R.id.guardar_definir_posicion);
         Lista_Resultados=new ArrayList<>();
-
+        defi_pos=findViewById(R.id.defi_pos);
         context=this;
 
         Armar_Lista();
@@ -136,6 +139,11 @@ public class DefinirPosicionesEventoActivity extends AppCompatActivity {
         if(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal()!=null){
             equipo.setText(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getEquipo().getNombre_equipo());
             evento.setText(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getDescripcion_Nombre_evento());
+
+            Glide.with(context).load(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getFoto()).error(R.drawable.user_default)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .skipMemoryCache(true)
+                    .into(defi_pos);
 
             Listar_Posiciones(context);
         }else{  

@@ -79,7 +79,12 @@ public class AdapterJugadorBarrioIntimo extends RecyclerView.Adapter<AdapterJuga
         holder.accion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Eliminar_Jugador(my_Data.get(position).getId(),context);
+                if(Recursos_Mantenimientos.TEMP.getEvento_temporal().getEstado()==1){
+                    Eliminar_Jugador(my_Data.get(position).getId(),context);
+                }else{
+                    Toast.makeText(context, "Evento Finalizado!", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }

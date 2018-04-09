@@ -73,12 +73,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="12">
-                <ImageView
-                    android:id="@+id/metodologia_personas_acciones"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@mipmap/icon_menu_popup"
-                    android:tint="@color/titulos"/>
 
 
             </LinearLayout>

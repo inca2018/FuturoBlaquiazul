@@ -2,13 +2,13 @@
     xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bienvenido"
+    android:background="@drawable/portada_fondo"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="3"
+        android:layout_weight="2"
         android:orientation="vertical">
 
         <TextView
@@ -16,17 +16,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textSize="25dp"
-            android:text="@string/titulo" />
+            android:text="Bienvenido"
+            android:textSize="25dp" />
 
-        <TextView
+        <ImageView
 
-            style="@style/main_titulo2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textSize="40dp"
-            android:text="@string/bienvenido" />
+            android:src="@drawable/portada_descripcion" />
 
     </LinearLayout>
 

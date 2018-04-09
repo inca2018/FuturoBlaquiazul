@@ -104,7 +104,7 @@ public class AdapterPersona extends RecyclerView.Adapter<AdapterPersona.ViewHold
             public void onClick(View v) {
 
                         final PopupMenu popupMenu=new PopupMenu(context,holder.Editar_persona);
-                        popupMenu.getMenuInflater().inflate(R.menu.menu_item_usuarios,popupMenu.getMenu());
+                        popupMenu.getMenuInflater().inflate(R.menu.menu_item_per_mant,popupMenu.getMenu());
 
                         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                             @Override
@@ -115,64 +115,8 @@ public class AdapterPersona extends RecyclerView.Adapter<AdapterPersona.ViewHold
 
                                     Intent intent= new Intent(context,EdicionPersonaActivity.class);
                                     context.startActivity(intent);
-
-                                }else if(item.getTitle().toString().equalsIgnoreCase("Habilitar")){
-
-                                    //DesactivarUsuario(context,position);
-
-                                }else if(item.getTitle().toString().equalsIgnoreCase("Deshabilitar")){
-
-                                   // BloquearUsuario(context,position);
-
-
-                                }else if(item.getTitle().toString().equalsIgnoreCase("Información del Jugador")){
-
-                                    final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-                                    final View dialoglayout = inflater.inflate(R.layout.info_mantenimiento_personas, null);
-
-                                    TextView u1,u2,u3,u4,u5,u6,u7,u8,u9,u10;
-                                    ImageView foto_info;
-
-                                    foto_info=dialoglayout.findViewById(R.id.info_mant_foto);
-                                    u1=dialoglayout.findViewById(R.id.info_mant_estado);
-                                    u2=dialoglayout.findViewById(R.id.info_mant_nombres);
-                                    u3=dialoglayout.findViewById(R.id.info_mant_dni);
-                                    u4=dialoglayout.findViewById(R.id.info_mant_correo);
-                                    u5=dialoglayout.findViewById(R.id.info_mant_area);
-                                    u6=dialoglayout.findViewById(R.id.info_mant_cargo);
-                                    u7=dialoglayout.findViewById(R.id.info_mant_usuario);
-                                    u8=dialoglayout.findViewById(R.id.info_mant_perfil);
-                                    u9=dialoglayout.findViewById(R.id.info_mant_fecha_registro);
-                                    u10=dialoglayout.findViewById(R.id.info_mant_fecha_conexion);
-
-                                    /*
-                                    final AlertDialog.Builder builder4 = new AlertDialog.Builder(context);
-                                    builder4.setView(dialoglayout);
-                                    da=builder4.show();
-
-                                    Glide.with(context).load(my_Data.get(position).getFoto()).into(foto_info);
-
-                                    if(my_Data.get(position).getEstado()==1){
-                                        u1.setText("ACTIVO");
-                                        u1.setTextColor(context.getResources().getColor(R.color.verde));
-                                    }else if(my_Data.get(position).getEstado()==2){
-                                        u1.setText("DESACTIVADO");
-                                        u1.setTextColor(context.getResources().getColor(R.color.red));
-                                    }else if(my_Data.get(position).getEstado()==3){
-                                        u1.setText("BLOQUEADO");
-                                        u1.setTextColor(context.getResources().getColor(R.color.morado_bajo));
-                                    }
-
-                                    u2.setText(my_Data.get(position).getNombres()+" "+my_Data.get(position).getApellidos());
-                                    u3.setText(String.valueOf(my_Data.get(position).getDni()));
-                                    u4.setText(my_Data.get(position).getCorreo());
-                                    u5.setText(my_Data.get(position).getArea_usuario().getDescripcion());
-                                    u6.setText(my_Data.get(position).getCargo());
-                                    u7.setText(my_Data.get(position).getUsuario());
-                                    u8.setText(my_Data.get(position).getPerfil().getNombre_Perfil());
-                                    u9.setText(my_Data.get(position).getFecha_creacion());
-                                    u10.setText(my_Data.get(position).getFecha_conexion()); */
                                 }
+
 
                                 return true;
                             }

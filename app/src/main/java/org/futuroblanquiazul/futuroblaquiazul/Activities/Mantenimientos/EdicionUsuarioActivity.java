@@ -165,6 +165,8 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
             });
     }
     private void Mostrar_Valores_Recuperados() {
+
+        estado.setEnabled(true);
         if(Usuario.SESION_ACTUAL.getUsuario_mantenimiento().getFoto().length()!=0){
             debug("TIENE FOTO EL USUARIO");
             Glide.with(context)
@@ -172,6 +174,7 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .skipMemoryCache(true)
                     .into(foto_usuario);
+
         }else{
             debug("NO TIENE FOTO EL USUARIO");
             foto_usuario.setImageResource(R.drawable.user_default);
@@ -211,6 +214,7 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
 
         context=this;
         Listar_Perfiles(context);
+        estado.setEnabled(false);
     }
     //GESTION DE ACTIVITY ACTUAL
     private void Recupera_Valores() {
@@ -331,6 +335,7 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
         String ruta=usuario_mantenimiento.getFoto();
         String foto_nom=dni+".jpg";
         String foto_nom_antigua=usuario_mantenimiento.getDni()+".jpg";
+        String dni_antiguo=String.valueOf(usuario_mantenimiento.getDni());
 
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
@@ -351,8 +356,13 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
 
 
                     } else {
-
-                        Toast.makeText(context, "Error de al Actualizar Usuario", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
+                        String error=jsonResponse.getString("validar");
+                        if(error.length()!=0){
+                            Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(context, "Error de conexion al Recuperar Usuario", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                 } catch (JSONException e) {
@@ -362,7 +372,7 @@ public class EdicionUsuarioActivity extends AppCompatActivity {
             }
         };
 
-        ActualizarUsuario xx = new ActualizarUsuario( usuario, pass, nom, ape, dni, area, cargo, correo, tipo, estado, foto, id_usuario,ruta,foto_nom,foto_nom_antigua,responseListener);
+        ActualizarUsuario xx = new ActualizarUsuario( usuario, pass, nom, ape, dni, area, cargo, correo, tipo, estado, foto, id_usuario,ruta,foto_nom,foto_nom_antigua,dni_antiguo,responseListener);
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
 

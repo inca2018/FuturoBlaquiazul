@@ -13,6 +13,9 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Pruebas.PruebaDiagnosticoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Pruebas.PruebaFisicoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Pruebas.PruebaTecnicaActivity;
@@ -48,6 +51,7 @@ public class AdapterBarrioPersona extends RecyclerView.Adapter<AdapterBarrioPers
         public LinearLayout linea;
         public TextView total_diag,total_fisico,total_tecnico;
         public TextView total_promedio;
+        public ImageView foto;
 
 
 
@@ -62,6 +66,7 @@ public class AdapterBarrioPersona extends RecyclerView.Adapter<AdapterBarrioPers
             total_fisico=itemView.findViewById(R.id.total_fisico);
             total_tecnico=itemView.findViewById(R.id.total_tecnico);
             total_promedio=itemView.findViewById(R.id.promedio);
+            foto=itemView.findViewById(R.id.foto_barrio_intimo);
 
         }
         @Override
@@ -81,6 +86,11 @@ public class AdapterBarrioPersona extends RecyclerView.Adapter<AdapterBarrioPers
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
+        Glide.with(context).load(my_Data.get(position).getFoto())
+                .error(R.drawable.user_default)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(holder.foto);
 
             holder.titulo_barrio.setText(my_Data.get(position).getNombre_Persona()+" "+my_Data.get(position).getApellidos_Persona());
             holder.total_diag.setText(my_Data.get(position).getTotal_diagnostico()+" Ptos.");
@@ -126,38 +136,53 @@ public class AdapterBarrioPersona extends RecyclerView.Adapter<AdapterBarrioPers
 
                             if(item.getTitle().toString().equalsIgnoreCase("Evaluación Diagnostico")){
 
-                                if(my_Data.get(position).getBarrio_diagnostico()!=0){
-                                    Toast.makeText(context, "Postulante ya paso la prueba de diagnostico", Toast.LENGTH_SHORT).show();
-                                }else{
-                                    Usuario.SESION_ACTUAL.setPersona_barrio(my_Data.get(position));
+                                if(Usuario.SESION_ACTUAL.getBarrio_datos().getEstado()==1){
+                                    if(my_Data.get(position).getBarrio_diagnostico()!=0){
+                                        Toast.makeText(context, "Postulante ya paso la prueba de diagnostico", Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        Usuario.SESION_ACTUAL.setPersona_barrio(my_Data.get(position));
 
-                                    Intent intent=new Intent(context,PruebaDiagnosticoActivity.class);
-                                    context.startActivity(intent);
+                                        Intent intent=new Intent(context,PruebaDiagnosticoActivity.class);
+                                        context.startActivity(intent);
+                                    }
+                                }else{
+                                    Toast.makeText(context, "Evento Finalizado", Toast.LENGTH_SHORT).show();
                                 }
+
 
 
 
                             }else if(item.getTitle().toString().equalsIgnoreCase("Evaluación Fisica")){
 
-                                if(my_Data.get(position).getBarrio_fisica()!=0){
-                                    Toast.makeText(context, "Postulante ya paso la prueba fisica", Toast.LENGTH_SHORT).show();
+                                if(Usuario.SESION_ACTUAL.getBarrio_datos().getEstado()==1){
+                                    if(my_Data.get(position).getBarrio_fisica()!=0){
+                                        Toast.makeText(context, "Postulante ya paso la prueba fisica", Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        Usuario.SESION_ACTUAL.setPersona_barrio(my_Data.get(position));
+                                        Intent intent=new Intent(context,PruebaFisicoActivity.class);
+                                        context.startActivity(intent);
+                                    }
                                 }else{
-                                    Usuario.SESION_ACTUAL.setPersona_barrio(my_Data.get(position));
-                                    Intent intent=new Intent(context,PruebaFisicoActivity.class);
-                                    context.startActivity(intent);
+                                    Toast.makeText(context, "Evento Finalizado", Toast.LENGTH_SHORT).show();
                                 }
+
 
 
                             }else if(item.getTitle().toString().equalsIgnoreCase("Evaluación Técnica")){
 
-                                if(my_Data.get(position).getBarrio_tecnica()!=0){
-                                    Toast.makeText(context, "Postulante ya paso la prueba Tecnica", Toast.LENGTH_SHORT).show();
-                                }else{
-                                    Usuario.SESION_ACTUAL.setPersona_barrio(my_Data.get(position));
-                                    Intent intent=new Intent(context,PruebaTecnicaActivity.class);
-                                    context.startActivity(intent);
+                                if(Usuario.SESION_ACTUAL.getBarrio_datos().getEstado()==1){
+                                    if(my_Data.get(position).getBarrio_tecnica()!=0){
+                                        Toast.makeText(context, "Postulante ya paso la prueba Tecnica", Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        Usuario.SESION_ACTUAL.setPersona_barrio(my_Data.get(position));
+                                        Intent intent=new Intent(context,PruebaTecnicaActivity.class);
+                                        context.startActivity(intent);
 
+                                    }
+                                }else{
+                                    Toast.makeText(context, "Evento Finalizado", Toast.LENGTH_SHORT).show();
                                 }
+
                             }
 
                             return true;

@@ -2,6 +2,7 @@ package org.futuroblanquiazul.futuroblaquiazul.Adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.EventLog;
@@ -14,16 +15,24 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.DefinirTiemposActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.GestionFechaEstadisticoActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.InformacionFechaActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Estadistico.ListaFechasEstadisticosActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.EventoEstadistico;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.FechaEstadistico;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.ActivarPersona;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.Actualizar_fecha_wo;
 import org.futuroblanquiazul.futuroblaquiazul.R;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -137,7 +146,7 @@ public class AdapterFechasEstadisticos extends RecyclerView.Adapter<AdapterFecha
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
 
-                        if(item.getTitle().toString().equalsIgnoreCase("Gestión de Fecha")){
+                        if(item.getTitle().toString().equalsIgnoreCase("Gestión de Partido")){
                              if(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal()!=null){
                                  if(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getEstado_formacion()==2){
                                      if(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getEstado_posiciones()==2){
@@ -168,10 +177,45 @@ public class AdapterFechasEstadisticos extends RecyclerView.Adapter<AdapterFecha
                                 Toast.makeText(context, "Fecha sin Información para mostrar", Toast.LENGTH_SHORT).show();
                             }else if(my_Data.get(position).getEstado()==2){
 
+                                FechaEstadistico.FECHA_ESTADISTICO_TEMP.setFecha_actual(my_Data.get(position));
+
+                                Intent intent = new Intent(context, InformacionFechaActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                context.startActivity(intent);
+
                             }else if(my_Data.get(position).getEstado()==3){
                                 Toast.makeText(context, "Fecha Registrada como WALKOVER (W.O)", Toast.LENGTH_SHORT).show();
                             }
+                        }else if(item.getTitle().toString().equalsIgnoreCase("W.O")){
+                            if(my_Data.get(position).getEstado()==1){
+
+                                final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
+                                builder.setTitle("Fecha")
+                                        .setMessage("¿Desea Ganar por W.O?")
+                                        .setPositiveButton("SI",
+                                                new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        Actualizar_Fecha_WO(my_Data.get(position).getId(),context);
+                                                    }
+                                                })
+                                        .setNegativeButton("NO",
+                                                new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialog, int which) {
+                                                        dialog.dismiss();
+                                                    }
+                                                });
+                                builder.show();
+                            }else if(my_Data.get(position).getEstado()==2){
+                                Toast.makeText(context, "Fecha ya Realizada!", Toast.LENGTH_SHORT).show();
+                            }else if(my_Data.get(position).getEstado()==3){
+                                Toast.makeText(context, "Fecha ya registrada como W.O!", Toast.LENGTH_SHORT).show();
+                            }
+
+
                         }
+
 
                         return true;
                     }
@@ -180,6 +224,39 @@ public class AdapterFechasEstadisticos extends RecyclerView.Adapter<AdapterFecha
                 popupMenu.show();
             }
         });
+
+
+    }
+
+    private void Actualizar_Fecha_WO(int id,final Context context) {
+
+        String id_fecha=String.valueOf(id);
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+                    if (success) {
+
+                        ListaFechasEstadisticosActivity.GESTOR.Actualizar_Lista(context);
+                        Toast.makeText(context, "Fecha Actualizada!", Toast.LENGTH_SHORT).show();
+                    }else {
+
+                        Toast.makeText(AdapterFechasEstadisticos.this.context, "Error de conexion", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error ACTIVAR :"+e);
+                }
+            }
+        };
+
+        Actualizar_fecha_wo xx = new Actualizar_fecha_wo(id_fecha, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(this.context);
+        queue.add(xx);
 
 
     }

@@ -749,7 +749,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:inputType="phone" />
+                                android:inputType="phone"
+                                android:maxLength="9"/>
 
                         </LinearLayout>
 
@@ -767,7 +768,8 @@
                                 android:layout_weight="1"
                                 android:text="Fijo:"
                                 android:textAllCaps="true"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:maxLength="9"/>
 
                             <EditText
                                 android:id="@+id/p_fijo"
@@ -835,7 +837,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:inputType="phone" />
+                                android:inputType="phone"
+                                android:maxLength="9"/>
 
                         </LinearLayout>
                     </LinearLayout>

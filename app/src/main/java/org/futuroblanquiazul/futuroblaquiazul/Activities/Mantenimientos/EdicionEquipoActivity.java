@@ -128,6 +128,7 @@ public class EdicionEquipoActivity extends AppCompatActivity {
                         Intent intent=new Intent(EdicionEquipoActivity.this,MantenimientoEquipoActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         EdicionEquipoActivity.this.startActivity(intent);
+                        nombre_categoria.setText("");
                     }else {
                         progressDialog.dismiss();
                         Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
@@ -171,6 +172,8 @@ public class EdicionEquipoActivity extends AppCompatActivity {
                         Intent intent=new Intent(EdicionEquipoActivity.this,MantenimientoEquipoActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         EdicionEquipoActivity.this.startActivity(intent);
+
+                        nombre_categoria.setText("");
                     }else {
                         progressDialog.dismiss();
                         Toast.makeText(context, "Error de conexion", Toast.LENGTH_SHORT).show();
@@ -201,9 +204,7 @@ public class EdicionEquipoActivity extends AppCompatActivity {
 
         if(Recursos_Mantenimientos.TEMP.getEquipo_temporal()!=null){
             Mostrar_datos();
-
         }
-
 
     }
 
@@ -225,6 +226,7 @@ public class EdicionEquipoActivity extends AppCompatActivity {
 
         Recursos_Mantenimientos.TEMP.setEquipo_temporal(null);
         Recursos_Mantenimientos.TEMP.setEstado_Temporal(0);
+        nombre_categoria.setText("");
 
         Intent intent=new Intent(EdicionEquipoActivity.this,MantenimientoEquipoActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

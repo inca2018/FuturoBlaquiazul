@@ -89,10 +89,22 @@ public class Persona {
     boolean activo;
     int titular;
 
+    int total;
+
+    int tiempo_jugado;
+
 
 
     public Persona(){
 
+    }
+
+    public int getTiempo_jugado() {
+        return tiempo_jugado;
+    }
+
+    public void setTiempo_jugado(int tiempo_jugado) {
+        this.tiempo_jugado = tiempo_jugado;
     }
 
     public int getTitular() {
@@ -125,6 +137,14 @@ public class Persona {
 
     public void setFecha_actualizacion(String fecha_actualizacion) {
         Fecha_actualizacion = fecha_actualizacion;
+    }
+
+    public int getTotal() {
+        return total;
+    }
+
+    public void setTotal(int total) {
+        this.total = total;
     }
 
     public int getAno_nacimiento() {

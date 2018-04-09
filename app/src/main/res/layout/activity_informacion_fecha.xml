@@ -23,7 +23,7 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="2dp"
+                android:layout_margin="8dp"
                 android:elevation="5dp"
                 app:cardCornerRadius="10dp">
 
@@ -50,13 +50,14 @@
                         android:orientation="horizontal">
 
                         <ImageView
+                            android:id="@+id/info_imagen_local"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:src="@mipmap/logo" />
 
                         <TextView
-                            android:id="@+id/score"
+                            android:id="@+id/info_score"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -64,13 +65,23 @@
                             android:text="0 - 0"
 
                             android:textColor="@color/negro"
-                            android:textSize="40dp" />
+                            android:textSize="50dp" />
 
-                        <ImageView
+                        <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:src="@mipmap/logo" />
+                            android:layout_weight="1">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/info_imagen_rival"
+                                android:layout_width="70dp"
+                                android:layout_height="70dp"
+                                android:layout_centerHorizontal="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/no_disponible" />
+
+                        </RelativeLayout>
+
 
                     </LinearLayout>
 
@@ -92,20 +103,20 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:gravity="center"
-                                android:text="Evento:"
+                                android:text="LOCAL:"
                                 android:textColor="@color/negro"
                                 android:textSize="10sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold|italic" />
 
                             <TextView
-                                android:id="@+id/nombre_evento"
+                                android:id="@+id/info_nombre_local"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:text=""
                                 android:textColor="@color/negro"
-                                android:textSize="10sp" />
+                                android:textSize="18sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -120,20 +131,20 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:gravity="center"
-                                android:text="Equipo:"
+                                android:text="EVENTO:"
                                 android:textColor="@color/negro"
                                 android:textSize="10sp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold|italic" />
 
                             <TextView
-                                android:id="@+id/nombre_equipo"
+                                android:id="@+id/info_nombre_evento"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:text=""
                                 android:textColor="@color/negro"
-                                android:textSize="10sp" />
+                                android:textSize="18sp" />
                         </LinearLayout>
 
                         <LinearLayout
@@ -148,20 +159,20 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:gravity="center"
-                                android:text="Rival:"
+                                android:text="RIVAL:"
                                 android:textColor="@color/negro"
-                                android:textSize="10sp"
-                                android:textStyle="bold" />
+                                android:textSize="14sp"
+                                android:textStyle="bold|italic" />
 
                             <TextView
-                                android:id="@+id/nombre_Rival"
+                                android:id="@+id/info_nombre_rival"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:gravity="center"
                                 android:text=""
                                 android:textColor="@color/negro"
-                                android:textSize="10sp" />
+                                android:textSize="18sp" />
                         </LinearLayout>
 
 
@@ -179,7 +190,7 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="2dp"
+                    android:layout_margin="8dp"
                     android:layout_weight="1"
                     android:elevation="5dp"
                     app:cardBackgroundColor="@color/blanco"
@@ -194,42 +205,100 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-
-                            android:layout_marginBottom="2dp"
-                            android:layout_marginLeft="4dp"
-                            android:layout_marginRight="4dp"
-                            android:layout_marginTop="8dp"
+                            android:background="@drawable/caja_borde2"
                             android:orientation="horizontal">
 
-                            <TextView
-
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:background="@drawable/rect_text"
-                                android:gravity="center"
-                                android:text="Jugadores"
-                                android:textSize="8sp"
-                                android:textStyle="bold" />
+                                android:layout_weight="2"
+                                android:orientation="horizontal">
 
-                            <TextView
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:orientation="horizontal">
 
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="5"
+                                        android:background="@drawable/caja_borde"
+                                        android:gravity="center"
+                                        android:text="Nº"
+                                        android:textAllCaps="true"
+                                        android:textColor="@color/blue"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:background="@drawable/caja_borde"
+                                        android:gravity="center"
+                                        android:text="Alineación"
+                                        android:textAllCaps="true"
+                                        android:textColor="@color/blue"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+                            <LinearLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_weight="4"
-                                android:background="@drawable/rect_text"
-                                android:gravity="center"
-                                android:text="Puntos"
-                                android:textSize="10dp"
-                                android:textStyle="bold" />
+                                android:layout_height="wrap_content"
+                                android:layout_weight="8"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="4"
+                                    android:background="@drawable/caja_borde"
+                                    android:orientation="vertical">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:gravity="center"
+                                            android:text="TJ"
+                                            android:textColor="@color/blue"
+                                            android:textStyle="bold" />
+
+                                        <TextView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:background="@drawable/caja_borde"
+                                            android:gravity="center"
+                                            android:text="PTJE"
+                                            android:textColor="@color/blue"
+                                            android:textStyle="bold" />
+
+                                    </LinearLayout>
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
 
                         </LinearLayout>
 
                         <android.support.v7.widget.RecyclerView
-                            android:id="@+id/recycler_detalle_2"
+                            android:id="@+id/info_lista_jugadores"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="4dp">
+                            android:layout_height="match_parent">
 
                         </android.support.v7.widget.RecyclerView>
                     </LinearLayout>
@@ -239,7 +308,7 @@
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="2dp"
+                    android:layout_margin="8dp"
                     android:layout_weight="1"
                     android:elevation="5dp"
                     app:cardBackgroundColor="@color/blanco"
@@ -257,6 +326,7 @@
                             android:layout_margin="2dp"
                             android:gravity="center"
                             android:text="DETALLES:"
+                            android:textAllCaps="true"
                             android:textColor="@color/negro"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -271,16 +341,19 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="4"
                                 android:gravity="center"
+                                android:padding="8dp"
                                 android:text="%Posicion Efectiva"
+                                android:textAlignment="textStart"
+                                android:textAllCaps="true"
                                 android:textColor="@color/negro"
-                                android:textSize="10sp" />
+                                android:textSize="14sp"
+                                android:textStyle="italic" />
 
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="1dp"
-                                android:layout_weight="8"
-                                android:src="@mipmap/icon_info" />
+                                android:layout_weight="10"
+                                android:src="@mipmap/icon_reloj" />
 
                             <TextView
                                 android:id="@+id/resu1"
@@ -290,7 +363,8 @@
                                 android:gravity="center"
                                 android:text="0"
                                 android:textColor="@color/negro"
-                                android:textSize="14sp" />
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
@@ -304,16 +378,19 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="4"
                                 android:gravity="center"
+                                android:padding="8dp"
                                 android:text="# Goles"
+                                android:textAlignment="textStart"
+                                android:textAllCaps="true"
                                 android:textColor="@color/negro"
-                                android:textSize="10sp" />
+                                android:textSize="14sp"
+                                android:textStyle="italic" />
 
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="1dp"
-                                android:layout_weight="8"
-                                android:src="@mipmap/icon_info" />
+                                android:layout_weight="10"
+                                android:src="@mipmap/icon_opcion_gol" />
 
                             <TextView
                                 android:id="@+id/resu2"
@@ -323,7 +400,8 @@
                                 android:gravity="center"
                                 android:text="0"
                                 android:textColor="@color/negro"
-                                android:textSize="14sp" />
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
@@ -337,16 +415,19 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="4"
                                 android:gravity="center"
+                                android:padding="8dp"
                                 android:text="Opciones de Gol"
+                                android:textAlignment="textStart"
+                                android:textAllCaps="true"
                                 android:textColor="@color/negro"
-                                android:textSize="10sp" />
+                                android:textSize="14sp"
+                                android:textStyle="italic" />
 
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="1dp"
-                                android:layout_weight="8"
-                                android:src="@mipmap/icon_info" />
+                                android:layout_weight="10"
+                                android:src="@mipmap/icon_opcion_opcion_gol" />
 
                             <TextView
                                 android:id="@+id/resu3"
@@ -356,7 +437,8 @@
                                 android:gravity="center"
                                 android:text="0"
                                 android:textColor="@color/negro"
-                                android:textSize="14sp" />
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
@@ -370,16 +452,19 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="4"
                                 android:gravity="center"
+                                android:padding="8dp"
                                 android:text="Remates al Arco"
+                                android:textAlignment="textStart"
+                                android:textAllCaps="true"
                                 android:textColor="@color/negro"
-                                android:textSize="10sp" />
+                                android:textSize="14sp"
+                                android:textStyle="italic" />
 
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="1dp"
-                                android:layout_weight="8"
-                                android:src="@mipmap/icon_info" />
+                                android:layout_weight="10"
+                                android:src="@mipmap/icon_opcion_remate" />
 
                             <TextView
                                 android:id="@+id/resu4"
@@ -389,7 +474,8 @@
                                 android:gravity="center"
                                 android:text="0"
                                 android:textColor="@color/negro"
-                                android:textSize="14sp" />
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
@@ -403,16 +489,19 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="4"
                                 android:gravity="center"
+                                android:padding="8dp"
                                 android:text="Efectividad Ofensiva"
+                                android:textAlignment="textStart"
+                                android:textAllCaps="true"
                                 android:textColor="@color/negro"
-                                android:textSize="10sp" />
+                                android:textSize="14sp"
+                                android:textStyle="italic" />
 
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="1dp"
-                                android:layout_weight="8"
-                                android:src="@mipmap/icon_info" />
+                                android:layout_weight="10"
+                                android:src="@mipmap/icon_opcion_dribbling" />
 
                             <TextView
                                 android:id="@+id/resu5"
@@ -422,7 +511,8 @@
                                 android:gravity="center"
                                 android:text="0"
                                 android:textColor="@color/negro"
-                                android:textSize="10sp" />
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
@@ -436,16 +526,19 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="4"
                                 android:gravity="center"
+                                android:padding="8dp"
                                 android:text="# OFF SIDES"
+                                android:textAlignment="textStart"
+                                android:textAllCaps="true"
                                 android:textColor="@color/negro"
-                                android:textSize="10sp" />
+                                android:textSize="14sp"
+                                android:textStyle="italic" />
 
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="1dp"
-                                android:layout_weight="8"
-                                android:src="@mipmap/icon_info" />
+                                android:layout_weight="10"
+                                android:src="@mipmap/icon_opcion_off_sides" />
 
                             <TextView
                                 android:id="@+id/resu6"
@@ -455,7 +548,8 @@
                                 android:gravity="center"
                                 android:text="0"
                                 android:textColor="@color/negro"
-                                android:textSize="14sp" />
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
@@ -469,16 +563,19 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="4"
                                 android:gravity="center"
+                                android:padding="8dp"
                                 android:text="Faltas Cometidas"
+                                android:textAlignment="textStart"
+                                android:textAllCaps="true"
                                 android:textColor="@color/negro"
-                                android:textSize="10sp" />
+                                android:textSize="14sp"
+                                android:textStyle="italic" />
 
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="1dp"
-                                android:layout_weight="8"
-                                android:src="@mipmap/icon_info" />
+                                android:layout_weight="10"
+                                android:src="@mipmap/icon_opcion_faltas" />
 
                             <TextView
                                 android:id="@+id/resu7"
@@ -488,7 +585,8 @@
                                 android:gravity="center"
                                 android:text="0"
                                 android:textColor="@color/negro"
-                                android:textSize="14sp" />
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
@@ -502,16 +600,19 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="4"
                                 android:gravity="center"
+                                android:padding="8dp"
                                 android:text="Tarjetas Amarillas"
+                                android:textAlignment="textStart"
+                                android:textAllCaps="true"
                                 android:textColor="@color/negro"
-                                android:textSize="10sp" />
+                                android:textSize="14sp"
+                                android:textStyle="italic" />
 
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="1dp"
-                                android:layout_weight="8"
-                                android:src="@mipmap/icon_info" />
+                                android:layout_weight="10"
+                                android:src="@mipmap/icon_opcion_tarjeta_amarilla" />
 
                             <TextView
                                 android:id="@+id/resu8"
@@ -521,7 +622,8 @@
                                 android:gravity="center"
                                 android:text="0"
                                 android:textColor="@color/negro"
-                                android:textSize="14sp" />
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
@@ -535,16 +637,19 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="4"
                                 android:gravity="center"
+                                android:padding="8dp"
                                 android:text="Tarjetas Rojas"
+                                android:textAlignment="textStart"
+                                android:textAllCaps="true"
                                 android:textColor="@color/negro"
-                                android:textSize="10sp" />
+                                android:textSize="14sp"
+                                android:textStyle="italic" />
 
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="1dp"
-                                android:layout_weight="8"
-                                android:src="@mipmap/icon_info" />
+                                android:layout_weight="10"
+                                android:src="@mipmap/icon_opcion_tarjeta_roja" />
 
                             <TextView
                                 android:id="@+id/resu9"
@@ -554,7 +659,8 @@
                                 android:gravity="center"
                                 android:text="0"
                                 android:textColor="@color/negro"
-                                android:textSize="14sp" />
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
 
                         </LinearLayout>
 
@@ -590,37 +696,47 @@
                     android:orientation="vertical"
                     android:layout_margin="8dp"
                     android:background="@drawable/campo_borde">
+
                     <TextView
                         android:id="@+id/v1"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_weight="1"
-                        android:text="0"
                         android:gravity="center"
+                        android:text="0"
 
-                        />
+                        android:textColor="@color/titulos"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:orientation="horizontal">
-                        <TextView
-                            android:id="@+id/v2"
-                            android:layout_width="match_parent"
-                            android:layout_height="150dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="0"
-                            android:background="@drawable/campo_borde"/>
+
                         <TextView
                             android:id="@+id/v3"
                             android:layout_width="match_parent"
                             android:layout_height="150dp"
                             android:layout_weight="1"
+                            android:background="@drawable/campo_borde"
                             android:gravity="center"
                             android:text="0"
-                            />
+                            android:textColor="@color/titulos"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/v5"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="@color/titulos"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="150dp"
@@ -632,13 +748,15 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/v4"
+                        android:id="@+id/v7"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_weight="1"
-                        android:text="0"
                         android:gravity="center"
-                        />
+                        android:text="0"
+                        android:textColor="@color/titulos"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
@@ -650,36 +768,46 @@
                     android:orientation="vertical"
                     android:layout_margin="8dp"
                     android:background="@drawable/campo_borde">
+
                     <TextView
-                        android:id="@+id/vv1"
+                        android:id="@+id/v2"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_weight="1"
-                        android:text="0"
                         android:gravity="center"
-                        />
+                        android:text="0"
+                        android:textColor="@color/titulos"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:orientation="horizontal">
+
                         <TextView
-                            android:id="@+id/vv2"
+                            android:id="@+id/v4"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/campo_borde"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="@color/titulos"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/v6"
                             android:layout_width="match_parent"
                             android:layout_height="150dp"
                             android:layout_weight="1"
                             android:gravity="center"
                             android:text="0"
-                            android:background="@drawable/campo_borde"/>
-                        <TextView
-                            android:id="@+id/vv3"
-                            android:layout_width="match_parent"
-                            android:layout_height="150dp"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="0"
-                            />
+                            android:textColor="@color/titulos"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="150dp"
@@ -691,13 +819,15 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/vv4"
+                        android:id="@+id/v8"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_weight="1"
-                        android:text="0"
                         android:gravity="center"
-                        />
+                        android:text="0"
+                        android:textColor="@color/titulos"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
@@ -712,23 +842,24 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:textColor="@color/negro"
-                    android:textStyle="bold"
-                    android:gravity="center"
                     android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
                     android:text="1 ER TIEMPO"
-                    android:textSize="20sp"/>
+                    android:textColor="@color/negro"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:layout_margin="10dp"
-                    android:textColor="@color/negro"
-                    android:textStyle="bold"
                     android:text="2 DO TIEMPO"
-                    android:textSize="20sp"/>
+                    android:textColor="@color/negro"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -841,6 +972,7 @@
                 </LinearLayout>
 
             </LinearLayout>
+
 
 
         </LinearLayout>

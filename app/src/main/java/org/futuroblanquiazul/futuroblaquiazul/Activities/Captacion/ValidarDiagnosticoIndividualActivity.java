@@ -89,8 +89,8 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
                 if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
 
 
-                    if(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getUbigeo_descripcion().length()!=0){
-                        ubigeo.setText(String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getUbigeo_descripcion()));
+                    if(Usuario.SESION_ACTUAL.getBarrio_datos()!=null){
+                        ubigeo.setText(Usuario.SESION_ACTUAL.getBarrio_datos().getDepartamento().getDescripcion()+"/"+Usuario.SESION_ACTUAL.getBarrio_datos().getProvincia().getDescripcion()+"/"+Usuario.SESION_ACTUAL.getBarrio_datos().getDistrito().getDescripcion());
                     }else{
                         ubigeo.setText("Ubigeo no encontrado!");
                     }
@@ -421,9 +421,9 @@ public class ValidarDiagnosticoIndividualActivity extends AppCompatActivity {
                 if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
 
                     id_per=String.valueOf(Usuario.SESION_ACTUAL.getPersona_barrio().getId());
-                    id_Dep=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getDepartamento().getCodigo());
-                    id_Prov=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getProvincia().getCodigo());
-                    id_Dis=String.valueOf(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getDistrito().getCodigo());
+                    id_Dep=String.valueOf(Usuario.SESION_ACTUAL.getBarrio_datos().getDepartamento().getCodigo());
+                    id_Prov=String.valueOf(Usuario.SESION_ACTUAL.getBarrio_datos().getProvincia().getCodigo());
+                    id_Dis=String.valueOf(Usuario.SESION_ACTUAL.getBarrio_datos().getDistrito().getCodigo());
 
 
                     progressDialog = new ProgressDialog(context);

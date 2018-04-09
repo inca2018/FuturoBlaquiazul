@@ -1,27 +1,38 @@
 package org.futuroblanquiazul.futuroblaquiazul.Adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.PersonaEstadistico;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;
 import org.futuroblanquiazul.futuroblaquiazul.R;
+import org.futuroblanquiazul.futuroblaquiazul.Utils.Estadistico_Gestion;
 
 import java.util.List;
 
-public class AdapterMetodologiaPersona extends RecyclerView.Adapter<AdapterMetodologiaPersona.ViewHolder>{
+
+/**
+ * Created by Jesus on 23/12/2016.
+ */
+public class AdapterBusquedaPersona extends RecyclerView.Adapter<AdapterBusquedaPersona.ViewHolder>{
     public Context context;
     private List<Persona> my_Data;
     private RecyclerViewOnItemClickListener recyclerViewOnItemClickListener;
+    AlertDialog da;
 
-    public AdapterMetodologiaPersona(Context context, List<Persona> my_Data, RecyclerViewOnItemClickListener
+    public AdapterBusquedaPersona(Context context, List<Persona> my_Data, RecyclerViewOnItemClickListener
             recyclerViewOnItemClickListener) {
         this.context = context;
         this.my_Data = my_Data;
@@ -31,16 +42,17 @@ public class AdapterMetodologiaPersona extends RecyclerView.Adapter<AdapterMetod
     public  class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener  {
 
 
-        TextView nom;
-        ImageView acciones;
-        ImageView metodologia_persona_foto;
-
-
+         ImageView foto_persona;
+         TextView nom_persona;
+         CardView cardView_Seleccion;
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
-            nom=itemView.findViewById(R.id.card_metodologia_jugador);
-            metodologia_persona_foto=itemView.findViewById(R.id.metodologia_persona_foto);
+
+            foto_persona=itemView.findViewById(R.id.card_cambio_foto2);
+            nom_persona=itemView.findViewById(R.id.card_cambio_nombre2);
+
+
 
         }
         @Override
@@ -52,7 +64,7 @@ public class AdapterMetodologiaPersona extends RecyclerView.Adapter<AdapterMetod
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView= LayoutInflater.from(parent.getContext()).inflate(R.layout.card_item_metodologia_persona,parent,false);
+        View itemView= LayoutInflater.from(parent.getContext()).inflate(R.layout.card_item_persona_busqueda,parent,false);
         return new ViewHolder(itemView);
 
 
@@ -61,10 +73,19 @@ public class AdapterMetodologiaPersona extends RecyclerView.Adapter<AdapterMetod
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-        holder.nom.setText(my_Data.get(position).getNombre_Persona()+" "+my_Data.get(position).getApellidos_Persona());
-        Glide.with(context).load(my_Data.get(position).getFoto()).into(holder.metodologia_persona_foto);
+        Glide.with(context)
+                .load(my_Data.get(position).getFoto())
+                .error(R.drawable.user_default)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(holder.foto_persona);
+
+        holder.nom_persona.setText(my_Data.get(position).getNombre_Persona()+" "+my_Data.get(position).getApellidos_Persona());
+
+
 
     }
+
 
     @Override
     public int getItemCount() {

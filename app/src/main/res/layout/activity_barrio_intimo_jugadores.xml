@@ -107,6 +107,38 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/card_finalizar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/red"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="2dp">
+
+                <Button
+                    android:id="@+id/finalizar_evento"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:text="FINALIZAR EVENTO"
+                    android:textColor="@color/blanco" />
+
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
                 style="@style/titulo2"
@@ -118,6 +150,7 @@
                 android:textStyle="bold|italic" />
 
             <TextView
+                android:id="@+id/dis_text"
                 style="@style/titulo2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -191,10 +224,11 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/dis_linear"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="vertical">
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/ge_barrio_disponible"

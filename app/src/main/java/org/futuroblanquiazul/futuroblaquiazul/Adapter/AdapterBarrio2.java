@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos.EdicionBarrioIntimoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.BarrioIntimo;
@@ -39,6 +40,7 @@ public class AdapterBarrio2 extends RecyclerView.Adapter<AdapterBarrio2.ViewHold
         public TextView ubigeo_barrio;
         public TextView creador_barrio;
         public TextView total_barrio;
+        public TextView estado;
         LinearLayout editar;
 
 
@@ -50,6 +52,7 @@ public class AdapterBarrio2 extends RecyclerView.Adapter<AdapterBarrio2.ViewHold
             creador_barrio=itemView.findViewById(R.id.card_barrio_creador);
             total_barrio=itemView.findViewById(R.id.card_cant);
             editar=itemView.findViewById(R.id.mant_barrio_editar);
+            estado=itemView.findViewById(R.id.estado_barrio_intimo);
         }
         @Override
         public void onClick(View v) {
@@ -74,13 +77,27 @@ public class AdapterBarrio2 extends RecyclerView.Adapter<AdapterBarrio2.ViewHold
             holder.editar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Recursos_Mantenimientos.TEMP.setEvento_temporal(my_Data.get(position));
-                    Intent intent =new Intent(context,EdicionBarrioIntimoActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    context.startActivity(intent);
+
+                    if(my_Data.get(position).getEstado()==1){
+                        Recursos_Mantenimientos.TEMP.setEvento_temporal(my_Data.get(position));
+                        Intent intent =new Intent(context,EdicionBarrioIntimoActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        context.startActivity(intent);
+                    }else if(my_Data.get(position).getEstado()==2){
+                        Toast.makeText(context, "Evento Finalizado!", Toast.LENGTH_SHORT).show();
+                    }
+
+
                 }
             });
 
+            if(my_Data.get(position).getEstado()==1){
+                 holder.estado.setText("ACTIVO");
+                 holder.estado.setTextColor(context.getResources().getColor(R.color.verde));
+            }else if(my_Data.get(position).getEstado()==2){
+                holder.estado.setText("FINALIZADO");
+                holder.estado.setTextColor(context.getResources().getColor(R.color.red));
+            }
 
     }
 

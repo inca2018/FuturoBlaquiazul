@@ -71,6 +71,7 @@ public class MantenimientoEquipoActivity extends AppCompatActivity {
         nuevo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Recursos_Mantenimientos.TEMP.setEquipo_temporal(null);
                 Intent intent =new Intent(context,EdicionEquipoActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 context.startActivity(intent);

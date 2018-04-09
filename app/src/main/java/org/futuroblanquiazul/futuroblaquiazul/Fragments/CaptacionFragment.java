@@ -54,7 +54,7 @@ public class CaptacionFragment extends Fragment {
         //setHasOptionsMenu(true);
         Verificacion_UbigeoCaptacion();
         Verificacion_UbigeoCaptacion_Masivo();
-        Verificacion_UbigeoCaptacion_Barrio();
+        //Verificacion_UbigeoCaptacion_Barrio();
 
     }
     @Override
@@ -145,7 +145,6 @@ public class CaptacionFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.isEstado()==true){
 
                     Usuario.SESION_ACTUAL.setPersona_metodologia(null);
                     Usuario.SESION_ACTUAL.setPersona_barrio(null);
@@ -156,9 +155,7 @@ public class CaptacionFragment extends Fragment {
 
                     Intent intent= new Intent(mContext, BarrioIntimoActivity.class);
                     startActivity(intent);
-                }else{
-                    Toast.makeText(mContext, "Seleccione Ubicación de Trabajo", Toast.LENGTH_SHORT).show();
-                }
+
             }
         });
 

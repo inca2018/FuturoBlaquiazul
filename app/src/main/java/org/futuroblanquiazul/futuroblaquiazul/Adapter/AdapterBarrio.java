@@ -36,6 +36,7 @@ public class AdapterBarrio extends RecyclerView.Adapter<AdapterBarrio.ViewHolder
         public TextView ubigeo_barrio;
         public TextView creador_barrio;
         public TextView total_barrio;
+        public TextView estado;
 
 
         public ViewHolder(View itemView) {
@@ -45,6 +46,7 @@ public class AdapterBarrio extends RecyclerView.Adapter<AdapterBarrio.ViewHolder
             ubigeo_barrio=itemView.findViewById(R.id.card_barrio_ubigeo);
             creador_barrio=itemView.findViewById(R.id.card_barrio_creador);
             total_barrio=itemView.findViewById(R.id.card_cant);
+            estado=itemView.findViewById(R.id.estado_barrio_i);
         }
         @Override
         public void onClick(View v) {
@@ -64,10 +66,18 @@ public class AdapterBarrio extends RecyclerView.Adapter<AdapterBarrio.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
             holder.titulo_barrio.setText("EVENTO: "+ my_Data.get(position).getNombreEvento());
-            holder.creador_barrio.setText("SCOUT : "+my_Data.get(position).getUsuario().getUsuario());
+            holder.creador_barrio.setText("SCOUT : "+my_Data.get(position).getUsuario().getNombres()+" "+my_Data.get(position).getUsuario().getApellidos());
             holder.ubigeo_barrio.setText("UBIGEO: "+my_Data.get(position).getDescripcion_ubigeo());
             holder.total_barrio.setText(String.valueOf(my_Data.get(position).getCantidad_Postulantes()));
 
+
+            if(my_Data.get(position).getEstado()==1){
+                holder.estado.setText("ACTIVO");
+                holder.estado.setTextColor(context.getResources().getColor(R.color.verde));
+            }else{
+                holder.estado.setText("FINALIZADO");
+                holder.estado.setTextColor(context.getResources().getColor(R.color.red));
+            }
 
     }
 
