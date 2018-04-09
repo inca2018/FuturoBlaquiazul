@@ -73,6 +73,9 @@ public class Estadistico_Gestion {
     int posesion1;
     int posesion2;
 
+    boolean pause;
+    boolean stop;
+
 
     PersonaEstadistico Titular_Cambio;
     PersonaEstadistico Suplente_Cambio;
@@ -169,6 +172,21 @@ public class Estadistico_Gestion {
 
     }
 
+    public boolean isPause() {
+        return pause;
+    }
+
+    public void setPause(boolean pause) {
+        this.pause = pause;
+    }
+
+    public boolean isStop() {
+        return stop;
+    }
+
+    public void setStop(boolean stop) {
+        this.stop = stop;
+    }
 
     public int getPosesion1() {
         return posesion1;

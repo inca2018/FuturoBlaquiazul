@@ -255,6 +255,17 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
                     if(Estadistico_Gestion.TEMP.getTiempo_actual()==0){
                         Toast.makeText(context, "Iniciar Partido", Toast.LENGTH_SHORT).show();
                     }else{
+                        if(Estadistico_Gestion.TEMP.isPause()==true){
+                            Toast.makeText(context, "Partido Pausado", Toast.LENGTH_SHORT).show();
+                        }else{
+
+                            if(Estadistico_Gestion.TEMP.isStop()==true){
+                                Toast.makeText(context, "Continuar con el Segundo tiempo", Toast.LENGTH_SHORT).show();
+                            }else{
+
+
+
+
                         final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
                         final View dialoglayout4 = inflater.inflate(R.layout.gestion_campo_estadistico, null);
 
@@ -352,6 +363,8 @@ public class AdapterCampoEstadistico extends RecyclerView.Adapter<AdapterCampoEs
                             }
                         });
                         Evento_click_Radios();
+                        }
+                        }
                     }
                 }
             }
