@@ -85,6 +85,7 @@ public class ListaFechasEstadisticosActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(linearLayoutManager);
 
         if(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal()!=null){
+            LISTA_FECHAS.clear();
             Listar_Fechas_Estadisticas(EventoEstadistico.EVENTO_TEMP.getEvento_Temporal().getId(),context);
         }
 

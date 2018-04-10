@@ -45,7 +45,7 @@
                     android:ems="5"
                     android:hint="kg."
                     android:inputType="numberDecimal"
-                    android:maxLength="9"
+                    android:maxLength="6"
                     android:textAlignment="center"
                     android:textColorHint="@color/titulos">
                 </EditText>
@@ -82,7 +82,7 @@
                     android:gravity="center"
                     android:hint="mts."
                     android:inputType="numberDecimal"
-                    android:maxLength="9"
+                    android:maxLength="6"
                     android:textColorHint="@color/titulos">
 
                 </EditText>
@@ -115,11 +115,10 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@drawable/input_texto"
-                    android:ems="5"
                     android:gravity="center"
                     android:hint="cmts."
                     android:inputType="numberDecimal"
-                    android:maxLength="9"
+                    android:maxLength="6"
                     android:textColorHint="@color/titulos">
 
                 </EditText>
@@ -157,7 +156,7 @@
                     android:gravity="center"
                     android:hint="cmts."
                     android:inputType="numberDecimal"
-                    android:maxLength="9"
+                    android:maxLength="6"
                     android:textColorHint="@color/titulos">
 
                 </EditText>
@@ -195,7 +194,7 @@
                     android:gravity="center"
                     android:hint="cmts."
                     android:inputType="numberDecimal"
-                    android:maxLength="9"
+                    android:maxLength="6"
 
                     android:textColorHint="@color/titulos">
 
@@ -233,7 +232,7 @@
                     android:gravity="center"
                     android:hint="Ptos."
                     android:inputType="number"
-                    android:maxLength="9"
+                    android:maxLength="6"
                     android:textColorHint="@color/titulos">
 
                 </EditText>
@@ -271,7 +270,7 @@
                     android:gravity="center"
                     android:hint="seg."
                     android:inputType="numberDecimal"
-                    android:maxLength="9"
+                    android:maxLength="3"
                     android:textColorHint="@color/titulos">
 
                 </EditText>
@@ -308,7 +307,7 @@
                     android:gravity="center"
                     android:hint="palier"
                     android:inputType="numberDecimal"
-                    android:maxLength="9"
+                    android:maxLength="3"
                     android:textColorHint="@color/titulos"></EditText>
             </LinearLayout>
         </LinearLayout>

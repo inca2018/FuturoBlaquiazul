@@ -193,7 +193,6 @@ public class NuevaFechaEstadisticoActivity extends AppCompatActivity {
        String id_user=String.valueOf(Usuario.SESION_ACTUAL.getId());
 
 
-
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

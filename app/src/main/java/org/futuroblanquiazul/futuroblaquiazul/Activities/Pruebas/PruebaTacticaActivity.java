@@ -337,7 +337,7 @@ public class PruebaTacticaActivity extends AppCompatActivity {
             if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
                 final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(context);
                 builder.setTitle("Metodologia")
-                        .setMessage("¿Desea salir de la Evaluaciòn Nutricional")
+                        .setMessage("¿Desea salir de la Evaluaciòn Tactica")
                         .setPositiveButton("SI",
                                 new DialogInterface.OnClickListener() {
                                     @Override

@@ -91,8 +91,8 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
             }else{
                 if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
 
-                    if(GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getUbigeo_descripcion().length()!=0){
-                        ubicacion_texto.setText("Ubicación de Diagnostico: "+GestionUbigeo.CAPTACION_UBIGEO_BARRIO.getUbigeo_descripcion());
+                    if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
+                        ubicacion_texto.setText("Ubicación de Diagnostico: "+Usuario.SESION_ACTUAL.getBarrio_datos().getDepartamento().getDescripcion()+"/"+Usuario.SESION_ACTUAL.getBarrio_datos().getProvincia().getDescripcion()+"/"+Usuario.SESION_ACTUAL.getBarrio_datos().getDistrito().getDescripcion());
                     }else{
                         ubicacion_texto.setText("Ubicación no disponible");
                     }

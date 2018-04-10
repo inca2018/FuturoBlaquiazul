@@ -175,8 +175,10 @@
             android:name=".Activities.Mantenimientos.EquipoJugadoresActivity"
             android:screenOrientation="landscape" />
         <activity android:name=".Activities.Estadistico.InformacionFechaActivity" />
-        <activity android:name=".Activities.Informacion.InfoBuscadorActivity" />
-        <activity android:name=".Activities.Mantenimientos.PerfilPersonaActivity"></activity>
+        <activity android:name=".Activities.Informacion.InfoBuscadorActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity android:name=".Activities.Informacion.PerfilPersonaActivity"
+            android:configChanges="screenSize|orientation" ></activity>
     </application>
 
 </manifest>

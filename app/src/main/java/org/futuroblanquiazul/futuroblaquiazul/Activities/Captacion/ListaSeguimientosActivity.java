@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -138,7 +139,9 @@ public class ListaSeguimientosActivity extends AppCompatActivity {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         if(Usuario.SESION_ACTUAL.getPersona_seguimiento()!=null){
-                                            Migrar_fase_pruebas(Usuario.SESION_ACTUAL.getPersona_seguimiento().getId(),context);
+
+                                            Seleccion_equipo_Migracio(Usuario.SESION_ACTUAL.getPersona_seguimiento());
+                                            //Migrar_fase_pruebas(Usuario.SESION_ACTUAL.getPersona_seguimiento().getId(),context);
                                         }
                                     }
                                 })
@@ -154,6 +157,14 @@ public class ListaSeguimientosActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void Seleccion_equipo_Migracio(Persona persona_seguimiento) {
+
+        final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+        final View dialoglayout = inflater.inflate(R.layout.info_seleccion_equipo_migra, null);
+
+
     }
 
     private void Migrar_fase_pruebas(int id,final Context context) {

@@ -62,11 +62,38 @@ public class PruebaNutricionalActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(Usuario.SESION_ACTUAL.getPersona_fase_pruebas()!=null){
-                    RegistrarPruebaNutricional(Usuario.SESION_ACTUAL.getId(),Usuario.SESION_ACTUAL.getPersona_fase_pruebas().getId(), PruebaNutricional.PRUEBA_NUTRICIONAL,context);
+                    if(IMC.getText().toString().length()!=0){
+                        if(GRASO.getText().length()!=0){
+                            if(AKS.getText().length()!=0){
+                                RegistrarPruebaNutricional(Usuario.SESION_ACTUAL.getId(),Usuario.SESION_ACTUAL.getPersona_fase_pruebas().getId(), PruebaNutricional.PRUEBA_NUTRICIONAL,context);
+                            }else{
+                                Toast.makeText(context, "Ingresem AKS", Toast.LENGTH_SHORT).show();
+                            }
+                        }else{
+                            Toast.makeText(context, "Ingrese % GRASO", Toast.LENGTH_SHORT).show();
+                        }
+                    }else{
+                        Toast.makeText(context, "Ingresem IMC", Toast.LENGTH_SHORT).show();
+                    }
+
+
                 }else{
                     if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
+                        if(IMC.getText().toString().length()!=0){
+                            if(GRASO.getText().length()!=0){
+                                if(AKS.getText().length()!=0){
+                                    RegistrarPruebaNutricional(Usuario.SESION_ACTUAL.getId(),Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId(), PruebaNutricional.PRUEBA_NUTRICIONAL,context);
+                                }else{
+                                    Toast.makeText(context, "Ingresem AKS", Toast.LENGTH_SHORT).show();
+                                }
+                            }else{
+                                Toast.makeText(context, "Ingrese % GRASO", Toast.LENGTH_SHORT).show();
+                            }
+                        }else{
+                            Toast.makeText(context, "Ingresem IMC", Toast.LENGTH_SHORT).show();
+                        }
 
-                        RegistrarPruebaNutricional(Usuario.SESION_ACTUAL.getId(),Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas().getId(), PruebaNutricional.PRUEBA_NUTRICIONAL,context);
+
                     }
 
                 }

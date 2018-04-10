@@ -1,4 +1,4 @@
-package org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos;
+package org.futuroblanquiazul.futuroblaquiazul.Activities.Informacion;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

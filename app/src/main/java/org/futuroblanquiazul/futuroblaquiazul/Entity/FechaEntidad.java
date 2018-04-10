@@ -8,9 +8,18 @@ public class FechaEntidad {
     int ano;
     int mes;
     int dia;
+    String fecha_base;
 
     public FechaEntidad(){
 
+    }
+
+    public String getFecha_base() {
+        return fecha_base;
+    }
+
+    public void setFecha_base(String fecha_base) {
+        this.fecha_base = fecha_base;
     }
 
     public int getAno() {

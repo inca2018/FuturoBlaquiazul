@@ -41,16 +41,13 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class UbigeoActivity extends AppCompatActivity {
-
     Spinner departamento,provincias,distritos;
     List<Unidad_Territorial> DepartamentosLista,ProvinciasLista,DistritoLista;
     String[] spinner_departamentos,spinner_provincias,spinner_distritos;
     Context mcontext;
     int pos_depa=0,pos_prov=0,pos_dist=0;
     ProgressDialog progressDialog;
-
     boolean depa_accion=false,prov_accion=false,dist_accion=false;
-
     Button card_guardar;
     String MODULO="";
     @Override

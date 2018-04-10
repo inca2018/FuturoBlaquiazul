@@ -20,10 +20,21 @@ public class Info {
 
     int tipo_busqueda;
 
+
+    Persona Personal_Temporal;
+
     public static final Info GESTOR=new Info();
 
     public Info(){
 
+    }
+
+    public Persona getPersonal_Temporal() {
+        return Personal_Temporal;
+    }
+
+    public void setPersonal_Temporal(Persona personal_Temporal) {
+        Personal_Temporal = personal_Temporal;
     }
 
     public int getTipo_busqueda() {

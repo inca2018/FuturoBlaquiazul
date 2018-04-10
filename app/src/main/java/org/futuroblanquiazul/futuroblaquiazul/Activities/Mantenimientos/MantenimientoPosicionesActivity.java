@@ -232,7 +232,7 @@ public class MantenimientoPosicionesActivity extends AppCompatActivity {
                         Posicion1.setEnabled(true);
                         Actualizar_Pos1(context);
                     }else {
-
+                        Posicion1.setEnabled(true);
                         progressDialog.dismiss();
                         String error=jsonResponse.getString("validar");
                         if(error.length()!=0){
@@ -271,6 +271,7 @@ public class MantenimientoPosicionesActivity extends AppCompatActivity {
                         Posicion2.setEnabled(true);
                          Actualizar_Pos2(context);
                     }else {
+                        Posicion2.setEnabled(true);
                         progressDialog.dismiss();
                         String error=jsonResponse.getString("validar");
                         if(error.length()!=0){

@@ -44,13 +44,15 @@ public class AdapterBusquedaPersona extends RecyclerView.Adapter<AdapterBusqueda
 
          ImageView foto_persona;
          TextView nom_persona;
-         CardView cardView_Seleccion;
+         TextView ubigeo_persona;
+
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);
 
             foto_persona=itemView.findViewById(R.id.card_cambio_foto2);
             nom_persona=itemView.findViewById(R.id.card_cambio_nombre2);
+            ubigeo_persona=itemView.findViewById(R.id.card_cambio_ubigeo);
 
 
 
@@ -82,7 +84,7 @@ public class AdapterBusquedaPersona extends RecyclerView.Adapter<AdapterBusqueda
 
         holder.nom_persona.setText(my_Data.get(position).getNombre_Persona()+" "+my_Data.get(position).getApellidos_Persona());
 
-
+        holder.ubigeo_persona.setText(my_Data.get(position).getUbigeo());
 
     }
 

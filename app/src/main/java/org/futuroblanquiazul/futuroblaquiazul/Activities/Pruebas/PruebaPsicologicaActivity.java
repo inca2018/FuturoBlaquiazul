@@ -41,6 +41,7 @@ import org.futuroblanquiazul.futuroblaquiazul.Utils.Captacion_Vista;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Captacion_funcional;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.GestionUbigeo;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Diagnostico;
+import org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Mantenimientos;
 import org.futuroblanquiazul.futuroblaquiazul.Utils.Recursos_Registro_Postulante;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -67,6 +68,8 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
     Context context;
     Button guardar;
     List<Integer> Resultado;
+
+    double promedio1,promedio2,promedio3,promedio4,promedio5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -508,22 +511,33 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
     }
     private void mostrar_resultados() {
 
+        promedio1=0;
+        promedio2=0;
+        promedio3=0;
+        promedio4=0;
+        promedio5=0;
         int temp=0;
         for(int i=0;i<Recursos_Diagnostico.LISTA_INCA1.size();i++){
             temp=temp+Recursos_Diagnostico.LISTA_INCA1.get(i).getResultado();
             Resultado.add(Recursos_Diagnostico.LISTA_INCA1.get(i).getResultado());
 
         }
-        double pr1=temp/Recursos_Diagnostico.LISTA_INCA1.size();
-        PruebaPsicologico.PRUEBA.setProm1(pr1);
+
+        double total= Double.parseDouble(String.valueOf(Recursos_Diagnostico.LISTA_INCA1.size()));
+        double div=Double.parseDouble(String.valueOf(temp));
+        promedio1=div/total;
+        PruebaPsicologico.PRUEBA.setProm1(promedio1);
 
         int temp2=0;
         for(int i = 0; i< LISTA_INCA2.size(); i++){
             temp2=temp2+ LISTA_INCA2.get(i).getResultado();
             Resultado.add(LISTA_INCA2.get(i).getResultado());
         }
-        double pr2=temp2/ LISTA_INCA2.size();
-        PruebaPsicologico.PRUEBA.setProm2(pr2);
+
+        double total2= Double.parseDouble(String.valueOf(Recursos_Diagnostico.LISTA_INCA2.size()));
+        double div2=Double.parseDouble(String.valueOf(temp2));
+        promedio2=div2/total2;
+        PruebaPsicologico.PRUEBA.setProm2(promedio2);
 
 
         int temp3=0;
@@ -531,8 +545,10 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
             temp3=temp3+ LISTA_INCA3.get(i).getResultado();
             Resultado.add(LISTA_INCA3.get(i).getResultado());
         }
-        double pr3=temp3/ LISTA_INCA3.size();
-        PruebaPsicologico.PRUEBA.setProm3(pr3);
+        double total3= Double.parseDouble(String.valueOf(Recursos_Diagnostico.LISTA_INCA3.size()));
+        double div3=Double.parseDouble(String.valueOf(temp3));
+        promedio3=div3/total3;
+        PruebaPsicologico.PRUEBA.setProm3(promedio3);
 
 
         int temp4=0;
@@ -540,8 +556,10 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
             temp4=temp4+ LISTA_INCA4.get(i).getResultado();
             Resultado.add(LISTA_INCA4.get(i).getResultado());
         }
-        double pr4=temp4/ LISTA_INCA4.size();
-        PruebaPsicologico.PRUEBA.setProm4(pr4);
+        double total4= Double.parseDouble(String.valueOf(Recursos_Diagnostico.LISTA_INCA4.size()));
+        double div4=Double.parseDouble(String.valueOf(temp4));
+        promedio4=div4/total4;
+        PruebaPsicologico.PRUEBA.setProm4(promedio4);
 
 
 
@@ -550,18 +568,19 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
             temp5=temp5+ LISTA_INCA5.get(i).getResultado();
             Resultado.add(LISTA_INCA5.get(i).getResultado());
         }
-        double pr5=temp5/ LISTA_INCA5.size();
-        PruebaPsicologico.PRUEBA.setProm5(pr5);
+
+        double total5= Double.parseDouble(String.valueOf(Recursos_Diagnostico.LISTA_INCA5.size()));
+        double div5=Double.parseDouble(String.valueOf(temp5));
+        promedio5=div5/total5;
+        PruebaPsicologico.PRUEBA.setProm5(promedio5);
 
 
         PruebaPsicologico.PRUEBA.setResultado(Resultado);
 
-
-
         // cognitivo real
         double cog_esperado= Double.parseDouble(ideal1.getText().toString().trim());
         double res=cog_esperado/3;
-        double cognitivo=PruebaPsicologico.PRUEBA.getProm1()*res;
+        double cognitivo=promedio1*res;
 
         double d1=Math.floor(cognitivo);
         Integer mot1=(int)d1;
@@ -727,13 +746,12 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
 
         Calcular_total();
 
-
     }
     private void Calcular_total() {
 
         double promedio=(PruebaPsicologico.PRUEBA.getCognitivo()+PruebaPsicologico.PRUEBA.getMotivacion()+PruebaPsicologico.PRUEBA.getInteligencia()+PruebaPsicologico.PRUEBA.getLiderazgo()+PruebaPsicologico.PRUEBA.getAutoconfianza())/5;
 
-        double dto=Math.floor(promedio);
+        double dto=Math.round(promedio);
         Integer motto=(int)dto;
 
         PruebaPsicologico.PRUEBA.setTotal_general(motto);
@@ -803,8 +821,6 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
 
 
     }
-
-
     private void Registrar_Fase_Prueba(final int usuario,final int persona,final int tipo_prueba,final int id_prueba,final Context context) {
 
         String id_usuario=String.valueOf(usuario);
@@ -840,5 +856,4 @@ public class PruebaPsicologicaActivity extends AppCompatActivity {
 
 
     }
-
 }
