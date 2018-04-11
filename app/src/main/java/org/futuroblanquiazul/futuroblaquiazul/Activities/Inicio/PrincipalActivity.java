@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Usuario;
 import org.futuroblanquiazul.futuroblaquiazul.Fragments.CaptacionFragment;
@@ -105,16 +106,21 @@ public class PrincipalActivity extends AppCompatActivity implements NavigationVi
         }
         tipo.setText(Usuario.SESION_ACTUAL.getPerfil().getNombre_Perfil());
         String ruta=Usuario.SESION_ACTUAL.getFoto();
-        Glide.with(this).load(ruta).into(foto);
+
+
+        Glide.with(this).load(ruta).error(R.drawable.user_default)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .skipMemoryCache(true)
+                .into(foto);
     }
     private void navigation_init() {
 
         navigationView=(NavigationView) findViewById(R.id.nav_view);
         //How to change elements in the header programatically
         View headerView = navigationView.getHeaderView(0);
-        usuario = (TextView) headerView.findViewById(R.id.username_principal);
-        tipo = (TextView) headerView.findViewById(R.id.tipo_principal);
-        foto=(ImageView)headerView.findViewById(R.id.profile_image);
+        usuario = headerView.findViewById(R.id.username_principal);
+        tipo = headerView.findViewById(R.id.tipo_principal);
+        foto=headerView.findViewById(R.id.profile_image);
         navigationView.setNavigationItemSelectedListener(this);
         Setear_usuario();
     }

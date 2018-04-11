@@ -38,6 +38,7 @@
                     android:layout_height="wrap_content"
                     android:text="Información de Categoria"
                     android:textAlignment="center"
+                    android:textAllCaps="true"
                     android:textColor="@color/blue" />
 
                 <LinearLayout
@@ -52,6 +53,7 @@
                         android:layout_weight="2"
                         android:gravity="center|start"
                         android:text="Grupo:"
+                        android:textAllCaps="true"
                         android:textStyle="bold" />
 
                     <TextView
@@ -60,8 +62,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:textAlignment="center" />
+                        android:gravity="center|start"
+                        android:textAllCaps="true" />
 
 
                 </LinearLayout>
@@ -78,6 +80,7 @@
                         android:layout_weight="2"
                         android:gravity="center|start"
                         android:text="Categoria:"
+                        android:textAllCaps="true"
                         android:textStyle="bold" />
 
                     <TextView
@@ -86,8 +89,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:textAlignment="center" />
+                        android:gravity="center|start"
+                        android:textAllCaps="true" />
 
 
                 </LinearLayout>
@@ -104,6 +107,7 @@
                         android:layout_weight="2"
                         android:gravity="center|start"
                         android:text="Estado:"
+                        android:textAllCaps="true"
                         android:textStyle="bold" />
 
                     <TextView
@@ -112,8 +116,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:textAlignment="center" />
+                        android:gravity="center|start"
+                        android:textAllCaps="true" />
 
 
                 </LinearLayout>
@@ -132,6 +136,7 @@
             android:layout_height="wrap_content"
             android:text="Relacion de Tiempos Registrados"
             android:textAlignment="center"
+            android:textAllCaps="true"
             android:textSize="18sp" />
 
 

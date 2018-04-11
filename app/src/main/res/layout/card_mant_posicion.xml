@@ -1,48 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="1dp"
     app:cardBackgroundColor="@color/blanco"
     app:cardCornerRadius="10dp"
-    app:cardElevation="2dp"
-    android:layout_margin="2dp">
+    app:cardElevation="2dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="16dp">
 
         <TextView
             android:id="@+id/card_mant_pos_numero"
-            android:layout_weight="3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="N° 1"
-            android:gravity="center"/>
+            android:layout_weight="3"
+            android:gravity="center"
+            android:text="N° 1" />
+
         <LinearLayout
-            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/card_mant_pos_posicion"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:text="POSICION"/>
+                android:text="POSICION" />
+
             <ImageView
                 android:id="@+id/card_mant_pos_eliminar"
-                android:layout_weight="3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_delete"/>
+                android:layout_weight="3"
+                android:src="@android:drawable/ic_delete" />
 
         </LinearLayout>
 
     </LinearLayout>
 
-    </android.support.v7.widget.CardView>
+</android.support.v7.widget.CardView>
 

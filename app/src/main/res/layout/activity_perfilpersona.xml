@@ -32,7 +32,8 @@
                         android:layout_height="100dp"
                         android:layout_centerInParent="true"
                         android:layout_centerHorizontal="true"
-                        android:layout_margin="32dp"/>
+                        android:layout_margin="32dp"
+                        android:src="@drawable/user_default"/>
                 </RelativeLayout>
 
             </LinearLayout>
@@ -44,18 +45,23 @@
                 android:layout_margin="8dp">
 
                 <TextView
+                    style="@style/titulo1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Jugador:"
-                    style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:textAllCaps="true"
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/perfil1_nombre"
+                    style="@style/titulo2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Jugador:"
-                    style="@style/titulo2"
-                    android:layout_weight="1"/>
+                    android:textAlignment="center"
+                    android:textStyle="italic" />
             </LinearLayout>
 
             <LinearLayout
@@ -65,10 +71,15 @@
                 android:layout_margin="8dp">
 
                 <TextView
+                    style="@style/titulo1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Promedio Generales:"
-                    style="@style/titulo1"/>
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/blue"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
 
@@ -79,18 +90,23 @@
                 android:layout_margin="8dp">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Promedio Captacion:"
                     style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Promedio Captacion:"
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/perfilx_v1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="0"
                     style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textSize="24sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -100,18 +116,23 @@
                 android:layout_margin="8dp">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Promedio Seguimiento:"
                     style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Promedio Seguimiento:"
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/perfilx_v2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="0"
                     style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textSize="24sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -121,18 +142,23 @@
                 android:layout_margin="8dp">
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Promedio Barrio Intimo:"
                     style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Promedio Barrio Intimo:"
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/perfilx_v3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="0"
                     style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textSize="24sp" />
             </LinearLayout>
 
 

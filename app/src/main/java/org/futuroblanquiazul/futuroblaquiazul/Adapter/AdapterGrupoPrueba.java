@@ -74,7 +74,7 @@ public class AdapterGrupoPrueba extends RecyclerView.Adapter<AdapterGrupoPrueba.
 
 
         holder.nombre_grupo.setText(my_Data.get(position).getDescripcion());
-        holder.fecha_grupo.setText(my_Data.get(position).getFecha_realizacion());
+        holder.fecha_grupo.setText("Fecha Creación: "+my_Data.get(position).getFecha_realizacion());
         holder.acciones_grupo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,15 +97,10 @@ public class AdapterGrupoPrueba extends RecyclerView.Adapter<AdapterGrupoPrueba.
 
                         }else if(item.getTitle().toString().equalsIgnoreCase("Información")){
 
-
                             Usuario.SESION_ACTUAL.setGrupoPruebasTEMP(my_Data.get(position));
-
-
                             final LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
                             final View dialoglayout = inflater.inflate(R.layout.area_informacion_grupo_pruebas, null);
-
                             TextView  p_creador,p_categoria,p_descripcion,p_observaciones,p_fecha,p_fecha2,p_estado;
-
                             p_categoria=dialoglayout.findViewById(R.id.info_grupo_categoria);
                             p_creador=dialoglayout.findViewById(R.id.info_grupo_creador);
                             p_descripcion=dialoglayout.findViewById(R.id.info_grupo_descripcion);
@@ -113,11 +108,9 @@ public class AdapterGrupoPrueba extends RecyclerView.Adapter<AdapterGrupoPrueba.
                             p_fecha=dialoglayout.findViewById(R.id.info_grupo_fecha1);
                             p_fecha2=dialoglayout.findViewById(R.id.info_grupo_fecha2);
                             p_estado=dialoglayout.findViewById(R.id.info_grupo_estado);
-
                             final AlertDialog.Builder builder4 = new AlertDialog.Builder(context);
                             builder4.setView(dialoglayout);
                             da=builder4.show();
-
 
                             p_creador.setText(my_Data.get(position).getUsuario().getUsuario());
                             p_descripcion.setText(my_Data.get(position).getDescripcion());

@@ -461,7 +461,7 @@
                                 style="@style/titulo1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Gruo de Pruebas" />
+                                android:text="Grupo de Pruebas" />
 
 
                             <TextView
@@ -475,7 +475,7 @@
                                 android:layout_height="wrap_content"
                                 app:cardElevation="5dp"
                                 app:cardCornerRadius="10dp"
-                                app:cardBackgroundColor="@color/deep_naranja400"
+                                app:cardBackgroundColor="@color/verde"
                                 android:layout_margin="8dp">
 
                                 <Button

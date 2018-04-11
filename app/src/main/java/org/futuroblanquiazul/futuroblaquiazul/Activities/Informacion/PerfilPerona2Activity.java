@@ -72,20 +72,39 @@ public class PerfilPerona2Activity extends AppCompatActivity {
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
                     if (success) {
-                        v1.setText(String.valueOf(jsonResponse.getDouble("V1")));
-                        v2.setText(String.valueOf(jsonResponse.getDouble("V2")));
-                        v3.setText(String.valueOf(jsonResponse.getDouble("V3")));
-                        v4.setText(String.valueOf(jsonResponse.getDouble("V4")));
-                        v5.setText(String.valueOf(jsonResponse.getDouble("V5")));
-                        v6.setText(String.valueOf(jsonResponse.getDouble("V6")));
-                        v7.setText(String.valueOf(jsonResponse.getDouble("V7")));
-                        v8.setText(String.valueOf(jsonResponse.getDouble("V8")));
-                        v9.setText(String.valueOf(jsonResponse.getDouble("V9")));
-                        v10.setText(String.valueOf(jsonResponse.getDouble("V10")));
-                        v11.setText(String.valueOf(jsonResponse.getDouble("V11")));
-                        v12.setText(String.valueOf(jsonResponse.getDouble("V12")));
-                        v13.setText(String.valueOf(jsonResponse.getDouble("V13")));
-                        v14.setText(String.valueOf(jsonResponse.getDouble("V14")));
+
+                        double a1=jsonResponse.getDouble("V1");
+                        double a2=jsonResponse.getDouble("V2");
+                        double a3=jsonResponse.getDouble("V3");
+                        double a4=jsonResponse.getDouble("V4");
+                        double a5=jsonResponse.getDouble("V5");
+                        double a6=jsonResponse.getDouble("V6");
+                        double a7=jsonResponse.getDouble("V7");
+                        double a8=jsonResponse.getDouble("V8");
+                        double a9=jsonResponse.getDouble("V9");
+                        double a10=jsonResponse.getDouble("V10");
+                        double a11=jsonResponse.getDouble("V11");
+                        double a12=jsonResponse.getDouble("V12");
+                        double a13=jsonResponse.getDouble("V13");
+                        double a14=jsonResponse.getDouble("V14");
+
+                        Setear(a1,v1);
+                        Setear(a2,v2);
+                        Setear(a3,v3);
+                        Setear(a4,v4);
+                        Setear(a5,v5);
+                        Setear(a6,v6);
+                        Setear(a7,v7);
+                        Setear(a8,v8);
+                        Setear(a9,v9);
+                        Setear(a10,v10);
+                        Setear(a11,v11);
+                        Setear(a12,v12);
+                        Setear(a13,v13);
+                        Setear(a14,v14);
+
+
+
 
                         Toast.makeText(context, "Resultados Recuperados", Toast.LENGTH_SHORT).show();
                     }else {
@@ -104,5 +123,14 @@ public class PerfilPerona2Activity extends AppCompatActivity {
         RequestQueue queue = Volley.newRequestQueue(context);
         queue.add(xx);
 
+    }
+
+    private void Setear(double a1, TextView v1) {
+
+        if(a1>0){
+            v1.setText(String.valueOf(a1));
+        }else{
+            v1.setText("0");
+        }
     }
 }

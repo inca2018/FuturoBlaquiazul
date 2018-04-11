@@ -532,7 +532,7 @@ public class InfoBuscadorActivity extends AppCompatActivity {
         linearLayoutManager1 = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         adapterBusquedaPersona1 = new AdapterBusquedaPersona(this, lista_persona_captacion, new RecyclerViewOnItemClickListener() {
             public void onClick(View v, int position) {
-
+                debug("ENTRO A CLICK 1 tam:"+lista_persona_captacion.size());
                     Info.GESTOR.setPersonal_Temporal(lista_persona_captacion.get(position));
                     Intent intent = new Intent(InfoBuscadorActivity.this,PerfilPersonaActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -547,8 +547,9 @@ public class InfoBuscadorActivity extends AppCompatActivity {
         linearLayoutManager2 = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         adapterBusquedaPersona2 = new AdapterBusquedaPersona(this, lista_persona_metodologia, new RecyclerViewOnItemClickListener() {
             public void onClick(View v, int position) {
+                debug("ENTRO A CLICK 2 tam:"+lista_persona_metodologia.size());
 
-                    Info.GESTOR.setPersonal_Temporal(lista_persona_captacion.get(position));
+                    Info.GESTOR.setPersonal_Temporal(lista_persona_metodologia.get(position));
                     Intent intent = new Intent(InfoBuscadorActivity.this,PerfilPerona2Activity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     InfoBuscadorActivity.this.startActivity(intent);
@@ -561,7 +562,9 @@ public class InfoBuscadorActivity extends AppCompatActivity {
         linearLayoutManager3 = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         adapterBusquedaPersona3 = new AdapterBusquedaPersona(this, lista_persona_estadistico, new RecyclerViewOnItemClickListener() {
             public void onClick(View v, int position) {
-                    Info.GESTOR.setPersonal_Temporal(lista_persona_captacion.get(position));
+                debug("ENTRO A CLICK 3 tam:"+lista_persona_estadistico.size());
+
+                Info.GESTOR.setPersonal_Temporal(lista_persona_estadistico.get(position));
                     Intent intent = new Intent(InfoBuscadorActivity.this,PerfilPerona2Activity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     InfoBuscadorActivity.this.startActivity(intent);
@@ -571,7 +574,6 @@ public class InfoBuscadorActivity extends AppCompatActivity {
         recyclerView3.setAdapter(adapterBusquedaPersona3);
         recyclerView3.setLayoutManager(linearLayoutManager3);
     }
-
     private void Verificar_ventanas() {
         if(Info.GESTOR.getTipo_busqueda()==1){
             linea1.setVisibility(View.VISIBLE);

@@ -47,10 +47,12 @@
                     <TextView
                         style="@style/titulo2"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:gravity="center|start"
                         android:text="Descripción:"
+                        android:textAllCaps="true"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -60,7 +62,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textAllCaps="true" />
 
 
                 </LinearLayout>
@@ -73,10 +76,12 @@
                     <TextView
                         style="@style/titulo2"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:gravity="center|start"
                         android:text="Estado:"
+                        android:textAllCaps="true"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -86,7 +91,9 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>
@@ -99,11 +106,12 @@
                     <TextView
                         style="@style/titulo2"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:gravity="center|start"
                         android:text="Observaciones:"
-                        android:textSize="15sp"
+                        android:textAllCaps="true"
+                        android:textSize="12sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -113,7 +121,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:textAlignment="center" />
+                        android:textAlignment="center"
+                        android:textAllCaps="true" />
 
 
                 </LinearLayout>

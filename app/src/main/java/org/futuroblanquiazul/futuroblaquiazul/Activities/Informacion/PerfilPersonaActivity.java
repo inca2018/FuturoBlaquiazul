@@ -34,7 +34,7 @@ public class PerfilPersonaActivity extends AppCompatActivity {
 
     ImageView foto;
     TextView nombre;
-    TextView v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12,v13,v14;
+    TextView v1,v2,v3;
     Context context;
 
     @Override
@@ -65,7 +65,6 @@ public class PerfilPersonaActivity extends AppCompatActivity {
         }
 
 
-
     }
 
 
@@ -79,9 +78,30 @@ public class PerfilPersonaActivity extends AppCompatActivity {
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
                     if (success) {
-                        v1.setText(String.valueOf(jsonResponse.getDouble("V1")));
-                        v2.setText(String.valueOf(jsonResponse.getDouble("V2")));
-                        v3.setText(String.valueOf(jsonResponse.getDouble("V3")));
+
+
+                        String to1=jsonResponse.getString("V1");
+                        String to2=jsonResponse.getString("V2");
+                        String to3=jsonResponse.getString("V3");
+
+                        if(String.valueOf(to1).length()!=0){
+                            v1.setText(String.valueOf(to1));
+                        }else if(to1==null){
+                            v1.setText("0");
+                        }
+
+                        if(String.valueOf(to2).length()!=0){
+                            v2.setText(String.valueOf(to2));
+                        }else if(to2==null){
+                            v2.setText("0");
+                        }
+
+
+                        if(String.valueOf(to3).length()!=0){
+                            v3.setText(String.valueOf(to3));
+                        }else if (to3==null){
+                            v3.setText("0");
+                        }
 
 
                         Toast.makeText(context, "Resultados Recuperados", Toast.LENGTH_SHORT).show();

@@ -48,6 +48,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_margin="8dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -58,9 +59,10 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="JESUS INCA CARDENAS"
-                        android:textAlignment="center"
+                        android:textAlignment="textStart"
                         android:textColor="@color/titulos"
                         android:textSize="15dp" />
+
                     <TextView
                         android:id="@+id/card_metodologia_estado"
                         android:layout_width="match_parent"
@@ -68,9 +70,10 @@
                         android:layout_weight="2"
                         android:gravity="center"
                         android:text="ACTIVO"
-                        android:textAlignment="center"
+                        android:textAlignment="textStart"
                         android:textColor="@color/titulos"
-                        android:textSize="15dp" />
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
 
 
                 </LinearLayout>

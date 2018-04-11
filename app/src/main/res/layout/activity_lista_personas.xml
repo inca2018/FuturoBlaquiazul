@@ -31,11 +31,14 @@
 
                 <TextView
                     android:id="@+id/titulo_plantel"
+                    style="@style/titulo1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Lista de Plantel"
-                    style="@style/titulo1"
-                    android:textAlignment="center"/>
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/blue"
+                    android:textStyle="bold" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -48,13 +51,16 @@
                         android:layout_weight="1">
 
                         <TextView
+                            style="@style/titulo2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="# JUGADORES TITULARES:"
                             android:layout_weight="1"
                             android:gravity="center"
+                            android:text="# JUGADORES TITULARES:"
                             android:textAlignment="center"
-                            style="@style/titulo2"/>
+                            android:textColor="@color/blue"
+                            android:textSize="14sp"
+                            android:textStyle="italic" />
 
                         <TextView
                             android:id="@+id/m_titulares"
@@ -74,13 +80,16 @@
                         android:layout_weight="1">
 
                         <TextView
+                            style="@style/titulo2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="# JUGADORES PRUEBA:"
                             android:layout_weight="1"
                             android:gravity="center"
+                            android:text="# JUGADORES PRUEBA:"
                             android:textAlignment="center"
-                            style="@style/titulo2"/>
+                            android:textColor="@color/blue"
+                            android:textSize="14sp"
+                            android:textStyle="italic" />
 
                         <TextView
                             android:id="@+id/m_prueba"

@@ -71,25 +71,39 @@ public class MantenimientoGrupoPruebaActivity extends AppCompatActivity {
         });
         recyclerView1.setAdapter(adapter);
         recyclerView1.setLayoutManager(linearLayoutManager1);
-        Lista_grupos_pruebas(context);
+
         Agregar1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(Posicion1.getText().length()!=0){
+                    debug("ENtro a CLICK");
                     Agregar_grupo_plantel();
+
                 }else{
                     Toast.makeText(context, "Ingrese Grupo de Prueba", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+
+        Lista_grupos_pruebas(context);
     }
     private void Agregar_grupo_plantel() {
-
+        debug("ENtro a FOR");
        for(int i=0;i<ListaPlantel.size();i++){
+           debug("Plantel"+ListaPlantel.get(i).getNombre_categoria());
            Agregar_Posicion1(Posicion1.getText().toString(),ListaPlantel.get(i).getId(),context);
+           if(i==ListaPlantel.size()-1){
+               Limpiar_Lista();
+           }
        }
 
     }
+
+    private void Limpiar_Lista() {
+        ListaGrupo.clear();
+        Lista_grupos_pruebas2(context);
+    }
+
     private void Agregar_Posicion1(String gru, int id, final Context context) {
         debug("AGREGAR GRUPO 1");
         String id_user=String.valueOf(Usuario.SESION_ACTUAL.getId());
@@ -107,19 +121,9 @@ public class MantenimientoGrupoPruebaActivity extends AppCompatActivity {
                     if (success) {
                         Toast.makeText(context, "Grupo Agregado Correctamente!", Toast.LENGTH_SHORT).show();
                         Posicion1.setText("");
-
-                        ListaGrupo.clear();
-
-                        Lista_grupos_pruebas(context);
                     }else {
-
                         progressDialog.dismiss();
-                        String error=jsonResponse.getString("validar");
-                        if(error.length()!=0){
-                            Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(context, "Error de conexion al Recuperar Grupo", Toast.LENGTH_SHORT).show();
-                        }
+                        Toast.makeText(context, "Error al registrar Grupo Prueba", Toast.LENGTH_SHORT).show();
                     }
 
                 } catch (JSONException e) {
@@ -159,18 +163,23 @@ public class MantenimientoGrupoPruebaActivity extends AppCompatActivity {
                             temp.setId(objeto.getInt("ID"));
                             temp.setDescripcion(objeto.getString("DESCRIPCION"));
                             temp.setEstado(objeto.getInt("ESTADO"));
-
                             ListaGrupo.add(temp);
-
                            debug(" LISTA GRUPOS : "+ListaGrupo.get(i).getDescripcion());
                         }
 
-                        adapter.notifyDataSetChanged();
-
                         listar_categorias(context);
+                        adapter.notifyDataSetChanged();
 
                         System.out.println("LISTADO COMPLETO DE BARRIO");
                     } else {
+                        if(ListaPlantel.size()==0){
+                            listar_categorias(context);
+                        }else{
+                            ListaPlantel.clear();
+                            listar_categorias(context);
+                        }
+
+                        progressDialog.dismiss();
 
                         Toast.makeText(context, "Listado Vacio", Toast.LENGTH_SHORT).show();
                     }
@@ -189,8 +198,63 @@ public class MantenimientoGrupoPruebaActivity extends AppCompatActivity {
 
 
     }
-    private void listar_categorias(final Context context) {
 
+
+    private void Lista_grupos_pruebas2(final Context context) {
+
+        progressDialog = new ProgressDialog(context);
+        progressDialog.setTitle("Mantenimiento:");
+        progressDialog.setMessage("Listando Grupos de Prueba..");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+
+        com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    JSONObject jsonResponse = new JSONObject(response);
+                    boolean success = jsonResponse.getBoolean("success");
+
+                    if (success) {
+                        JSONArray xx=jsonResponse.getJSONArray("grupos");
+                        for(int i=0;i<xx.length();i++){
+                            JSONObject objeto= xx.getJSONObject(i);
+                            GrupoPruebas temp=new GrupoPruebas();
+                            temp.setNum(i+1);
+                            temp.setId(objeto.getInt("ID"));
+                            temp.setDescripcion(objeto.getString("DESCRIPCION"));
+                            temp.setEstado(objeto.getInt("ESTADO"));
+                            ListaGrupo.add(temp);
+                            debug(" LISTA GRUPOS : "+ListaGrupo.get(i).getDescripcion());
+                        }
+
+
+                        adapter.notifyDataSetChanged();
+
+                        progressDialog.dismiss();
+                        System.out.println("LISTADO COMPLETO DE BARRIO");
+                    } else {
+                        progressDialog.dismiss();
+
+                        Toast.makeText(context, "Listado Vacio", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    System.out.println("Inca  : Error de conexion al recuperar departamentos :"+e);
+                }
+            }
+        };
+
+        RecuperarGrupos2 xx = new RecuperarGrupos2(responseListener);
+        RequestQueue queue = Volley.newRequestQueue(context);
+        queue.add(xx);
+
+    }
+
+    private void listar_categorias(final Context context) {
+            debug("ENTRO A LISTAR CATEGORIAS");
         com.android.volley.Response.Listener<String> responseListener = new com.android.volley.Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -207,12 +271,13 @@ public class MantenimientoGrupoPruebaActivity extends AppCompatActivity {
                             temp.setId(objeto.getInt("ID"));
                             temp.setNombre_categoria(objeto.getString("NOMBRE_CATEGORIA"));
                             ListaPlantel.add(temp);
+                            debug("PLANTEL:"+ListaPlantel.get(i).getNombre_categoria());
                         }
 
                         progressDialog.dismiss();
                     } else {
                         progressDialog.dismiss();
-                        //Toast.makeText(context, "Listado Vacio", Toast.LENGTH_SHORT).show();
+
                     }
 
                 } catch (JSONException e) {

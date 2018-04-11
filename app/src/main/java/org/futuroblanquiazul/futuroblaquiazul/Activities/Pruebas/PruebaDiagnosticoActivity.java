@@ -88,6 +88,7 @@ public class PruebaDiagnosticoActivity extends AppCompatActivity {
         }else{
             if(Usuario.SESION_ACTUAL.getPersona_metodologia_pruebas()!=null){
                 ubicacion_texto.setText("Plantel");
+                texto_continuar.setText("CONTINUAR");
             }else{
                 if(Usuario.SESION_ACTUAL.getPersona_barrio()!=null){
 

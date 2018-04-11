@@ -12,14 +12,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="8dp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 android:orientation="vertical">
 
 
@@ -31,9 +34,9 @@
                         android:id="@+id/perfil2_foto"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
-                        android:layout_centerInParent="true"
                         android:layout_centerHorizontal="true"
-                        android:layout_margin="32dp"/>
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/user_default" />
                 </RelativeLayout>
 
             </LinearLayout>
@@ -41,327 +44,408 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="8dp">
+                android:layout_margin="8dp"
+                android:orientation="vertical">
 
                 <TextView
+                    style="@style/titulo1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Jugador:"
-                    style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:textAllCaps="true"
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/perfil2_nombre"
+                    style="@style/titulo2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Jugador:"
-                    style="@style/titulo2"
-                    android:layout_weight="1"/>
+                    android:textAlignment="center"
+                    android:textStyle="italic" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="8dp">
+                android:layout_margin="8dp"
+                android:orientation="vertical">
 
                 <TextView
+                    style="@style/titulo1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Promedio Generales:"
-                    style="@style/titulo1"/>
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/blue" />
             </LinearLayout>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="8dp">
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
 
                 <TextView
+                    style="@style/titulo1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Promedio Pase Gol:"
-                    style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/perfil_v1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="0"
                     style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="8dp">
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
 
                 <TextView
+                    style="@style/titulo1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Promedio Dribbling:"
-                    style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/perfil_v2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="0"
                     style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="8dp">
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
 
                 <TextView
+                    style="@style/titulo1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Promedio Opcion de Gol:"
-                    style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/perfil_v3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="0"
                     style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="8dp">
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
 
                 <TextView
+                    style="@style/titulo1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Promedio Remate:"
-                    style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/perfil_v4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="0"
                     style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="8dp">
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
 
                 <TextView
+                    style="@style/titulo1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Promedio Goles:"
-                    style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/perfil_v5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="0"
                     style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="8dp">
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
 
                 <TextView
+                    style="@style/titulo1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Promedio Off Sides:"
-                    style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/perfil_v6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="0"
                     style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="8dp">
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
 
                 <TextView
+                    style="@style/titulo1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Promedio Balon Perdido:"
-                    style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/perfil_v7"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="0"
                     style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="8dp">
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
 
                 <TextView
+                    style="@style/titulo1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Promedio Balon Recuperado:"
-                    style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/perfil_v8"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="0"
                     style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="8dp">
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
 
                 <TextView
+                    style="@style/titulo1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Promedio Falta:"
-                    style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/perfil_v9"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="0"
                     style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="8dp">
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
 
                 <TextView
+                    style="@style/titulo1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Promedio Tarjeta Amarilla:"
-                    style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/perfil_v10"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="0"
                     style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="8dp">
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
 
                 <TextView
+                    style="@style/titulo1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Promedio Tarjeta Roja:"
-                    style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/perfil_v11"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="0"
                     style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="8dp">
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
 
                 <TextView
+                    style="@style/titulo1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Promedio Atajadas:"
-                    style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/perfil_v12"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="0"
                     style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="8dp">
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
 
                 <TextView
+                    style="@style/titulo1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Promedio Tiempo Jugado:"
-                    style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/perfil_v13"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="0"
                     style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="8dp">
+                android:layout_margin="8dp"
+                android:orientation="horizontal">
 
                 <TextView
+                    style="@style/titulo1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Promedio TOTAL:"
-                    style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:textSize="18sp" />
+
                 <TextView
                     android:id="@+id/perfil_v14"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="0"
                     style="@style/titulo1"
-                    android:layout_weight="1"/>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
             </LinearLayout>
 
         </LinearLayout>
