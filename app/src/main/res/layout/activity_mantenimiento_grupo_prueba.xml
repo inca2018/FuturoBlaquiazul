@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-   >
+    >
 
 
     <LinearLayout
@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Mantenimiento Posiciones"
+            android:text="Mantenimiento Grupo"
             style="@style/titulo1"
             android:textAlignment="center"
             android:textColor="@color/blue"
@@ -33,15 +33,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/titulo2"
-                android:text="Posiciones 1"
+                android:text="Grupos de Prueba"
                 android:textAlignment="center"/>
-            <TextView
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/titulo2"
-                android:text="Posiciones 1"
-                android:textAlignment="center"/>
+
         </LinearLayout>
 
         <LinearLayout
@@ -51,17 +45,12 @@
             android:layout_margin="8dp">
 
             <EditText
-                android:id="@+id/mant_pos_nuevo1"
+                android:id="@+id/mant_grupo_nuevo"
                 android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/input_texto"/>
-            <EditText
-                android:id="@+id/mant_pos_nuevo2"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/input_texto"/>
+
 
         </LinearLayout>
 
@@ -81,30 +70,14 @@
                 app:cardCornerRadius="10dp">
 
                 <Button
-                    android:id="@+id/mant_pos_agregar1"
+                    android:id="@+id/mant_grupo_agregar1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="AGREGAR"
                     android:textColor="@color/blanco"
                     android:background="@android:color/transparent"/>
             </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                app:cardBackgroundColor="@color/blue"
-                app:cardElevation="2dp"
-                app:cardCornerRadius="10dp">
 
-                <Button
-                    android:id="@+id/mant_pos_agregar2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="AGREGAR"
-                    android:textColor="@color/blanco"
-                    android:background="@android:color/transparent"/>
-            </android.support.v7.widget.CardView>
 
 
         </LinearLayout>
@@ -116,21 +89,13 @@
 
             <android.support.v7.widget.RecyclerView
                 android:layout_weight="1"
-                android:id="@+id/mant_pos_recycler1"
+                android:id="@+id/mant_grupo_recycler1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="8dp">
 
             </android.support.v7.widget.RecyclerView>
 
-            <android.support.v7.widget.RecyclerView
-                android:layout_weight="1"
-                android:id="@+id/mant_pos_recycler2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="8dp">
-
-            </android.support.v7.widget.RecyclerView>
 
         </LinearLayout>
 

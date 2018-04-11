@@ -94,7 +94,7 @@ public class AdapterSeguimientoPersona extends RecyclerView.Adapter<AdapterSegui
                     .skipMemoryCache(true)
                     .into(holder.foto_per_seguimiento);
 
-        holder.Nombre_persona.setText(my_Data.get(position).getNombre_Persona()+" "+my_Data.get(position).getApellidos_Persona());
+              holder.Nombre_persona.setText(my_Data.get(position).getNombre_Persona()+" "+my_Data.get(position).getApellidos_Persona());
               holder.texto_seguimientos_totales.setText("Cantidad de Seguimientos: "+my_Data.get(position).getTotales_seguimientos());
               holder.texto_seguimiento_ubigeo.setText("Ubicación de Seguimiento: "+my_Data.get(position).getUbigeo());
               holder.acciones.setOnClickListener(new View.OnClickListener() {

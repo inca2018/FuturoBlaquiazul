@@ -44,6 +44,7 @@ public class ListaPersonasPlantelActivity extends AppCompatActivity {
 
     List<Persona> lista_personas;
     TextView titulo_plantel;
+    TextView titulares,prueba;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +53,8 @@ public class ListaPersonasPlantelActivity extends AppCompatActivity {
         recycler=findViewById(R.id.recycler_plantel_jugadores);
         lista_personas=new ArrayList<>();
         titulo_plantel=findViewById(R.id.titulo_plantel);
+        titulares=findViewById(R.id.m_titulares);
+        prueba=findViewById(R.id.m_prueba);
         linearLayout = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
 
 
@@ -65,6 +68,18 @@ public class ListaPersonasPlantelActivity extends AppCompatActivity {
         recycler.setLayoutManager(linearLayout);
 
 
+        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                int titu;
+                titu=adapter.J_Titulares();
+                titulares.setText(String.valueOf(titu));
+                int dd;
+                dd=adapter.J_Prueba();
+                prueba.setText(String.valueOf(dd));
+            }
+        });
         if(Usuario.SESION_ACTUAL.getPlantel().getId()!=0){
             Lista_jugadores(Usuario.SESION_ACTUAL.getPlantel().getId(),context);
             titulo_plantel.setText("Plantel : "+Usuario.SESION_ACTUAL.getPlantel().getNombre_categoria());
@@ -99,6 +114,7 @@ public class ListaPersonasPlantelActivity extends AppCompatActivity {
                             temp.setNombre_Persona(objeto.getString("NOMBRES"));
                             temp.setApellidos_Persona(objeto.getString("APELLIDOS"));
                             temp.setFoto(objeto.getString("FOTO"));
+                            temp.setEstado(objeto.getInt("ESTADO"));
 
                             lista_personas.add(temp);
 

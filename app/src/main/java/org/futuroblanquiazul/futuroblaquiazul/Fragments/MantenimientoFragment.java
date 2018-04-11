@@ -11,6 +11,7 @@ import android.widget.Button;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos.MantenimientoBarrioIntimoActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos.MantenimientoCategoriasActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos.MantenimientoEquipoActivity;
+import org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos.MantenimientoGrupoPruebaActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos.MantenimientoOponentesActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos.MantenimientoPersonaActivity;
 import org.futuroblanquiazul.futuroblaquiazul.Activities.Mantenimientos.MantenimientoPosicionesActivity;
@@ -19,7 +20,7 @@ import org.futuroblanquiazul.futuroblaquiazul.R;
 
 public class MantenimientoFragment extends Fragment {
 
-    Button accion1,accion2,accion3,accion4,accion5,accion6,accion7;
+    Button accion1,accion2,accion3,accion4,accion5,accion6,accion7,accion8;
     Context context;
     public MantenimientoFragment() {
     }
@@ -39,6 +40,7 @@ public class MantenimientoFragment extends Fragment {
           accion5=v.findViewById(R.id.accion_5_mantenimiento);
           accion6=v.findViewById(R.id.accion_6_mantenimiento);
           accion7=v.findViewById(R.id.accion_7_mantenimiento);
+        accion8=v.findViewById(R.id.accion_8_mantenimiento);
 
           accion1.setOnClickListener(new View.OnClickListener() {
               @Override
@@ -93,6 +95,13 @@ public class MantenimientoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(context, MantenimientoEquipoActivity.class);
+                startActivity(intent);
+            }
+        });
+        accion8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(context, MantenimientoGrupoPruebaActivity.class);
                 startActivity(intent);
             }
         });

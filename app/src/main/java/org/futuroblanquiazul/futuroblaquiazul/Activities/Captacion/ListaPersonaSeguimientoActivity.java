@@ -117,7 +117,11 @@ public class ListaPersonaSeguimientoActivity extends AppCompatActivity implement
                             temp.setTotales_seguimientos(objeto.getInt("TOTAL_SEGUIMIENTO"));
                             temp.setUbigeo(objeto.getString("UBIGEO"));
                             temp.setFoto(objeto.getString("FOTO"));
-
+                            Usuario u=new Usuario();
+                            u.setId(objeto.getInt("ID_USER"));
+                            u.setNombres(objeto.getString("NOMBRES_U"));
+                            u.setApellidos(objeto.getString("APELLIDOS_U"));
+                            temp.setUsuario(u);
                             lista_seguimiento_persona.add(temp);
                         }
                         adapter.notifyDataSetChanged();

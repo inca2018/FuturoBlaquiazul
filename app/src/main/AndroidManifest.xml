@@ -28,9 +28,7 @@
         <activity android:name=".Activities.Captacion.RegistroPostulantesActivity" />
         <activity
             android:name=".Activities.Inicio.LoginActivity"
-            android:configChanges="screenSize|orientation">
-
-        </activity>
+            android:configChanges="screenSize|orientation" />
         <activity
             android:name=".Activities.Inicio.PrincipalActivity"
             android:configChanges="screenSize|orientation" />
@@ -175,10 +173,14 @@
             android:name=".Activities.Mantenimientos.EquipoJugadoresActivity"
             android:screenOrientation="landscape" />
         <activity android:name=".Activities.Estadistico.InformacionFechaActivity" />
-        <activity android:name=".Activities.Informacion.InfoBuscadorActivity"
+        <activity
+            android:name=".Activities.Informacion.InfoBuscadorActivity"
             android:configChanges="screenSize|orientation" />
-        <activity android:name=".Activities.Informacion.PerfilPersonaActivity"
-            android:configChanges="screenSize|orientation" ></activity>
+        <activity
+            android:name=".Activities.Informacion.PerfilPersonaActivity"
+            android:configChanges="screenSize|orientation" />
+        <activity android:name=".Activities.Mantenimientos.MantenimientoGrupoPruebaActivity" />
+        <activity android:name=".Activities.Informacion.PerfilPerona2Activity"></activity>
     </application>
 
 </manifest>

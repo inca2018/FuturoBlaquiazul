@@ -15,18 +15,98 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/titulo_plantel"
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Lista de Plantel"
-            style="@style/titulo1"
-            android:textAlignment="center"/>
+            android:layout_margin="8dp"
+            app:cardElevation="2dp"
+            app:cardCornerRadius="10dp"
+            app:cardBackgroundColor="@color/blanco"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/titulo_plantel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Lista de Plantel"
+                    style="@style/titulo1"
+                    android:textAlignment="center"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="# JUGADORES TITULARES:"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textAlignment="center"
+                            style="@style/titulo2"/>
+
+                        <TextView
+                            android:id="@+id/m_titulares"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:layout_weight="1"
+                            android:textAlignment="center"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            style="@style/titulo2"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="# JUGADORES PRUEBA:"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:textAlignment="center"
+                            style="@style/titulo2"/>
+
+                        <TextView
+                            android:id="@+id/m_prueba"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:layout_weight="1"
+                            android:textAlignment="center"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            style="@style/titulo2"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_plantel_jugadores"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_margin="8dp">
 
 
         </android.support.v7.widget.RecyclerView>

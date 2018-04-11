@@ -34,6 +34,7 @@ public class AdapterMetodologiaPersona extends RecyclerView.Adapter<AdapterMetod
         TextView nom;
         ImageView acciones;
         ImageView metodologia_persona_foto;
+        TextView estado;
 
 
         public ViewHolder(View itemView) {
@@ -41,6 +42,7 @@ public class AdapterMetodologiaPersona extends RecyclerView.Adapter<AdapterMetod
             itemView.setOnClickListener(this);
             nom=itemView.findViewById(R.id.card_metodologia_jugador);
             metodologia_persona_foto=itemView.findViewById(R.id.metodologia_persona_foto);
+            estado=itemView.findViewById(R.id.card_metodologia_estado);
 
         }
         @Override
@@ -62,12 +64,41 @@ public class AdapterMetodologiaPersona extends RecyclerView.Adapter<AdapterMetod
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
         holder.nom.setText(my_Data.get(position).getNombre_Persona()+" "+my_Data.get(position).getApellidos_Persona());
-        Glide.with(context).load(my_Data.get(position).getFoto()).into(holder.metodologia_persona_foto);
+        Glide.with(context)
+                .load(my_Data.get(position).getFoto()).into(holder.metodologia_persona_foto);
 
+
+        if(my_Data.get(position).getEstado()==1){
+            holder.estado.setText("TITULAR");
+            holder.estado.setTextColor(context.getResources().getColor(R.color.morado_bajo));
+        }else{
+            holder.estado.setText("PRUEBA");
+            holder.estado.setTextColor(context.getResources().getColor(R.color.deep_naranja400));
+        }
     }
 
     @Override
     public int getItemCount() {
         return my_Data.size();
     }
+
+    public int J_Titulares(){
+        int to=0;
+        for(int i=0;i<my_Data.size();i++){
+            if(my_Data.get(i).getEstado()==1){
+                to=to+1;
+            }
+        }
+        return to;
+    }
+    public int J_Prueba(){
+        int to=0;
+        for(int i=0;i<my_Data.size();i++){
+            if(my_Data.get(i).getEstado()==2){
+                to=to+1;
+            }
+        }
+        return to;
+    }
+
 }

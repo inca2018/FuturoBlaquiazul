@@ -92,11 +92,20 @@ public class Persona {
     int total;
 
     int tiempo_jugado;
+    Usuario usuario;
 
 
 
     public Persona(){
 
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public int getTiempo_jugado() {

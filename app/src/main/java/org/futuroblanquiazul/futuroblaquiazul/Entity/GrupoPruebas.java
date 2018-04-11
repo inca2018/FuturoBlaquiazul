@@ -5,6 +5,7 @@ package org.futuroblanquiazul.futuroblaquiazul.Entity;
  */
 
 public class GrupoPruebas {
+    int num;
     int id;
     Usuario usuario;
     String Descripcion;
@@ -16,6 +17,14 @@ public class GrupoPruebas {
 
     public GrupoPruebas(){
 
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
     }
 
     public int getId() {

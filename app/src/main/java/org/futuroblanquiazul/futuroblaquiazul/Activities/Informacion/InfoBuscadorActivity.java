@@ -30,8 +30,11 @@ import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Unidad_Territorial;
 import org.futuroblanquiazul.futuroblaquiazul.Interface_Alianza.RecyclerViewOnItemClickListener;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarBusqueda1;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarBusqueda11;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarBusqueda2;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarBusqueda22;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarBusqueda3;
+import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarBusqueda33;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarDepartamentos;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarDistritos;
 import org.futuroblanquiazul.futuroblaquiazul.Peticiones.RecuperarProvincias;
@@ -191,9 +194,24 @@ public class InfoBuscadorActivity extends AppCompatActivity {
             }
         };
 
-        RecuperarBusqueda1 xx = new RecuperarBusqueda1(inicio,fin,departamento,responseListener);
-        RequestQueue queue = Volley.newRequestQueue(context);
-        queue.add(xx);
+
+        if(Info.GESTOR.getTipo_busqueda()==1){
+            RecuperarBusqueda1 xx = new RecuperarBusqueda1(inicio,fin,departamento,responseListener);
+            RequestQueue queue = Volley.newRequestQueue(context);
+            queue.add(xx);
+            debug("ADAPTER 1");
+        }else if(Info.GESTOR.getTipo_busqueda()==2){
+            RecuperarBusqueda11 xx1 = new RecuperarBusqueda11(inicio,fin,departamento,responseListener);
+            RequestQueue queue = Volley.newRequestQueue(context);
+            queue.add(xx1);
+            debug("ADAPTER 2");
+        }else if(Info.GESTOR.getTipo_busqueda()==3){
+            RecuperarBusqueda11 xx2 = new RecuperarBusqueda11(inicio,fin,departamento,responseListener);
+            RequestQueue queue = Volley.newRequestQueue(context);
+            queue.add(xx2);
+            debug("ADAPTER 3");
+        }
+
     }
     private void Listar_Jugadores_DEP_PROV(Info gestor) {
         String inicio=gestor.getInicio().getFecha_base();
@@ -263,9 +281,24 @@ public class InfoBuscadorActivity extends AppCompatActivity {
             }
         };
 
-        RecuperarBusqueda2 xx = new RecuperarBusqueda2(inicio,fin,departamento,provincia,responseListener);
-        RequestQueue queue = Volley.newRequestQueue(context);
-        queue.add(xx);
+
+
+        if(Info.GESTOR.getTipo_busqueda()==1){
+            RecuperarBusqueda2 xx = new RecuperarBusqueda2(inicio,fin,departamento,provincia,responseListener);
+            RequestQueue queue = Volley.newRequestQueue(context);
+            queue.add(xx);
+            debug("ADAPTER 1");
+        }else if(Info.GESTOR.getTipo_busqueda()==2){
+            RecuperarBusqueda22 xx1 = new RecuperarBusqueda22(inicio,fin,departamento,provincia,responseListener);
+            RequestQueue queue = Volley.newRequestQueue(context);
+            queue.add(xx1);
+            debug("ADAPTER 2");
+        }else if(Info.GESTOR.getTipo_busqueda()==3){
+            RecuperarBusqueda22 xx2 = new RecuperarBusqueda22(inicio,fin,departamento,provincia,responseListener);
+            RequestQueue queue = Volley.newRequestQueue(context);
+            queue.add(xx2);
+            debug("ADAPTER 3");
+        }
 
     }
     private void Listar_Jugadores_DEP_PROV_DIST(Info gestor) {
@@ -336,10 +369,24 @@ public class InfoBuscadorActivity extends AppCompatActivity {
             }
         };
 
-        RecuperarBusqueda3 xx = new RecuperarBusqueda3(inicio,fin,departamento,provincia,distrito,responseListener);
-        RequestQueue queue = Volley.newRequestQueue(context);
-        queue.add(xx);
+        if(Info.GESTOR.getTipo_busqueda()==1){
+            RecuperarBusqueda3 xx = new RecuperarBusqueda3(inicio,fin,departamento,provincia,distrito,responseListener);
+            RequestQueue queue = Volley.newRequestQueue(context);
+            queue.add(xx);
+            debug("ADAPTER 1");
+        }else if(Info.GESTOR.getTipo_busqueda()==2){
+            RecuperarBusqueda33 xx1 = new RecuperarBusqueda33(inicio,fin,departamento,provincia,distrito,responseListener);
+            RequestQueue queue = Volley.newRequestQueue(context);
+            queue.add(xx1);
+            debug("ADAPTER 2");
+        }else if(Info.GESTOR.getTipo_busqueda()==3){
+            RecuperarBusqueda33 xx2 = new RecuperarBusqueda33(inicio,fin,departamento,provincia,distrito,responseListener);
+            RequestQueue queue = Volley.newRequestQueue(context);
+            queue.add(xx2);
+            debug("ADAPTER 3");
+        }
     }
+
     private void Seleccion_Fechas() {
 
         info_inicio.setOnClickListener(new View.OnClickListener() {
@@ -485,10 +532,13 @@ public class InfoBuscadorActivity extends AppCompatActivity {
         linearLayoutManager1 = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         adapterBusquedaPersona1 = new AdapterBusquedaPersona(this, lista_persona_captacion, new RecyclerViewOnItemClickListener() {
             public void onClick(View v, int position) {
-                       Info.GESTOR.setPersonal_Temporal(lista_persona_captacion.get(position));
-                       Intent intent = new Intent(InfoBuscadorActivity.this,PerfilPersonaActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                       InfoBuscadorActivity.this.startActivity(intent);
+
+                    Info.GESTOR.setPersonal_Temporal(lista_persona_captacion.get(position));
+                    Intent intent = new Intent(InfoBuscadorActivity.this,PerfilPersonaActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    InfoBuscadorActivity.this.startActivity(intent);
+
+
             }
         });
         recyclerView1.setAdapter(adapterBusquedaPersona1);
@@ -498,6 +548,11 @@ public class InfoBuscadorActivity extends AppCompatActivity {
         adapterBusquedaPersona2 = new AdapterBusquedaPersona(this, lista_persona_metodologia, new RecyclerViewOnItemClickListener() {
             public void onClick(View v, int position) {
 
+                    Info.GESTOR.setPersonal_Temporal(lista_persona_captacion.get(position));
+                    Intent intent = new Intent(InfoBuscadorActivity.this,PerfilPerona2Activity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    InfoBuscadorActivity.this.startActivity(intent);
+
             }
         });
         recyclerView2.setAdapter(adapterBusquedaPersona2);
@@ -506,6 +561,10 @@ public class InfoBuscadorActivity extends AppCompatActivity {
         linearLayoutManager3 = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
         adapterBusquedaPersona3 = new AdapterBusquedaPersona(this, lista_persona_estadistico, new RecyclerViewOnItemClickListener() {
             public void onClick(View v, int position) {
+                    Info.GESTOR.setPersonal_Temporal(lista_persona_captacion.get(position));
+                    Intent intent = new Intent(InfoBuscadorActivity.this,PerfilPerona2Activity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    InfoBuscadorActivity.this.startActivity(intent);
 
             }
         });

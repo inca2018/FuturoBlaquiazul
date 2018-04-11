@@ -4,6 +4,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterEtapaPruebas;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterJugadorBarrioIntimo;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterJugadorCategoria;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterJugadorDisponible;
@@ -13,8 +14,10 @@ import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterJugadorEquipo;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterOponentes;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterPosiciones;
 import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterPosiciones2;
+import org.futuroblanquiazul.futuroblaquiazul.Adapter.AdapterPruebas;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.BarrioIntimo;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Equipo;
+import org.futuroblanquiazul.futuroblaquiazul.Entity.GrupoPruebas;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Oponente;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Persona;
 import org.futuroblanquiazul.futuroblaquiazul.Entity.Plantel;
@@ -53,6 +56,9 @@ public class Recursos_Mantenimientos {
     public static final  List<Posicion> Posiciones2=new ArrayList<>();
     public static  AdapterPosiciones ADAPTER1=null;
     public static  AdapterPosiciones2 ADAPTER2=null;
+
+    public static final  List<GrupoPruebas> Pruebas=new ArrayList<>();
+    public static AdapterPruebas ADAPTERPRUEBAS=null;
 
     public static  final List<Oponente> OPONENTES=new ArrayList<>();
     public static AdapterOponentes ADAPTER_OPONENTE=null;

@@ -69,6 +69,7 @@ public class Usuario {
 
     String FechaModificado;
     Usuario usuario_mantenimiento;
+    Plantel plantel_temporal;
 
 
     public static final Usuario SESION_ACTUAL=new Usuario();
@@ -77,6 +78,14 @@ public class Usuario {
 
     public Usuario(){
 
+    }
+
+    public Plantel getPlantel_temporal() {
+        return plantel_temporal;
+    }
+
+    public void setPlantel_temporal(Plantel plantel_temporal) {
+        this.plantel_temporal = plantel_temporal;
     }
 
     public String getFechaModificado() {
